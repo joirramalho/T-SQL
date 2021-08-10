@@ -16,6 +16,24 @@
 				"provider-properties": {
 					"@dbeaver-authentication@": "SQL_SERVER_PASSWORD",
 					"@dbeaver-show-all-schemas@": "false"
+				}
+			}
+		},
+		"microsoft-17b30637ffa-6754e32427b32582": {
+			"provider": "sqlserver",
+			"driver": "microsoft",
+			"name": "SQL09",
+			"save-password": false,
+			"read-only": false,
+			"configuration": {
+				"host": "172.31.22.23",
+				"port": "1435",
+				"database": "master",
+				"url": "jdbc:sqlserver://;serverName=172.31.22.23;port=1435;databaseName=master",
+				"type": "dev",
+				"provider-properties": {
+					"@dbeaver-authentication@": "SQL_SERVER_PASSWORD",
+					"@dbeaver-show-all-schemas@": "false"
 				},
 				"handlers": {}
 			}
