@@ -34,8 +34,7 @@
 				"provider-properties": {
 					"@dbeaver-authentication@": "SQL_SERVER_PASSWORD",
 					"@dbeaver-show-all-schemas@": "false"
-				},
-				"handlers": {}
+				}
 			}
 		}
 	},

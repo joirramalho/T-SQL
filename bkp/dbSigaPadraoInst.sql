@@ -1,6 +1,6 @@
 --  10ago21 #backup
 
-BACKUP DATABASE dbActiveVendasPadraoInst TO DISK = N'/TEMP/dbActiveVendasPadraoInst.bak'
+BACKUP DATABASE dbBibPadraoInstalacao TO DISK = N'/TEMP/dbBibPadraoInstalacao.bak'
 
 
 -- chown ec2-user dbSigaPadraoInst.bak

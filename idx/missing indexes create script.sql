@@ -1,8 +1,8 @@
-USE dbSigaISO;
+USE dbCrmActivesoft;
 
 -- EXEC  sp_helpindex 'TbOcorrenciaMovimentacao'
 
-SELECT DB_NAME()
+-- SELECT DB_NAME()
 
 SELECT  migs.avg_total_user_cost * (migs.avg_user_impact / 100.0) * (migs.user_seeks + migs.user_scans) AS [Impact], mid.statement AS [Query Text],
   'CREATE INDEX [IX_'+LEFT (PARSENAME(mid.statement, 1), 32)+'_'
@@ -19,7 +19,7 @@ INNER JOIN sys.dm_db_missing_index_group_stats migs ON migs.group_handle = mig.i
 INNER JOIN sys.dm_db_missing_index_details mid ON mig.index_handle = mid.index_handle
 WHERE migs.avg_total_user_cost * (migs.avg_user_impact / 100.0) * (migs.user_seeks + migs.user_scans) > 10 and mid.database_id=DB_ID()
 
-  AND mid.statement LIKE '%TbNotaFiscal%'
+--  AND mid.statement LIKE '%TbAccessToken%'
 
 ORDER BY migs.avg_total_user_cost * migs.avg_user_impact * (migs.user_seeks + migs.user_scans) DESC
 
@@ -27,6 +27,3 @@ ORDER BY migs.avg_total_user_cost * migs.avg_user_impact * (migs.user_seeks + mi
 
 -- CREATE INDEX [IX_TbOcorrenciaMovimentacao_CdPrioridade] ON [dbCrmActivesoft].[dbo].[TbOcorrenciaMovimentacao] ([CdPrioridade]) 
 --   INCLUDE ([IdOcorrenciaMovimentacao], [DataHoraLimite])
-
-
-

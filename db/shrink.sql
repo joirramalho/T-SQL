@@ -37,7 +37,7 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 ,@user_only = 1
 ,@suppress_quotename=1
 -- ,@name_pattern='dbSigaSalePetrolina_Arquivo0';
-,@database_list = 'dbSigaContemporaneo'
+,@database_list = 'dbActiveVendasPadraoInst'
 
 
 -- use dbSigaContemporaneo_Arquivo01

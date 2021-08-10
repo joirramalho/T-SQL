@@ -1,6 +1,6 @@
 USE dbSigaNeves_Arquivo03
 
-SELECT DB_NAME()
+--SELECT DB_NAME()
 
 SELECT t.name AS Table_Name -- sc.name AS Schema_Name, 
 FROM sys.tables t

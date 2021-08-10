@@ -6,7 +6,7 @@
 
 -- select * from TbAbatimento
 
--- EXEC sp_help 'dbSigaModelo.dbo.TbAbatimento'
+-- EXEC sp_help 'dbCrmActivesoft.dbo.TbAccessToken'
 
 -- EXEC  dbo.sp_HelpText 'TgLancamentoCobrancaDescontoValidar' -- TRIGGER OU storedProcName
 
@@ -15,7 +15,7 @@
 
 
 
--- EXEC  [DatabaseName].dbo.sp_Help 'TABLE'
+-- EXEC  [DatabaseName].dbo.sp_Help 'TbAccessToken'
 
 -- EXEC  [DatabaseName].dbo.sp_HelpText ''  -- TRIGGER OU storedProcName
 
