@@ -15,7 +15,7 @@ and state = 0             -- 0 ON-LINE -- 6 OFF-LINE
 
 -- and name LIKE 'dbSigaMillenium%'
 -- 
-ORDER BY  create_date DESC
+--ORDER BY  create_date DESC
 -- ORDER BY  d.name
 
 
