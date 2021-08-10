@@ -1,0 +1,13 @@
+There is a tuning task that runs every-week on Sunday night at 1:30 AM. The task will:
+
+Check Database Integrity (daily)
+
+Shrink the Log File – (This is ok because logging mode is Simple)
+
+Shrink Database
+
+Rebuild Index (Reorganize Index)
+
+Update Statistics
+
+Clean Up History (pendente)
