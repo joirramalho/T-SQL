@@ -1,0 +1,1 @@
+http://codingsight.com/different-ways-to-compare-sql-server-tables-schema-and-data/

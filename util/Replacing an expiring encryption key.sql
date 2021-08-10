@@ -1,0 +1,1 @@
+https://edleightondick.com/2017/05/replacing-expiring-sql-encryption-key/
