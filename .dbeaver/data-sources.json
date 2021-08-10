@@ -36,6 +36,25 @@
 					"@dbeaver-show-all-schemas@": "false"
 				}
 			}
+		},
+		"microsoft-17b3164b70d-66a827adf95eb01e": {
+			"provider": "sqlserver",
+			"driver": "microsoft",
+			"name": "SQL04",
+			"save-password": false,
+			"read-only": false,
+			"configuration": {
+				"host": "172.31.18.113",
+				"port": "1435",
+				"database": "master",
+				"url": "jdbc:sqlserver://;serverName=172.31.18.113;port=1435;databaseName=master",
+				"type": "dev",
+				"provider-properties": {
+					"@dbeaver-authentication@": "SQL_SERVER_PASSWORD",
+					"@dbeaver-show-all-schemas@": "false"
+				},
+				"handlers": {}
+			}
 		}
 	},
 	"connection-types": {
