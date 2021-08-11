@@ -1,7 +1,6 @@
--- https://sites.google.com/site/sqlservermsdn/cpu------sql-server
+--11ago21
+--https://sites.google.com/site/sqlservermsdn/cpu------sql-server
 
--- EXEC dbLogMonitor.dbo.sp_Where
- 
 WITH DB_CPU_Stats
 AS
 (   SELECT DatabaseID, DB_Name(DatabaseID) AS [DatabaseName], SUM(total_worker_time) AS [CPU_Time_Ms]
