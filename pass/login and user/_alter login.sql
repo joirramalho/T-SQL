@@ -6,16 +6,15 @@
 
 -- ALTER LOGIN [sigainternet] WITH PASSWORD = '***' 
 
-
--- ALTER LOGIN [service.account] WITH PASSWORD = '*****' 
-
-
 -- ALTER LOGIN [userISO_PowerBI] WITH PASSWORD = '****'
 
 
+-- ALTER LOGIN [active.joir] WITH PASSWORD = '***'
+
+-- ALTER LOGIN [service.account] WITH PASSWORD = '***' 
+
 -- ALTER LOGIN [sigainternet] WITH PASSWORD = '****'
 
--- ALTER LOGIN [active.joir] WITH PASSWORD = '***'
 
 
 

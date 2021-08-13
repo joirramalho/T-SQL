@@ -1,6 +1,6 @@
 -- Reset SQL user account guids 
 
-USE  dbSigaModeloEEM;
+USE  CRM_276942_30jun;
 
 DECLARE @UserName nvarchar(255) 
 

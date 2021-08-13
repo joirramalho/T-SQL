@@ -1,4 +1,5 @@
--- VERSION 1.01 09mai12
+--13ago21 SQL10
+--09mai21
 
 -- USE dbCrmActivesoft
 
@@ -10,21 +11,26 @@ declare @IPDestino varchar(32)
 declare @ServidorAlias VARCHAR(32)
 declare @Sigainternet VARCHAR(64)
 
-      SET @banco = 'dbSigaFACHO'
+      SET @banco = 'dbSigaModeloVouBuscar'
 
--- set @IPOrigem = '172.31.31.200'  -- VPS7
+set @IPOrigem = '172.31.31.254' -- SQL04
 -- set @IPOrigem = '172.31.18.113' -- SQL05
 -- set @IPOrigem = '172.31.17.88' -- SQL06
-set @IPOrigem = '172.31.21.223' -- SQL07
+--set @IPOrigem = '172.31.21.223' -- SQL07
 -- set @IPOrigem = '172.31.20.88' -- SQL08
+
 
 -- SET @ServidorAlias = 'LNX08-VPN'
 -- SET @IPDestino = '172.31.20.88' -- LNX08
 -- SET @Sigainternet = '7A00.....'
 
-SET @ServidorAlias = 'LNX09-VPN'
-SET @IPDestino = '172.31.22.23' -- LNX09
-SET @Sigainternet = '177A'
+SET @ServidorAlias = 'LNX10-VPN'
+SET @IPDestino = '172.31.22.23' -- LNX10
+SET @Sigainternet = '0370'
+
+--SET @ServidorAlias = 'LNX09-VPN'
+--SET @IPDestino = '172.31.22.23' -- LNX09
+--SET @Sigainternet = '177A'
 
 -- SET @ServidorAlias = 'LNX04-VPN'
 -- SET @IPDestino = '172.31.31.254' -- LNX04

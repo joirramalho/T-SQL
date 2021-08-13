@@ -1,7 +1,5 @@
 -- 04ago21
 
--- EXEC dbLogMonitor.dbo.sp_Where
-
 SELECT name, state_desc, recovery_model_desc, is_read_only, user_access_desc, create_date
 FROM sys.databases d
 WHERE database_id > 4       -- User Databases
@@ -16,3 +14,5 @@ WHERE database_id > 4       -- User Databases
  
 --ORDER BY  create_date DESC
 --ORDER BY  d.name
+
+--DROP DATABASE dbSigaPadraoInsES

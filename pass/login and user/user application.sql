@@ -8,7 +8,7 @@ USE CRM_286342; -- xp_readerorlog
 
 -- ALTER LOGIN [active.suelio] WITH  DEFAULT_DATABASE=[dbLogRestore];
 
--- GRANT CONNECT  TO [active.ewerton];
+-- GRANT CONNECT  TO [sigainternet];
 
 
 --ALTER ROLE [db_owner] ADD MEMBER [suporte.ewerton];

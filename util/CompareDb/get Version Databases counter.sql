@@ -1,4 +1,4 @@
--- 27jul21 - #Banco local
+-- 27jul21 - #Banco #local
 -- VERSION 1.01 - 13mai21
 
 SELECT 
