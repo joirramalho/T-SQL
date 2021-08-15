@@ -1,5 +1,6 @@
-USE dbSigaSaleFalcao;
--- USE dbSigaDCCJR;
+-- USE dbSigaSaleINSA;
+-- USE dbSigaNSLourdesGravata;
+-- USE dbSigaAuxilRecife;
 
 SELECT DB_NAME()
 
@@ -111,7 +112,7 @@ GO
 
 
 -- NOME PK ERRADOS
--- ALTER TABLE [dbo].[TbUnidadeTermoConsentimento] DROP CONSTRAINT [FK__TbUnidade__IdUni__7AF60201];
+-- ALTER TABLE [dbo].[TbUnidadeTermoConsentimento] DROP CONSTRAINT [FK__TbUnidade__IdUni__53A72AB6];
 
 -- NOME CORRETO
 ALTER TABLE [dbo].[TbUnidadeTermoConsentimento] DROP CONSTRAINT [FK_TbUnidadeTermoConsentimento_TbUnidade]
