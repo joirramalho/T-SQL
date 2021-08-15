@@ -1,0 +1,9 @@
+git add -A
+
+git commit -m "commit-15ago"
+
+
+git push https://<GITHUB_ACCESS_TOKEN>@github.com/<GITHUB_USERNAME>/<REPOSITORY_NAME>.git
+
+
+git push https://ghp_....Ujol@github.com/joirramalho/T-SQL.git
