@@ -1,5 +1,3 @@
--- EXEC dbLogMonitor.dbo.sp_ServerName
-
 EXEC dbLogMonitor.dbo.sp_foreachdb N'
     IF EXISTS( SELECT name, state_desc, recovery_model_desc, is_read_only, user_access_desc, create_date
                 FROM sys.databases d
@@ -9,8 +7,8 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
     BEGIN
         SELECT DB_NAME();
 
-        -- ALTER DATABASE [?] SET RECOVERY SIMPLE WITH NO_WAIT
-        ALTER DATABASE [?] SET RECOVERY FULL WITH NO_WAIT
+        -- ALTER DATABASE [?] SET RECOVERY SIMPLE WITH NO_WAIT;
+        ALTER DATABASE [?] SET RECOVERY FULL WITH NO_WAIT;
     END
 '
 ,@print_command_only = 0 -- Obrigatório Gerar script
@@ -19,8 +17,4 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 ,@user_only = 1
 ,@suppress_quotename=1
 -- ,@name_pattern='';
-,@database_list = 'dbBibAguiasSaber, dbBibSantaCatarina'
-
-
-
-
+,@database_list = 'dbBibAuxilRecife'

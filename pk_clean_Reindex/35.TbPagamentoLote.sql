@@ -1,9 +1,6 @@
-USE dbSigaSaleFalcao;
--- USE dbSigaDCCJR;
-
-SELECT DB_NAME()
-
-
+-- USE dbSigaSaleINSA;
+-- USE dbSigaNSLourdesGravata;
+-- USE dbSigaAuxilRecife;
 
 -- TbPagamentoLote
 ALTER TABLE [dbo].[TbPagamento] DROP CONSTRAINT [FK_TbPagamento_TbPagamentoLote]

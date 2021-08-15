@@ -1,8 +1,6 @@
-USE dbSigaSaleFalcao;
--- USE dbSigaDCCJR;
-
-SELECT DB_NAME()
-
+-- USE dbSigaSaleINSA;
+-- USE dbSigaNSLourdesGravata;
+-- USE dbSigaAuxilRecife;
 
 -- TbGrupo 
 ALTER TABLE [dbo].[TbFuncionalidadeGrupo] DROP CONSTRAINT [FK_TbFuncionalidadeGrupo_TbGrupo]

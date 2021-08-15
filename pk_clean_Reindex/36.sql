@@ -1,7 +1,6 @@
-USE dbSigaSaleFalcao;
--- USE dbSigaDCCJR;
-
-SELECT DB_NAME()
+-- USE dbSigaSaleINSA;
+-- USE dbSigaNSLourdesGravata;
+-- USE dbSigaAuxilRecife;
 
 
 -- TbOptProva

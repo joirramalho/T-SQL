@@ -1,7 +1,6 @@
-USE dbSigaSaleFalcao;
--- USE dbSigaDCCJR;
-
-SELECT DB_NAME()
+-- USE dbSigaSaleINSA;
+-- USE dbSigaNSLourdesGravata;
+-- USE dbSigaAuxilRecife;
 
 
 
@@ -107,15 +106,13 @@ GO
 
 -- TbAluno (continuacao)
 
-ALTER TABLE [dbo].[TbAlunoTurmaDocumento] DROP CONSTRAINT [FK__TbAlunoTu__IdAlu__3EA1EC2F]
+ALTER TABLE [dbo].[TbAlunoTurmaDocumento] DROP CONSTRAINT [FK__TbAlunoTu__IdAlu__1D160FDB]
 GO
 -- OU
 IF OBJECT_ID('dbo.FK_TbAlunoTurmaDocumento_TbAluno') IS NOT NULL
 BEGIN
 	ALTER TABLE [dbo].[TbAlunoTurmaDocumento] DROP CONSTRAINT [FK_TbAlunoTurmaDocumento_TbAluno]
 END
-
-
 
 
 

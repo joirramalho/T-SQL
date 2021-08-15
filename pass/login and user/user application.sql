@@ -1,17 +1,19 @@
--- VERSION 1.01 - 18mai21 - dbSigaSalePetrolina_Arquivo0X
+-- 18mai21 - dbSigaSalePetrolina_Arquivo0X
 
--- CREATE LOGIN [userFACHO] WITH PASSWORD=N'****', DEFAULT_DATABASE=[dbSigaFACHO], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF
+-- CREATE LOGIN [userAuxilRecife] WITH PASSWORD=N'Yc28x9WBGp', DEFAULT_DATABASE=[dbSigaAuxilRecife], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF
 
-USE CRM_286342; -- xp_readerorlog
+USE dbBibAuxilRecife; -- xp_readerorlog
 
--- CREATE USER [active.ewerton] FOR LOGIN [active.ewerton] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
+SELECT DB_NAME()
 
--- ALTER LOGIN [active.suelio] WITH  DEFAULT_DATABASE=[dbLogRestore];
+-- CREATE USER [userAuxilRecife] FOR LOGIN [userAuxilRecife] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
+
+-- ALTER LOGIN [userAuxilRecife] WITH  DEFAULT_DATABASE=[dbSigaAuxilRecife];
 
 -- GRANT CONNECT  TO [sigainternet];
 
 
---ALTER ROLE [db_owner] ADD MEMBER [suporte.ewerton];
+--ALTER ROLE [db_owner] ADD MEMBER [userAuxilRecife];
 
 
 

@@ -9,7 +9,7 @@
 -- ALTER LOGIN [userISO_PowerBI] WITH PASSWORD = '****'
 
 
--- ALTER LOGIN [active.joir] WITH PASSWORD = '***'
+-- ALTER LOGIN [active.pinto] WITH PASSWORD = '***'
 
 -- ALTER LOGIN [service.account] WITH PASSWORD = '***' 
 

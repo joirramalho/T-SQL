@@ -1,6 +1,6 @@
 -- Reset SQL user account guids 
 
-USE  CRM_276942_30jun;
+USE  dbBibAuxilRecife;
 
 DECLARE @UserName nvarchar(255) 
 

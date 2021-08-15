@@ -1,10 +1,9 @@
--- USE dbSigaSaleFalcao;
--- USE dbSigaDCCJR;
+-- USE dbSigaSaleINSA;
+-- USE dbSigaNSLourdesGravata;
+-- USE dbSigaAuxilRecife;
 
-SELECT DB_NAME()
 
 -- TbEndereco
-
 ALTER TABLE [dbo].[TbAluno] DROP CONSTRAINT [FK_TbAluno_TbEndereco]
 GO
 ALTER TABLE [dbo].[TbProfessor] DROP CONSTRAINT [FK_TbProfessor_TbEndereco]

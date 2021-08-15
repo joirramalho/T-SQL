@@ -12,11 +12,12 @@
 				"port": "1435",
 				"database": "master",
 				"url": "jdbc:sqlserver://;serverName=172.31.27.137;port=1435;databaseName=master",
-				"type": "test",
+				"type": "dev",
 				"provider-properties": {
 					"@dbeaver-authentication@": "SQL_SERVER_PASSWORD",
 					"@dbeaver-show-all-schemas@": "false"
-				}
+				},
+				"handlers": {}
 			}
 		},
 		"microsoft-17b30637ffa-6754e32427b32582": {
@@ -34,6 +35,9 @@
 				"provider-properties": {
 					"@dbeaver-authentication@": "SQL_SERVER_PASSWORD",
 					"@dbeaver-show-all-schemas@": "false"
+				},
+				"bootstrap": {
+					"autocommit": true
 				}
 			}
 		},
@@ -52,6 +56,9 @@
 				"provider-properties": {
 					"@dbeaver-authentication@": "SQL_SERVER_PASSWORD",
 					"@dbeaver-show-all-schemas@": "false"
+				},
+				"bootstrap": {
+					"autocommit": true
 				}
 			}
 		},
@@ -70,6 +77,9 @@
 				"provider-properties": {
 					"@dbeaver-authentication@": "SQL_SERVER_PASSWORD",
 					"@dbeaver-show-all-schemas@": "false"
+				},
+				"bootstrap": {
+					"autocommit": true
 				}
 			}
 		},
@@ -88,19 +98,18 @@
 				"provider-properties": {
 					"@dbeaver-authentication@": "SQL_SERVER_PASSWORD",
 					"@dbeaver-show-all-schemas@": "false"
-				},
-				"handlers": {}
+				}
 			}
 		}
 	},
 	"connection-types": {
-		"test": {
-			"name": "Test",
-			"color": "org.jkiss.dbeaver.color.connectionType.qa.background",
-			"description": "Test (QA) database",
+		"dev": {
+			"name": "Development",
+			"color": "255,255,255",
+			"description": "Regular development database",
 			"auto-commit": true,
 			"confirm-execute": false,
-			"confirm-data-change": true,
+			"confirm-data-change": false,
 			"auto-close-transactions": false
 		},
 		"prod": {
@@ -111,15 +120,6 @@
 			"confirm-execute": false,
 			"confirm-data-change": true,
 			"auto-close-transactions": true
-		},
-		"dev": {
-			"name": "Development",
-			"color": "255,255,255",
-			"description": "Regular development database",
-			"auto-commit": true,
-			"confirm-execute": false,
-			"confirm-data-change": false,
-			"auto-close-transactions": false
 		}
 	}
 }

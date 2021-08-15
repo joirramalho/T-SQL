@@ -8,6 +8,6 @@ SELECT 1
 EXEC master..sp_addsrvrolemember @loginame = [active.anderson], @rolename = N'sysadmin';
 
 
--- EXEC master..sp_addsrvrolemember @loginame = [userCELogos], @rolename = N'sysadmin';
+-- EXEC master..sp_addsrvrolemember @loginame = [active.pinto], @rolename = N'sysadmin';
 
 -- EXEC master..sp_dropsrvrolemember @loginame = [userCELogos], @rolename = N'sysadmin';

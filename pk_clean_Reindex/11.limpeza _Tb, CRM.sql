@@ -1,4 +1,4 @@
--- USE dbSigaMoreiraXavier;
+-- USE dbSigaAuxilRecife;
 
 /*
 ALTER TABLE [dbo].[TbParametroCPR] DROP CONSTRAINT [FK_TbParametroCPR_TbClassificacaoFinanceiraTarifaCobrancaBoleto]
@@ -38,8 +38,8 @@ OPEN DatabaseCursor
 FETCH NEXT FROM DatabaseCursor INTO @Database  
 WHILE @@FETCH_STATUS = 0  
 BEGIN  
-        PRINT 'USE ' + @Database
-        PRINT 'GO'
+        PRINT 'USE ' + @Database + ';'
+--        PRINT 'GO'
         PRINT ''
 
         DECLARE ConstraintCursor CURSOR READ_ONLY FOR  
@@ -77,9 +77,9 @@ BEGIN
    BEGIN
       BEGIN TRY   
 
-                SET @cmd = 'ALTER TABLE ' + @Database + '.dbo.' + @TableName + ' DROP CONSTRAINT ' + @ConstraintName
+                SET @cmd = 'ALTER TABLE ' + @Database + '.dbo.' + @TableName + ' DROP CONSTRAINT ' + @ConstraintName + ';'
                 PRINT @cmd
-                            print 'GO'
+--				print 'GO'
                --  EXEC (@cmd) 
 
       END TRY
@@ -111,7 +111,7 @@ BEGIN
 
                 PRINT ''
         
-                SET @cmd = 'SELECT * INTO SQL08_20210726_lixo.dbo.' + @Database + '_' + @TableName + ' FROM ' + @FullTableName
+                SET @cmd = 'SELECT * INTO SQL04_20210214_lixo.dbo.' + @Database + '_' + @TableName + ' FROM ' + @FullTableName
         PRINT @cmd 
       --   EXEC (@cmd) 
         
@@ -141,3 +141,4 @@ BEGIN
 END  
 CLOSE DatabaseCursor   
 DEALLOCATE DatabaseCursor
+

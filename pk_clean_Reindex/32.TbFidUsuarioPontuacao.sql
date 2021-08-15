@@ -1,8 +1,6 @@
--- USE dbSigaSaleFalcao;
--- USE dbSigaDCCJR;
-
-SELECT DB_NAME()
-
+-- USE dbSigaSaleINSA;
+-- USE dbSigaNSLourdesGravata;
+-- USE dbSigaAuxilRecife;
 
 ALTER TABLE [dbo].[TbFidUsuarioPontuacao] DROP CONSTRAINT [PK_TbFidUsuarioPontuacao]
 GO

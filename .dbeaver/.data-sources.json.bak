@@ -34,6 +34,10 @@
 				"provider-properties": {
 					"@dbeaver-authentication@": "SQL_SERVER_PASSWORD",
 					"@dbeaver-show-all-schemas@": "false"
+				},
+				"handlers": {},
+				"bootstrap": {
+					"autocommit": true
 				}
 			}
 		},
@@ -53,7 +57,10 @@
 					"@dbeaver-authentication@": "SQL_SERVER_PASSWORD",
 					"@dbeaver-show-all-schemas@": "false"
 				},
-				"handlers": {}
+				"handlers": {},
+				"bootstrap": {
+					"autocommit": true
+				}
 			}
 		},
 		"microsoft-17b31e46074-29fc7c56513f6c4d": {
@@ -71,6 +78,10 @@
 				"provider-properties": {
 					"@dbeaver-authentication@": "SQL_SERVER_PASSWORD",
 					"@dbeaver-show-all-schemas@": "false"
+				},
+				"handlers": {},
+				"bootstrap": {
+					"autocommit": true
 				}
 			}
 		},
@@ -89,8 +100,7 @@
 				"provider-properties": {
 					"@dbeaver-authentication@": "SQL_SERVER_PASSWORD",
 					"@dbeaver-show-all-schemas@": "false"
-				},
-				"handlers": {}
+				}
 			}
 		}
 	},

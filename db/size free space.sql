@@ -1,4 +1,4 @@
-EXEC dbLogMonitor.dbo.sp_Where
+--13ago21
 
 IF OBJECT_ID('TEMPDB..##temp') IS NOT NULL 
   DROP TABLE ##temp

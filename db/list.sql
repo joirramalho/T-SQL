@@ -12,7 +12,4 @@ WHERE database_id > 4       -- User Databases
 -- and create_Date > '2020-04-08 12:47:10.447'
 -- and name LIKE 'dbSigaMillenium%'
  
---ORDER BY  create_date DESC
---ORDER BY  d.name
-
---DROP DATABASE dbSigaPadraoInsES
+ORDER BY  create_date DESC
