@@ -66,7 +66,7 @@
 			"provider": "sqlserver",
 			"driver": "microsoft",
 			"name": "SQL05",
-			"save-password": false,
+			"save-password": true,
 			"read-only": false,
 			"configuration": {
 				"host": "172.31.18.113",
@@ -99,6 +99,25 @@
 					"@dbeaver-authentication@": "SQL_SERVER_PASSWORD",
 					"@dbeaver-show-all-schemas@": "false"
 				}
+			}
+		},
+		"microsoft-17b4e858d98-26c336f7e555736e": {
+			"provider": "sqlserver",
+			"driver": "microsoft",
+			"name": "SQL08",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"host": "172.31.20.88",
+				"port": "1435",
+				"database": "master",
+				"url": "jdbc:sqlserver://;serverName=172.31.20.88;port=1435;databaseName=master",
+				"type": "dev",
+				"provider-properties": {
+					"@dbeaver-authentication@": "SQL_SERVER_PASSWORD",
+					"@dbeaver-show-all-schemas@": "false"
+				},
+				"handlers": {}
 			}
 		}
 	},

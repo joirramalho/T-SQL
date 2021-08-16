@@ -1,8 +1,6 @@
--- VERSION 1.01 - 17mai21 - qs.last_execution_time
+-- 17mai21 - qs.last_execution_time
 
 -- using statement_start_offset and statement_end_offset we get the query text from inside the entire batch
-
--- EXEC dbLogMonitor.dbo.sp_Where
 
 SELECT TOP 10 qs.total_worker_time,
               qs.last_execution_time, SUBSTRING(qt.TEXT, (qs.statement_start_offset/2)+1,
