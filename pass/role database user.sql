@@ -1,6 +1,6 @@
 -- VERSION 1.01 17mai21 - ALTER ROLE roleOperacaoRestore ADD MEMBER [active.pinto]
 
-USE dbLogRestore;
+USE dbSigaELO;
 
 SELECT DB_NAME()
 
@@ -17,9 +17,10 @@ inner join sys.database_principals as DBPrincipal_2 on DBPrincipal_1.principal_i
 
 -- Adicionar usuário a Database role
 
-    -- ALTER ROLE roleOperacaoRestore ADD MEMBER [active.pinto]
+    -- ALTER ROLE roleEEM ADD MEMBER [userELOEMM];
 
     -- exec sp_addrolemember 'roleOperacaoRestore', 'active.teste'
+	-- exec sp_addrolemember 'roleEEM', 'userEloEMM';
 
 
 -- DROP USER from ROLE

@@ -1,7 +1,5 @@
 -- 18mai21
 
--- EXEC dbLogMonitor.dbo.sp_Where
-
 SELECT COUNT(*)
         FROM sys.dm_exec_requests r
         WHERE blocking_session_id <> 0

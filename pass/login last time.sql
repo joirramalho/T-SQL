@@ -1,7 +1,5 @@
 -- 31jul21 
 
--- EXEC dbLogMonitor.dbo.sp_where
-
 SELECT 
 	[Database] = DB_NAME(database_id),
     [Login] = login_name

@@ -1,6 +1,6 @@
 -- Reset SQL user account guids 
 
-USE  dbBibAuxilRecife;
+USE  dbSigaSaberViver;
 
 DECLARE @UserName nvarchar(255) 
 

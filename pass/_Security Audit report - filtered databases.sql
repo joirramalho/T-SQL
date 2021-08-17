@@ -1,6 +1,6 @@
 -- registered server group and query across them all us the following and just cursor through the databases
 
--- VERSION 1.01 15OUT20
+-- 15OUT20
 
 DECLARE @dbname VARCHAR(50)   
 DECLARE @statement NVARCHAR(max)
@@ -10,14 +10,14 @@ LOCAL FAST_FORWARD
 FOR  
     SELECT name
     FROM MASTER.dbo.sysdatabases
-    where name like '%dbSigaCastroBarreto'
+    where name like '%CRM_282990%'
 
 OPEN db_cursor  
 FETCH NEXT FROM db_cursor INTO @dbname  
 WHILE @@FETCH_STATUS = 0  
 BEGIN  
 
-SELECT @dbname;
+--SELECT @dbname;
 
 SELECT @statement = 'use '+@dbname +';'+ '
 
