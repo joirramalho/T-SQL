@@ -1,4 +1,4 @@
-USE dbCrmActivesoft;
+USE bdSIAI;
 
 -- EXEC  sp_helpindex 'TbOcorrenciaMovimentacao'
 

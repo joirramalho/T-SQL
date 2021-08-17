@@ -1,7 +1,6 @@
--- 10ago21 - ALL DATABASE
--- EXEC dbLogMonitor.dbo.sp_Where
+-- ALL DATABASE
 
--- EXEC  sp_helpindex 'TbOcorrenciaMovimentacao'
+-- EXEC  sp_helpindex 'Anexo14_Liquidacao'
 
 SELECT TOP 20  CONVERT(int, (avg_total_user_cost * avg_user_impact * (user_seeks + user_scans)) ) AS Impacto,
 				migs.user_seeks, migs.user_scans, mid.statement, mid.equality_columns, mid.inequality_columns, mid.included_columns, mid.index_handle
