@@ -1,6 +1,6 @@
-EXEC dbLogMonitor.dbo.sp_where;
+--18ago21
 
-use dbSigaFacCatolicaRN;
+use dbSigaElo;
 
 SELECT
     DB_NAME(DB_ID()) AS DBNAME,

@@ -2,17 +2,18 @@
 
 -- P@ssw0rd
 
--- CREATE LOGIN [userEloEEM2] WITH PASSWORD=N'*****', DEFAULT_DATABASE=[dbSigaELO], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
+--USE dbSigaELO;
 
--- CREATE USER [userEloEEM2] FOR LOGIN [userEloEEM2] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
+-- CREATE LOGIN [userEloEEM] WITH PASSWORD=N'userEloEEM.', DEFAULT_DATABASE=[dbSigaELO], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
+
+-- CREATE USER [active.kezio] FOR LOGIN [active.kezio] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
 
 -- ALTER LOGIN [userEloEEM2] WITH  DEFAULT_DATABASE=[dbSigaELO];
 
--- GRANT CONNECT  TO [userEloEEM2];
+-- GRANT CONNECT  TO [active.andrielson];
 
 -- ALTER ROLE [db_owner] ADD MEMBER [userAuxilRecife];
--- ALTER ROLE roleOperacaoRestore ADD MEMBER [active.pinto]
--- ALTER ROLE roleEEM ADD MEMBER [userEloEEM2];
+-- ALTER ROLE roleEEM ADD MEMBER [userEloEEM];
 
 
 ALTER ROLE [db_datareader] ADD MEMBER [active.ewerton];
@@ -20,8 +21,14 @@ ALTER ROLE [db_datawriter] ADD MEMBER [active.ewerton];
 GRANT EXECUTE TO [active.ewerton]; -- wantuilson
 
 
+--LAB4 
+--USE dbLogRestore;
+--CREATE USER...
+--EXEC sp_addrolemember N'roleOperacaoRestore', N'active.kezio'
+--EXEC sp_addrolemember N'roleDesmascararDados', N'active.kezio'
 
--- ALTER LOGIN [userSaberViverEEM] 	WITH PASSWORD = '***'; -- sigainternet userISO_PowerBI service.account
+ 
+--ALTER LOGIN [userEloEEM] 	WITH PASSWORD = '***'; -- sigainternet userISO_PowerBI service.account
 
 
 -- HASHED
@@ -29,7 +36,6 @@ GRANT EXECUTE TO [active.ewerton]; -- wantuilson
 -- ALTER LOGIN [userCognitivoGPA] WITH   PASSWORD = ... HASHED;
 
 
-USE dbSigaELO;
 
 DROP LOGIn [userEloEMM];
 DROP USER [userELOEMM];

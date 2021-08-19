@@ -1,3 +1,5 @@
+--https://www.dirceuresende.com/blog/sql-server-como-ocultar-os-databases-para-usuarios-nao-autorizados/
+
 -- Banco para POwerBI com Databases Hidden
 
 -- use dbLogRestore
