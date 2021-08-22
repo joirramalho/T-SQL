@@ -1,6 +1,6 @@
 -- 24fev21
 
- USE CRM_264096;
+ USE dbSigaFACESA;
 
 select name as username, create_date, modify_date, type_desc as type, authentication_type_desc as authentication_type
 from sys.database_principals

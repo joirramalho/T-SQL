@@ -1,6 +1,4 @@
--- VERSION 1.01 22abr21
-
--- EXEC dbLogMonitor.dbo.sp_Where
+-- 22abr21
 
 EXEC dbLogMonitor.dbo.sp_foreachdb N'
         -- USE [?]
@@ -19,6 +17,4 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 ,@user_only = 1
 ,@suppress_quotename=1
 -- ,@name_pattern='db';
-,@database_list = 'dbCrmActivesoft'
-
-
+,@database_list = 'SQL04_20210517_Dados2018'

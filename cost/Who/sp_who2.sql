@@ -21,7 +21,7 @@
       -- AND [LOGIN] LIKE '%userActiveCrmLeitura'      
       -- AND ( [LOGIN] LIKE 'userNeves' OR [LOGIN] LIKE 'service.account' )
       
---      AND DBName IN ('dbSigaFACHO','dbSigaCEEsCrianca') --DB_NAME()
+      AND DBName IN ('dbSigaSaleJuvenal','dbSigaCEEsCrianca','dbSigaFACHO') --DB_NAME()
 
 
 -- SET DATEFORMAT DMYEXEC dbSigaCEEsCrianca.dbo.SpFreqEfetuarMarcacao2 '11/06/2021 08:27:50','E',2224,NULL,'ENTRADA LIBERADA';

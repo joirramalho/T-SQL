@@ -2,49 +2,51 @@
 
 -- P@ssw0rd
 
---USE dbSigaELO;
 
--- CREATE LOGIN [userEloEEM] WITH PASSWORD=N'userEloEEM.', DEFAULT_DATABASE=[dbSigaELO], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
+-- CREATE LOGIN
+	-- CREATE LOGIN [userSaleJuvenal] 	WITH PASSWORD=N'***', DEFAULT_DATABASE=[dbSigaSaleJuvenal], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
 
--- CREATE USER [active.kezio] FOR LOGIN [active.kezio] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
+--USE dbSigaSaleJuvenal;
 
--- ALTER LOGIN [userEloEEM2] WITH  DEFAULT_DATABASE=[dbSigaELO];
+-- CREATE USER 	[userSaleJuvenal] 	FOR LOGIN [userSaleJuvenal] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
+	-- ALTER LOGIN 	[userSaleJuvenal] 	WITH  DEFAULT_DATABASE=[dbSigaSaleJuvenal];
+	-- GRANT CONNECT  TO [active.andrielson];
 
--- GRANT CONNECT  TO [active.andrielson];
 
--- ALTER ROLE [db_owner] ADD MEMBER [userAuxilRecife];
+--ROLE
+--ALTER ROLE [db_datareader] ADD MEMBER [active.ewerton];
+--ALTER ROLE [db_datawriter] ADD MEMBER [active.ewerton];
+--GRANT EXECUTE TO [active.ewerton]; -- wantuilson
+
+-- ALTER ROLE [db_owner] ADD MEMBER [userSaleJuvenal];
 -- ALTER ROLE roleEEM ADD MEMBER [userEloEEM];
 
 
-ALTER ROLE [db_datareader] ADD MEMBER [active.ewerton];
-ALTER ROLE [db_datawriter] ADD MEMBER [active.ewerton];
-GRANT EXECUTE TO [active.ewerton]; -- wantuilson
 
-
---LAB4 
---USE dbLogRestore;
---CREATE USER...
---EXEC sp_addrolemember N'roleOperacaoRestore', N'active.kezio'
---EXEC sp_addrolemember N'roleDesmascararDados', N'active.kezio'
+-- LAB4 
+	-- USE dbLogRestore;
+	-- CREATE USER...
+	-- EXEC sp_addrolemember N'roleOperacaoRestore', N'active.joao'
+	-- EXEC sp_addrolemember N'roleDesmascararDados', N'active.joao'
 
  
---ALTER LOGIN [userEloEEM] 	WITH PASSWORD = '***'; -- sigainternet userISO_PowerBI service.account
+-- PASSWORD
+-- ALTER LOGIN [userEloEEM] 	WITH PASSWORD = '***'; -- sigainternet userISO_PowerBI service.account
 
 
 -- HASHED
--- ALTER LOGIN [userCognitivoEEM] WITH   PASSWORD = ... HASHED;
--- ALTER LOGIN [userCognitivoGPA] WITH   PASSWORD = ... HASHED;
+	-- ALTER LOGIN [userCognitivoEEM] WITH   PASSWORD = ... HASHED;
+	-- ALTER LOGIN [userCognitivoGPA] WITH   PASSWORD = ... HASHED;
 
 
 
-DROP LOGIn [userEloEMM];
-DROP USER [userELOEMM];
+-- DROP LOGIn [userEloEMM];
+-- DROP USER [userELOEMM];
 
 
 -- sp_change_users_login
--- EXEC sp_change_users_login 'Update_one', 'userEloEEM', 'userEloEEM';
-
--- EXEC sp_change_users_login 'Auto_Fix', 'userEloEEM', NULL, '*****';
+	-- EXEC sp_change_users_login 'Update_one', 'userEloEEM', 'userEloEEM';
+	-- EXEC sp_change_users_login 'Auto_Fix', 'userEloEEM', NULL, '*****';
 
 
 

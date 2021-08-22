@@ -1,15 +1,12 @@
--- Script out Database Role Definition
---  * Author: John Eisbrener                                           *
---  * Notes: Please report any bugs to http://www.dbaeyes.com/         *
---  *                                                                  *
---  * Update: 2014-03-03 - Adjusted output to accommodate Role         *
---  *                      definitions that are longer than 8000 chars *
---  * Update: 2013-09-03 - Added user output per Joe Spivey's comment  *
---  *                    - Modified formatting for oddly named objects *
---  *                    - Included support for Grants on DMVs         *
-
+/********************************************************************
+ *                                                                  *
+ * Author: John Eisbrener                                           *
+ * Script Purpose: Script out Database Role Definition              *
+ * Notes: Please report any bugs to http://www.dbaeyes.com/         *
+ *                                                                  *
+ ********************************************************************/
 DECLARE @roleName VARCHAR(255)
-SET @roleName = 'role_db_gen_CadastroUsuario'
+SET @roleName = 'roleDesmascararDados'
 
 -- Script out the Role
 DECLARE @roleDesc VARCHAR(MAX), @crlf VARCHAR(2)
@@ -73,13 +70,13 @@ GROUP BY dp.state, dp.major_id, dp.permission_name, dp.class
 SELECT @roleDesc = @roleDesc + 'GO' + @crlf + @crlf
 
 -- Display users within Role.  Code stubbed by Joe Spivey
-SELECT        @roleDesc = @roleDesc + 'EXECUTE sp_AddRoleMember ''' + roles.name + ''', ''' + users.name + '''' + @crlf
-FROM        sys.database_principals users
-                INNER JOIN sys.database_role_members link 
-                        ON link.member_principal_id = users.principal_id
-                INNER JOIN sys.database_principals roles 
-                        ON roles.principal_id = link.role_principal_id
-WHERE        roles.name = @roleName
+SELECT  @roleDesc = @roleDesc + 'EXECUTE sp_AddRoleMember ''' + roles.name + ''', ''' + users.name + '''' + @crlf
+FROM    sys.database_principals users
+        INNER JOIN sys.database_role_members link 
+            ON link.member_principal_id = users.principal_id
+        INNER JOIN sys.database_principals roles 
+            ON roles.principal_id = link.role_principal_id
+WHERE   roles.name = @roleName
 
 -- PRINT out in blocks of up to 8000 based on last \r\n
 DECLARE @printCur INT
@@ -94,4 +91,4 @@ BEGIN
     SELECT @roleDesc = RIGHT(@roleDesc, LEN(@roleDesc) - @printCur)
 END
 
-PRINT @roleDesc + 'GO'
+PRINT @RoleDesc + 'GO'

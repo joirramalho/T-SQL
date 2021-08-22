@@ -1,6 +1,6 @@
 --18ago21
 
-use dbSigaElo;
+use dbLogRestore;
 
 SELECT
     DB_NAME(DB_ID()) AS DBNAME,

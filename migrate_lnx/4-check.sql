@@ -1,17 +1,15 @@
 -- 03ago21
 
--- EXEC dbLogMonitor.dbo.sp_Where
- 
 SET NOCOUNT ON
 
-USE [dbSigaAuxilRecife];
+USE [dbSigaFACHO]; -- dbSigaVeraCruzRecife
 
 SELECT TOP (25) DB_NAME(), [Tabela],[DataHora], [DescricaoOperacao] FROM [dbo].[TbAuditoria]     order by Datahora DESC;
-SELECT TOP (5) [DataHora],[IPHost],[Arquivo],[IdUsuario],[TitpoUsuario],[Acao],[ParametroStr] FROM [dbo].[TbLogWeb] order by IdLogWeb DESC 
-SELECT TOP (5) *  FROM [dbo].[TbLogMobile]  order by IdLogMobile DESC 
+SELECT TOP (5) [DataHora],[IPHost],[Arquivo],[IdUsuario],[TitpoUsuario],[Acao],[ParametroStr] FROM [dbo].[TbLogWeb] order by IdLogWeb DESC;
+SELECT TOP (5) *  FROM [dbo].[TbLogMobile]  order by IdLogMobile DESC;
 ---
 
-SELECT last_request_start_time,login_time, login_name, host_name, program_name, client_interface_name
+SELECT last_request_start_time, last_request_start_time,login_time, login_name, host_name, program_name, client_interface_name
 FROM sys.dm_exec_sessions dm
 LEFT JOIN sys.databases d ON dm.database_id = d.database_id
 WHERE  1=1 --is_user_process = 1
@@ -35,7 +33,7 @@ WHERE database_id > 4        -- User Databases
 -- and create_Date > '2020-04-08 12:47:10.447'
 -- and name LIKE 'dbSigaTerceiroMilenio%'
 
-ORDER BY  create_date DESC
+ORDER BY  create_date DESC;
 
 
 

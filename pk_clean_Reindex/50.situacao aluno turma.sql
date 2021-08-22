@@ -1,8 +1,7 @@
--- USE dbSigaSaleINSA;
+USE dbSigaSaleJuvenal;
 -- USE dbSigaNSLourdesGravata;
 -- USE dbSigaAuxilRecife;
 
-SELECT DB_NAME()
 
 
 

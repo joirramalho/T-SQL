@@ -1,6 +1,8 @@
--- USE dbSigaSaleINSA;
+USE dbSigaSaleJuvenal;
 -- USE dbSigaNSLourdesGravata;
 -- USE dbSigaAuxilRecife;
+
+--sp_helpindex "TbLancamentoCobranca"
 
 
 -- TbAlunoFichaMedica

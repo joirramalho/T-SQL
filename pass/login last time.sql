@@ -13,7 +13,7 @@ WHERE
 
     login_name NOT IN ('sa_DESATIVADO')
     -- AND PROGRAM_NAME NOT IN ('ADO_Messenger_ADO(1.048.)')
-    -- AND DB_NAME(database_id) IN ('dbSigaCELogosPOC')
+-- AND DB_NAME(database_id) IN ('dbSigaFACESA')
 
 ORDER BY DB_NAME(database_id),Login, [login_time] desc
 

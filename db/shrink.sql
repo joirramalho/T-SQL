@@ -37,11 +37,11 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 ,@user_only = 1
 ,@suppress_quotename=1
 -- ,@name_pattern='dbSigaSalePetrolina_Arquivo0';
-,@database_list = 'dbSigaAuxilRecife'; -- , dbSigaSaleINSA, dbSigaNSLourdesGravata, dbSigaAuxilRecife 
+,@database_list = 'dbSigaSaleJuvenal'; -- , dbSigaSaleINSA, dbSigaNSLourdesGravata, dbSigaAuxilRecife 
 
 
    
--- DBCC CHECKDB([dbSigaSaleINSA]) -- WITH TABLERESULTS
+-- DBCC CHECKDB([dbSigaSaleJuvenal]) -- WITH TABLERESULTS
 
 
 
