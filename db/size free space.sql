@@ -13,7 +13,7 @@ Exec sp_msforeachdb 'Use [?];
         From sys.database_files
         where DB_NAME() NOT IN (''master'',''tempdb'',''model'',''msdb'', ''dbLogMonitor'', ''dbSigaPadraoInst'') 
           AND type_desc = ''rows''
-'
+';
 SET NOCOUNT ON
 
 Select DatabaseName, Name, physical_name, size, FreeSpace

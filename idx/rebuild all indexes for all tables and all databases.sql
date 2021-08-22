@@ -53,7 +53,3 @@ BEGIN
 END  
 CLOSE DatabaseCursor   
 DEALLOCATE DatabaseCursor
-
-
-
-

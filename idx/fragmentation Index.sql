@@ -12,7 +12,3 @@ INNER JOIN sys.indexes ind ON ind.object_id = indexstats.object_id AND ind.index
 WHERE indexstats.avg_fragmentation_in_percent > 5 AND ind.Name is not null --AND OBJECT_NAME(ind.OBJECT_ID) = 'TbFaseNotaAluno'
 ORDER BY indexstats.avg_fragmentation_in_percent DESC
 -- ORDER BY OBJECT_NAME(ind.OBJECT_ID), indexstats.avg_fragmentation_in_percent DESC
-
-
-
-
