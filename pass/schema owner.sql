@@ -13,7 +13,7 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 -- ,@state_desc = N'OFFLINE'
 ,@user_only = 1
 ,@suppress_quotename=1
-,@name_pattern='dbSigaCastroBarreto';
+,@name_pattern='dbSigaEnfermagemIsrael';
 -- ,@database_list = 'dbSigaAldeiaPE'
 
 

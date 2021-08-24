@@ -1,4 +1,4 @@
--- EXEC dbLogMonitor.dbo.sp_where
+--exec sp_MSforeachdb 'select ''?'' as DBNAME, * from ?.sys.sysusers where uid < 16384'
 
 EXEC dbLogMonitor.dbo.sp_foreachdb N' 
     USE [?]
@@ -22,12 +22,12 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 -- ,@state_desc = N'OFFLINE'
 ,@user_only = 1
 ,@suppress_quotename=1
-,@name_pattern='db';
+,@name_pattern='dbSigaEnfermagemIsrael';
 -- ,@database_list = 'dbSigaAldeiaPE'
 
 
--- use dbSigaCELogosPOC
--- DROP USER [logosBitrix];
+-- use dbSigaEnfermagemIsrael
+-- DROP USER [userEscolaIsrael];
 
 
 

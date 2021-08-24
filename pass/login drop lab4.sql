@@ -1,7 +1,5 @@
+--24ago21
 -- USER of ALL Database
-
-
---exec sp_MSforeachdb 'select ''?'' as DBNAME, * from ?.sys.sysusers where uid < 16384'
 
 
 SET NOCOUNT ON;
@@ -77,3 +75,5 @@ SELECT Databasename, UserName FROM #Databases ORDER BY 2,1
 --Use dbSigaDiocCaruaru;	DROP USER [php_consulta];
 --Use dbSigaCONFHICSaoJose;	DROP USER [sactive];
 
+--SQL02
+--Use dbSigaEnfermagemIsrael;	DROP USER [userEscolaIsrael];

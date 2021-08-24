@@ -1,4 +1,4 @@
--- EXEC dbLogMonitor.dbo.sp_ServerName
+--24ago21
 
 select sp.name as login, sp.type_desc as login_type, sl.password_hash, sp.create_date, sp.modify_date,
        case when sp.is_disabled = 1 then 'Disabled'

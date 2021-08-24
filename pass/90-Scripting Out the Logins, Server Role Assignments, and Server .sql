@@ -1,8 +1,8 @@
--- Scripting Out the Logins, Server Role Assignments, and Server Permissions	-- udayarumilli
+--24ago21
+--Scripting Out the Logins, Server Role Assignments, and Server Permissions
 	-- http://udayarumilli.com/script-login-user-permissions-sql-server/
 
--- USE dbSigaNeves_Arquivo01
-USE dbLogMonitor
+USE dbSigaEnfermagemIsrael;
 
 SET NOCOUNT ON
 -- Scripting Out the Logins To Be Created

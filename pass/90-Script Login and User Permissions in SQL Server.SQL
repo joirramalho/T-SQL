@@ -1,9 +1,8 @@
--- Script Login and User Permissions in SQL Server	-- udayarumilli
+--24ago21
+--Script Login and User Permissions in SQL Server
     -- http://udayarumilli.com/script-login-user-permissions-sql-server/
 
-USE dbSigaNeves_Arquivo01
-GO
-SET NOCOUNT ON;
+USE dbSigaEnfermagemIsrael
 
 PRINT 'USE ['+DB_NAME()+']';
 PRINT 'GO'

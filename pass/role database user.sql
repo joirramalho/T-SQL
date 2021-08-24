@@ -1,6 +1,7 @@
--- VERSION 1.01 17mai21 - ALTER ROLE roleOperacaoRestore ADD MEMBER [active.pinto]
+--24ago21
+--17mai21 
 
-USE dbSigaCONFHICSaoJose;
+USE dbSigaEnfermagemIsrael;
 
 select DBPrincipal_2.name as role, DBPrincipal_1.name as owner 
 from sys.database_principals as DBPrincipal_1 
@@ -9,21 +10,11 @@ inner join sys.database_principals as DBPrincipal_2 on DBPrincipal_1.principal_i
 
 
 
-
--- SCHEMA::[db_owner]   --  sp_droprolemember
-
 Use dbSigaCONFHICSaoJose;
-
-SELECT DB_NAME();
-
-
--- ALTER AUTHORIZATION ON SCHEMA::[db_owner] TO [db_owner];
--- ALTER AUTHORIZATION ON SCHEMA::[db_datareader] TO [db_datareader];
--- ALTER AUTHORIZATION ON SCHEMA::[db_accessadmin] TO [db_accessadmin];
 
 
 -- sp_droprolemember DATABASE
-    -- exec sp_droprolemember 'db_owner', 'sactive';
+    -- exec sp_droprolemember 'db_owner', 'userEscolaIsrael';
     -- exec sp_droprolemember 'db_datareader', 'active.pollyana';
     -- exec sp_droprolemember 'db_datawriter', 'active.pollyana';
     -- exec sp_droprolemember 'db_accessadmin', 'active';
@@ -31,11 +22,11 @@ SELECT DB_NAME();
 -- sp_dropsrvrolemember SERVER ROLE
     -- EXEC sp_dropsrvrolemember 'active.wantuilson', 'sysadmin'
 
+-- DROP USER from ROLE
+    -- ALTER ROLE roleGPA DROP MEMBER [sigauser]
+
 
     -- REVOKE EXECUTE TO [active.pollyana];
-
-
-
 
 
 -- Setar owner para role
@@ -43,27 +34,29 @@ SELECT DB_NAME();
     
 
 
--- Adicionar usuário a Database role
+
+-- Add usuário a Database role
 
     -- ALTER ROLE roleEEM ADD MEMBER [userELOEMM];
 
-    -- exec sp_addrolemember 'roleOperacaoRestore', 'active.teste'
-	-- exec sp_addrolemember 'roleEEM', 'userEloEMM';
+    --exec sp_addrolemember 'roleOperacaoRestore', 'active.teste'
+	--exec sp_addrolemember 'roleEEM', 'userEloEMM';
+
+	--ALTER ROLE roleOperacaoRestore ADD MEMBER [active.pinto]
 
 
--- DROP USER from ROLE
-    -- ALTER ROLE roleGPA DROP MEMBER [sigauser]
+
+-- ALTER AUTHORIZATION ON SCHEMA::[db_owner] TO [db_owner];
+-- ALTER AUTHORIZATION ON SCHEMA::[db_datareader] TO [db_datareader];
+-- ALTER AUTHORIZATION ON SCHEMA::[db_accessadmin] TO [db_accessadmin];
 
 
 
 -- GRANT EXECUTE ON OBJECT::FnAnoMes TO [active.filipe]
 
+-- GRANT EXECUTE ON OBJECT::sp_DesmascararBanco TO [active.pinto]
 
--- Remover permissão de um usuário ou ROLE?
-
-    -- GRANT EXECUTE ON OBJECT::sp_DesmascararBanco TO [active.pinto]
-
-    -- GRANT EXECUTE ON OBJECT::sp_restore TO [roleDesmascararDados]
+-- GRANT EXECUTE ON OBJECT::sp_restore TO [roleDesmascararDados]
 
 
 

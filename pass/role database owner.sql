@@ -1,4 +1,4 @@
-USE dbSigaCONFHICSaoJose;
+USE dbSigaEnfermagemIsrael;
 
 WITH RoleMembers (member_principal_id, role_principal_id)    
 AS  
