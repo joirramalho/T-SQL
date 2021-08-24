@@ -2,14 +2,14 @@
 
 SET NOCOUNT ON
 
-USE [dbSigaFACHO]; -- dbSigaVeraCruzRecife
+USE [dbSigaTerceiroMilenio]; -- dbSigaVeraCruzRecife
 
 SELECT TOP (25) DB_NAME(), [Tabela],[DataHora], [DescricaoOperacao] FROM [dbo].[TbAuditoria]     order by Datahora DESC;
 SELECT TOP (5) [DataHora],[IPHost],[Arquivo],[IdUsuario],[TitpoUsuario],[Acao],[ParametroStr] FROM [dbo].[TbLogWeb] order by IdLogWeb DESC;
 SELECT TOP (5) *  FROM [dbo].[TbLogMobile]  order by IdLogMobile DESC;
 ---
 
-SELECT last_request_start_time, last_request_start_time,login_time, login_name, host_name, program_name, client_interface_name
+SELECT last_request_start_time, login_time, login_name, host_name, program_name, client_interface_name
 FROM sys.dm_exec_sessions dm
 LEFT JOIN sys.databases d ON dm.database_id = d.database_id
 WHERE  1=1 --is_user_process = 1
@@ -18,11 +18,10 @@ WHERE  1=1 --is_user_process = 1
         -- and open_transaction_count = 0
         --  AND login_name LIKE 'userSabedoria%'
         AND name = DB_NAME()
-
-ORDER BY last_request_start_time DESC; -- login_time 
+ORDER BY last_request_start_time DESC;
 --
 
-SELECT TOP 5 name, state_desc, recovery_model_desc, is_read_only, user_access_desc, create_date
+SELECT TOP 6 name, state_desc, recovery_model_desc, is_read_only, user_access_desc, create_date
 FROM sys.databases d
 WHERE database_id > 4        -- User Databases
 -- and state <> 0             -- 0 ON-LINE -- 6 OFF-LINE

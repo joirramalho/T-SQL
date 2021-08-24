@@ -1,5 +1,8 @@
 -- USER of ALL Database
--- EXEC dbLogMonitor.dbo.sp_where
+
+
+--exec sp_MSforeachdb 'select ''?'' as DBNAME, * from ?.sys.sysusers where uid < 16384'
+
 
 SET NOCOUNT ON;
 
@@ -14,7 +17,7 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'USE ?
             FROM ?.sys.sysusers 
             WHERE 1=1
 
-            AND ( name NOT LIKE ''use%''  )
+            --AND ( name NOT LIKE ''use%''  )
             -- AND ( name LIKE ''active.ramonvieira%''  )
             -- AND ( name LIKE ''active.pollyana%''  )
             -- AND ( name LIKE ''active.marley%''  )
@@ -50,4 +53,27 @@ SELECT Databasename, UserName FROM #Databases ORDER BY 2,1
 
 
 -- sp_who2
+
+--Use dbSigaSANTATEC;	DROP USER [activeuser];
+--	Use dbSigaCELogosPOC;	DROP USER [userSisController];
+--	Use dbSigaEstacao;	DROP USER [userSisController];
+--	Use dbSigaIEPAM;	DROP USER [userSisController];
+--	Use dbSigaPH3CV;	DROP USER [userSisController];
+
+--SQL07
+--Use dbSigaLubienska;	DROP USER [ClipEscola];
+--Use dbSigaMadreDeusUnd1;	DROP USER [consultor];
+--Use dbSigaMadreDeusUnd2;	DROP USER [consultor];
+--Use dbSigaCordIMH;	DROP USER [userSiscontroller];
+--Use dbSigaCristoRedentor;	DROP USER [userSisController];
+--Use dbSigaNSGracas;	DROP USER [userSisController];
+--Use dbSigaSantissimoSenhor;	DROP USER [userSSenhorEEM];
+
+--SQL06
+--ERRO AO LISTAS USERs de DATABASES
+
+--SQL05
+--Use dbSigaCONFHICSaoJose;	DROP USER [sactive];
+--Use dbSigaDiocCaruaru;	DROP USER [php_consulta];
+--Use dbSigaCONFHICSaoJose;	DROP USER [sactive];
 

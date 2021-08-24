@@ -10,7 +10,7 @@ LOCAL FAST_FORWARD
 FOR  
     SELECT name
     FROM MASTER.dbo.sysdatabases
-    where name like '%CRM_282990%'
+    where name like '%dbSigaTerceiroMilenio%'
 
 OPEN db_cursor  
 FETCH NEXT FROM db_cursor INTO @dbname  

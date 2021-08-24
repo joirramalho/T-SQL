@@ -1,6 +1,4 @@
-USE dbSigaELO;
-
-SELECT DB_NAME();
+USE dbSigaCONFHICSaoJose;
 
 WITH RoleMembers (member_principal_id, role_principal_id)    
 AS  

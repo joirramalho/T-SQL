@@ -1,3 +1,4 @@
+--23ago21
 -- 12mai21
 
   DECLARE @Table TABLE( SPID INT, Status VARCHAR(MAX), LOGIN VARCHAR(MAX), HostName VARCHAR(MAX), BlkBy VARCHAR(MAX), DBName VARCHAR(MAX), Command VARCHAR(MAX), CPUTime INT, DiskIO INT, LastBatch VARCHAR(MAX), ProgramName VARCHAR(MAX), SPID_1 INT, REQUESTID INT )
@@ -21,38 +22,10 @@
       -- AND [LOGIN] LIKE '%userActiveCrmLeitura'      
       -- AND ( [LOGIN] LIKE 'userNeves' OR [LOGIN] LIKE 'service.account' )
       
-      AND DBName IN ('dbSigaSaleJuvenal','dbSigaCEEsCrianca','dbSigaFACHO') --DB_NAME()
-
-
--- SET DATEFORMAT DMYEXEC dbSigaCEEsCrianca.dbo.SpFreqEfetuarMarcacao2 '11/06/2021 08:27:50','E',2224,NULL,'ENTRADA LIBERADA';
-
+--      AND DBName IN ('dbSigaTerceiroMilenio','dbSigaCEEsCrianca','dbSigaFACHO') --DB_NAME()
 
     --  AND ProgramName NOT IN ( 'ADO_Messenger_ADO(1.048.)             ' ) 
     --  AND HostName LIKE '%Mac%'
   -- ORDER BY    LastBatch DESC -- blkby DESC 
   -- ORDER BY    LastBatch DESC  -- LOGIN,  blkby DESC 
   ORDER BY  LastBatch DESC -- DBName, HostName      DESC -- blkby DESC 
-
-
-  -- SELECT TOP (3) DB_NAME(), [Tabela],[DataHora] AS WEB, [DescricaoOperacao]
-  -- FROM [dbo].[TbAuditoria]
-  -- order by Datahora DESC;
-
-
---  SELECT TOP (3) [IdLogWeb],[SessionId],[DataHora] AS LogWEB,[IPHost],[Arquivo],[IdUsuario],[TitpoUsuario],[Acao],[ParametroStr]
---   FROM [dbo].[TbLogWeb]
---   order by DataHora DESC 
-
-
--- SELECT TOP (3) *  FROM [dbo].[TbLogMobile]  order by IdLogMobile DESC 
-
-
-
-
--- sp_helpdb dbSigaMaristella_Arquivo01_full.bak;
-
--- RESTORE FILELISTONLY	FROM DISK = '/TEMP/dbActiveBibliotecaCOC_full.bak'
-
-
--- KILL 419  
-

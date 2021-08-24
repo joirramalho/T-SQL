@@ -1,6 +1,6 @@
 -- Reset SQL user account guids 
 
-USE  dbSigaVeraCruzRecife;
+USE  dbSigaSAleJuvenal;
 
 DECLARE @UserName nvarchar(255) 
 
