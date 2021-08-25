@@ -1,28 +1,41 @@
 --13ago21
 
-IF OBJECT_ID('TEMPDB..##temp') IS NOT NULL 
-  DROP TABLE ##temp
+IF OBJECT_ID('TEMPDB..##TEMP') IS NOT NULL 
+  DROP TABLE ##TEMP
 
-Create Table ##temp ( DatabaseName sysname, Name sysname, physical_name nvarchar(500), size decimal (18,2), FreeSpace decimal (18,2), NameSize VARCHAR(20) )
+CREATE TABLE ##TEMP ( 
+DATABASENAME SYSNAME,
+NAME SYSNAME,
+PHYSICAL_NAME NVARCHAR(500),
+SIZE DECIMAL (18,2),
+FREESPACE DECIMAL (18,2),
+NAMESIZE VARCHAR(20) 
+)
 
-Exec sp_msforeachdb 'Use [?];
-    Insert Into ##temp (DatabaseName, Name, physical_name, Size, FreeSpace)
-        Select DB_NAME() AS [DatabaseName], Name,  physical_name,
-        Cast(Cast(Round(cast(size as decimal) * 8.0/1024.0,2) as decimal(18,0)) as nvarchar) Size,
-        Cast(Cast(Round(cast(size as decimal) * 8.0/1024.0,2) as decimal(18,0)) - Cast(FILEPROPERTY(name, ''SpaceUsed'') * 8.0/1024.0 as decimal(18,0)) as nvarchar) As FreeSpace
-        From sys.database_files
-        where DB_NAME() NOT IN (''master'',''tempdb'',''model'',''msdb'', ''dbLogMonitor'', ''dbSigaPadraoInst'') 
-          AND type_desc = ''rows''
+EXEC SP_MSFOREACHDB 'USE [?];
+    INSERT INTO ##TEMP (DATABASENAME, NAME, PHYSICAL_NAME, SIZE, FREESPACE)
+        SELECT DB_NAME() AS [DATABASENAME], NAME,  PHYSICAL_NAME,
+        CAST(CAST(ROUND(CAST(SIZE AS DECIMAL) * 8.0/1024.0,2) AS DECIMAL(18,0)) AS NVARCHAR) SIZE,
+        CAST(CAST(ROUND(CAST(SIZE AS DECIMAL) * 8.0/1024.0,2) AS DECIMAL(18,0)) - CAST(FILEPROPERTY(NAME, ''SPACEUSED'') * 8.0/1024.0 AS DECIMAL(18,0)) AS NVARCHAR) AS FREESPACE
+        FROM SYS.DATABASE_FILES
+        WHERE DB_NAME() NOT IN (''MASTER'',''TEMPDB'',''MODEL'',''MSDB'', ''DBLOGMONITOR'', ''DBSIGAPADRAOINST'') 
+          AND TYPE_DESC = ''ROWS''
 ';
-SET NOCOUNT ON
 
-Select DatabaseName, Name, physical_name, size, FreeSpace
-FROM ##temp  
--- where   Name LIKE 'dbSigaContemporaneo_Arquivo01%'
-  order by Size    DESC   
-  -- order by DatabaseName
-  -- order by FreeSpace    DESC 
+SET	NOCOUNT ON
 
-SET NOCOUNT OFF
+SELECT
+	DATABASENAME,
+	NAME,
+--	PHYSICAL_NAME,
+	SIZE,
+	FREESPACE
+FROM
+	##TEMP
+	-- WHERE   NAME LIKE 'DBSIGACONTEMPORANEO_ARQUIVO01%'
+ORDER BY
+	SIZE DESC
+	-- ORDER BY DATABASENAME
+	-- ORDER BY FREESPACE    DESC 
 
-
+SET	NOCOUNT OFF

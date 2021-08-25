@@ -16,9 +16,7 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'USE ?
             WHERE 1=1
 
             --AND ( name NOT LIKE ''use%''  )
-            -- AND ( name LIKE ''active.ramonvieira%''  )
-            -- AND ( name LIKE ''active.pollyana%''  )
-            -- AND ( name LIKE ''active.marley%''  )
+			-- AND ( name NOT LIKE ''user%''  )
                 -- AND ( name NOT LIKE ''active.modelo''  )
                 -- AND ( name  LIKE ''sigainternet''  )
                 -- AND ( name  LIKE ''%controller%''  )
@@ -69,11 +67,3 @@ SELECT Databasename, UserName FROM #Databases ORDER BY 2,1
 
 --SQL06
 --ERRO AO LISTAS USERs de DATABASES
-
---SQL05
---Use dbSigaCONFHICSaoJose;	DROP USER [sactive];
---Use dbSigaDiocCaruaru;	DROP USER [php_consulta];
---Use dbSigaCONFHICSaoJose;	DROP USER [sactive];
-
---SQL02
---Use dbSigaEnfermagemIsrael;	DROP USER [userEscolaIsrael];

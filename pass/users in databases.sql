@@ -22,13 +22,9 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 -- ,@state_desc = N'OFFLINE'
 ,@user_only = 1
 ,@suppress_quotename=1
-,@name_pattern='dbSigaEnfermagemIsrael';
+,@name_pattern='db';
 -- ,@database_list = 'dbSigaAldeiaPE'
 
 
--- use dbSigaEnfermagemIsrael
--- DROP USER [userEscolaIsrael];
-
-
-
-
+--USE dbSigaFaculdadeJardins
+--DROP USER [userJardins]

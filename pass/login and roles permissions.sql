@@ -2,11 +2,9 @@
 
 SET NOCOUNT ON
 
-USE CRM_279635
+--USE dbSigaGabarito;
 
-SELECT DB_NAME() AS DatabaseName
-
-DECLARE    @Ds_Usuario VARCHAR(100) = 'active.luan'
+DECLARE    @Ds_Usuario VARCHAR(100) = 'sactive'
 
 -- Associação Usuário x Login
 IF (OBJECT_ID('tempdb..#Users_Logins') IS NOT NULL) DROP TABLE #Users_Logins

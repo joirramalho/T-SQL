@@ -1,11 +1,22 @@
--- sp_helplogins userAPLICACAO
+--25ago21
 
-select 'EXEC sp_helplogins [' + sp.name + ']'
-       
-from sys.server_principals sp
-left join sys.sql_logins sl
-          on sp.principal_id = sl.principal_id
-where sp.type not in ('G', 'R') 
-    AND sp.is_disabled = 0
-    AND sp.type_desc = 'SQL_LOGIN'
-order by sp.name;
+SELECT
+	'EXEC SP_HELPLOGINS [' + SP.NAME + ']'
+FROM
+	SYS.SERVER_PRINCIPALS SP
+LEFT JOIN SYS.SQL_LOGINS SL
+          ON
+	SP.PRINCIPAL_ID = SL.PRINCIPAL_ID
+WHERE
+	SP.TYPE NOT IN ('G', 'R')
+	AND SP.IS_DISABLED = 0
+	AND SP.TYPE_DESC = 'SQL_LOGIN'
+ORDER BY
+	SP.NAME;
+
+--USE dbSigaSantaMadre;
+--DROP USER [userSisControllerSantaMadreSantaMadre];
+
+
+--EXEC SP_HELPLOGINS [userJardins]
+

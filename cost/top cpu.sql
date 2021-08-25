@@ -1,15 +1,26 @@
--- EXEC dbLogMonitor.dbo.sp_Where
+--25ago21
 
-Select
-     DB_NAME(st.dbid) AS [Database Name],
-     st.[text] AS [Query Text],          
-     wt.last_execution_time AS [Last Execution Time],
-     wt.execution_count AS [Execution Count],
-     wt.total_worker_time/1000000 AS [Total CPU Time(second)],
-     wt.total_worker_time/wt.execution_count/1000 AS [Average CPU Time(milisecond)],
-     qp.query_plan
-from 
-    (select top 10 qs.last_execution_time, qs.execution_count, qs.plan_handle, qs.total_worker_time from sys.dm_exec_query_stats qs order by qs.total_worker_time desc) wt
-cross apply sys.dm_exec_sql_text(plan_handle) st
-cross apply sys.dm_exec_query_plan(plan_handle) qp
-order by wt.last_execution_time DESC -- wt.total_worker_time desc
+SELECT
+	DB_NAME(ST.DBID) AS [DATABASE NAME],
+	ST.[TEXT] AS [QUERY TEXT],
+	WT.LAST_EXECUTION_TIME AS [LAST EXECUTION TIME],
+	WT.EXECUTION_COUNT AS [EXECUTION COUNT],
+	WT.TOTAL_WORKER_TIME / 1000000 AS [TOTAL CPU TIME(SECOND)],
+	WT.TOTAL_WORKER_TIME / WT.EXECUTION_COUNT / 1000 AS [AVERAGE CPU TIME(MILISECOND)],
+	QP.QUERY_PLAN
+FROM
+	(
+	SELECT
+		TOP 10 QS.LAST_EXECUTION_TIME,
+		QS.EXECUTION_COUNT,
+		QS.PLAN_HANDLE,
+		QS.TOTAL_WORKER_TIME
+	FROM
+		SYS.DM_EXEC_QUERY_STATS QS
+	ORDER BY
+		QS.TOTAL_WORKER_TIME DESC) WT
+CROSS APPLY SYS.DM_EXEC_SQL_TEXT(PLAN_HANDLE) ST
+CROSS APPLY SYS.DM_EXEC_QUERY_PLAN(PLAN_HANDLE) QP
+ORDER BY
+	WT.LAST_EXECUTION_TIME DESC
+	-- WT.TOTAL_WORKER_TIME DESC

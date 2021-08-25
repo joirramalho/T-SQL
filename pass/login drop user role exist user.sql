@@ -1,48 +1,55 @@
 -- 31jul21
 
--- EXEC dbLogMonitor.dbo.sp_where
-
-EXEC dbLogMonitor.dbo.sp_foreachdb N' 
+EXEC DBLOGMONITOR.DBO.SP_FOREACHDB N' 
     USE [?]
 
-    IF EXISTS(  select *
-                    from sys.database_principals
-                    where type not in (''A'', ''G'', ''R'', ''X'') 
-                        and sid is not null 
-                        and name != ''guest''
+    IF EXISTS(  
+		SELECT *
+                    FROM SYS.DATABASE_PRINCIPALS
+                    WHERE TYPE NOT IN (''A'', ''G'', ''R'', ''X'') 
+                        AND SID IS NOT NULL 
+                        AND NAME != ''GUEST''
 
-                        -- AND name LIKE ''userSisController%''
-                        -- AND name LIKE ''%GPA%''
-                        -- AND name = ''user''
-                        -- AND name LIKE ''%EEM%''
+                        -- AND NAME LIKE ''UserSISCONTROLLER%''
+                        -- AND NAME LIKE ''%GPA%''
+                        -- AND NAME = ''user''
+                        -- AND NAME LIKE ''%EEM%''
 
-                        -- AND name = ''active.backup''
-                        -- AND name = ''activeuser''
-                        AND name = ''sigauser''
+                        -- AND NAME = ''active.backup''
+                        -- AND NAME = ''activeuser''
+                        AND NAME = ''sigauser''
                 )
     BEGIN
         SELECT DB_NAME()
 
-        -- CREATE  USER [active.backup]        FOR LOGIN   [active.backup] WITH DEFAULT_SCHEMA=[dbo]
-        -- ALTER   ROLE [db_backupoperator]    ADD MEMBER  [active.backup]
+		--CREATE  USER [ACTIVE.BACKUP]        FOR LOGIN   [ACTIVE.BACKUP] WITH DEFAULT_SCHEMA=[DBO]
+		--ALTER   ROLE [DB_BACKUPOPERATOR]    ADD MEMBER  [ACTIVE.BACKUP]
 
--- OR
-        -- exec sp_droprolemember ''db_backupoperator'', 	''active.backup''
-        -- DROP USER [active.backup];
 
--- OR
-        DROP USER [activeuser];
 
--- OR
-        --         exec sp_droprolemember ''db_owner'', 	''sigauser'';
-        DROP SCHEMA [sigauser];
-        DROP USER [sigauser];
+		--EXEC SP_DROPROLEMEMBER ''DB_BACKUPOPERATOR'', 	''ACTIVE.BACKUP''
+		--DROP USER [ACTIVE.BACKUP];
+
+
+
+		--DROP USER [ACTIVEUSER];
+
+        --EXEC SP_DROPROLEMEMBER ''DB_OWNER'', 	''SIGAUSER'';
+		--DROP SCHEMA [SIGAUSER];
+DROP USER [SIGAUSER];
     END
 '
-,@print_command_only = 0 -- Obrigatório Gerar script
-,@print_dbname=1
--- ,@state_desc = N'OFFLINE'
-,@user_only = 1
-,@suppress_quotename=1
-,@name_pattern='db';
--- ,@database_list = 'dbSigaAldeiaPE'
+,
+@PRINT_COMMAND_ONLY = 0,	-- OBRIGATÓRIO GERAR SCRIPT
+@PRINT_DBNAME = 1,
+-- ,@STATE_DESC = N'OFFLINE',
+@USER_ONLY = 1,
+@SUPPRESS_QUOTENAME = 1,
+@NAME_PATTERN = 'DB';
+-- ,@DATABASE_LIST = 'DBSIGAALDEIAPE'
+
+--USE dbSigaSantaMadre;
+--DROP LOGIN [sigauser];
+--DROP SCHEMA [userSisControllerSantaMadreSantaMadre];
+--DROP USER [userSisControllerSantaMadreSantaMadre];
+

@@ -1,4 +1,4 @@
--- EXEC dbLogMonitor.dbo.sp_where
+--25ago21
 
 EXEC dbLogMonitor.dbo.sp_foreachdb N' 
     USE [?]
@@ -13,12 +13,17 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 -- ,@state_desc = N'OFFLINE'
 ,@user_only = 1
 ,@suppress_quotename=1
-,@name_pattern='dbSigaEnfermagemIsrael';
+,@name_pattern='dbSigaGabarito';
 -- ,@database_list = 'dbSigaAldeiaPE'
 
 
--- DROP LOGIN [dbSigaArianoPeralta];
+
+--USE dbSigaCONFHICSaoJose;
+-- ALTER AUTHORIZATION ON SCHEMA::[db_owner] TO [db_owner];
+-- ALTER AUTHORIZATION ON SCHEMA::[db_datareader] TO [db_datareader];
+--ALTER AUTHORIZATION ON SCHEMA::[db_accessadmin] TO [db_accessadmin]
 
 
 
-
+--DROP SCHEMA [sactive];
+--DROP USER [active];

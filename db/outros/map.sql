@@ -1,33 +1,69 @@
-EXEC dbLogMonitor.dbo.sp_Where
+--25ago21
 
-IF OBJECT_ID('TEMPDB..##temp') IS NOT NULL
-  DROP TABLE ##temp
+IF OBJECT_ID('TEMPDB..##TEMP') IS NOT NULL
+  DROP TABLE ##TEMP
 
-Create Table ##temp ( DatabaseName sysname, Name sysname, physical_name nvarchar(500), size decimal (18,2), FreeSpace decimal (18,2), NameSize VARCHAR(20) )
+CREATE TABLE ##TEMP ( DATABASENAME SYSNAME,
+NAME SYSNAME,
+PHYSICAL_NAME NVARCHAR(500),
+SIZE DECIMAL (18,2),
+FREESPACE DECIMAL (18,2),
+NAMESIZE VARCHAR(20) )
 
-Exec sp_msforeachdb 'Use [?];
-    Insert Into ##temp (DatabaseName, Name, physical_name, Size, FreeSpace)
-        Select DB_NAME() AS [DatabaseName], Name,  physical_name,
-        Cast(Cast(Round(cast(size as decimal) * 8.0/1024.0,2) as decimal(18,0)) as nvarchar) Size,
-        Cast(Cast(Round(cast(size as decimal) * 8.0/1024.0,2) as decimal(18,0)) - Cast(FILEPROPERTY(name, ''SpaceUsed'') * 8.0/1024.0 as decimal(18,0)) as nvarchar) As FreeSpace
-        From sys.database_files
-        where DB_NAME() NOT IN (''master'',''tempdb'',''model'',''msdb'', ''dbLogMonitor'', ''dbSigaPadraoInst'') 
-          AND type_desc = ''rows''
+EXEC SP_MSFOREACHDB 'USE [?];
+    INSERT INTO ##TEMP (DATABASENAME, NAME, PHYSICAL_NAME, SIZE, FREESPACE)
+        SELECT DB_NAME() AS [DATABASENAME], NAME,  PHYSICAL_NAME,
+        CAST(CAST(ROUND(CAST(SIZE AS DECIMAL) * 8.0/1024.0,2) AS DECIMAL(18,0)) AS NVARCHAR) SIZE,
+        CAST(CAST(ROUND(CAST(SIZE AS DECIMAL) * 8.0/1024.0,2) AS DECIMAL(18,0)) - CAST(FILEPROPERTY(NAME, ''SPACEUSED'') * 8.0/1024.0 AS DECIMAL(18,0)) AS NVARCHAR) AS FREESPACE
+        FROM SYS.DATABASE_FILES
+        WHERE DB_NAME() NOT IN (''MASTER'',''TEMPDB'',''MODEL'',''MSDB'', ''DBLOGMONITOR'', ''DBSIGAPADRAOINST'') 
+          AND TYPE_DESC = ''ROWS''
 '
-SET NOCOUNT ON
+SET
+NOCOUNT ON
 
-UPDATE ##temp
-    SET NameSize = case
-      when size < 1000  then '1-até 1 GB'
-      when size < 2000  then '2-de 1 GB a 2 GB'
-      when size < 4000  then '3-de 2 GB a 4 GB'
-      when size < 6000  then '4-de 4 GB a 6 GB'
-      when size < 8000  then '5-de 6 GB a 8 GB'
-      when size < 10000 then '6-de 8 GB a 10 GB'
-      ELSE '7-Maior que 10 GB'
-    END;
+UPDATE
+	##TEMP
+SET
+	NAMESIZE =
+	CASE
+		WHEN SIZE < 1000 THEN '1-ATÉ 1 GB'
+		WHEN SIZE < 2000 THEN '2-DE 1 GB A 2 GB'
+		WHEN SIZE < 4000 THEN '3-DE 2 GB A 4 GB'
+		WHEN SIZE < 6000 THEN '4-DE 4 GB A 6 GB'
+		WHEN SIZE < 8000 THEN '5-DE 6 GB A 8 GB'
+		WHEN SIZE < 10000 THEN '6-DE 8 GB A 10 GB'
+		ELSE '7-MAIOR QUE 10 GB'
+	END;
 
-SELECT NameSize, COUNT(*)
-From ##temp  
-GROUP BY NameSize
-ORDER by NameSize
+SELECT
+	NAMESIZE,
+	COUNT(*)
+FROM
+	##TEMP
+GROUP BY
+	NAMESIZE
+ORDER BY
+	NAMESIZE
+
+
+
+--SQL05
+--1-até 1 GB	49
+--2-de 1 GB a 2 GB	10
+--3-de 2 GB a 4 GB	19
+--4-de 4 GB a 6 GB	10 *
+--5-de 6 GB a 8 GB	3
+
+	EXATO
+	EMINENTE
+	
+
+--SQL09
+--1-até 1 GB	57
+--2-de 1 GB a 2 GB	3
+--3-de 2 GB a 4 GB	
+--4-de 4 GB a 6 GB	1 *
+--5-de 6 GB a 8 GB
+--6
+--7-Maior que 10 GB	1
