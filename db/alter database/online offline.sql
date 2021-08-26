@@ -2,7 +2,7 @@
 
 -- ALTER DATABASE dbSigaVicentinasRN SET ONLINE;
 
-ALTER DATABASE dbSigaSantaRosa SET OFFLINE;
+ALTER DATABASE dbSigaSalesianoSaoJose_Arquivo05 SET OFFLINE;
 -- 
 
 

@@ -17,4 +17,4 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 ,@user_only = 1
 ,@suppress_quotename=1
 -- ,@name_pattern='db';
-,@database_list = 'SQL04_20210517_Dados2018'
+,@database_list = 'dbSigaVeraCruzRecife'

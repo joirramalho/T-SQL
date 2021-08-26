@@ -10,7 +10,7 @@ WHERE  1=1 AND login_name NOT IN ( 'sa', 'sa_DESATIVADO' )--is_user_process = 1
         
         -- and open_transaction_count = 0
 
---        AND login_name  IN ( 'userSantaRosaSiscontroller' )
+--        AND login_name  IN ( 'userSaleNatal' )
 
 ORDER BY last_request_start_time DESC -- login_time
 -- ORDER BY login_name  -- login_time

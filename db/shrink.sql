@@ -13,20 +13,20 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 
             EXEC sp_updatestats;
 
-    IF CHARINDEX( ''dbSiga'', ''?'') > 0
-       DBCC SHRINKFILE (dbSiga_Log , 0, TRUNCATEONLY);
-    ELSE IF ( CHARINDEX( ''dbActiveBib'', ''?'') > 0 ) OR ( CHARINDEX( ''dbBib'', ''?'') > 0 )
-       DBCC SHRINKFILE (dbSigaBiblioteca_Log , 0, TRUNCATEONLY); 
-    ELSE IF ( CHARINDEX( ''dbCantina'', ''?'') > 0 ) OR ( CHARINDEX( ''dbActive'', ''?'') > 0 )
-       DBCC SHRINKFILE (dbCantinaActive_log , 0, TRUNCATEONLY);
-    ELSE IF ( CHARINDEX( ''dbCrmActivesoft'', ''?'') > 0 ) 
-       DBCC SHRINKFILE (dbActiveCRM2_Log , 0, TRUNCATEONLY);
-    ELSE IF ( CHARINDEX( ''dbSigaSalesianoSaoJose_Arquivo'', ''?'') > 0 ) 
-       DBCC SHRINKFILE (dbSigaSalesianoSaoJose_Arquivo02_Log , 0, TRUNCATEONLY);
-   ELSE 
-      SELECT file_id, name as [logical_file_name],physical_name from sys.database_files;
+--    IF CHARINDEX( ''dbSiga'', ''?'') > 0
+--       DBCC SHRINKFILE (dbSiga_Log , 0, TRUNCATEONLY);
+--    ELSE IF ( CHARINDEX( ''dbActiveBib'', ''?'') > 0 ) OR ( CHARINDEX( ''dbBib'', ''?'') > 0 )
+--       DBCC SHRINKFILE (dbSigaBiblioteca_Log , 0, TRUNCATEONLY); 
+--    ELSE IF ( CHARINDEX( ''dbCantina'', ''?'') > 0 ) OR ( CHARINDEX( ''dbActive'', ''?'') > 0 )
+--       DBCC SHRINKFILE (dbCantinaActive_log , 0, TRUNCATEONLY);
+--    ELSE IF ( CHARINDEX( ''dbCrmActivesoft'', ''?'') > 0 ) 
+--       DBCC SHRINKFILE (dbActiveCRM2_Log , 0, TRUNCATEONLY);
+--    ELSE IF ( CHARINDEX( ''dbSigaSalesianoSaoJose_Arquivo'', ''?'') > 0 ) 
+--       DBCC SHRINKFILE (dbSigaSalesianoSaoJose_Arquivo02_Log , 0, TRUNCATEONLY);
+--   ELSE 
+--      SELECT file_id, name as [logical_file_name],physical_name from sys.database_files;
 
-      --  DBCC SHRINKFILE (dbSigaContemporaneo_Arquivo01_log , 0, TRUNCATEONLY);
+  DBCC SHRINKFILE (dbSigaSalesianoSaoJose_Arquivo01_log , 0, TRUNCATEONLY);
 
 
    ALTER DATABASE [?] SET RECOVERY FULL WITH NO_WAIT;
@@ -37,7 +37,7 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 ,@user_only = 1
 ,@suppress_quotename=1
 -- ,@name_pattern='dbSigaSalePetrolina_Arquivo0';
-,@database_list = 'dbCrmActivesoft'; -- , dbSigaSaleINSA, dbSigaNSLourdesGravata, dbSigaAuxilRecife 
+,@database_list = 'dbSigaSalesianoSaoJose_Arquivo'; -- , dbSigaSaleINSA, dbSigaNSLourdesGravata, dbSigaAuxilRecife 
 
 
    
