@@ -1,5 +1,6 @@
 -- CREATE INDEX TbLancamentoCobranca pelo sp_foreachdb - 14Dez20 - Aplicado em TODOS os BANCOS --  PASSAR PARA ANDERSON
 
+-- 25ago21 SQL04 - dbSigaSaleJuvenal; bancos novos ou migrados para nuvem
 -- 09ago21 dbSigaPadraoInsES 
 -- 06ago21 dbSigaPadraoInst v150
 -- SQL03 - 01Fev21 
@@ -25,10 +26,10 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 
             SELECT DB_NAME()  
         END
-    ELSE
-        BEGIN
-            SELECT ''EXISTE ? IX_TbLancamentoCobranca_DataFaturamento-IdTituloCobrancaGerado''
-        END
+--    ELSE
+--        BEGIN
+--            SELECT ''EXISTE ? IX_TbLancamentoCobranca_DataFaturamento-IdTituloCobrancaGerado''
+--        END
 '
 ,@print_command_only = 0 -- Obrigatório Gerar script
 ,@print_dbname=0
@@ -36,4 +37,4 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 ,@user_only = 1
 ,@suppress_quotename=1
 -- ,@database_list = 'dbSigaOmegaBelem' 
-,@name_pattern='dbSigaPadraoInsES';        
+,@name_pattern='dbSiga';        

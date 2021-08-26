@@ -1,12 +1,10 @@
 -- CREATE INDEX  pelo sp_foreachdb - 07mai21 -- NÃO PASSAR PARA ANDERSON - APENAS BANCOS_ARQUIVO
 
--- SQL08 GGE - 21jul21 
-
--- EXEC dbLogMonitor.dbo.sp_Where
+-- 26ago21 SQL04 dbSigaSalesianoSaoJose
+-- 21jul21 SQL08 GGE  
 
 EXEC dbLogMonitor.dbo.sp_foreachdb N'
-    USE ?
-
+    USE [?]
 
     IF EXISTS( SELECT * FROM sys.indexes WHERE name=''IX_TbAuditoria_Tabela_DataHora'' AND object_id = OBJECT_ID(''dbo.TbAuditoria'') )
             DROP INDEX [IX_TbAuditoria_Tabela_DataHora] ON [dbo].[TbAuditoria]
@@ -26,10 +24,10 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 
             WAITFOR DELAY ''00:00:05'';
         END
-    ELSE
-        BEGIN
-            SELECT ''JÁ EXISTE EM ?''
-        END
+--    ELSE
+--        BEGIN
+--            SELECT ''JÁ EXISTE EM ?''
+--        END
 '
 ,@print_command_only = 0 -- Obrigatório Gerar script
 ,@print_dbname=0
@@ -37,7 +35,7 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 ,@user_only = 1
 ,@suppress_quotename=1
 -- ,@database_list = 'dbSigaOmegaBelem' -- dbSigaExitoNatal -- dbSigaMickeylandia -- dbSigaCEAMOMossoro -- dbSigaSagradoCoracao -- dbSigaCordCNSD
-,@name_pattern='dbSigaGGE_Arquivo';     
+,@name_pattern='dbSigaSalesianoSaoJose_Arquivo';     
 
 
 -- [dbSigaSantaRosa].[dbo].[TbMobileMensagem]

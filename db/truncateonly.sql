@@ -47,7 +47,7 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 
         
                 -- ALTER DATABASE [?] SET  READ_ONLY WITH NO_WAIT
-                --    DBCC SHRINKFILE ( dbSigaGGE_Arquivo_log , 0, TRUNCATEONLY)
+    DBCC SHRINKFILE ( dbSigaSalesianoSaoJose_Arquivo_log , 0, TRUNCATEONLY)
 
                 -- DBCC SHRINKFILE (dbSigaSalePetrolina_Arquivo03_log, 0, TRUNCATEONLY) 
                 -- DBCC SHRINKFILE (dbSigaContemporaneo_Arquivo01, 0, TRUNCATEONLY) 
@@ -67,5 +67,5 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 ,@state_desc = N'ONLINE'
 ,@user_only = 1
 ,@suppress_quotename=1
-,@name_pattern='CRM';
+,@name_pattern='dbSigaSalesianoSaoJose_Arquivo';
 -- ,@database_list = 'dbSiga' 

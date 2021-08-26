@@ -47,23 +47,35 @@ ORDER BY
 	NAMESIZE
 
 
+--SQL04
+--1-ATÉ 1 GB	59
+--2-DE 1 GB A 2 GB	10
+--3-DE 2 GB A 4 GB	8
+--4-DE 4 GB A 6 GB	6
+--5-DE 6 GB A 8 GB	1
+--6-DE 8 GB A 10 GB	4
 
 --SQL05
---1-até 1 GB	49
---2-de 1 GB a 2 GB	10
---3-de 2 GB a 4 GB	19
---4-de 4 GB a 6 GB	10 *
---5-de 6 GB a 8 GB	3
+--1-ATÉ 1 GB	49
+--2-DE 1 GB A 2 GB	10
+--3-DE 2 GB A 4 GB	19
+--4-DE 4 GB A 6 GB	8
+--5-DE 6 GB A 8 GB	3	
 
-	EXATO
-	EMINENTE
+--	EXATO ok
+--	EMINENTE ok
 	
 
 --SQL09
---1-até 1 GB	57
---2-de 1 GB a 2 GB	3
---3-de 2 GB a 4 GB	
---4-de 4 GB a 6 GB	1 *
---5-de 6 GB a 8 GB
---6
---7-Maior que 10 GB	1
+--1-ATÉ 1 GB	57
+--2-DE 1 GB A 2 GB	3
+--4-DE 4 GB A 6 GB	3
+--7-MAIOR QUE 10 GB	1
+
+--SQL10
+--1-ATÉ 1 GB	14
+--2-DE 1 GB A 2 GB	6
+--3-DE 2 GB A 4 GB	1
+--5
+--4-DE 4 GB A 6 GB	1
+--6-DE 8 GB A 10 GB	1

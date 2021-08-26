@@ -22,10 +22,12 @@
       -- AND [LOGIN] LIKE '%userActiveCrmLeitura'      
       -- AND ( [LOGIN] LIKE 'userNeves' OR [LOGIN] LIKE 'service.account' )
       
---      AND DBName IN ('dbSigaTerceiroMilenio','dbSigaCEEsCrianca','dbSigaFACHO') --DB_NAME()
+      AND DBName IN ('dbSigaVicentinasRN','dbSigaCEEsCrianca','dbSigaFACHO') --DB_NAME()
 
     --  AND ProgramName NOT IN ( 'ADO_Messenger_ADO(1.048.)             ' ) 
     --  AND HostName LIKE '%Mac%'
   -- ORDER BY    LastBatch DESC -- blkby DESC 
   -- ORDER BY    LastBatch DESC  -- LOGIN,  blkby DESC 
   ORDER BY  LastBatch DESC -- DBName, HostName      DESC -- blkby DESC 
+  
+  

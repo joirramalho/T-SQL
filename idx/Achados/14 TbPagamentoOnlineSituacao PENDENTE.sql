@@ -1,5 +1,6 @@
 -- CREATE INDEX  pelo sp_foreachdb - 07mai21 -- PASSAR PARA ANDERSON
 
+-- 25ago21 SQL04 - dbSigaSaleJuvenal; bancos novos ou migrados para nuvem
 -- 09ago21 dbSigaPadraoInsES 
 -- 06ago21 dbSigaPadraoInst v150
 -- 05ago21 - SQL09, SQL08, SQL07, SQL06, SQL05, SQL04, SQL03, SQL02, SQL01
@@ -20,10 +21,10 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 
             -- WAITFOR DELAY ''00:00:10'';
         END
-    ELSE
-        BEGIN
-            SELECT ''Tem ?''
-        END
+--    ELSE
+--        BEGIN
+--            SELECT ''Tem ?''
+--        END
 '
 ,@print_command_only = 0 -- Obrigatório Gerar script
 ,@print_dbname=0
@@ -31,7 +32,7 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 ,@user_only = 1
 ,@suppress_quotename=1
 -- ,@database_list = 'dbSigaOmegaBelem' -- dbSigaExitoNatal -- dbSigaMickeylandia -- dbSigaCEAMOMossoro -- dbSigaSagradoCoracao -- dbSigaCordCNSD
-,@name_pattern='dbSigaPadraoInsES';     
+,@name_pattern='dbSiga';     
 
 
 -- [dbSigaSantaRosa].[dbo].[TbMobileMensagem]

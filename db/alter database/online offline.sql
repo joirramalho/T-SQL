@@ -1,6 +1,6 @@
--- EXEC dbLogMonitor.dbo.sp_Where
+--26ago21
 
--- ALTER DATABASE dbSigaSantaRosa SET ONLINE;
+-- ALTER DATABASE dbSigaVicentinasRN SET ONLINE;
 
 ALTER DATABASE dbSigaSantaRosa SET OFFLINE;
 -- 

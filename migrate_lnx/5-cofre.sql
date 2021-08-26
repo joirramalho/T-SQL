@@ -10,11 +10,11 @@ declare @ServidorAlias VARCHAR(32)
 declare @Sigainternet VARCHAR(64)
 
 
-SET @banco = 'dbSigaTerceiroMilenio'
+SET @banco = 'dbSigaVicentinasRN'
 
 
---set @IPOrigem = '172.31.31.254' -- SQL04
- set @IPOrigem = '172.31.18.113' -- SQL05
+set @IPOrigem = '172.31.31.254' -- SQL04
+-- set @IPOrigem = '172.31.18.113' -- SQL05
 -- set @IPOrigem = '172.31.17.88' -- SQL06
 --set @IPOrigem = '172.31.21.223' -- SQL07
 -- set @IPOrigem = '172.31.20.88' -- SQL08

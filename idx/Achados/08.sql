@@ -21,7 +21,7 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
         END
     ELSE
         BEGIN
-            SELECT ''NÃO EXISTE IX_TbLancamentoFinanceiroContaData EM ?''
+            SELECT ''Não tem IX_TbLancamentoFinanceiroContaData EM ?''
         END
 
     IF NOT EXISTS( SELECT * FROM sys.indexes WHERE name=''IX_TbLancamentoFinanceiro_IdConta-IdLancamentoFinanceiro_ValorLancamento'' AND object_id = OBJECT_ID(''dbo.TbLancamentoFinanceiro'') )
@@ -33,7 +33,7 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
         END
     ELSE
         BEGIN
-            SELECT ''JÁ EXISTE IX_TbAuditoria_IdUsuario EM ?''
+            SELECT ''Tem IX_TbAuditoria_IdUsuario EM ?''
         END
 '
 ,@print_command_only = 0 -- Obrigatório Gerar script
@@ -42,4 +42,4 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 ,@user_only = 1
 ,@suppress_quotename=1
 -- ,@database_list = 'dbSigaOmegaBelem' 
-,@name_pattern='dbSigaPadraoInsES';     
+,@name_pattern='dbSiga';     

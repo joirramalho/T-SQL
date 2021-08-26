@@ -1,13 +1,24 @@
+--26ago2
 -- ALL DATABASE
 
--- EXEC  sp_helpindex 'Anexo14_Liquidacao'
+-- EXEC  sp_helpindex 'Tabela'
 
-SELECT TOP 20  CONVERT(int, (avg_total_user_cost * avg_user_impact * (user_seeks + user_scans)) ) AS Impacto,
-				migs.user_seeks, migs.user_scans, mid.statement, mid.equality_columns, mid.inequality_columns, mid.included_columns, mid.index_handle
-FROM sys.dm_db_missing_index_group_stats AS migs
-JOIN sys.dm_db_missing_index_groups AS mig ON migs.group_handle = mig.index_group_handle 
-JOIN sys.dm_db_missing_index_details AS mid ON mig.index_handle = mid.index_handle 
-
---  AND mid.statement LIKE '%TbNotaFiscal%'
-
-order by Impacto DESC;
+SELECT
+	TOP 20 CONVERT(INT,
+	(AVG_TOTAL_USER_COST * AVG_USER_IMPACT * (USER_SEEKS + USER_SCANS)) ) AS IMPACTO,
+				MIGS.USER_SEEKS,
+	MIGS.USER_SCANS,
+	MID.STATEMENT,
+	MID.EQUALITY_COLUMNS,
+	MID.INEQUALITY_COLUMNS,
+	MID.INCLUDED_COLUMNS,
+	MID.INDEX_HANDLE
+FROM
+	SYS.DM_DB_MISSING_INDEX_GROUP_STATS AS MIGS
+JOIN SYS.DM_DB_MISSING_INDEX_GROUPS AS MIG ON
+	MIGS.GROUP_HANDLE = MIG.INDEX_GROUP_HANDLE
+JOIN SYS.DM_DB_MISSING_INDEX_DETAILS AS MID ON
+	MIG.INDEX_HANDLE = MID.INDEX_HANDLE
+	--  AND MID.STATEMENT LIKE '%TBNOTAFISCAL%'
+ORDER BY
+	IMPACTO DESC;
