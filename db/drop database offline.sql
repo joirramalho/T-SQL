@@ -1,15 +1,9 @@
--- 22abr21
+--29ago21
 
 EXEC dbLogMonitor.dbo.sp_foreachdb N'
-        -- USE [?]
-
-    -- SELECT [?];
-
     ALTER DATABASE [?] SET ONLINE;
 
     DROP DATABASE [?];
-
-        -- ALTER DATABASE [?] SET RECOVERY FULL WITH NO_WAIT
 '
 ,@print_command_only = 0 -- Obrigatório Gerar script
 ,@print_dbname=1
@@ -17,4 +11,4 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 ,@user_only = 1
 ,@suppress_quotename=1
 -- ,@name_pattern='db';
-,@database_list = 'dbSigaVeraCruzRecife'
+,@database_list = 'dbBibFACHO, dbSigaFACHO'

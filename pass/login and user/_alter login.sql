@@ -4,11 +4,11 @@
 
 
 -- CREATE LOGIN
-	-- CREATE LOGIN [userSaleJuvenal] 	WITH PASSWORD=N'***', DEFAULT_DATABASE=[dbSigaSaleJuvenal], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
+	-- CREATE LOGIN [userEducativo] 	WITH PASSWORD=N'*******', DEFAULT_DATABASE=[dbSigaEducativo], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
 
---USE dbSigaSaleJuvenal;
+--USE dbSigaEducativo;
 
--- CREATE USER 	[userSaleJuvenal] 	FOR LOGIN [userSaleJuvenal] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
+-- CREATE USER 	[userEducativo] 	FOR LOGIN [userEducativo] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
 	-- ALTER LOGIN 	[userSaleJuvenal] 	WITH  DEFAULT_DATABASE=[dbSigaSaleJuvenal];
 	-- GRANT CONNECT  TO [active.andrielson];
 
@@ -18,7 +18,8 @@
 --ALTER ROLE [db_datawriter] ADD MEMBER [active.ewerton];
 --GRANT EXECUTE TO [active.ewerton]; -- wantuilson
 
--- ALTER ROLE [db_owner] ADD MEMBER [userSaleJuvenal];
+-- ALTER ROLE [db_owner] ADD MEMBER [userEducativo];
+
 -- ALTER ROLE roleEEM ADD MEMBER [userEloEEM];
 
 

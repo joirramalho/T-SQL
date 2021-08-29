@@ -1,3 +1,3 @@
--- EXEC dbLogMonitor.dbo.sp_Where
+--29ago21
 
-ALTER LOGIN [userSAGARAPIREEM] WITH DEFAULT_DATABASE = [dbSigaSagFamiliaAL]
+ALTER LOGIN [userEducativo] WITH DEFAULT_DATABASE = [dbSigaEducativo]

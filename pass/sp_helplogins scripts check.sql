@@ -14,9 +14,9 @@ WHERE
 ORDER BY
 	SP.NAME;
 
---USE dbSigaSantaMadre;
---DROP USER [userSisControllerSantaMadreSantaMadre];
+--USE dbSigaEducativo;
+--DROP USER [userFaculJardinsVPS5];
 
 
---EXEC SP_HELPLOGINS [userJardins]
-
+--EXEC SP_HELPLOGINS [userEducativo];
+--EXEC SP_HELPLOGINS [userEducativoVPS5];

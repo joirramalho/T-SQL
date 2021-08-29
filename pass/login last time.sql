@@ -1,5 +1,5 @@
 --25ago21
--- 31jul21 
+--31jul21 
 
 SELECT 
 	[Database] = DB_NAME(database_id),
@@ -14,6 +14,6 @@ WHERE
 
     login_name NOT IN ('sa','sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE')
     -- AND PROGRAM_NAME NOT IN ('ADO_Messenger_ADO(1.048.)')
--- AND DB_NAME(database_id) IN ('dbSigaFACESA')
+-- AND DB_NAME(database_id) IN ('dbSigaEducativo')
 
-ORDER BY DB_NAME(database_id),Login, [login_time] desc
+ORDER BY DB_NAME(database_id), Login, [login_time] desc
