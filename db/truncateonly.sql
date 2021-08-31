@@ -67,5 +67,5 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 ,@state_desc = N'ONLINE'
 ,@user_only = 1
 ,@suppress_quotename=1
-,@name_pattern='dbSigaSalesianoSaoJose_Arquivo';
+,@name_pattern='CRM';
 -- ,@database_list = 'dbSiga' 

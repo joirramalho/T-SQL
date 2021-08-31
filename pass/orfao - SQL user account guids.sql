@@ -1,6 +1,6 @@
 -- Reset SQL user account guids 
 
-USE  dbSigaEducativo;
+USE  dbSigaFACHO;
 
 DECLARE @UserName nvarchar(255) 
 

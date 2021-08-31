@@ -1,5 +1,5 @@
--- 17mai21
 
+-- 17mai21
 -- using statement_start_offset and statement_end_offset we get the query text from inside the entire batch
 
 SELECT

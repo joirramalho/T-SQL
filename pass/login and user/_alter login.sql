@@ -4,19 +4,19 @@
 
 
 -- CREATE LOGIN
-	-- CREATE LOGIN [userEducativo] 	WITH PASSWORD=N'*******', DEFAULT_DATABASE=[dbSigaEducativo], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
+	-- CREATE LOGIN [active.luan] 	WITH PASSWORD=N'*****', DEFAULT_DATABASE=[dbSigaFACHO], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
 
---USE dbSigaEducativo;
+--USE CRM_288959_18Ago;
 
--- CREATE USER 	[userEducativo] 	FOR LOGIN [userEducativo] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
+-- CREATE USER 	[active.luan] 	FOR LOGIN [active.luan] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
 	-- ALTER LOGIN 	[userSaleJuvenal] 	WITH  DEFAULT_DATABASE=[dbSigaSaleJuvenal];
 	-- GRANT CONNECT  TO [active.andrielson];
 
 
 --ROLE
---ALTER ROLE [db_datareader] ADD MEMBER [active.ewerton];
---ALTER ROLE [db_datawriter] ADD MEMBER [active.ewerton];
---GRANT EXECUTE TO [active.ewerton]; -- wantuilson
+--ALTER ROLE [db_datareader] ADD MEMBER [active.luan];
+--ALTER ROLE [db_datawriter] ADD MEMBER [active.luan];
+--GRANT EXECUTE TO [active.luan]; -- wantuilson
 
 -- ALTER ROLE [db_owner] ADD MEMBER [userEducativo];
 
