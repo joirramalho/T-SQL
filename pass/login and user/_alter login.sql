@@ -32,7 +32,7 @@
 
  
 -- PASSWORD
--- ALTER LOGIN [userEloEEM] 	WITH PASSWORD = '***'; -- sigainternet userISO_PowerBI service.account
+-- ALTER LOGIN [active.jader] 	WITH PASSWORD = '***'; -- sigainternet userISO_PowerBI service.account
 
 
 -- HASHED
