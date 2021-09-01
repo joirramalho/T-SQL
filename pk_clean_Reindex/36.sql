@@ -1,4 +1,4 @@
- USE dbSigaSaleJuvenal;
+ USE dbSigaSantaRosa;
 -- USE dbSigaNSLourdesGravata;
 -- USE dbSigaAuxilRecife;
 
@@ -7,7 +7,7 @@
 ALTER TABLE [dbo].[TbOptProvaAlunoTurma] DROP CONSTRAINT [FK_TbOptProvaAlunoTurma_TbOptProva]
 GO
 
-IF OBJECT_ID('dbo.FK__TbOptProv__IdPro__080CD8A1') IS NOT NULL  
+IF OBJECT_ID('dbo.FK__TbOptProv__IdPro__043C47BD') IS NOT NULL  
 BEGIN
     ALTER TABLE [dbo].[TbOptProvaGabarito] DROP CONSTRAINT [FK__TbOptProv__IdPro__080CD8A1]
 END

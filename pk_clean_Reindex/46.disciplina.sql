@@ -1,10 +1,6 @@
-USE dbSigaSaleJuvenal;
+USE dbSigaSantaRosa;
 -- USE dbSigaNSLourdesGravata;
 -- USE dbSigaAuxilRecife;
-
-SELECT DB_NAME()
-
-
 
 -- TbDisciplina
 

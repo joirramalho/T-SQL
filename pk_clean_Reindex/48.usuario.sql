@@ -1,8 +1,7 @@
-USE dbSigaSaleJuvenal;
+USE dbSigaSantaRosa;
 -- USE dbSigaNSLourdesGravata;
 -- USE dbSigaAuxilRecife;
 
-SELECT DB_NAME()
 
 
 ALTER TABLE [dbo].[TbAlmoxMaterialMovimentacao] DROP CONSTRAINT [FK_TbAlmoxMaterialMovimentacao_TbUsuario]

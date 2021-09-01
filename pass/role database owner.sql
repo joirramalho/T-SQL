@@ -25,9 +25,20 @@ order by rp.name
     -- exec sp_droprolemember 'db_datareader', 'active.pollyana';
     -- exec sp_droprolemember 'db_datawriter', 'active.pollyana';
     -- exec sp_droprolemember 'db_accessadmin', 'active';
+
+
     
+-- sp_addsrvrolemember SERVER ROLE
+    -- EXEC sp_addsrvrolemember 'active.filipe', 'dbcreator'
+
+
 -- sp_dropsrvrolemember SERVER ROLE
     -- EXEC sp_dropsrvrolemember 'active.wantuilson', 'sysadmin'
+	-- EXEC sp_dropsrvrolemember 'active.filipe', 'sysadmin'
+
+
+
+
 
 -- DROP USER from ROLE
     -- ALTER ROLE roleGPA DROP MEMBER [sigauser]

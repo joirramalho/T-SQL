@@ -1,4 +1,4 @@
-USE dbSigaSaleJuvenal;
+USE dbSigaSantaRosa;
 --- USE dbSigaNSLourdesGravata;
 -- USE dbSigaAuxilRecife;
 
@@ -19,38 +19,25 @@ BEGIN
 	ALTER TABLE [dbo].[TbAlunoCursoSuperior] DROP CONSTRAINT [FK_TbAlunoCursoSuperior_TbAluno]
 END
 
-ALTER TABLE [dbo].[TbAlunoFichaMedica] DROP CONSTRAINT [FK_TbAlunoFichaMedica_TbAluno]
-GO
-ALTER TABLE [dbo].[TbAlunoFoto] DROP CONSTRAINT [FK_TbAlunoFoto_TbAluno]
-GO
-ALTER TABLE [dbo].[TbAlunoImpressaoDigital] DROP CONSTRAINT [FK_TbAlunoImpressaoDigital_TbAluno]
-GO
-ALTER TABLE [dbo].[TbAlunoObs] DROP CONSTRAINT [FK_TbAlunoObs_TbAluno]
-GO
-ALTER TABLE [dbo].[TbAlunoProprioResponsavel] DROP CONSTRAINT [FK_TbAlunoProprioResponsavel_TbAluno]
-GO
-ALTER TABLE [dbo].[TbAlunoRotinaEducacaoInfantil] DROP CONSTRAINT [FK_TbAlunoRotinaEducacaoInfantil_TbAluno]
-GO
-ALTER TABLE [dbo].[TbAlunoServico] DROP CONSTRAINT [FK_TbAlunoServico_TbAluno]
-GO
-ALTER TABLE [dbo].[TbAlunoTaxa] DROP CONSTRAINT [FK_TbAlunoTaxa_TbAluno]
-GO
+ALTER TABLE [dbo].[TbAlunoFichaMedica] DROP CONSTRAINT [FK_TbAlunoFichaMedica_TbAluno];
+ALTER TABLE [dbo].[TbAlunoFoto] DROP CONSTRAINT [FK_TbAlunoFoto_TbAluno];
+ALTER TABLE [dbo].[TbAlunoImpressaoDigital] DROP CONSTRAINT [FK_TbAlunoImpressaoDigital_TbAluno];
+ALTER TABLE [dbo].[TbAlunoObs] DROP CONSTRAINT [FK_TbAlunoObs_TbAluno];
+ALTER TABLE [dbo].[TbAlunoProprioResponsavel] DROP CONSTRAINT [FK_TbAlunoProprioResponsavel_TbAluno];
+ALTER TABLE [dbo].[TbAlunoRotinaEducacaoInfantil] DROP CONSTRAINT [FK_TbAlunoRotinaEducacaoInfantil_TbAluno];
+ALTER TABLE [dbo].[TbAlunoServico] DROP CONSTRAINT [FK_TbAlunoServico_TbAluno];
+ALTER TABLE [dbo].[TbAlunoTaxa] DROP CONSTRAINT [FK_TbAlunoTaxa_TbAluno];
 
 IF OBJECT_ID('dbo.FK_TbAlunoTipoAvaliacao_TbAluno') IS NOT NULL
 BEGIN
-	ALTER TABLE [dbo].[TbAlunoTipoAvaliacao] DROP CONSTRAINT [FK_TbAlunoTipoAvaliacao_TbAluno]
+	ALTER TABLE [dbo].[TbAlunoTipoAvaliacao] DROP CONSTRAINT [FK_TbAlunoTipoAvaliacao_TbAluno];
 END
 
-ALTER TABLE [dbo].[TbAlunoTurma] DROP CONSTRAINT [FK_TbAlunoTurma_TbAluno]
-GO
-ALTER TABLE [dbo].[TbAlunoTurmaBolsa] DROP CONSTRAINT [FK_TbAlunoTurmaBolsa_TbAluno]
-GO
-ALTER TABLE [dbo].[TbAlunoTurmaBolsaHistorico] DROP CONSTRAINT [FK_TbAlunoTurmaBolsaHistorico_TbAluno]
-GO
-ALTER TABLE [dbo].[TbAlunoTurmaHistorico] DROP CONSTRAINT [FK_TbAlunoTurmaHistorico_TbAluno]
-GO
-ALTER TABLE [dbo].[TbAlunoTurmaReserva] DROP CONSTRAINT [FK_TbAlunoTurmaReserva_TbAluno]
-GO
+ALTER TABLE [dbo].[TbAlunoTurma] DROP CONSTRAINT [FK_TbAlunoTurma_TbAluno];
+ALTER TABLE [dbo].[TbAlunoTurmaBolsa] DROP CONSTRAINT [FK_TbAlunoTurmaBolsa_TbAluno];
+ALTER TABLE [dbo].[TbAlunoTurmaBolsaHistorico] DROP CONSTRAINT [FK_TbAlunoTurmaBolsaHistorico_TbAluno];
+ALTER TABLE [dbo].[TbAlunoTurmaHistorico] DROP CONSTRAINT [FK_TbAlunoTurmaHistorico_TbAluno];
+ALTER TABLE [dbo].[TbAlunoTurmaReserva] DROP CONSTRAINT [FK_TbAlunoTurmaReserva_TbAluno];
 
 IF OBJECT_ID('dbo.FK_TbAlunoTurma_TbFaseNota') IS NOT NULL
 BEGIN
@@ -106,8 +93,8 @@ GO
 
 -- TbAluno (continuacao)
 
-ALTER TABLE [dbo].[TbAlunoTurmaDocumento] DROP CONSTRAINT [FK__TbAlunoTu__IdAlu__61AB314A]
-GO
+ALTER TABLE [dbo].[TbAlunoTurmaDocumento] DROP CONSTRAINT [FK__TbAlunoTu__IdAlu__250C375E];
+
 -- OU
 IF OBJECT_ID('dbo.FK_TbAlunoTurmaDocumento_TbAluno') IS NOT NULL
 BEGIN
@@ -117,9 +104,8 @@ END
 
 
 
-	ALTER TABLE [dbo].[TbAluno] DROP CONSTRAINT [PK_TbAluno]
-	GO
-
+	ALTER TABLE [dbo].[TbAluno] DROP CONSTRAINT [PK_TbAluno];
+	
 
 
 
