@@ -1,6 +1,7 @@
--- Reset SQL user account guids 
+--03set21
+--Reset SQL user account guids 
 
-USE  dbVendasVicentinasCMI;
+USE  dbBibCPPMossoro;
 
 DECLARE @UserName nvarchar(255) 
 

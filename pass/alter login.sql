@@ -11,10 +11,11 @@
 
 
 
---USE dbSigaSantAna;
+--USE dbCrmActivesoft;
 
 
---CREATE USER 	[userSantAna] 	FOR LOGIN [userSantAna] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
+
+--CREATE USER 	[userRestauraBancoVPS] 	FOR LOGIN [userRestauraBancoVPS] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
 
 	--DROP USER [siga_caruaru];
 
@@ -22,58 +23,49 @@
 --	DEFAULT_DATABASE
 		--ALTER LOGIN 	[userSantAnaEEM] 	WITH  DEFAULT_DATABASE=[dbSigaSantAna];
 
-	--GRANT CONNECT  TO [userSantAna];
+	--GRANT CONNECT  TO [userRestauraBancoVPS];
 		--REVOKE CONNECT  FROM [siga_caruaru];
 
 
+--DATABASE ROLE
+--ADD 
+	--USE dbBibDiocCaruaru;
 
---ADD DATABASE ROLE
-	--ALTER ROLE [db_datareader] ADD MEMBER [hellen.carvalho];
-	--ALTER ROLE [db_datawriter] ADD MEMBER [hellen.carvalho];
+	--ALTER ROLE [db_datareader] ADD MEMBER [userRestauraBancoVPS];
+	--ALTER ROLE [db_datawriter] ADD MEMBER [userRestauraBancoVPS];
 	
-	--GRANT EXECUTE TO [hellen.carvalho]; -- wantuilson
+	--GRANT EXECUTE TO [userRestauraBancoVPS]; -- wantuilson
     	--REVOKE EXECUTE TO [active.pollyana];
 
-
-	--ALTER ROLE [db_owner] ADD MEMBER [userSantAna];
+	--ALTER ROLE [db_owner] ADD MEMBER [userRestauraBancoVPS];
 	--ALTER ROLE [db_ddladmin] ADD MEMBER [active.marley];
 
-
-
-
---DROP DATABASE ROLE
+--DROP
 	--USE dbBibDiocCaruaru;
 
     -- exec sp_droprolemember 'db_datareader', 'active.pollyana';
     -- exec sp_droprolemember 'db_datawriter', 'active.pollyana';
 
-	-- exec sp_droprolemember 'db_owner', 'userEscolaIsrael';
-    -- exec sp_droprolemember 'db_accessadmin', 'siga_caruaru';
-    -- exec sp_droprolemember 'db_backupoperator', 'siga_caruaru';
-    -- exec sp_droprolemember 'db_datareader', 'siga_caruaru';
-    -- exec sp_droprolemember 'db_datawriter', 'siga_caruaru';
-    -- exec sp_droprolemember 'db_ddladmin', 'siga_caruaru';
+	-- exec sp_droprolemember 'db_owner', 			'userEscolaIsrael';
+    -- exec sp_droprolemember 'db_accessadmin', 	'siga_caruaru';
+    -- exec sp_droprolemember 'db_backupoperator', 	'siga_caruaru';
+    -- exec sp_droprolemember 'db_datareader', 		'siga_caruaru';
+    -- exec sp_droprolemember 'db_datawriter', 		'siga_caruaru';
+    -- exec sp_droprolemember 'db_ddladmin', 		'siga_caruaru';
 
 
 
 
 
-
-    
 --SERVER ROLE
---	ADD
-	-- EXEC sp_addsrvrolemember 'romario.barbalho', 'dbcreator'
-	-- EXEC sp_addsrvrolemember 'romario.barbalho', 'securityadmin'
+	--ADD
+		-- EXEC sp_addsrvrolemember 'userRestauraBancoVPS', 'dbcreator'
+		-- EXEC sp_addsrvrolemember 'romario.barbalho', 'securityadmin'
+		
+	--DROP
+	    -- EXEC sp_dropsrvrolemember 'userRestauraBancoVPS', 	'sysadmin'
 
-	-- EXEC master..sp_addsrvrolemember @loginame = [active.pinto], @rolename = N'sysadmin';
 
-
-
---DROP ROLE MEMBER
-    -- EXEC sp_dropsrvrolemember 'active.wantuilson', 'sysadmin'
-	-- EXEC sp_dropsrvrolemember 'active.filipe', 'sysadmin'
-
-	-- EXEC master..sp_dropsrvrolemember @loginame = [userCELogos], @rolename = N'sysadmin';
 
 
 -- DROP USER from ROLE
@@ -127,7 +119,7 @@
 --PROFILER
 --GRANT
 	--USE master;
-	--GRANT ALTER TRACE TO [active.nailson]
+	--GRANT ALTER TRACE TO [luiz.matheus]
 
 --REVOKE
 --	USE Master;
@@ -159,7 +151,7 @@
 
  
 -- PASSWORD
-	-- ALTER LOGIN [active.jader] 	WITH PASSWORD = '***'; -- sigainternet userISO_PowerBI service.account
+	-- ALTER LOGIN [active.jader] 	WITH PASSWORD = '****'; -- sigainternet userISO_PowerBI service.account
 
 
 -- HASHED

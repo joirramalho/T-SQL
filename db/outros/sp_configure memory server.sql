@@ -1,4 +1,4 @@
--- config RAM - 21Jan21 - SQL2017Web-Template-v3
+--21Jan21
 
 -- https://docs.microsoft.com/pt-br/sql/database-engine/configure-windows/server-memory-server-configuration-options?view=sql-server-ver15#example-a-set-the-max-server-memory-option-to-4-gb
 

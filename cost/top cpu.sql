@@ -1,26 +1,31 @@
---25ago21
+-- 03set21
+-- using statement_start_offset and statement_end_offset we get the query text from inside the entire batch
 
 SELECT
-	DB_NAME(ST.DBID) AS [DATABASE NAME],
-	ST.[TEXT] AS [QUERY TEXT],
-	WT.LAST_EXECUTION_TIME AS [LAST EXECUTION TIME],
-	WT.EXECUTION_COUNT AS [EXECUTION COUNT],
-	WT.TOTAL_WORKER_TIME / 1000000 AS [TOTAL CPU TIME(SECOND)],
-	WT.TOTAL_WORKER_TIME / WT.EXECUTION_COUNT / 1000 AS [AVERAGE CPU TIME(MILISECOND)],
-	QP.QUERY_PLAN
+	TOP 10 qs.total_worker_time, DB_NAME(qp.dbid) AS [Database Name],
+	qs.last_execution_time,
+	SUBSTRING(qt.TEXT, (qs.statement_start_offset / 2)+ 1,
+                           ((CASE qs.statement_end_offset
+                                        WHEN -1 THEN DATALENGTH(qt.TEXT)
+                                        ELSE qs.statement_end_offset
+                           END
+                           - qs.statement_start_offset)/ 2)+ 1)
+                           as [Text],
+	qs.execution_count,
+	qs.total_logical_reads,
+	qs.last_logical_reads,
+	qs.total_logical_writes,
+	qs.last_logical_writes,
+	qs.last_worker_time,
+	qs.total_elapsed_time / 1000000 total_elapsed_time_in_S,
+	qs.last_elapsed_time / 1000000 last_elapsed_time_in_S,
+	qp.query_plan
 FROM
-	(
-	SELECT
-		TOP 10 QS.LAST_EXECUTION_TIME,
-		QS.EXECUTION_COUNT,
-		QS.PLAN_HANDLE,
-		QS.TOTAL_WORKER_TIME
-	FROM
-		SYS.DM_EXEC_QUERY_STATS QS
-	ORDER BY
-		QS.TOTAL_WORKER_TIME DESC) WT
-CROSS APPLY SYS.DM_EXEC_SQL_TEXT(PLAN_HANDLE) ST
-CROSS APPLY SYS.DM_EXEC_QUERY_PLAN(PLAN_HANDLE) QP
+	sys.dm_exec_query_stats qs
+	-- Retrieve the query text
+       CROSS APPLY sys.dm_exec_sql_text(qs.sql_handle) qt
+	-- Retrieve the query plan
+       CROSS APPLY sys.dm_exec_query_plan(qs.plan_handle) qp
 ORDER BY
-	WT.LAST_EXECUTION_TIME DESC
-	-- WT.TOTAL_WORKER_TIME DESC
+	qs.total_worker_time DESC
+	-- CPU time

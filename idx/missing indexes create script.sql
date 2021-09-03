@@ -1,4 +1,4 @@
-USE bdSIAI;
+--USE db;
 
 -- EXEC  sp_helpindex 'TbOcorrenciaMovimentacao'
 

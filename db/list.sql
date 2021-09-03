@@ -5,6 +5,7 @@ SELECT
 	state_desc,
 	recovery_model_desc,
 	is_read_only,
+	
 	user_access_desc,
 	create_date
 FROM
@@ -24,6 +25,7 @@ ORDER BY
 	create_date DESC;
 
 
+--OFFLINE
 SELECT
 	name,
 	state_desc,

@@ -45,7 +45,9 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 ,@user_only = 1
 ,@system_only = 0
 ,@suppress_quotename=1
--- ,@name_pattern='';
+,@is_read_only = 0
+
+ ,@name_pattern='db';
 -- ,@database_list = 'db'
 
 SELECT Databasename, UserName FROM #Databases ORDER BY 2,1
