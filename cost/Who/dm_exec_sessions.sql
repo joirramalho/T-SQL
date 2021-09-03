@@ -23,7 +23,7 @@ WHERE
 	--        and Program_name NOT IN ('ADO_Messenger_ADO(1.049.)')
 	-- and DATEDIFF(MINUTE, last_request_start_time, GETDATE()) > 1 -- login_time
 	-- and open_transaction_count = 0
-	AND login_name IN ('userFaculJardins','userEducativo')
+	AND login_name IN ('userCOLEGIOVICENTINA','userVICENTINASCNSA')
 ORDER BY
 	last_request_start_time DESC
 	-- login_time

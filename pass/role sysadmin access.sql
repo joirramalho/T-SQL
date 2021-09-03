@@ -1,14 +1,18 @@
 -- 31jul21 #sysadmin
--- 15out20
 
--- EXEC dbLogMonitor.dbo.sp_ServerName
-
-SELECT [Login] = name
-	,[Login Type] = type_desc
-	,[Disabled] = is_disabled
-FROM     master.sys.server_principals 
-WHERE    IS_SRVROLEMEMBER ('sysadmin',name) = 1
-ORDER BY [Login]
+SELECT
+	[Login] = name
+	,
+	[Login TYPE] = type_desc
+	,
+	[Disabled] = is_disabled
+FROM
+	master.sys.server_principals
+WHERE
+	IS_SRVROLEMEMBER ('sysadmin',
+	name) = 1
+ORDER BY
+	[Login]
 
 
 -- ;with ServerPermsAndRoles as

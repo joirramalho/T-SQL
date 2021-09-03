@@ -13,18 +13,5 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 -- ,@state_desc = N'OFFLINE'
 ,@user_only = 1
 ,@suppress_quotename=1
-,@name_pattern='dbSigaSaleFAlcao';
+,@name_pattern='dbBibDiocCaruaru';
 -- ,@database_list = 'dbSigaAldeiaPE'
-
-
-
---USE dbSigaCONFHICSaoJose;
---ALTER AUTHORIZATION ON SCHEMA::[db_owner] TO [db_owner];
---ALTER AUTHORIZATION ON SCHEMA::[db_datareader] TO [db_datareader];
---ALTER AUTHORIZATION ON SCHEMA::[db_accessadmin] TO [db_accessadmin]
-
---ALTER AUTHORIZATION ON SCHEMA::[sigainternet] TO [sigainternet];
-
-
---DROP SCHEMA [sactive];
---DROP USER [active];

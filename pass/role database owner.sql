@@ -1,6 +1,6 @@
 --25ago21
 
-USE dbSigaSantaMadre;
+USE dbSigaSantAna;
 
 WITH RoleMembers (member_principal_id, role_principal_id)    
 AS  
@@ -20,47 +20,6 @@ from RoleMembers drm
 --  where rp.name = 'db_owner'  
 order by rp.name
 
--- sp_droprolemember DATABASE
-    -- exec sp_droprolemember 'db_owner', 'userEscolaIsrael';
-    -- exec sp_droprolemember 'db_datareader', 'active.pollyana';
-    -- exec sp_droprolemember 'db_datawriter', 'active.pollyana';
-    -- exec sp_droprolemember 'db_accessadmin', 'active';
-
-
-    
--- sp_addsrvrolemember SERVER ROLE
-    -- EXEC sp_addsrvrolemember 'active.filipe', 'dbcreator'
-
-
--- sp_dropsrvrolemember SERVER ROLE
-    -- EXEC sp_dropsrvrolemember 'active.wantuilson', 'sysadmin'
-	-- EXEC sp_dropsrvrolemember 'active.filipe', 'sysadmin'
-
-
-
-
-
--- DROP USER from ROLE
-    -- ALTER ROLE roleGPA DROP MEMBER [sigauser]
-
-
-    -- REVOKE EXECUTE TO [active.pollyana];
-
-
--- Setar owner para role
-    -- ALTER AUTHORIZATION ON ROLE::[roleGPA] TO [dbo];
-    
-
-
-
--- Add usuário a Database role
-
-    -- ALTER ROLE roleEEM ADD MEMBER [userELOEMM];
-
-    --exec sp_addrolemember 'roleOperacaoRestore', 'active.teste'
-	--exec sp_addrolemember 'roleEEM', 'userEloEMM';
-
-	--ALTER ROLE roleOperacaoRestore ADD MEMBER [active.pinto]
 
 
 

@@ -22,7 +22,7 @@
       -- AND [LOGIN] LIKE '%userActiveCrmLeitura'      
       -- AND ( [LOGIN] LIKE 'userNeves' OR [LOGIN] LIKE 'service.account' )
       
-      AND DBName IN ('dbSigaEducativo','dbSigaCEEsCrianca','dbSigaFACHO') --DB_NAME()
+      AND DBName IN ('dbSigaVicentinasCMI','dbSigaVicentinasCNSA','dbSigaFACHO') --DB_NAME()
 
     --  AND ProgramName NOT IN ( 'ADO_Messenger_ADO(1.048.)             ' ) 
     --  AND HostName LIKE '%Mac%'

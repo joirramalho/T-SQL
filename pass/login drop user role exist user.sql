@@ -1,4 +1,4 @@
--- 31jul21
+--02set21
 
 EXEC DBLOGMONITOR.DBO.SP_FOREACHDB N' 
     USE [?]
@@ -17,6 +17,7 @@ EXEC DBLOGMONITOR.DBO.SP_FOREACHDB N'
 
                         -- AND NAME = ''active.backup''
                         -- AND NAME = ''activeuser''
+--                        AND NAME = ''active.modelo''
                         AND NAME = ''sigauser''
                 )
     BEGIN
@@ -35,8 +36,13 @@ EXEC DBLOGMONITOR.DBO.SP_FOREACHDB N'
 		--DROP USER [ACTIVEUSER];
 
         --EXEC SP_DROPROLEMEMBER ''DB_OWNER'', 	''SIGAUSER'';
-		--DROP SCHEMA [SIGAUSER];
-DROP USER [SIGAUSER];
+--			DROP SCHEMA [SIGAUSER];
+--			DROP USER [SIGAUSER];
+
+		--USE dbSigaSantaMadre;
+			--DROP LOGIN [sigauser];
+			--DROP SCHEMA [userSisControllerSantaMadreSantaMadre];
+			--DROP USER [userSisControllerSantaMadreSantaMadre];
     END
 '
 ,
@@ -47,9 +53,3 @@ DROP USER [SIGAUSER];
 @SUPPRESS_QUOTENAME = 1,
 @NAME_PATTERN = 'DB';
 -- ,@DATABASE_LIST = 'DBSIGAALDEIAPE'
-
---USE dbSigaSantaMadre;
---DROP LOGIN [sigauser];
---DROP SCHEMA [userSisControllerSantaMadreSantaMadre];
---DROP USER [userSisControllerSantaMadreSantaMadre];
-
