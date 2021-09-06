@@ -1,9 +1,5 @@
--- CREATE SCRIPTs SQL Logins by HASH -- ADAPTADA 
-    -- 12junu21 -- ALTER LOGIN DEFAULT DATABASE
-
--- USE dbSigaSaoLucas;  
-
--- EXEC dbLogMonitor.dbo.sp_Where 
+--06set21
+-- Logins by HASH script out -- ADAPTADA 
 
 SELECT 
     SP.name, 

@@ -6,8 +6,8 @@
 -- CREATE LOGIN
 	--CREATE LOGIN [userSantAna] 	WITH PASSWORD=N'iEHXmbkyWC', DEFAULT_DATABASE=[dbSigaSantAna], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
 
---ALTER LOGIN
-	--ALTER LOGIN [userSantAnaSobral] DISABLE;
+	--ALTER LOGIN
+		--ALTER LOGIN [userSantAnaSobral] DISABLE;
 
 
 
@@ -21,7 +21,8 @@
 
 
 --	DEFAULT_DATABASE
-		--ALTER LOGIN 	[userSantAnaEEM] 	WITH  DEFAULT_DATABASE=[dbSigaSantAna];
+		--ALTER LOGIN 	[userCOLEGIOEAG_PowerBI] 	WITH  DEFAULT_DATABASE=[dbSigaColegioEAG];
+
 
 	--GRANT CONNECT  TO [userRestauraBancoVPS];
 		--REVOKE CONNECT  FROM [siga_caruaru];
