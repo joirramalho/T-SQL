@@ -1,4 +1,4 @@
--- 02set21 - dbSigaSalePetrolina_Arquivo0X
+-- 08set21 - dbSigaSalePetrolina_Arquivo0X
 
 -- P@ssw0rd.
 
@@ -26,6 +26,15 @@
 
 	--GRANT CONNECT  TO [userRestauraBancoVPS];
 		--REVOKE CONNECT  FROM [siga_caruaru];
+
+
+
+
+-- PASSWORD
+	-- ALTER LOGIN [userSandraCavalcan] 	WITH PASSWORD = '*****'; -- sigainternet userISO_PowerBI service.account
+
+
+
 
 
 --DATABASE ROLE
@@ -151,10 +160,6 @@
 	-- EXEC sp_addrolemember N'roleDesmascararDados', N'romario.barbalho'
 
  
--- PASSWORD
-	-- ALTER LOGIN [active.jader] 	WITH PASSWORD = '****'; -- sigainternet userISO_PowerBI service.account
-
-
 -- HASHED
 	-- ALTER LOGIN [userCognitivoEEM] WITH   PASSWORD = ... HASHED;
 	-- ALTER LOGIN [userCognitivoGPA] WITH   PASSWORD = ... HASHED;
