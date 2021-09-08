@@ -1,7 +1,7 @@
 --03set21
 --Reset SQL user account guids 
 
-USE  dbBibCPPMossoro;
+USE  dbBibCELogos;
 
 DECLARE @UserName nvarchar(255) 
 

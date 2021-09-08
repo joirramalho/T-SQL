@@ -1,4 +1,4 @@
-USE dbSigaSantaRosa;
+USE dbSigaCELogos;
 -- USE dbSigaNSLourdesGravata;
 -- USE dbSigaAuxilRecife;
 
@@ -110,7 +110,7 @@ GO
 
 
 -- NOME PK ERRADOS
--- ALTER TABLE [dbo].[TbUnidadeTermoConsentimento] DROP CONSTRAINT [FK__TbUnidade__IdUni__2264D4DD];
+-- ALTER TABLE [dbo].[TbUnidadeTermoConsentimento] DROP CONSTRAINT [FK__TbUnidade__IdUni__6D1CE3F6];
 
 -- NOME CORRETO
 ALTER TABLE [dbo].[TbUnidadeTermoConsentimento] DROP CONSTRAINT [FK_TbUnidadeTermoConsentimento_TbUnidade]
@@ -128,7 +128,6 @@ GO
 -- TbUnidade 
 
     ALTER TABLE [dbo].[TbUnidade] DROP CONSTRAINT [PK_TbUnidade];
-	GO
 
 
 

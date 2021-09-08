@@ -1,4 +1,4 @@
- USE dbSigaSantaRosa;
+ USE dbSigaCELogos;
 -- USE dbSigaNSLourdesGravata;
 -- USE dbSigaAuxilRecife;
 
@@ -9,7 +9,7 @@ GO
 
 IF OBJECT_ID('dbo.FK__TbOptProv__IdPro__043C47BD') IS NOT NULL  
 BEGIN
-    ALTER TABLE [dbo].[TbOptProvaGabarito] DROP CONSTRAINT [FK__TbOptProv__IdPro__080CD8A1]
+    ALTER TABLE [dbo].[TbOptProvaGabarito] DROP CONSTRAINT [FK__TbOptProv__IdPro__043C47BD]
 END
 
 ALTER TABLE [dbo].[TbOptSimuladoEnem] DROP CONSTRAINT [FK_TbOptSimuladoEnem_TbOptProva_IdProvaCHumanas]

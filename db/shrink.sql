@@ -30,7 +30,7 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 
 	ALTER DATABASE [?] SET RECOVERY FULL WITH NO_WAIT;
 
---	DBCC CHECKDB([?]) -- WITH TABLERESULTS
+--	DBCC CHECKDB([?]); -- WITH TABLERESULTS
 '
 ,@print_command_only = 0 -- Obrigatório Gerar script
 ,@print_dbname=1
@@ -38,6 +38,6 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 ,@user_only = 1
 ,@suppress_quotename=1
 -- ,@name_pattern='dbSigaSalePetrolina_Arquivo0';
-,@database_list = 'dbSigaPadraoInst';  
+,@database_list = 'dbSigaCELogos';  
 
 

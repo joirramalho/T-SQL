@@ -1,6 +1,7 @@
 -- CREATE INDEX  pelo sp_foreachdb - 07mai21 -- PASSAR PARA ANDERSON
 
--- 25ago21 SQL04 - dbSigaSaleJuvenal; bancos novos ou migrados para nuvem
+--06set21 dbSigaCELogos
+--25ago21 SQL04 - dbSigaSaleJuvenal; bancos novos ou migrados para nuvem
 -- 09ago21 dbSigaPadraoInsES 
 -- 06ago21 dbSigaPadraoInst
 -- 05ago21 SQL09 & SQL04 - dbSigaSaleFalcao; bancos novos ou migrados para nuvem
@@ -41,8 +42,8 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 ,@state_desc = N'ONLINE'
 ,@user_only = 1
 ,@suppress_quotename=1
--- ,@database_list = 'dbSigaOmegaBelem' -- dbSigaExitoNatal -- dbSigaMickeylandia -- dbSigaCEAMOMossoro -- dbSigaSagradoCoracao -- dbSigaCordCNSD
-,@name_pattern='dbSiga';     
+ ,@database_list = 'dbSigaCELogos' -- dbSigaExitoNatal -- dbSigaMickeylandia -- dbSigaCEAMOMossoro -- dbSigaSagradoCoracao -- dbSigaCordCNSD
+--,@name_pattern='dbSiga';     
 
 
 -- [dbSigaSantaRosa].[dbo].[TbMobileMensagem]

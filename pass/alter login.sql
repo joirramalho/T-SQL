@@ -4,24 +4,24 @@
 
 
 -- CREATE LOGIN
-	--CREATE LOGIN [userSantAna] 	WITH PASSWORD=N'iEHXmbkyWC', DEFAULT_DATABASE=[dbSigaSantAna], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
+	--CREATE LOGIN [userCELogos] 	WITH PASSWORD=N'****', DEFAULT_DATABASE=[dbSigaCELogos], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
 
 	--ALTER LOGIN
 		--ALTER LOGIN [userSantAnaSobral] DISABLE;
 
 
 
---USE dbCrmActivesoft;
+--USE dbBibCELogos;
 
 
 
---CREATE USER 	[userRestauraBancoVPS] 	FOR LOGIN [userRestauraBancoVPS] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
+--CREATE USER 	[userCELogos] 	FOR LOGIN [userCELogos] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
 
 	--DROP USER [siga_caruaru];
 
 
 --	DEFAULT_DATABASE
-		--ALTER LOGIN 	[userCOLEGIOEAG_PowerBI] 	WITH  DEFAULT_DATABASE=[dbSigaColegioEAG];
+		--ALTER LOGIN 	[userCELogos] 	WITH  DEFAULT_DATABASE=[dbSigaCELogos];
 
 
 	--GRANT CONNECT  TO [userRestauraBancoVPS];

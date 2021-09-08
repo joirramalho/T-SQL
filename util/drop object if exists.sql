@@ -1,16 +1,31 @@
-IF EXISTS (SELECT * 
-  FROM sys.foreign_keys 
-   WHERE object_id = OBJECT_ID(N'dbo.FK_TableName_TableName2')
-   AND parent_object_id = OBJECT_ID(N'dbo.TableName')
+IF EXISTS (
+SELECT
+	*
+FROM
+	sys.foreign_keys
+WHERE
+	object_id = OBJECT_ID(N'dbo.FK_TableName_TableName2')
+	AND parent_object_id = OBJECT_ID(N'dbo.TableName')
 )
   ALTER TABLE [dbo.TableName] DROP CONSTRAINT [FK_TableName_TableName2]
 
 
 
+
+IF EXISTS (
+SELECT
+	*
+FROM
+	sys.objects
+WHERE
+	object_id = OBJECT_ID(N'[dbo].[dbcc_history]')
+		AND TYPE IN (N'U'))
+	DROP TABLE [dbo].[dbcc_history]
 --   ou
 
 
-IF (OBJECT_ID('dbo.FK_ConstraintName', 'F') IS NOT NULL)
+IF (OBJECT_ID('dbo.FK_ConstraintName',
+'F') IS NOT NULL)
 BEGIN
     ALTER TABLE dbo.TableName DROP CONSTRAINT FK_ConstraintName
 END

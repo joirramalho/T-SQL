@@ -19,12 +19,12 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 ,@state_desc = N'ONLINE'
 ,@user_only = 1
 ,@suppress_quotename=1
-,@name_pattern='dbSigaFACHO';
+,@name_pattern='dbSigaCELogos';
 -- ,@database_list = 'dbSigaA'
 
 
 -- 
--- DBCC CHECKDB([dbSigaFACHO]) WITH TABLERESULTS
+-- DBCC CHECKDB([dbSigaCELogos]) WITH TABLERESULTS
 -- 
 
 

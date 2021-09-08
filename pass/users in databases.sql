@@ -1,4 +1,5 @@
---exec sp_MSforeachdb 'select ''?'' as DBNAME, * from ?.sys.sysusers where uid < 16384'
+--05set21
+	--exec sp_MSforeachdb 'select ''?'' as DBNAME, * from ?.sys.sysusers where uid < 16384'
 
 IF OBJECT_ID('tempdb..#users') IS NOT NULL 
   DROP TABLE tempdb..#users
@@ -25,7 +26,7 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 	    WHERE   (u.type in (''U'', ''S'', ''G'', ''C'', ''K'' ,''E'', ''X''))
 	        
 	        AND name NOT IN ( ''sigaadmin'', ''sigainternet'', ''sys'', ''guest'', ''dbo'', ''INFORMATION_SCHEMA'')
-			AND name NOT LIKE ''user%'' 
+--			AND name NOT LIKE ''user%'' 
 			AND name NOT LIKE ''active.%'' 
 	    
 	    ORDER BY    [Name] ASC

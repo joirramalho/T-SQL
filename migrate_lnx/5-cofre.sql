@@ -10,7 +10,7 @@ declare @ServidorAlias VARCHAR(32)
 declare @Sigainternet VARCHAR(64)
 
 
-SET @banco = 'dbSigaVicentinasCMI'
+SET @banco = 'dbSigaCELogos'
 
 
 set @IPOrigem = '172.31.31.254' -- SQL04
@@ -52,7 +52,9 @@ SET @Sigainternet = '0370'
 SELECT ServidorIP, ServidorAlias, ServidorSigainternet_Senha, ServidorDatabase, ServidorSigaUser_Login, 'https://siga.activesoft.com.br/login/?instituicao=' + SiglaUnidade, IdCliente
 FROM [dbCrmActivesoft].[dbo].[TbCliente]
 where [ServidorDatabase] = @banco
---      AND ServidorIP = @IPOrigem 
+
+	AND ServidorIP = @IPOrigem 
+
 ORDER by ServidorDatabase
   
 BEGIN TRAN

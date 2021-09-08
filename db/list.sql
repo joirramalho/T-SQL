@@ -1,7 +1,7 @@
 -- 04ago21
 
 SELECT
-	name,
+	name as [Database ON-LINE],
 	state_desc,
 	recovery_model_desc,
 	is_read_only,
@@ -27,7 +27,7 @@ ORDER BY
 
 --OFFLINE
 SELECT
-	name,
+	name as [Database OFF-LINE],
 	state_desc,
 	recovery_model_desc,
 	is_read_only,

@@ -37,4 +37,4 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 ,@user_only = 1
 ,@suppress_quotename=1
 -- ,@database_list = 'dbSigaOmegaBelem' 
-,@name_pattern='dbSiga';        
+,@name_pattern='dbSigaCELogos';        

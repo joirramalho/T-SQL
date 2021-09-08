@@ -6,14 +6,14 @@ DECLARE @TSQL NVARCHAR(MAX)
 SET @TSQL = '
 IF (
     DB_ID(''?'') > 4
-    AND ''?'' LIKE (''dbSigaSaleMazzarello%'')
+    AND ''?'' LIKE (''dbSigaCELogos%'')
    )
     BEGIN
         USE [?]; 
         -- SELECT DB_NAME();
-        exec sp_updatestats
+        exec sp_updatestats;
 
-        -- DBCC CHECKDB([?])
+        -- DBCC CHECKDB([?]);
         -- EXEC sp_MSforeachtable @command1="ALTER INDEX ALL ON $ REBUILD WITH (ONLINE=OFF)", @replacechar="$"; -- NAO funciona com dbCrmActivesoft
     END
 '

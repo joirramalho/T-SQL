@@ -1,23 +1,17 @@
--- USE dbSigaSaleJuvenal;
+-- USE dbSigaCELogos;
 
 /*
-ALTER TABLE [dbo].[TbParametroCPR] DROP CONSTRAINT [FK_TbParametroCPR_TbClassificacaoFinanceiraTarifaCobrancaBoleto]
-GO
+ALTER TABLE [dbo].[TbParametroCPR] DROP CONSTRAINT [FK_TbParametroCPR_TbClassificacaoFinanceiraTarifaCobrancaBoleto];
 
-ALTER TABLE [dbo].[TbParametroCPR] DROP CONSTRAINT [FK_TbParametroCPR_TbClassificacaoFinanceiraRecebimentoNaoIdentificado]
-GO
+ALTER TABLE [dbo].[TbParametroCPR] DROP CONSTRAINT [FK_TbParametroCPR_TbClassificacaoFinanceiraRecebimentoNaoIdentificado];
 
-ALTER TABLE [dbo].[TbParametroCPR] DROP CONSTRAINT [FK_TbParametroCPR_TbClassificacaoFinanceiraRecebimentoAMaior]
-GO
+ALTER TABLE [dbo].[TbParametroCPR] DROP CONSTRAINT [FK_TbParametroCPR_TbClassificacaoFinanceiraRecebimentoAMaior];
 
-ALTER TABLE [dbo].[TbParametroCPR] DROP CONSTRAINT [FK_TbParametroCPR_TbClassificacaoFinanceiraJuros]
-GO
+ALTER TABLE [dbo].[TbParametroCPR] DROP CONSTRAINT [FK_TbParametroCPR_TbClassificacaoFinanceiraJuros];
 
-ALTER TABLE [dbo].[TbParametroCPR] DROP CONSTRAINT [FK_TbParametroCPR_TbClassificacaoFinanceiraMulta]
-GO
+ALTER TABLE [dbo].[TbParametroCPR] DROP CONSTRAINT [FK_TbParametroCPR_TbClassificacaoFinanceiraMulta];
 
-ALTER TABLE [dbo].[TbObjetoPesquisa] DROP CONSTRAINT [FK_TbObjetoPesquisa_TbFrmTabRel]
-GO
+ALTER TABLE [dbo].[TbObjetoPesquisa] DROP CONSTRAINT [FK_TbObjetoPesquisa_TbFrmTabRel];
 */
 
 DECLARE @Database NVARCHAR(255)   
@@ -111,7 +105,7 @@ BEGIN
 
                 PRINT ''
         
-                SET @cmd = 'SELECT * INTO SQL04_20210214_lixo.dbo.' + @Database + '_' + @TableName + ' FROM ' + @FullTableName
+                SET @cmd = 'SELECT * INTO SQL10_20210906_lixo.dbo.' + @Database + '_' + @TableName + ' FROM ' + @FullTableName
         PRINT @cmd 
       --   EXEC (@cmd) 
         
@@ -141,3 +135,7 @@ BEGIN
 END  
 CLOSE DatabaseCursor   
 DEALLOCATE DatabaseCursor
+
+
+
+
