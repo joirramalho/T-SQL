@@ -3,7 +3,7 @@
 --ALTER DATABASE
 	--ALTER DATABASE dbSigaCELogos SET ONLINE;
 	
-	--ALTER DATABASE dbSigaCELogos SET OFFLINE;
+	--ALTER DATABASE dbSigaLuizAntonio SET OFFLINE;
 
 		--DROP DATABASE dbSigaSalesianoSaoJose_Arquivo05
 

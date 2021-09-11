@@ -1,39 +1,83 @@
--- EXEC dbLogMonitor.dbo.sp_Where
+--090921
+--https://www.sqlshack.com/how-to-monitor-total-sql-server-indexes-size/
 
-USE dbSigaCPI
+USE dbSigaAtlas;
 
--- SELECT DB_NAME()
+SET
+NOCOUNT ON
 
-SET NOCOUNT ON
+DECLARE @vname sysname
+DECLARE @tmpTamTabela TABLE ( name sysname NULL,
+ROWS int NULL,
+reserved varchar(25) NULL,
+DATA varchar(25) NULL,
+index_size varchar(25) NULL,
+unused varchar(25) NULL )
 
-declare @vname sysname
-declare @tmpTamTabela table ( name sysname null, rows       int         null, reserved   varchar(25) null, data       varchar(25) null, index_size varchar(25) null, unused     varchar(25) null )
+DECLARE cp1 CURSOR LOCAL fast_forward read_only FOR
+    SELECT
+	name
+FROM
+	sysobjects
+WHERE
+	TYPE = 'U'
+	AND name NOT LIKE '40tena%'
+ORDER BY
+	name
 
-declare cp1 cursor local fast_forward read_only for
-    select name 
-    from sysobjects 
-    where type = 'U' AND name NOT LIKE '40tena%'
-    order by name
-
-open cp1
+OPEN cp1
     while 1 = 1
-        begin
-            fetch next from cp1 into @vname
-            if @@fetch_status <> 0 break
-                insert into @tmpTamTabela (name, rows, reserved, data, index_size, unused)
-                    exec sp_spaceused @vname
-        end
-close cp1
-deallocate cp1
+        BEGIN
+            FETCH NEXT
+FROM
+	cp1
+INTO
+	@vname
+            IF @@fetch_status <> 0 break
+                INSERT
+	INTO
+	@tmpTamTabela (name,
+	ROWS,
+	reserved,
+	DATA,
+	index_size,
+	unused)
+                    EXEC sp_spaceused @vname
+END
+CLOSE cp1
+DEALLOCATE cp1
 
-select name as 'Nome'
-       , rows as 'Linhas'
-       , convert(int, replace(reserved, ' KB','')) as 'Tamanho total KB'
-       , convert(int, replace(data, ' KB',''))as 'Dados KB'
-       , convert(int, replace(index_size, ' KB',''))as 'Index KB'
-       , convert(int, replace(unused, ' KB',''))as 'Não utilizado KB'
-from @tmpTamTabela
-order by convert(int, replace(rows, ' KB','')) desc
+SELECT
+	name AS 'Nome'
+       ,
+	ROWS AS 'Linhas'
+       ,
+	CONVERT(int,
+	replace(reserved,
+	' KB',
+	'')) AS 'Tamanho total KB'
+       ,
+	CONVERT(int,
+	replace(DATA,
+	' KB',
+	''))AS 'Dados KB'
+       ,
+	CONVERT(int,
+	replace(index_size,
+	' KB',
+	''))AS 'Index KB'
+       ,
+	CONVERT(int,
+	replace(unused,
+	' KB',
+	''))AS 'Não utilizado KB'
+FROM
+	@tmpTamTabela
+ORDER BY
+	CONVERT(int,
+	replace(ROWS,
+	' KB',
+	'')) DESC
 
 -- -- TAMANHO das tabelas
 -- SELECT  t.NAME AS TableName, 

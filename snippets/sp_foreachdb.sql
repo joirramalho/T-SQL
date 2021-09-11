@@ -1,11 +1,9 @@
--- https://www.mssqltips.com/sqlservertip/2201/making-a-more-reliable-and-flexible-spmsforeachdb/
+--10SET21
+--https://www.mssqltips.com/sqlservertip/2201/making-a-more-reliable-and-flexible-spmsforeachdb/
 
---- https://stackoverflow.com/questions/482885/how-do-i-drop-a-foreign-key-constraint-only-if-it-exists-in-sql-server
+--https://stackoverflow.com/questions/482885/how-do-i-drop-a-foreign-key-constraint-only-if-it-exists-in-sql-server
 
-USE [dbLogMonitor];
-GO
-
-CREATE PROCEDURE dbo.sp_foreachdb
+ALTER PROCEDURE dbo.sp_foreachdb
     @command NVARCHAR(MAX),
     @replace_character NCHAR(1) = N'?',
     @print_dbname BIT = 0,
@@ -24,13 +22,13 @@ CREATE PROCEDURE dbo.sp_foreachdb
     @is_broker_enabled BIT = NULL
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT ON
 
     DECLARE
         @sql NVARCHAR(MAX),
         @dblist NVARCHAR(MAX),
         @db NVARCHAR(300),
-        @i INT;
+        @i INT
 
     IF @database_list > N''
     BEGIN
@@ -50,10 +48,10 @@ BEGIN
             FROM n WHERE n <= LEN(@database_list)
             AND SUBSTRING(',' + @database_list, n, 1) = ','
             FOR XML PATH('')
-        ) AS y(x);
+        ) AS y(x)
     END
 
-    CREATE TABLE #x(db NVARCHAR(300));
+    CREATE TABLE #x(db NVARCHAR(300))
 
     SET @sql = N'SELECT name FROM sys.databases WHERE 1=1'
         + CASE WHEN @system_only = 1 THEN
@@ -88,9 +86,9 @@ BEGIN
             ELSE '' END
         + CASE WHEN @is_broker_enabled IS NOT NULL THEN
             ' AND is_broker_enabled = ' + RTRIM(@is_broker_enabled)
-        ELSE '' END;
+        ELSE '' END
 
-        INSERT #x EXEC sp_executesql @sql;
+        INSERT #x EXEC sp_executesql @sql
 
         DECLARE c CURSOR
             LOCAL FORWARD_ONLY STATIC READ_ONLY
@@ -99,11 +97,11 @@ BEGIN
                 ELSE
                     QUOTENAME(db)
                 END
-            FROM #x ORDER BY db;
+            FROM #x ORDER BY db
 
-        OPEN c;
+        OPEN c
 
-        FETCH NEXT FROM c INTO @db;
+        FETCH NEXT FROM c INTO @db
 
         WHILE @@FETCH_STATUS = 0
         BEGIN
@@ -120,16 +118,15 @@ BEGIN
             BEGIN
                 IF @print_dbname = 1
                 BEGIN
-                    PRINT '/* ' + @db + ' */';
+                    PRINT '/* ' + @db + ' */'
                 END
 
-                EXEC sp_executesql @sql;
+                EXEC sp_executesql @sql
             END
 
-            FETCH NEXT FROM c INTO @db;
+            FETCH NEXT FROM c INTO @db
     END
 
-    CLOSE c;
-    DEALLOCATE c;
+    CLOSE c
+    DEALLOCATE c
 END
-GO

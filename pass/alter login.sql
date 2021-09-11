@@ -1,4 +1,4 @@
--- 08set21 - dbSigaSalePetrolina_Arquivo0X
+-- 11set21 - dbSigaSalePetrolina_Arquivo0X
 
 -- P@ssw0rd.
 
@@ -15,13 +15,16 @@
 
 
 
---CREATE USER 	[userCELogos] 	FOR LOGIN [userCELogos] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
+
+
+
+--CREATE USER 	[romario.barbalho] 	FOR LOGIN [romario.barbalho] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
 
 	--DROP USER [siga_caruaru];
 
 
 --	DEFAULT_DATABASE
-		--ALTER LOGIN 	[userCELogos] 	WITH  DEFAULT_DATABASE=[dbSigaCELogos];
+		--ALTER LOGIN 	[romario.barbalho] 	WITH  DEFAULT_DATABASE=[dbLogRestore];
 
 
 	--GRANT CONNECT  TO [userRestauraBancoVPS];
@@ -44,8 +47,8 @@
 	--ALTER ROLE [db_datareader] ADD MEMBER [userRestauraBancoVPS];
 	--ALTER ROLE [db_datawriter] ADD MEMBER [userRestauraBancoVPS];
 	
-	--GRANT EXECUTE TO [userRestauraBancoVPS]; -- wantuilson
-    	--REVOKE EXECUTE TO [active.pollyana];
+	--GRANT EXECUTE TO [romario.barbalho]; -- wantuilson -- (LAB4 xp_readerrorlog)
+    	--REVOKE EXECUTE TO [romario.barbalho];
 
 	--ALTER ROLE [db_owner] ADD MEMBER [userRestauraBancoVPS];
 	--ALTER ROLE [db_ddladmin] ADD MEMBER [active.marley];
@@ -126,14 +129,36 @@
 
 
 
---PROFILER
---GRANT
-	--USE master;
-	--GRANT ALTER TRACE TO [luiz.matheus]
 
---REVOKE
---	USE Master;
---	REVOKE ALTER TRACE FROM manvendra;
+--GRANT EXECUTE from PROCEDURE to ROLE/User
+						
+	--USE [dbLogRestore]
+	--GRANT EXECUTE ON [dbo].sp_foreachdb TO [PUBLIC]
+
+	--GRANT EXECUTE ON OBJECT::sp_DesmascararBanco TO [romario.barbalho]	
+	--GRANT EXECUTE ON OBJECT::sp_restore TO [roleDesmascararDados]
+	--GRANT EXECUTE ON [dbo].sp_JobEspacoLivreInMB TO [roleOperacaoRestore]
+	--GRANT EXECUTE ON OBJECT::FnAnoMes TO [active.filipe]
+
+		--REVOKE EXECUTE ON OBJECT::sp_restore FROM [active.pinto]
+		--REVOKE EXECUTE ON OBJECT::sp_DesmascararBanco FROM [active.pinto]
+			--REVOKE ALL ON dbo.MyObject TO MyUser
+
+
+	-- GRANT UPDATE ON [dbo].Documento_ContasDeGestao TO role_SiaiAnalise_Escrita;
+
+
+
+
+
+--PROFILER
+	--GRANT
+		--USE master;
+		--GRANT ALTER TRACE TO [luiz.matheus]
+	
+	--REVOKE
+	--	USE Master;
+	--	REVOKE ALTER TRACE FROM manvendra;
 
 
 

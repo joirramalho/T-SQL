@@ -4,7 +4,7 @@ SET NOCOUNT ON
 
 --USE dbSigaGabarito;
 
-DECLARE    @Ds_Usuario VARCHAR(100) = 'sactive'
+DECLARE    @Ds_Usuario VARCHAR(100) = 'active.filipe'
 
 -- Associação Usuário x Login
 IF (OBJECT_ID('tempdb..#Users_Logins') IS NOT NULL) DROP TABLE #Users_Logins

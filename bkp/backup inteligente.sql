@@ -16,4 +16,4 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 ,@user_only = 1
 ,@suppress_quotename=1
 --,@database_list = 'dbSigaA'
- ,@name_pattern='dbCrm';
+ ,@name_pattern='dbSigaA';

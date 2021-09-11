@@ -20,3 +20,5 @@ ORDER BY
 
 --EXEC SP_HELPLOGINS [userEducativo];
 --EXEC SP_HELPLOGINS [userEducativoVPS5];
+
+EXEC SP_HELPLOGINS [romario.barbalho]

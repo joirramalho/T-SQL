@@ -7,8 +7,7 @@ IF OBJECT_ID('tempdb..#users') IS NOT NULL
 CREATE TABLE tempdb..#users(     Usedb    VARCHAR(128), DropCmd    VARCHAR(128) )
 
 
-
-EXEC dbLogMonitor.dbo.sp_foreachdb N' 
+EXEC dbo.sp_foreachdb N' 
     USE [?]
 
 	INSERT INTO #users

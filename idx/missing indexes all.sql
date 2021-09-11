@@ -1,6 +1,6 @@
+
 --26ago2
 -- ALL DATABASE
-
 -- EXEC  sp_helpindex 'Tabela'
 
 SELECT

@@ -1,6 +1,8 @@
-USE dbSigaColegioEAG;
--- EXEC  sp_helpindex 'TbOcorrenciaMovimentacao'
+--10set21
 
+USE dbSigaColegioEAG;
+
+-- EXEC  sp_helpindex 'TbOcorrenciaMovimentacao'
 
 SELECT
 	CONVERT(int,
