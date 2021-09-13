@@ -1,7 +1,7 @@
 
--- 03set21 - adaptada
--- DIRCEU RESENDE   -- Verifica desempenho de I/O dos discos
--- https://www.dirceuresende.com/blog/sql-server-consultas-uteis-do-dia-a-dia-do-dba-que-voce-sempre-tem-que-ficar-procurando-na-internet/
+--03set21 - adaptada
+--DIRCEU RESENDE   -- Verifica desempenho de I/O dos discos
+--https://www.dirceuresende.com/blog/sql-server-consultas-uteis-do-dia-a-dia-do-dba-que-voce-sempre-tem-que-ficar-procurando-na-internet/
 
 SELECT
 	CAST(( io_stall_read_ms + io_stall_write_ms ) / ( 1.0 + num_of_reads + num_of_writes ) AS NUMERIC(10,
