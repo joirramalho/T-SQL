@@ -1,6 +1,10 @@
---25ago21
--- 27jul21 - #Banco #local
--- VERSION 1.01 - 13mai21
+--13set21
+
+--USE dbSigaPadraoInst
+--
+--SELECT [AtualizadorVersaoBD], [AtualizadorArquivoRemotoVersao]
+--FROM [TbParametroGlobal]
+
 
 SELECT 
 -- [CodigoCliente]

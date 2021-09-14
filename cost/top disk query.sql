@@ -6,10 +6,10 @@ SELECT
 	qs.last_execution_time AS [Last Execution Time],
 	qs.execution_count AS [Execution Count],
 	qs.total_logical_reads AS [Total Logical Read],
-	qs.total_logical_reads / execution_count AS [Average Logical Read],
-	qs.total_worker_time / 1000000 AS [Total CPU Time(second)],
-	qs.total_worker_time / qs.execution_count / 1000 AS [Average CPU Time(milisecond)],
-	qp.query_plan AS [Execution Plan]
+	qs.total_logical_reads / execution_count AS [Avg Logical Read],
+	qs.total_worker_time / 1000000 AS [Total CPU Time/s],
+	qs.total_worker_time / qs.execution_count / 1000 AS [Avg CPU Time/ms]
+--	,qp.query_plan AS [Execution Plan]
 FROM
 	(
 	select

@@ -1,5 +1,4 @@
---06set21
--- Logins by HASH script out -- ADAPTADA 
+--06set21 -- Logins by HASH script out 
 
 SELECT 
     SP.name, 

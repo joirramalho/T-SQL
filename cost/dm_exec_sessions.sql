@@ -20,7 +20,7 @@ WHERE
 	 login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND PROGRAM_NAME NOT IN ('ADO_MESSENGER_ADO(1.049.)')
 	--IS_USER_PROCESS = 1
 
-	AND DB_Name(database_id) IN ('CRM_EAG', '')
+--	AND DB_Name(database_id) IN ('CRM_EAG', '')
 	--AND LOGIN_NAME IN ('userCELogos','')
 
 	--AND HOST_NAME IN ('APP')

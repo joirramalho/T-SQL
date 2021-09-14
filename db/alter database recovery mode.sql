@@ -19,4 +19,4 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 ,@user_only = 1
 ,@suppress_quotename=1
 -- ,@name_pattern='';
-,@database_list = 'dbSigaEscolaAlfa,dbSigaVitGoncalves,dbSigaBoasNovas,dbSigaAliceCoutinho,dbSigaPadraoInst'
+,@database_list = 'dbSigaPadraoInst'

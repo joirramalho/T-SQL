@@ -34,7 +34,7 @@
 
 
 -- PASSWORD
-	-- ALTER LOGIN [userSandraCavalcan] 	WITH PASSWORD = '*****'; -- sigainternet userISO_PowerBI service.account
+	-- ALTER LOGIN [service.account] 	WITH PASSWORD = '*****'; -- sigainternet userISO_PowerBI service.account
 
 
 
