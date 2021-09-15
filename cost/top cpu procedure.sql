@@ -2,7 +2,7 @@
 --https://www.dbrnd.com/2016/11/sql-server-script-to-find-top-20-stored-procedure-which-are-utilizing-more-cpu/
 
 SELECT
-	TOP 20
+	TOP 30
     (total_logical_reads / execution_count) AS AverageLogicalReads
     ,
 	DB_NAME(database_id) AS DatabaseName

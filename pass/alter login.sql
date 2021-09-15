@@ -3,17 +3,17 @@
 -- P@ssw0rd.
 
 
--- CREATE LOGIN
+--LOGIN
 	--CREATE LOGIN [userCELogos] 	WITH PASSWORD=N'****', DEFAULT_DATABASE=[dbSigaCELogos], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
 
-	--ALTER LOGIN
-		--ALTER LOGIN [userSantAnaSobral] DISABLE;
+		--ALTER LOGIN [userRestauraBancoVPS] DISABLE;
+
+			--DROP LOGIN [userSaleJuazeiro];
+
 
 
 
 --USE dbBibCELogos;
-
-
 
 
 
@@ -24,7 +24,7 @@
 
 
 --	DEFAULT_DATABASE
-		--ALTER LOGIN 	[romario.barbalho] 	WITH  DEFAULT_DATABASE=[dbLogRestore];
+		--ALTER LOGIN 	[userSaberEEM] 	WITH  DEFAULT_DATABASE=[dbSigaSaberPetrolina];
 
 
 	--GRANT CONNECT  TO [userRestauraBancoVPS];
@@ -190,9 +190,6 @@
 	-- ALTER LOGIN [userCognitivoGPA] WITH   PASSWORD = ... HASHED;
 
 
-
--- DROP LOGIN [userEloEMM];
--- DROP USER [userELOEMM];
 
 
 -- sp_change_users_login

@@ -1,4 +1,4 @@
--- EXEC dbLogMonitor.dbo.sp_Where;
+--14set21
 
 DECLARE @DBName VARCHAR(200)
 
@@ -14,7 +14,7 @@ SELECT
 	,
 	CASE 
 		WHEN sp.is_disabled = 0 THEN 'enabled'
-		ELSE 'no'
+		ELSE '-- no --'
 	END AS 'login_enabled'
 	,
 	CASE 
@@ -42,7 +42,7 @@ WHERE
 	-- AND SP.name NOT LIKE 'active.%'
 	-- AND SP.name <> ('user')
 	AND SP.name <> ('sigainternet')
-	AND sp.is_disabled = 0 -- enabled
+--	AND sp.is_disabled = 0 -- enabled
 	AND EXISTS (
 	SELECT
 		*

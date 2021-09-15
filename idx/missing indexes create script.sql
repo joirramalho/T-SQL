@@ -1,6 +1,6 @@
---10set21
+--14set21
 
-USE dbSigaColegioEAG;
+USE dbActiveCantinaFenix;
 
 -- EXEC  sp_helpindex 'TbOcorrenciaMovimentacao'
 

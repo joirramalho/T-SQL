@@ -1,5 +1,6 @@
 -- CREATE INDEX  pelo sp_foreachdb - NÃO PASSAR PARA ANDERSON
 
+--14set21 SQL06 dbActiveCantinaFenix; TbCaixaMovimentacao; TbCaixaLancamento
 --09set21 SQL06 dbActiveCantinaFenix; SQL07
 
 EXEC dbLogMonitor.dbo.sp_foreachdb N'
@@ -16,7 +17,7 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 				[?].[dbo].[TbLancamentoConsumoItem] ([IdLancamentoConsumo]) INCLUDE ([Quantidade], [PrecoUnitario])
     	END
 
---  
+  
 
 --TbLancamentoCredito
     IF EXISTS( SELECT * FROM sys.indexes WHERE name=''IX_TbLancamentoCredito_IdLancamentoConsumo'' AND object_id = OBJECT_ID(''dbo.TbLancamentoCredito'') )
@@ -26,6 +27,30 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
     IF NOT EXISTS( SELECT * FROM sys.indexes WHERE name=''IX_TbLancamentoConsumoItem_IdLancamentoConsumo'' AND object_id = OBJECT_ID(''dbo.TbLancamentoCredito'') )
         BEGIN
 			CREATE INDEX [IX_TbLancamentoCredito_IdLancamentoConsumo] ON [?].[dbo].[TbLancamentoCredito] ([IdLancamentoConsumo])
+    	END
+
+
+
+--TbCaixaMovimentacao
+    IF EXISTS( SELECT * FROM sys.indexes WHERE name=''IX_TbCaixaMovimentacao_IdCaixaAbertura'' AND object_id = OBJECT_ID(''dbo.TbCaixaMovimentacao'') )
+            DROP INDEX [IX_TbCaixaMovimentacao_IdCaixaAbertura] ON [dbo].[TbCaixaMovimentacao]
+	
+
+    IF NOT EXISTS( SELECT * FROM sys.indexes WHERE name=''IX_TbCaixaMovimentacao_IdCaixaAbertura'' AND object_id = OBJECT_ID(''dbo.TbCaixaMovimentacao'') )
+        BEGIN
+			CREATE INDEX [IX_TbCaixaMovimentacao_IdCaixaAbertura] ON [?].[dbo].[TbCaixaMovimentacao] ([IdCaixaAbertura])
+    	END
+
+
+
+--TbCaixaLancamento
+    IF EXISTS( SELECT * FROM sys.indexes WHERE name=''IX_TbCaixaLancamento_IdCaixaMovimentacao_CdTipoRecebimento'' AND object_id = OBJECT_ID(''dbo.TbCaixaLancamento'') )
+            DROP INDEX [IX_TbCaixaLancamento_IdCaixaMovimentacao_CdTipoRecebimento] ON [dbo].[TbCaixaLancamento]
+	
+
+    IF NOT EXISTS( SELECT * FROM sys.indexes WHERE name=''IX_TbCaixaLancamento_IdCaixaMovimentacao_CdTipoRecebimento'' AND object_id = OBJECT_ID(''dbo.TbCaixaLancamento'') )
+        BEGIN
+			CREATE INDEX [IX_TbCaixaLancamento_IdCaixaMovimentacao_CdTipoRecebimento] ON [?].[dbo].[TbCaixaLancamento] ([IdCaixaMovimentacao], [CdTipoRecebimento]) INCLUDE ([Valor])
     	END
 
 
@@ -43,7 +68,7 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 ,@user_only = 1
 ,@suppress_quotename=1
 --,@database_list = 'dbActiveCantinaFenix' -- dbSigaExitoNatal -- dbSigaMickeylandia -- dbSigaCEAMOMossoro -- dbSigaSagradoCoracao -- dbSigaCordCNSD
-,@name_pattern='dbCantina';     
+,@name_pattern='dbActiveCantinaFenix';     
 
 
 -- [dbSigaSantaRosa].[dbo].[TbMobileMensagem]
