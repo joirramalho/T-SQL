@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# 15set21
+
+
+#if [[ -f /root/dbcc-checkdb.sh.doing ]]; then
+#        exit
+#fi
+
+source /root/credential
+
+DATABASES=`/opt/mssql-tools/bin/sqlcmd -S localhost,1435 -U $LOGIN -P $PASSWORD -Q  \
+        "SELECT name FROM sys.databases WHERE database_id > 4 AND state = 0 AND is_read_only = 0 ORDER BY name" | grep -Ev "(-|name|tempdb|affected\)$|\s\n|^$)"`
+
+#echo $DATABASES;
+
+for DBNAME in $DATABASES; do
+
+#        output=$(/opt/mssql-tools/bin/sqlcmd -S localhost,1435 -U $LOGIN -P $PASSWORD -y 0 -Q \
+
+	/opt/mssql-tools/bin/sqlcmd -S localhost,1435 -U $LOGIN -P $PASSWORD -y 0 -o resultset -Q \
+	"
+		SET NOCOUNT ON
+
+		DECLARE @sql nvarchar(max) = N''
+		DECLARE @db VARCHAR(64) =  '($DBNAME).'
+
+		SELECT @sql += '(' + name + ') '
+		FROM    [$DBNAME].sys.triggers
+		WHERE   is_disabled = 1
+
+		IF @@ROWCOUNT > 0
+			SELECT 'Há trigger(s) ' + @sql + ' desabilitada(s) no banco de dados ' +@db
+	"
+
+	if [ -s resultset ]; then
+		/root/put-log-events.sh
+	fi
+done
+
+echo $(date "+%Y.%m.%d-%H.%M.%S") > service-check.sh.done;

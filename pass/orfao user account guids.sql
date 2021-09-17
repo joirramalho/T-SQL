@@ -1,7 +1,7 @@
---03set21
+--15set21
 --Reset SQL user account guids 
 
-USE  dbBibCELogos;
+USE  dbSigaImcCorMariaRS;
 
 DECLARE @UserName nvarchar(255) 
 

@@ -2,9 +2,9 @@
 
 SET NOCOUNT ON
 
-USE [dbSigaCELogos]; -- 
+USE [dbSigaImcCorMariaRS]; -- 
 
-SELECT TOP (25) DB_NAME(), [Tabela],[DataHora], [DescricaoOperacao] FROM [dbo].[TbAuditoria]     order by Datahora DESC;
+SELECT TOP (10) DB_NAME(), [Tabela],[DataHora], [DescricaoOperacao] FROM [dbo].[TbAuditoria]     order by Datahora DESC;
 --SELECT TOP (5) [DataHora],[IPHost],[Arquivo],[IdUsuario],[TitpoUsuario],[Acao],[ParametroStr] FROM [dbo].[TbLogWeb] order by IdLogWeb DESC;
 --SELECT TOP (5) *  FROM [dbo].[TbLogMobile]  order by IdLogMobile DESC;
 ---
@@ -33,11 +33,3 @@ WHERE database_id > 4        -- User Databases
 -- and name LIKE 'dbSigaTerceiroMilenio%'
 
 ORDER BY  create_date DESC;
-
-
-
--- ALTER DATABASE [dbSigaNeves_Arquivo07]    SET  READ_ONLY WITH NO_WAIT;
-
--- DROP DATABASE [dbSigaSantaRosa_Arquivo01]
-
--- RESTORE FILELISTONLY	FROM DISK = '/TEMP/dbSigaMaristella_Arquivo01_full.bak'

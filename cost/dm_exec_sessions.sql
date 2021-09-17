@@ -1,4 +1,4 @@
---07set21
+--16set21
 
 SELECT
 	last_request_start_time,
@@ -29,9 +29,27 @@ WHERE
 ORDER BY
 	last_request_start_time DESC;
 	
-	
 
---PROGRAM_NAME
+
+
+--GROUP BY program_name
+SELECT
+	program_name,
+	COUNT(*)
+FROM
+	sys.dm_exec_sessions
+WHERE
+	 login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND PROGRAM_NAME NOT LIKE ('ADO_MESSENGER_ADO%') AND PROGRAM_NAME NOT LIKE ('ADO_ActiveMessenger%') AND PROGRAM_NAME NOT LIKE ('DBeaver%')
+
+GROUP BY
+	program_name
+ORDER BY
+	program_name;
+
+
+
+
+--ADO_MESSENGER_ADO
 SELECT
 	last_request_start_time AS [last_request_Messenger],
 	DB_Name(database_id) AS [DatabaseName], 

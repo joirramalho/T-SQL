@@ -1,5 +1,30 @@
--- VERSION 1.01 18mai21
--- VERSION 1.00 22Set20
+--18mai21
+--22Set20
+
+--https://docs.microsoft.com/pt-br/sql/relational-databases/databases/rename-a-database?view=sql-server-ver15
+USE master  
+
+ALTER DATABASE MyTestDatabase SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+
+ALTER DATABASE MyTestDatabase MODIFY NAME = MyTestDatabaseCopy ;
+
+ALTER DATABASE MyTestDatabaseCopy SET MULTI_USER;
+
+
+--Fazer backup depois de renomear um banco de dados
+
+
+USE [master];
+
+ALTER LOGIN [your-login] WITH DEFAULT_DATABASE=[new-database-name];
+
+
+
+
+
+
+
+--https://www.mssqltips.com/sqlservertip/1891/steps-to-rename-a-sql-server-database/
 
 -- sp_detach_db - sp_attach_db
 

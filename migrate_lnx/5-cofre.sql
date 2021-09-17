@@ -1,78 +1,101 @@
---13ago21 SQL10
---09mai21
 
--- USE dbCrmActivesoft
+--17SET21
+--09MAI21
 
-declare @banco varchar(32)
-declare @IPOrigem varchar(32)
-declare @IPDestino varchar(32)
-declare @ServidorAlias VARCHAR(32)
-declare @Sigainternet VARCHAR(64)
-
-
-SET @banco = 'dbSigaCELogos'
+DECLARE @BANCO VARCHAR(32)
+DECLARE @IPORIGEM VARCHAR(32)
+DECLARE @IPDESTINO VARCHAR(32)
+DECLARE @SERVIDORALIAS VARCHAR(32)
+DECLARE @SIGAINTERNET VARCHAR(64)
 
 
-set @IPOrigem = '172.31.31.254' -- SQL04
--- set @IPOrigem = '172.31.18.113' -- SQL05
--- set @IPOrigem = '172.31.17.88' -- SQL06
---set @IPOrigem = '172.31.21.223' -- SQL07
--- set @IPOrigem = '172.31.20.88' -- SQL08
+SET
+@BANCO = 'DBSIGAIMCCORMARIARS'
+--SET @IPORIGEM = '172.31.31.254' -- SQL04
+--SET @IPORIGEM = '172.31.18.113' -- SQL05
+--SET @IPORIGEM = '172.31.17.88' -- SQL06
+--SET @IPORIGEM = '172.31.21.223' -- SQL07
+--SET @IPORIGEM = '172.31.20.88' -- SQL08
+SET
+@IPORIGEM = '172.31.22.23'
+-- SQL09
 
 
-SET @ServidorAlias = 'LNX10-VPN'
-SET @IPDestino = '172.31.27.161' -- LNX10
-SET @Sigainternet = '0370'
+SET
+@SERVIDORALIAS = 'LNX10-VPN'
+SET
+@IPDESTINO = '172.31.27.161'
+-- LNX10
+SET
+@SIGAINTERNET = '0370'
+--SET @SERVIDORALIAS = 'LNX09-VPN'
+--SET @IPDESTINO = '172.31.22.23' -- LNX09
+--SET @SIGAINTERNET = '177A'
 
---SET @ServidorAlias = 'LNX09-VPN'
---SET @IPDestino = '172.31.22.23' -- LNX09
---SET @Sigainternet = '177A'
+--SET @SERVIDORALIAS = 'LNX08-VPN'
+--SET @IPDESTINO = '172.31.20.88' -- LNX08
+--SET @SIGAINTERNET = '7A00.....'
 
--- SET @ServidorAlias = 'LNX08-VPN'
--- SET @IPDestino = '172.31.20.88' -- LNX08
--- SET @Sigainternet = '7A00.....'
+--SET @SERVIDORALIAS = 'LNX07-VPN'
+--SET @IPDESTINO = '172.31.21.223' -- LNX07
+--SET @SIGAINTERNET = '4300...'
 
--- SET @ServidorAlias = 'LNX07-VPN'
--- SET @IPDestino = '172.31.21.223' -- LNX07
--- SET @Sigainternet = '4300...'
+--SET @SERVIDORALIAS = 'LNX06-VPN'
+--SET @IPDESTINO = '172.31.17.88' -- LNX06
+--SET @SIGAINTERNET = '4567...'
 
--- SET @ServidorAlias = 'LNX06-VPN'
--- SET @IPDestino = '172.31.17.88' -- LNX06
--- SET @Sigainternet = '4567...'
+--SET @SERVIDORALIAS = 'LNX05-VPN'
+--SET @IPDESTINO = '172.31.18.113' -- LNX05
+--SET @SIGAINTERNET = '505E'
 
--- SET @ServidorAlias = 'LNX05-VPN'
--- SET @IPDestino = '172.31.18.113' -- LNX05
--- SET @Sigainternet = '505E'
+--SET @SERVIDORALIAS = 'LNX04-VPN'
+--SET @IPDESTINO = '172.31.31.254' -- LNX04
+--SET @SIGAINTERNET = '3761'
+
                   
--- SET @ServidorAlias = 'LNX04-VPN'
--- SET @IPDestino = '172.31.31.254' -- LNX04
--- SET @Sigainternet = '3761'
-
-                  
-SELECT ServidorIP, ServidorAlias, ServidorSigainternet_Senha, ServidorDatabase, ServidorSigaUser_Login, 'https://siga.activesoft.com.br/login/?instituicao=' + SiglaUnidade, IdCliente
-FROM [dbCrmActivesoft].[dbo].[TbCliente]
-where [ServidorDatabase] = @banco
-
-	AND ServidorIP = @IPOrigem 
-
-ORDER by ServidorDatabase
+SELECT
+	SERVIDORIP,
+	SERVIDORALIAS,
+	SERVIDORSIGAINTERNET_SENHA,
+	SERVIDORDATABASE,
+	SERVIDORSIGAUSER_LOGIN,
+	'HTTPS://SIGA.ACTIVESOFT.COM.BR/LOGIN/?INSTITUICAO=' + SIGLAUNIDADE,
+	IDCLIENTE
+FROM
+	[DBCRMACTIVESOFT].[DBO].[TBCLIENTE]
+WHERE
+	[SERVIDORDATABASE] = @BANCO
+	AND SERVIDORIP = @IPORIGEM
+ORDER BY
+	SERVIDORDATABASE
   
 BEGIN TRAN
-  UPDATE dbCrmActivesoft.dbo.TbCliente  
-        SET     ServidorIP = @IPDestino, 
-                ServidorAlias = @ServidorAlias, 
-                ServidorSigainternet_Senha = @Sigainternet -- tem que ser feito aqui
-            --     ,ServidorSigaUser_Login = 'userModeloVouBuscar'
-WHERE [ServidorDatabase] = @banco
-      -- AND ServidorIP = @IPOrigem
+  UPDATE
+	DBCRMACTIVESOFT.DBO.TBCLIENTE
+SET
+	SERVIDORIP = @IPDESTINO,
+	SERVIDORALIAS = @SERVIDORALIAS,
+	SERVIDORSIGAINTERNET_SENHA = @SIGAINTERNET
+	-- TEM QUE SER FEITO AQUI
+	--     ,SERVIDORSIGAUSER_LOGIN = 'USERMODELOVOUBUSCAR'
+WHERE
+	[SERVIDORDATABASE] = @BANCO
+	-- AND SERVIDORIP = @IPORIGEM
 
 COMMIT
---ROLLBACK
+	--ROLLBACK
 
-SELECT ServidorIP, ServidorAlias, ServidorSigainternet_Senha, ServidorDatabase, ServidorSigaUser_Login, IdCliente
-FROM [dbCrmActivesoft].[dbo].[TbCliente]
-where ServidorIP = @IPDestino
-      AND [ServidorDatabase] = @banco
-ORDER by ServidorDatabase
-
-
+SELECT
+	SERVIDORIP,
+	SERVIDORALIAS,
+	SERVIDORSIGAINTERNET_SENHA,
+	SERVIDORDATABASE,
+	SERVIDORSIGAUSER_LOGIN,
+	IDCLIENTE
+FROM
+	[DBCRMACTIVESOFT].[DBO].[TBCLIENTE]
+WHERE
+	SERVIDORIP = @IPDESTINO
+	AND [SERVIDORDATABASE] = @BANCO
+ORDER BY
+	SERVIDORDATABASE

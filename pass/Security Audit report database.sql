@@ -1,6 +1,8 @@
+--17set21
+--15out20
+
 -- registered server group and query across them all us the following and just cursor through the databases
 
--- 15OUT20
 
 DECLARE @dbname VARCHAR(50)   
 DECLARE @statement NVARCHAR(max)
@@ -10,7 +12,7 @@ LOCAL FAST_FORWARD
 FOR  
     SELECT name
     FROM MASTER.dbo.sysdatabases
-    where name like '%dbSigaArvoreSaber%'
+    where name like '%dbSigaVicentinasCNSA%'
 
 OPEN db_cursor  
 FETCH NEXT FROM db_cursor INTO @dbname  

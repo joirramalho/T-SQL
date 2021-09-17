@@ -1,11 +1,6 @@
 --15set21
 
 --USE dbSigaPadraoInst
---
---SELECT [AtualizadorVersaoBD], [AtualizadorArquivoRemotoVersao]
---FROM [TbParametroGlobal]
-
-
 
 --sp_CompareDb
 	--EXEC dbLogMonitor.dbo.sp_CompareDb 'dbSigaPadraoInst', 'dbSigaDarwin'

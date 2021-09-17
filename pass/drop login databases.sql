@@ -41,7 +41,7 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 '
 ,@print_command_only = 0 -- Obrigatório Gerar script
 ,@print_dbname=0
-,@state_desc = N'ONLINE'
+--,@state_desc = N'ONLINE'
 ,@user_only = 1
 ,@system_only = 0
 ,@suppress_quotename=1

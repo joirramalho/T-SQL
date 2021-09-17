@@ -1,4 +1,4 @@
---05set21
+--17set21
 	--exec sp_MSforeachdb 'select ''?'' as DBNAME, * from ?.sys.sysusers where uid < 16384'
 
 IF OBJECT_ID('tempdb..#users') IS NOT NULL 
@@ -8,6 +8,8 @@ CREATE TABLE tempdb..#users(     Usedb    VARCHAR(128), DropCmd    VARCHAR(128) 
 
 
 EXEC dbo.sp_foreachdb N' 
+	SET NOCOUNT ON
+
     USE [?]
 
 	INSERT INTO #users
@@ -20,8 +22,8 @@ EXEC dbo.sp_foreachdb N'
 --	            u.create_date AS [CreateDate],
 --            	u.principal_id AS [ID],
 --	            CAST(CASE dp.state WHEN ''G'' THEN 1 WHEN ''W'' THEN 1 ELSE 0 END AS bit) AS [HasDBAccess]
-	    FROM    sys.database_principals AS u
-	    LEFT OUTER JOIN sys.database_permissions AS dp ON dp.grantee_principal_id = u.principal_id and dp.type = ''CO''
+	    FROM    [?].sys.database_principals AS u
+	    LEFT OUTER JOIN [?].sys.database_permissions AS dp ON dp.grantee_principal_id = u.principal_id and dp.type = ''CO''
 	    WHERE   (u.type in (''U'', ''S'', ''G'', ''C'', ''K'' ,''E'', ''X''))
 	        
 	        AND name NOT IN ( ''sigaadmin'', ''sigainternet'', ''sys'', ''guest'', ''dbo'', ''INFORMATION_SCHEMA'')
@@ -35,7 +37,7 @@ EXEC dbo.sp_foreachdb N'
 -- ,@state_desc = N'OFFLINE'
 ,@user_only = 1
 ,@suppress_quotename=1
-,@name_pattern='db';
---,@database_list = 'dbSigaSale'
+--,@name_pattern='dbSigaA';
+--,@database_list = 'db'
 
 SELECT * FROM #users;

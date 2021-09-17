@@ -1,7 +1,5 @@
--- VERSION 1.2 - 04jul21
-
--- EXEC dbLogMonitor.dbo.sp_Where
-
+--16set21
+--04jul21
 
 -- use dbCrmActivesoft
 
@@ -17,7 +15,7 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 
 
     IF DB_NAME() NOT IN  (''dbSigaEvolucao'' ,'''' )
-    begin
+    BEGIN
         ALTER DATABASE [?] SET RECOVERY SIMPLE WITH NO_WAIT
 
         SELECT DB_NAME()
@@ -47,7 +45,7 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 
         
                 -- ALTER DATABASE [?] SET  READ_ONLY WITH NO_WAIT
-    DBCC SHRINKFILE ( dbSigaSalesianoSaoJose_Arquivo_log , 0, TRUNCATEONLY)
+				-- DBCC SHRINKFILE ( dbSigaSalesianoSaoJose_Arquivo_log , 0, TRUNCATEONLY)
 
                 -- DBCC SHRINKFILE (dbSigaSalePetrolina_Arquivo03_log, 0, TRUNCATEONLY) 
                 -- DBCC SHRINKFILE (dbSigaContemporaneo_Arquivo01, 0, TRUNCATEONLY) 
@@ -59,13 +57,13 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 
 
 
-        -- ALTER DATABASE [?] SET RECOVERY FULL WITH NO_WAIT
-    end
+ 		ALTER DATABASE [?] SET RECOVERY FULL WITH NO_WAIT
+    END
 '
 ,@print_command_only = 0 -- Obrigatório Gerar script
 ,@print_dbname=0
 ,@state_desc = N'ONLINE'
 ,@user_only = 1
 ,@suppress_quotename=1
-,@name_pattern='CRM';
+,@name_pattern='dbSigaMonteiroLobato';
 -- ,@database_list = 'dbSiga' 

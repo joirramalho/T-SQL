@@ -13,7 +13,7 @@
 
 
 
---USE dbBibCELogos;
+--USE CRM_296859;
 
 
 
@@ -51,7 +51,7 @@
     	--REVOKE EXECUTE TO [romario.barbalho];
 
 	--ALTER ROLE [db_owner] ADD MEMBER [userRestauraBancoVPS];
-	--ALTER ROLE [db_ddladmin] ADD MEMBER [active.marley];
+	--ALTER ROLE [db_ddladmin] ADD MEMBER [active.mardelson];
 
 --DROP
 	--USE dbBibDiocCaruaru;

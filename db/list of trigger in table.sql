@@ -1,6 +1,7 @@
 
 --15set21
 --https://stackoverflow.com/questions/4305691/need-to-list-all-triggers-in-sql-server-database-with-table-name-and-tables-sch
+--https://www.mssqltips.com/sqlservertip/5950/how-do-sql-server-triggers-work-for-insert-update-delete-and-truncate/
 
 SELECT
 	sysobjects.name AS trigger_name
@@ -12,7 +13,7 @@ SELECT
     ,
 	CASE 
 		WHEN OBJECTPROPERTY(id,
-		'ExecIsTriggerDisabled') = 0 THEN 'enabled'
+		'ExecIsTriggerDisabled') = 1 THEN 'Disabled'
 		ELSE '-- no --'
 	END AS 'disabled'
     ,
@@ -50,6 +51,6 @@ INNER JOIN sys.schemas s
 	t.schema_id = s.schema_id
 WHERE
 	sysobjects.type = 'TR'
-	AND OBJECT_NAME(parent_obj) IN ('TbSituacaoAlunoDisciplina')
+--	AND OBJECT_NAME(parent_obj) IN ('TbSituacaoAlunoDisciplina')
 ORDER BY
 	OBJECT_NAME(parent_obj)

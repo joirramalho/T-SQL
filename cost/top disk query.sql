@@ -1,12 +1,11 @@
---03set21
+--15set21
 
 SELECT
+	qs.total_logical_reads AS [Total Logical Read],
 	DB_NAME(st.dbid) AS [Database Name],
 	st.[text] AS [Query Text],
 	qs.last_execution_time AS [Last Execution Time],
 	qs.execution_count AS [Execution Count],
-	qs.total_logical_reads AS [Total Logical Read],
-	qs.total_logical_reads / execution_count AS [Avg Logical Read],
 	qs.total_worker_time / 1000000 AS [Total CPU Time/s],
 	qs.total_worker_time / qs.execution_count / 1000 AS [Avg CPU Time/ms]
 --	,qp.query_plan AS [Execution Plan]

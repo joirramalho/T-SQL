@@ -13,6 +13,7 @@ FROM
 INNER JOIN sys.tables t2 ON
 	t2.object_id = t1.parent_id
 WHERE
-	t1.is_disabled = 0
+	t1.is_disabled = 1
 	AND t1.is_ms_shipped = 0
 	AND t1.parent_class = 1
+	
