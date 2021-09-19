@@ -1,4 +1,4 @@
---16set21
+--20set21
 
 SELECT
 	last_request_start_time,
@@ -67,7 +67,7 @@ SELECT
 FROM
 	sys.dm_exec_sessions
 WHERE 
-	login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND PROGRAM_NAME IN ('ADO_MESSENGER_ADO(1.049.)')
+	login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND PROGRAM_NAME LIKE ('ADO_MESSENGER_ADO%')
 ORDER BY
 	last_request_start_time DESC;
 	

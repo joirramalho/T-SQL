@@ -3,7 +3,7 @@
 
 --https://stackoverflow.com/questions/482885/how-do-i-drop-a-foreign-key-constraint-only-if-it-exists-in-sql-server
 
-ALTER PROCEDURE dbo.sp_foreachdb
+CREATE PROCEDURE dbo.sp_foreachdb
     @command NVARCHAR(MAX),
     @replace_character NCHAR(1) = N'?',
     @print_dbname BIT = 0,

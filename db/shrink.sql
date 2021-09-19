@@ -22,10 +22,11 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 	ELSE IF ( CHARINDEX( ''dbCrmActivesoft'', ''?'') > 0 ) 
 		DBCC SHRINKFILE (dbActiveCRM2_Log , 0, TRUNCATEONLY);
 	ELSE 
+
 		SELECT file_id, name as [logical_file_name],physical_name from sys.database_files;
 
 
---	DBCC SHRINKFILE (dbSigaSalesianoSaoJose_Arquivo01_log , 0, TRUNCATEONLY);
+--	DBCC SHRINKFILE (dbSigaGGE_Arquivo_log , 0, TRUNCATEONLY);
 
 
 	ALTER DATABASE [?] SET RECOVERY FULL WITH NO_WAIT;
@@ -38,6 +39,7 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 ,@user_only = 1
 ,@suppress_quotename=1
 -- ,@name_pattern='dbSigaSalePetrolina_Arquivo0';
-,@database_list = 'dbSigaCELogos';  
+,@database_list = 'dbSigaColegioEAG, dbSigaEConfessional';  
+
 
 

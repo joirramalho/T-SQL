@@ -1,5 +1,3 @@
--- EXEC dbLogMonitor.dbo.sp_Where
-
 -- use dbSigaGGE
 
 -- SELECT YEAR(DAtaHora), COUNT(*) FROM dbSigaGGE.dbo.TbAuditoria    GROUP by YEAR(DAtaHora)
@@ -11,8 +9,6 @@
 -- CREATE DATABASE dbSigaNeves_Arquivo
 
 USE dbSigaGGE_Arquivo
-
-SELECT DB_NAME()
 
 -- Create a new user and map it with login
 CREATE USER [sigainternet] FOR LOGIN [sigainternet];
@@ -32,12 +28,12 @@ GRANT CONNECT  TO [userGGE];
 
 -- Object Level Permission
 GRANT SELECT ON [dbo].[TbAuditoria] TO [sigainternet];
+GRANT SELECT ON [dbo].[TbFaseNotaAluno_Auditoria] TO [sigainternet];
+GRANT SELECT ON [dbo].[TbSituacaoAlunoDisciplina_Auditoria] TO [sigainternet];
 
 
 
 -- GRANT SELECT ON [dbo].[TbLogWeb] TO [sigainternet];
--- GRANT SELECT ON [dbo].[TbFaseNotaAluno_Auditoria] TO [sigainternet];
--- GRANT SELECT ON [dbo].[TbSituacaoAlunoDisciplina_Auditoria] TO [sigainternet];
 -- GRANT SELECT ON [dbo].[TbFreqMarcacao] TO [sigainternet];
 -- GRANT SELECT ON [dbo].[TbAlunoTurmaProcedimentoMatriculaHistorico] TO [sigainternet];
 
@@ -52,8 +48,6 @@ GRANT SELECT ON [dbo].[TbAuditoria] TO [sigainternet];
 
 
 USE dbSigaGGE_Arquivo
-
-SELECT DB_NAME()
 
 -- CRIA TABELA DESTINO
 SELECT * INTO dbSigaGGE_Arquivo.dbo.TbAuditoria

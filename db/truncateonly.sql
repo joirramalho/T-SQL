@@ -1,4 +1,4 @@
---16set21
+--20set21
 --04jul21
 
 -- use dbCrmActivesoft
@@ -19,7 +19,6 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
         ALTER DATABASE [?] SET RECOVERY SIMPLE WITH NO_WAIT
 
         SELECT DB_NAME()
-
 
     
         IF CHARINDEX( ''dbSigaAuxilNatal'', ''?'') > 0
@@ -55,8 +54,6 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
                 -- DBCC SHRINKFILE (dbCantinaActive_log, 0, TRUNCATEONLY) 
                 
 
-
-
  		ALTER DATABASE [?] SET RECOVERY FULL WITH NO_WAIT
     END
 '
@@ -65,5 +62,5 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 ,@state_desc = N'ONLINE'
 ,@user_only = 1
 ,@suppress_quotename=1
-,@name_pattern='dbSigaMonteiroLobato';
--- ,@database_list = 'dbSiga' 
+--,@name_pattern='dbSigaMonteiroLobato';
+ ,@database_list = 'dbSigaColegioEAG, dbSigaEConfessional' 

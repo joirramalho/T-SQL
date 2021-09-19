@@ -1,7 +1,7 @@
---090921
+--20set21
 --https://www.sqlshack.com/how-to-monitor-total-sql-server-indexes-size/
 
-USE dbSigaAtlas;
+USE dbSigaGGE;
 
 SET
 NOCOUNT ON

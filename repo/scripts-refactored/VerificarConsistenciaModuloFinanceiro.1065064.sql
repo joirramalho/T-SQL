@@ -85,7 +85,7 @@ IF EXISTS(	SELECT	*
 
 
 ------------------------------------------------------------------------------
----- Verificar a FNC-054.1) Um t�tulo n�o pode ser "desconto integral" contendo descontos condicionados ao pagamento
+--FNC003 ---- Verificar a FNC-054.1) Um t�tulo n�o pode ser "desconto integral" contendo descontos condicionados ao pagamento
 IF EXISTS(	SELECT	*
 		FROM	VwTituloCobranca tc
 		WHERE	tc.ValorServico <> tc.ValorDescontoNaoCondicionado AND
@@ -107,7 +107,7 @@ IF EXISTS(	SELECT	*
 
 
 ------------------------------------------------------------------------------
----- Verificar se tem desconto condicionado com data limite nula e vice-versa
+--FNC004 ---- Verificar se tem desconto condicionado com data limite nula e vice-versa
 IF EXISTS( 
 	SELECT	TOP 10 *
 	FROM	TbLancamentoCobrancaDesconto lcd
