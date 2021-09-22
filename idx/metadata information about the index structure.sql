@@ -1,7 +1,7 @@
+--22set21
 -- Tabelas Índices Campos -- FILTER TABLE NAME - INCLUDED
-USE dbSigaCristoRei
 
-SELECT DB_NAME()
+USE dbSigaSemiBatista;
 
 SELECT t.name as [table] -- s.name as [schema], 
  

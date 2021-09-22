@@ -1,10 +1,10 @@
---20set21
+--21set21
 
 SELECT
 	last_request_start_time,
-	DB_Name(database_id) AS [DatabaseName], 
+	DB_Name(database_id)  AS [DatabaseName], 
 	login_name,
-	'KILL ' + CAST( session_id AS CHAR ),	
+	'KILL ' + TRIM( CAST( session_id AS CHAR ) ) + ';' AS [kill],
 	program_name,
 	host_name,
 	[status],
@@ -17,10 +17,10 @@ SELECT
 FROM
 	sys.dm_exec_sessions
 WHERE
-	 login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND PROGRAM_NAME NOT IN ('ADO_MESSENGER_ADO(1.049.)')
+	 login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND PROGRAM_NAME NOT LIKE ('ADO_MESSENGER_ADO%')
 	--IS_USER_PROCESS = 1
 
---	AND DB_Name(database_id) IN ('CRM_EAG', '')
+--	AND DB_Name(database_id) IN ('dbSigaCognitivo', '')
 	--AND LOGIN_NAME IN ('userCELogos','')
 
 	--AND HOST_NAME IN ('APP')
@@ -54,7 +54,7 @@ SELECT
 	last_request_start_time AS [last_request_Messenger],
 	DB_Name(database_id) AS [DatabaseName], 
 	login_name,
-	'KILL ' + CAST( session_id AS CHAR ),
+	'KILL ' + TRIM( CAST( session_id AS CHAR ) ) + ';' AS [kill],
 	program_name,
 --	host_name,
 	[status],

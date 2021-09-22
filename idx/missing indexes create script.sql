@@ -1,8 +1,9 @@
---14set21
+--22set21
 
-USE dbActiveCantinaFenix;
+--USE dbSigaSemiBatista;
 
--- EXEC  sp_helpindex 'TbOcorrenciaMovimentacao'
+--EXEC  sp_help 'TbLancamentoCobranca'
+--EXEC  sp_helpindex 'TbLancamentoCobranca'
 
 SELECT
 	CONVERT(int,

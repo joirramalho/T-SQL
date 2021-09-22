@@ -34,7 +34,7 @@
 
 
 -- PASSWORD
-	-- ALTER LOGIN [service.account] 	WITH PASSWORD = '*****'; -- sigainternet userISO_PowerBI service.account
+	-- ALTER LOGIN [userIES_AMADEUS] 	WITH PASSWORD = '***'; -- sigainternet userISO_PowerBI service.account
 
 
 

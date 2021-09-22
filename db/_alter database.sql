@@ -1,9 +1,10 @@
---17set21
+--20set21
 
 --ONLINE
 	--ALTER DATABASE dbSigaImcCorMariaRS SET ONLINE;
 	
-	--ALTER DATABASE dbSigaLuizAntonio SET OFFLINE;
+	--ALTER DATABASE dbSigaCELogosPOC SET OFFLINE;
+                            
 
 --DROP
 	--DROP DATABASE dbSigaSalesianoSaoJose_Arquivo05

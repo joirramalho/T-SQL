@@ -1,7 +1,7 @@
+--22set21
 -- I/O operations statistics for each index on the current database
-USE dbCrmActivesoft
 
-SELECT DB_NAME()
+USE dbSigaSemiBAtista;
 
 SELECT OBJECT_NAME(IXOS.OBJECT_ID)  Table_Name 
        ,IX.name  Index_Name

@@ -124,7 +124,7 @@ END
 
 
 ------------------------------------------------------------------------------
----- Inconsist�ncia entre LctoCob e LctoCobDesc
+--FNC005 ---- Inconsistência entre LctoCob e LctoCobDesc
 
 SET NOCOUNT ON
 
@@ -191,7 +191,8 @@ END
 
 
 ------------------------------------------------------------------------------
----- Inconsist�ncia entre o saldo do caixa e da conta financeira vinculada -- saldo atual diferente
+--FNC006 ---- Inconsistência entre o saldo do caixa e da conta financeira vinculada -- saldo atual diferente
+
 IF EXISTS( SELECT 1 FROM TbUnidade WHERE ( CHARINDEX( '#CPAGAR#', LicencaModulos ) > 0 ) OR LicencaModulos IS NULL )
 	IF EXISTS( 
 		SELECT	IdCaixa, NomeCaixa, StAtivo,
@@ -219,7 +220,7 @@ IF EXISTS( SELECT 1 FROM TbUnidade WHERE ( CHARINDEX( '#CPAGAR#', LicencaModulos
 
 
 ------------------------------------------------------------------------------
----- Lan�amento de cobran�a referente a servi�o de Antecipa��o com desconto n�o-condicionado
+--FNC007 ---- Lan�amento de cobran�a referente a servi�o de Antecipa��o com desconto n�o-condicionado
 	/*
 	Verifica��o:
 	
@@ -270,7 +271,9 @@ END
 
 
 ------------------------------------------------------------------------------
----- Inconsist�ncia no saldo entre operadora de cart�o e conta vinculada
+-- 21set21 - ERRO NA EXECUÇÃO DO SCRIPT ABAIXO
+
+--FNC008 ---- Inconsist�ncia no saldo entre operadora de cart�o e conta vinculada
 
 IF EXISTS (SELECT SiglaUnidade FROM TbUnidade WHERE SiglaUnidade NOT IN ('SALE_MAZZA')) AND (dbo.FnTestaPermissaoLicencaModulos('#CPAGAR#') = 1 ) AND EXISTS( 
 	SELECT	*,
@@ -297,7 +300,7 @@ END
 
 
 ------------------------------------------------------------------------------
----- Inconsist�ncia em cheques a retirar do caixa
+--FNC009 ---- Inconsist�ncia em cheques a retirar do caixa
 ---- Script: svn SIGA\Script_Clientes\M�dulo 2.01 Contas a receber\CRM 84003 - Inconsist�ncia em cheques a retirar do caixa.sql
 
 IF EXISTS( 
@@ -333,6 +336,11 @@ BEGIN
 	RAISERROR( 'Inconsist�ncia em cheques a retirar do caixa', 16, 1)
 	GOTO FIM
 END
+
+
+
+
+
 
 
 

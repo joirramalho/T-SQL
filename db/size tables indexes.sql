@@ -1,10 +1,7 @@
 --20set21
 --https://www.sqlshack.com/how-to-monitor-total-sql-server-indexes-size/
 
-USE dbSigaGGE;
-
-SET
-NOCOUNT ON
+USE dbSigaPedacinhoCeuDF;
 
 DECLARE @vname sysname
 DECLARE @tmpTamTabela TABLE ( name sysname NULL,
@@ -74,10 +71,10 @@ SELECT
 FROM
 	@tmpTamTabela
 ORDER BY
-	CONVERT(int,
-	replace(ROWS,
-	' KB',
-	'')) DESC
+	CONVERT(int, replace(ROWS, ' KB', '')) DESC
+--	name
+	
+	
 
 -- -- TAMANHO das tabelas
 -- SELECT  t.NAME AS TableName, 

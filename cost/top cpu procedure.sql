@@ -1,4 +1,4 @@
---13set21
+--21set21
 --https://www.dbrnd.com/2016/11/sql-server-script-to-find-top-20-stored-procedure-which-are-utilizing-more-cpu/
 
 SELECT
@@ -7,8 +7,7 @@ SELECT
     ,
 	DB_NAME(database_id) AS DatabaseName
     ,
---	OBJECT_SCHEMA_NAME(object_id,
---	database_id) AS SchemaName
+--	OBJECT_SCHEMA_NAME(object_id,database_id) AS SchemaName
 --    ,
 	OBJECT_NAME(object_id,
 	database_id)AS ObjectName
