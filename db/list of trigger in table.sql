@@ -51,6 +51,8 @@ INNER JOIN sys.schemas s
 	t.schema_id = s.schema_id
 WHERE
 	sysobjects.type = 'TR'
---	AND OBJECT_NAME(parent_obj) IN ('TbSituacaoAlunoDisciplina')
+	
+	AND OBJECT_NAME(parent_obj) IN ('TbDiarioAluno')
+	
 ORDER BY
 	OBJECT_NAME(parent_obj)
