@@ -1,4 +1,6 @@
-USE dbSigaCELogos;
+--23set21
+
+USE dbSigaInstBrasilia;
 
 SELECT
 	OBJECT_NAME(ind.OBJECT_ID) AS TableName,
@@ -28,5 +30,4 @@ WHERE
 ORDER BY
 	indexstats.avg_fragmentation_in_percent DESC
 	-- ORDER BY OBJECT_NAME(ind.OBJECT_ID), indexstats.avg_fragmentation_in_percent DESC
-	
 	

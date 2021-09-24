@@ -1,4 +1,4 @@
---17set21
+--24set21
 	--exec sp_MSforeachdb 'select ''?'' as DBNAME, * from ?.sys.sysusers where uid < 16384'
 
 IF OBJECT_ID('tempdb..#users') IS NOT NULL 

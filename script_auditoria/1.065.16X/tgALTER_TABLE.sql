@@ -10,7 +10,7 @@ BEGIN
 	
 	SELECT 	@TbName = EVENTDATA().value('(/EVENT_INSTANCE/ObjectName)[1]',  'NVARCHAR(255)')
    	
-	IF @TbName IN ('TbDiarioAula')
+	IF @TbName IN ('TbDiario', 'TbDiarioAula')
 	BEGIN   	
 		-- Comparar a qtde de campos entre a tabela base e de auditoria descontando 4 campos de auditoria
 		IF ( SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS c WHERE DATA_TYPE NOT IN ( 'text', 'image' ) AND TABLE_NAME = @TbName AND LEFT(COLUMN_NAME,1) <> '_' ) <> ( SELECT COUNT(*) - 4 FROM INFORMATION_SCHEMA.COLUMNS c WHERE DATA_TYPE NOT IN ( 'text', 'image' ) AND TABLE_NAME = @TbName + '_Auditoria' AND LEFT(COLUMN_NAME,1) <> '_' )

@@ -1,4 +1,4 @@
--- USE dbSigaCELogos;
+-- USE dbSigaInstBrasilia;
 
 /*
 ALTER TABLE [dbo].[TbParametroCPR] DROP CONSTRAINT [FK_TbParametroCPR_TbClassificacaoFinanceiraTarifaCobrancaBoleto];
@@ -38,7 +38,7 @@ BEGIN
 
         DECLARE ConstraintCursor CURSOR READ_ONLY FOR  
         SELECT        Table_Name, Constraint_Name
-                FROM Information_Schema.CONSTRAINT_TABLE_USAGE --dbSigaNucleo.
+                FROM Information_Schema.CONSTRAINT_TABLE_USAGE
                 WHERE 
                     SUBSTRING( Table_Name, 1, 3 )           =  '_Tb'
                     OR SUBSTRING( Table_Name, 1, 3 )        =  'CRM'
@@ -92,7 +92,7 @@ BEGIN
    DEALLOCATE ConstraintCursor  
 
    SET @cmd = 'DECLARE TableCursor CURSOR READ_ONLY FOR SELECT table_name AS TableName, ''['' + table_catalog + ''].['' + table_schema + ''].['' +  
-   table_name + '']'' as FulltableName FROM [' + @Database + '].INFORMATION_SCHEMA.TABLES WHERE table_type = ''BASE TABLE'' AND ( SUBSTRING( Table_Name, 1, 3 ) =  ''_Tb'' OR SUBSTRING( Table_Name, 1, 3 ) =  ''CRM'' OR SUBSTRING( Table_Name, 1, 4 ) =  ''_CRM'' OR SUBSTRING( Table_Name, 1, 18 ) =  ''_AlunosParaExcluir'' OR SUBSTRING( Table_Name, 1, 7 ) =  ''_Ajuste'' OR SUBSTRING( Table_Name, 1, 8 ) =  ''Migracao'' OR SUBSTRING( Table_Name, 1, 9 ) =  ''_Migracao'' OR SUBSTRING( Table_Name, 1, 3 ) =  ''_Vw'' OR SUBSTRING( Table_Name, 1, 5 ) =  ''_temp'' OR SUBSTRING( Table_Name, 1, 4 ) =  ''FNC2'' OR SUBSTRING( Table_Name, 1, 4 ) =  ''FNC3'' OR SUBSTRING( Table_Name, 1, 16 ) =  ''_ImportacaoNotas'' OR SUBSTRING( Table_Name, 1, 5 ) =  ''Carne'' OR SUBSTRING( Table_Name, 1, 9 ) =  ''Matricula'' OR SUBSTRING( Table_Name, 1, 9 ) =  ''_Desconto'' OR SUBSTRING( Table_Name, 1, 20 ) =  ''TbNegociacaoItem_CRM'' OR SUBSTRING( Table_Name, 1, 24 ) =  ''TbLancamentoCobranca_CRM'' OR SUBSTRING( Table_Name, 1, 32 ) =  ''TbLancamentoCobrancaDesconto_CRM'' OR SUBSTRING( Table_Name, 1, 20 ) =  ''TbTituloCobranca_CRM'' OR SUBSTRING( Table_Name, 1, 30 ) =  ''TbTituloCobrancaVencimento_CRM''  )'    -- OR SUBSTRING( Table_Name, 1, 30 ) =  ''TbTituloCobrancaVencimento_CRM'' 
+	table_name + '']'' as FulltableName FROM [' + @Database + '].INFORMATION_SCHEMA.TABLES WHERE table_type = ''BASE TABLE'' AND ( SUBSTRING( Table_Name, 1, 3 ) =  ''_Tb'' OR SUBSTRING( Table_Name, 1, 3 ) =  ''CRM'' OR SUBSTRING( Table_Name, 1, 4 ) =  ''_CRM'' OR SUBSTRING( Table_Name, 1, 18 ) =  ''_AlunosParaExcluir'' OR SUBSTRING( Table_Name, 1, 7 ) =  ''_Ajuste'' OR SUBSTRING( Table_Name, 1, 8 ) =  ''Migracao'' OR SUBSTRING( Table_Name, 1, 9 ) =  ''_Migracao'' OR SUBSTRING( Table_Name, 1, 3 ) =  ''_Vw'' OR SUBSTRING( Table_Name, 1, 5 ) =  ''_temp'' OR SUBSTRING( Table_Name, 1, 4 ) =  ''FNC2'' OR SUBSTRING( Table_Name, 1, 4 ) =  ''FNC3'' OR SUBSTRING( Table_Name, 1, 16 ) =  ''_ImportacaoNotas'' OR SUBSTRING( Table_Name, 1, 5 ) =  ''Carne'' OR SUBSTRING( Table_Name, 1, 9 ) =  ''Matricula'' OR SUBSTRING( Table_Name, 1, 9 ) =  ''_Desconto'' OR SUBSTRING( Table_Name, 1, 20 ) =  ''TbNegociacaoItem_CRM'' OR SUBSTRING( Table_Name, 1, 24 ) =  ''TbLancamentoCobranca_CRM'' OR SUBSTRING( Table_Name, 1, 32 ) =  ''TbLancamentoCobrancaDesconto_CRM'' OR SUBSTRING( Table_Name, 1, 20 ) =  ''TbTituloCobranca_CRM'' OR SUBSTRING( Table_Name, 1, 30 ) =  ''TbTituloCobrancaVencimento_CRM''  )'    -- OR SUBSTRING( Table_Name, 1, 30 ) =  ''TbTituloCobrancaVencimento_CRM'' 
 
    EXEC (@cmd)  
 
@@ -105,9 +105,9 @@ BEGIN
 
                 PRINT ''
         
-                SET @cmd = 'SELECT * INTO SQL10_20210906_lixo.dbo.' + @Database + '_' + @TableName + ' FROM ' + @FullTableName
-        PRINT @cmd 
-      --   EXEC (@cmd) 
+		SET @cmd = 'SELECT * INTO SQL10_20210906_lixo.dbo.' + @Database + '_' + @TableName + ' FROM ' + @FullTableName
+		PRINT @cmd 
+      	----EXEC (@cmd) 
         
         SET @cmd = 'DROP TABLE ' + @FullTableName
         PRINT @cmd 

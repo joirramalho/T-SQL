@@ -1,4 +1,4 @@
---21set21
+--24set21
 
 SELECT
 	last_request_start_time,
@@ -21,7 +21,7 @@ WHERE
 	--IS_USER_PROCESS = 1
 
 --	AND DB_Name(database_id) IN ('dbSigaCognitivo', '')
-	--AND LOGIN_NAME IN ('userCELogos','')
+AND LOGIN_NAME IN ('userRecreioGueiro','')
 
 	--AND HOST_NAME IN ('APP')
 	--AND DATEDIFF(MINUTE, LAST_REQUEST_START_TIME, GETDATE()) > 1 -- LOGIN_TIME
@@ -29,23 +29,6 @@ WHERE
 ORDER BY
 	last_request_start_time DESC;
 	
-
-
-
---GROUP BY program_name
-SELECT
-	program_name,
-	COUNT(*)
-FROM
-	sys.dm_exec_sessions
-WHERE
-	 login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND PROGRAM_NAME NOT LIKE ('ADO_MESSENGER_ADO%') AND PROGRAM_NAME NOT LIKE ('ADO_ActiveMessenger%') AND PROGRAM_NAME NOT LIKE ('DBeaver%')
-
-GROUP BY
-	program_name
-ORDER BY
-	program_name;
-
 
 
 
@@ -68,8 +51,24 @@ FROM
 	sys.dm_exec_sessions
 WHERE 
 	login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND PROGRAM_NAME LIKE ('ADO_MESSENGER_ADO%')
+	
+	AND DB_Name(database_id) IN ('dbSigaCognitivo', '')
+
 ORDER BY
 	last_request_start_time DESC;
 	
 
                             
+--GROUP BY program_name
+SELECT
+	program_name,
+	COUNT(*)
+FROM
+	sys.dm_exec_sessions
+WHERE
+	 login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND PROGRAM_NAME NOT LIKE ('ADO_MESSENGER_ADO%') AND PROGRAM_NAME NOT LIKE ('ADO_ActiveMessenger%') AND PROGRAM_NAME NOT LIKE ('DBeaver%')
+
+GROUP BY
+	program_name
+ORDER BY
+	program_name;
