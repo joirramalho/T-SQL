@@ -1,4 +1,4 @@
--- USE dbSigaInstBrasilia;
+-- USE dbSigaRosaCamara;
 
 /*
 ALTER TABLE [dbo].[TbParametroCPR] DROP CONSTRAINT [FK_TbParametroCPR_TbClassificacaoFinanceiraTarifaCobrancaBoleto];

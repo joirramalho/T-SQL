@@ -1,22 +1,15 @@
--- Backup History Details  -- udayarumilli
+--26set21
+--Backup History Details  -- udayarumilli
     -- http://udayarumilli.com/sql-server-backup-and-restore-reports/
 
--- No Perameter Supplied - Get all details 
--- DBName- Retrieve Bkp info for given DB 
--- Uncomment Bkp_Type - Filter Backup History for given type 
-
--- EXEC dbLogMonitor.dbo.sp_ServerName
-
 DECLARE @DBName VARCHAR(200),
-	@Bkp_Type VARCHAR(20);
+	@Bkp_Type VARCHAR(20)
 
--- Ex: @DBName = 'Master'
 SET @DBName = NULL  
--- SET @DBName = 'dbActiveBibCNSA'; 
+--SET @DBName = 'dbBibCeLogos'
 
--- 'D' -- Full Backup; 'I' -- Differential Backup; 'L' -- Transaction Log Backup
-SET @Bkp_Type = 'D';
--- SET @Bkp_Type = NULL;
+SET @Bkp_Type = 'D' -- 'D' -- Full Backup; 'I' -- Differential Backup; 'L' -- Transaction Log Backup
+--SET @Bkp_Type = NULL
 
 SELECT	DISTINCT TOP 150
 	bs.database_name	AS 'DB_Name'

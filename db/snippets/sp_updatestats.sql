@@ -1,4 +1,4 @@
--- VERSION 1.00 - 22abr21
+--22abr21
 
 DECLARE @TSQL NVARCHAR(MAX)
 
@@ -6,7 +6,7 @@ DECLARE @TSQL NVARCHAR(MAX)
 SET @TSQL = '
 IF (
     DB_ID(''?'') > 4
-    AND ''?'' LIKE (''dbSigaCELogos%'')
+    AND ''?'' LIKE (''dbSigaRosaCamara%'')
    )
     BEGIN
         USE [?]; 
@@ -18,10 +18,6 @@ IF (
     END
 '
 EXEC sp_MSforeachdb @TSQL
-
-SELECT 'Fiz'
-
-
 
 -- EXEC sp_MSforeachtable @command1="ALTER INDEX ALL ON ? REBUILD WITH (ONLINE=OFF)"
 

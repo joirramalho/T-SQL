@@ -3,39 +3,35 @@
 -- P@ssw0rd.
 
 
---LOGIN
-	--CREATE LOGIN [userCELogos] 	WITH PASSWORD=N'****', DEFAULT_DATABASE=[dbSigaCELogos], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
+--LOGIN --
+	--SENHA COM 10 caracteres
+		--CREATE LOGIN [userRosaCamara] 	WITH PASSWORD=N'***', DEFAULT_DATABASE=[dbSigaRosaCamara], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
+		--CREATE LOGIN [userEcoVillePE] 	WITH PASSWORD=N'***', DEFAULT_DATABASE=[dbSigaEcoVillePE], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
 
 		--ALTER LOGIN [userRestauraBancoVPS] DISABLE;
 
-			--DROP LOGIN [userSaleJuazeiro];
-
-
-
-
---USE CRM_296859;
-
-
-
-
---CREATE USER 	[romario.barbalho] 	FOR LOGIN [romario.barbalho] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
-
-	--DROP USER [siga_caruaru];
-
-
---	DEFAULT_DATABASE
-		--ALTER LOGIN 	[userSaberEEM] 	WITH  DEFAULT_DATABASE=[dbSigaSaberPetrolina];
-
-
-	--GRANT CONNECT  TO [userRestauraBancoVPS];
-		--REVOKE CONNECT  FROM [siga_caruaru];
-
-
+			--DROP LOGIN [userINSTBRASILIA];
 
 
 -- PASSWORD
-	-- ALTER LOGIN [userRecreioGueiro] 	WITH PASSWORD = 'A57T4Jg6ER2bJ3tHF'; -- sigainternet userISO_PowerBI service.account
+	-- ALTER LOGIN [userMeuFuturo] 	WITH PASSWORD = 'AgR3HuK2.W'; -- sigainternet userISO_PowerBI service.account
 
+
+
+--USE dbSigaRosaCamara;
+
+
+	--CREATE USER 	[userRosaCamara] 	FOR LOGIN [userRosaCamara] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
+	
+		--DROP USER [userINSTBRASILIA];
+	
+	
+	--	DEFAULT_DATABASE
+			--ALTER LOGIN 	[userSaberEEM] 	WITH  DEFAULT_DATABASE=[dbSigaSaberPetrolina];
+	
+	
+		--GRANT CONNECT  TO [userRestauraBancoVPS];
+			--REVOKE CONNECT  FROM [siga_caruaru];
 
 
 
@@ -50,7 +46,7 @@
 	--GRANT EXECUTE TO [romario.barbalho]; -- wantuilson -- (LAB4 xp_readerrorlog)
     	--REVOKE EXECUTE TO [romario.barbalho];
 
-	--ALTER ROLE [db_owner] ADD MEMBER [userRestauraBancoVPS];
+	--ALTER ROLE [db_owner] ADD MEMBER [userRosaCamara];
 	--ALTER ROLE [db_ddladmin] ADD MEMBER [active.mardelson];
 
 --DROP
@@ -84,6 +80,12 @@
 -- DROP USER from ROLE
     -- ALTER ROLE roleGPA DROP MEMBER [sigauser]
 
+
+
+--Censo
+	--ALTER ROLE [db_datareader] ADD MEMBER [active.filipe]
+	--GRANT EXECUTE ON OBJECT::FnExtrairNumeroToString TO [active.filipe]
+	--EXEC sp_change_users_login 'Update_one', 'active.filipe', 'active.filipe';
 
 
 

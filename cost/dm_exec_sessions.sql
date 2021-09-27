@@ -20,8 +20,8 @@ WHERE
 	 login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND PROGRAM_NAME NOT LIKE ('ADO_MESSENGER_ADO%')
 	--IS_USER_PROCESS = 1
 
---	AND DB_Name(database_id) IN ('dbSigaCognitivo', '')
-AND LOGIN_NAME IN ('userRecreioGueiro','')
+	AND DB_Name(database_id) IN ('dbSigaRosaCamara', 'dbSigaParaisoSaber', 'dbSigaEcoVillePE')
+--AND LOGIN_NAME IN ('userMeuFuturo','')
 
 	--AND HOST_NAME IN ('APP')
 	--AND DATEDIFF(MINUTE, LAST_REQUEST_START_TIME, GETDATE()) > 1 -- LOGIN_TIME
@@ -37,8 +37,8 @@ SELECT
 	last_request_start_time AS [last_request_Messenger],
 	DB_Name(database_id) AS [DatabaseName], 
 	login_name,
-	'KILL ' + TRIM( CAST( session_id AS CHAR ) ) + ';' AS [kill],
 	program_name,
+	'KILL ' + TRIM( CAST( session_id AS CHAR ) ) + ';' AS [kill],
 --	host_name,
 	[status],
 	login_time,
@@ -52,7 +52,7 @@ FROM
 WHERE 
 	login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND PROGRAM_NAME LIKE ('ADO_MESSENGER_ADO%')
 	
-	AND DB_Name(database_id) IN ('dbSigaCognitivo', '')
+	AND DB_Name(database_id) IN ('dbSigaInstBrasilia', 'dbSigaParaisoSaber', 'dbSigaEcoVillePE')
 
 ORDER BY
 	last_request_start_time DESC;
@@ -72,3 +72,5 @@ GROUP BY
 	program_name
 ORDER BY
 	program_name;
+
+

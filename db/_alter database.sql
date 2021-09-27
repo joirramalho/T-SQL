@@ -1,13 +1,13 @@
---20set21
+--25set21
 
 --ONLINE
-	--ALTER DATABASE dbSigaImcCorMariaRS SET ONLINE;
+	--ALTER DATABASE SQL10_20210906_lixo SET ONLINE;
 	
-	--ALTER DATABASE dbSigaCELogosPOC SET OFFLINE;
+	--ALTER DATABASE SQL10_20210906_lixo SET OFFLINE;
                             
 
---DROP
-	--DROP DATABASE dbSigaSalesianoSaoJose_Arquivo05
+	--DROP
+		--DROP DATABASE dbSigaSalesianoSaoJose_Arquivo05
 
 
 
@@ -19,20 +19,21 @@
 
 
 --READ_WRITE & READ_ONLY
-	--ALTER DATABASE dbSigaGGE_Arquivo    SET  READ_WRITE WITH NO_WAIT
+	--ALTER DATABASE dbSigaRosaCamara    SET  READ_WRITE WITH NO_WAIT
 
-	--ALTER DATABASE dbSigaGGE_Arquivo    SET  READ_ONLY WITH NO_WAIT
-
-
+	--ALTER DATABASE dbSigaEcoVillePE    SET  READ_ONLY WITH NO_WAIT
 
 
+--dbSigaInstBrasilia
+--dbSigaEcoVillePE
 
 
+--SET RECOVERY
+	--ALTER DATABASE [dbSigaGGE_Arquivo] SET RECOVERY SIMPLE WITH NO_WAIT;
+	--ALTER DATABASE [dbSigaRosaCamara] SET RECOVERY FULL WITH NO_WAIT
 
---    ALTER DATABASE [dbSigaGGE_Arquivo] SET RECOVERY SIMPLE WITH NO_WAIT;
 
-
-
+dbSigaRosaCamara
 
 
 --sys.database_files

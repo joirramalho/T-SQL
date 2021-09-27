@@ -5,7 +5,7 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 
     DROP DATABASE [?];
 
-		ALTER LOGIN [userVICENTINASCNSA] DISABLE;
+--		ALTER LOGIN [userVICENTINASCNSA] DISABLE;
 '
 ,@print_command_only = 0 -- Obrigatório Gerar script
 ,@print_dbname=1
@@ -13,7 +13,7 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 ,@user_only = 1
 ,@suppress_quotename=1
 -- ,@name_pattern='dbSigaLuizAntonio';
-,@database_list = 'dbSigaVicentinasCNSA'
+,@database_list = 'dbSigaCELogosPOC'
 
 
 

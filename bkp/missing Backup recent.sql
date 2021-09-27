@@ -1,21 +1,21 @@
--- Adaptado 3Nov20
+--26set21
+--03Nov20
     -- http://udayarumilli.com/sql-server-backup-and-restore-reports/
 
 DECLARE @Backup_Type CHAR(1),
 		@Days SMALLINT,
-		@DBName VARCHAR(64);
+		@DBName VARCHAR(64)
 
 
--- Ex: @DBName = 'Master'
--- SET @DBName  = NULL;
-SET @DBName  = 'dbActiveBibCNSA';
+--SET @DBName  = NULL;
+--SET @DBName  = 'dbActiveBibCNSA'
 
 
-SET @Backup_Type = 'D'; -- D - Full; I - Differential; L- Transaction Log
+SET @Backup_Type = 'D' -- D - Full; I - Differential; L- Transaction Log
 
 -- Ex: -1: Reports all DB without backup in last 24 hours
 -- Ex: -30 - Reports all DB without any backup from last 30 Days
-SET @Days = -7;
+SET @Days = -7
 
 --Database with no Backup in the given period
 SELECT 

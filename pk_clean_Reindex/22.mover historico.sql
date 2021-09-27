@@ -59,5 +59,5 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 ,@state_desc = N'ONLINE'
 ,@user_only = 1
 ,@suppress_quotename=1
-,@name_pattern='dbSigaCELogos';
+,@name_pattern='dbSigaRosaCamara';
 -- ,@database_list = 'dbSigaSaleINSA, dbSigaNSLourdesGravata, dbSigaAuxilRecife'

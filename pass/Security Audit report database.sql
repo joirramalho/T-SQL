@@ -12,7 +12,7 @@ LOCAL FAST_FORWARD
 FOR  
     SELECT name
     FROM MASTER.dbo.sysdatabases
-    where name like '%dbSigaRecreioGueiro%'
+    where name like '%dbSigaRosaCamara%'
 
 OPEN db_cursor  
 FETCH NEXT FROM db_cursor INTO @dbname  
@@ -65,6 +65,10 @@ SELECT @statement = 'use '+@dbname +';'+ '
         princ.[type] IN (''S'',''U'',''G'')
         -- No need for these system accounts
         AND princ.[name] NOT IN (''sys'', ''INFORMATION_SCHEMA'')
+
+
+	        AND princ.[name] NOT IN (''sigainternet'')
+
 
 UNION
 

@@ -24,7 +24,7 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 
 
 -- 
--- DBCC CHECKDB([dbSigaCELogos]) WITH TABLERESULTS
+-- DBCC CHECKDB([dbSigaRosaCamara]) -- WITH TABLERESULTS
 -- 
 
 

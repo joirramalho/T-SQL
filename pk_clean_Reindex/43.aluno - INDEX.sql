@@ -1,4 +1,5 @@
-USE dbSigaCELogos;
+USE dbSigaRosaCamara;
+
 --- USE dbSigaNSLourdesGravata;
 -- USE dbSigaAuxilRecife;
 
@@ -93,7 +94,7 @@ GO
 
 -- TbAluno (continuacao)
 
-ALTER TABLE [dbo].[TbAlunoTurmaDocumento] DROP CONSTRAINT [FK__TbAlunoTu__IdAlu__250C375E];
+ALTER TABLE [dbo].[TbAlunoTurmaDocumento] DROP CONSTRAINT [FK__TbAlunoTu__IdAlu__268A6B7C];
 
 -- OU
 IF OBJECT_ID('dbo.FK_TbAlunoTurmaDocumento_TbAluno') IS NOT NULL

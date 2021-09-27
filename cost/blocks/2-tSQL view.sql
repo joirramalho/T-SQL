@@ -1,11 +1,14 @@
+--24set21
+
 declare @sql varbinary(max)
 
 select  @sql = sql_handle
 from    sys.sysprocesses
-where   spid = 54                     
+where   spid = 124                     
 
 select text
 from sys.dm_exec_sql_text(@sql) 
+
 
 --
 ----
