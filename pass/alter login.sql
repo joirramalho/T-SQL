@@ -1,4 +1,4 @@
--- 11set21 - dbSigaSalePetrolina_Arquivo0X
+-- 29set21 - dbSigaSalePetrolina_Arquivo0X
 
 -- P@ssw0rd.
 
@@ -21,7 +21,7 @@
 --USE dbSigaRosaCamara;
 
 
-	--CREATE USER 	[userRosaCamara] 	FOR LOGIN [userRosaCamara] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
+	--CREATE USER 	[romario.barbalho] 	FOR LOGIN [romario.barbalho] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
 	
 		--DROP USER [userINSTBRASILIA];
 	
@@ -38,7 +38,7 @@
 
 --DATABASE ROLE
 --ADD 
-	--USE dbBibDiocCaruaru;
+	--USE dbSigaModelo127;
 
 	--ALTER ROLE [db_datareader] ADD MEMBER [userRestauraBancoVPS];
 	--ALTER ROLE [db_datawriter] ADD MEMBER [userRestauraBancoVPS];
@@ -46,7 +46,7 @@
 	--GRANT EXECUTE TO [romario.barbalho]; -- wantuilson -- (LAB4 xp_readerrorlog)
     	--REVOKE EXECUTE TO [romario.barbalho];
 
-	--ALTER ROLE [db_owner] ADD MEMBER [userRosaCamara];
+	--ALTER ROLE [db_owner] ADD MEMBER [romario.barbalho];
 	--ALTER ROLE [db_ddladmin] ADD MEMBER [active.mardelson];
 
 --DROP

@@ -1,0 +1,6 @@
+-- TRUNCATE TABLE sp_MSForEachTable
+EXEC sp_MSForEachTable "TRUNCATE TABLE ?"
+
+
+-- DISABLE ALL TRIGGER
+sp_msforeachtable 'ALTER TABLE ? DISABLE TRIGGER all'

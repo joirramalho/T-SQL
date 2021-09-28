@@ -1,0 +1,1 @@
+IF (OBJECT_ID('dbo.stpSecurity_Checklist') IS NULL) EXEC('CREATE PROCEDURE dbo.stpSecurity_Checklist AS SELECT 1')

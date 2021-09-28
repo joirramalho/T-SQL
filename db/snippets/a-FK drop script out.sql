@@ -1,3 +1,4 @@
+--28set21
 -- DROP SCRIPT OF ALL FOREIGN KEY CONSTRAINTS, SCRIPT TO GENERATE
     -- https://www.mssqltips.com/sqlservertip/3443/script-all-primary-keys-unique-constraints-and-foreign-keys-in-a-sql-server-database-using-tsql/
 
