@@ -53,24 +53,24 @@ begin
  fetch next from CursorFKDetails into  @ForeignKeyName, @ParentTableSchema, @ParentTableName, @ParentColumn, @ReferencedTableSchema, @ReferencedTable, @ReferencedColumn
  while (@@FETCH_STATUS=0)
  begin    
-	IF EXISTS( SELECT * FROM [MPF-MPE_RN-Exportacao-BdSIAI].INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = @ParentTableName ) AND EXISTS( SELECT * FROM [MPF-MPE_RN-Exportacao-BdSIAI].INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = @ReferencedTable )
-		begin
+--	IF EXISTS( SELECT * FROM [MPF-MPE_RN-Exportacao-BdSIAI].INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = @ParentTableName ) AND EXISTS( SELECT * FROM [MPF-MPE_RN-Exportacao-BdSIAI].INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = @ReferencedTable )
+--		begin
 		  set @StrParentColumn=@StrParentColumn + ', ' + quotename(@ParentColumn)
 		  set @StrReferencedColumn=@StrReferencedColumn + ', ' + quotename(@ReferencedColumn)
-		end
+--		end
 
 		 fetch next from CursorFKDetails into  @ForeignKeyName, @ParentTableSchema, @ParentTableName, @ParentColumn, @ReferencedTableSchema, @ReferencedTable, @ReferencedColumn
  end
  close CursorFKDetails
  deallocate CursorFKDetails
 
-	IF EXISTS( SELECT * FROM [MPF-MPE_RN-Exportacao-BdSIAI].INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = @ParentTableName ) AND EXISTS( SELECT * FROM [MPF-MPE_RN-Exportacao-BdSIAI].INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = @ReferencedTable )
-		begin
+--	IF EXISTS( SELECT * FROM [MPF-MPE_RN-Exportacao-BdSIAI].INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = @ParentTableName ) AND EXISTS( SELECT * FROM [MPF-MPE_RN-Exportacao-BdSIAI].INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = @ReferencedTable )
+--		begin
 			 set @StrParentColumn=substring(@StrParentColumn,2,len(@StrParentColumn)-1)
 			 set @StrReferencedColumn=substring(@StrReferencedColumn,2,len(@StrReferencedColumn)-1)
 			 set @TSQLCreationFK='ALTER TABLE '+quotename(@ParentTableSchema)+'.'+quotename(@ParentTableName)+' WITH CHECK ADD CONSTRAINT '+quotename(@ForeignKeyName)
 			 + ' FOREIGN KEY('+ltrim(@StrParentColumn)+') '+ char(13) +'REFERENCES '+quotename(@ReferencedTableSchema)+'.'+quotename(@ReferencedTable)+' ('+ltrim(@StrReferencedColumn)+'); ' --+ char(13)+'go'
-		END
+--		END
 
  --PRINT @ParentTableName
  --PRINT @ReferencedTable

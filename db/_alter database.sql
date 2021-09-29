@@ -24,21 +24,25 @@
 	--ALTER DATABASE dbSigaEcoVillePE    SET  READ_ONLY WITH NO_WAIT
 
 
---dbSigaInstBrasilia
---dbSigaEcoVillePE
-
 
 --SET RECOVERY
 	--ALTER DATABASE [dbSigaGGE_Arquivo] SET RECOVERY SIMPLE WITH NO_WAIT;
+
 	--ALTER DATABASE [dbSigaRosaCamara] SET RECOVERY FULL WITH NO_WAIT
 
 
-dbSigaRosaCamara
+
+--ENABLE & DISABLE TRIGGER
+	--DISABLE TRIGGER dbo.TgAudit_TbAlunoD ON dbo.TbAluno
+	
+	--ENABLE TRIGGER dbo.TgAudit_TbAlunoD  ON dbo.TbAluno
+
 
 
 --sys.database_files
-	-- USE dbSigaDiocCaruaru
+	-- USE dbSigaDiocCaruaru;
 	-- SELECT file_id, name as [logical_file_name],physical_name from sys.database_files
+
 
 
 --RESTORE FILELISTONLY
@@ -47,11 +51,6 @@ dbSigaRosaCamara
 --RESTORE HEADERONLY
 	--RESTORE HEADERONLY	FROM DISK = 'C:\Restore\dbSigaMontessori.bak'
 
-
---ENABLE & DISABLE TRIGGER
-	--DISABLE TRIGGER dbo.TgAudit_TbAlunoD ON dbo.TbAluno
-	
-	--ENABLE TRIGGER dbo.TgAudit_TbAlunoD  ON dbo.TbAluno
 
 
 

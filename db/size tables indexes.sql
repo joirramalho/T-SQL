@@ -1,7 +1,7 @@
 --20set21
 --https://www.sqlshack.com/how-to-monitor-total-sql-server-indexes-size/
 
-USE dbSigaPedacinhoCeuDF;
+--USE db;
 
 DECLARE @vname sysname
 DECLARE @tmpTamTabela TABLE ( name sysname NULL,

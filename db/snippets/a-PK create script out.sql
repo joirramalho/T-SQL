@@ -37,7 +37,7 @@ declare CursorIndex cursor for
 --	and t.is_ms_shipped=0 
 --	and t.name<>'sysdiagrams'
 
-	and EXISTS( SELECT * FROM  [MPF-MPE_RN-Exportacao-BdSIAI].DBO.Tabelas WHERE t.name = NomeTabela ) -- APENAS TABELAS QUE FORAM EXPORTADAS
+--	and EXISTS( SELECT * FROM  [MPF-MPE_RN-Exportacao-BdSIAI].DBO.Tabelas WHERE t.name = NomeTabela ) -- APENAS TABELAS QUE FORAM EXPORTADAS
 --	and EXISTS( SELECT * FROM  [MPF-MPE_RN-Exportacao-BdSIAI].DBO.Tabelas_bdc WHERE t.name = NomeTabela ) -- APENAS TABELAS QUE FORAM EXPORTADAS
 
  order by schema_name(t.schema_id), t.name, ix.name
