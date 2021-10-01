@@ -63,6 +63,6 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 ,@user_only = 1
 ,@suppress_quotename=1
 --,@name_pattern='dbSigaStCatarina';
- ,@database_list = 'dbSigaImcCorMariaRS' 
+ ,@database_list = 'dbSigaMSionense' 
 
 -- ,@database_list = 'dbSigaTorresPadua, dbSigaStCatarina, dbSigaImcCorMariaRS, dbSigaDivinoCoracao' 

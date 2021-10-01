@@ -18,34 +18,3 @@ FROM sys.databases
 INNER JOIN #dm_db_file_space_usage ON sys.databases.database_id  = #dm_db_file_space_usage.database_id 
 WHERE sys.databases.database_id > 5 AND name LIKE 'db%' AND state_desc = 'ONLINE' AND is_read_only = 0 --AND percentageChangedPages > 0.3
 ORDER BY percentageChangedPages DESC
-
---EXEC dbLogMonitor.dbo.sp_foreachdb N'
---    USE [?];
---
---	SELECT DB_NAME();
---
---'
---,@print_command_only = 0 -- Obrigatório Gerar script
---,@print_dbname=1
---,@state_desc = N'ONLINE'
---,@user_only = 1
---,@suppress_quotename=1
--- ,@name_pattern='db';
-----,@database_list = 'dbSigaAliceCoutinho'; 
---
---EXEC dbo.sp_foreachdb N'
---	USE [?]
---
-----	SELECT DB_NAME(database_id) DB_Name,
-----	       total_page_count TotalPaginas,
-----	       modified_extent_page_count TotalExtent_Modificado,
-----	       CAST((modified_extent_page_count + mixed_extent_page_count) * 1.00 / allocated_extent_page_count AS NUMERIC(18, 2)) [%_PagModificadas]
-----	FROM sys.dm_db_file_space_usage;
---'
---,@print_command_only = 0 -- Obrigatório Gerar script
---,@print_dbname=1
---,@state_desc = N'ONLINE'
---,@user_only = 1
---,@suppress_quotename=1
-----,@database_list = 'dbBibFACHO'
---,@name_pattern='db'

@@ -1,4 +1,4 @@
-26set21
+--26set21
 --12Fev21
 
 SELECT  name AS 'Database_Name', state_desc, recovery_model_desc, is_read_only, user_access_desc, create_date, is_auto_close_on, is_auto_shrink_on, compatibility_level, collation_name

@@ -1,6 +1,5 @@
-
 --26ago21
--- ALL DATABASE
+--ALL DATABASE
 
 -- EXEC  sp_help 'Tabela'
 

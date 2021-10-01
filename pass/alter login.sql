@@ -27,7 +27,7 @@
 	
 	
 	--	DEFAULT_DATABASE
-			--ALTER LOGIN 	[userSaberEEM] 	WITH  DEFAULT_DATABASE=[dbSigaSaberPetrolina];
+			--ALTER LOGIN 	[userCELogosEEM] 	WITH  DEFAULT_DATABASE=[dbSigaCELogos];
 	
 	
 		--GRANT CONNECT  TO [userRestauraBancoVPS];

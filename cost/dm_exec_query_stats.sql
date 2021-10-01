@@ -1,11 +1,11 @@
 
--- 21set21
+-- 01out21
 -- using statement_start_offset and statement_end_offset we get the query text from inside the entire batch
 
-SELECT
-	TOP 10 qs.total_worker_time AS TotalWorkerTime,
-	DB_NAME(qp.dbid) AS [Database Name],
-	qs.last_execution_time AS LastExecutionTime,
+SELECT	TOP 10 
+	qs.total_worker_time,
+	DB_NAME(qp.dbid) AS [DatabaseName],
+	qs.last_execution_time,
 	SUBSTRING(qt.TEXT, (qs.statement_start_offset / 2)+ 1,
                            ((CASE qs.statement_end_offset
                                         WHEN -1 THEN DATALENGTH(qt.TEXT)
@@ -29,5 +29,4 @@ FROM
 	-- Retrieve the query plan
        CROSS APPLY sys.dm_exec_query_plan(qs.plan_handle) qp
 ORDER BY
-	qs.total_worker_time DESC
-	-- CPU time
+	qs.total_worker_time DESC	-- CPU time
