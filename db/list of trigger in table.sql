@@ -50,7 +50,7 @@ INNER JOIN sys.schemas s
 WHERE
 	sysobjects.type = 'TR'
 	
-	AND OBJECT_NAME(parent_obj) IN ('TbFaseNotaAluno')
+	AND OBJECT_NAME(parent_obj) IN ('TbDiarioFrequencia')
 	
 ORDER BY
 	OBJECT_NAME(parent_obj)
