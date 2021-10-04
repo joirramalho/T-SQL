@@ -20,9 +20,9 @@ WHERE
 	 login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND PROGRAM_NAME NOT LIKE ('ADO_MESSENGER_ADO%')
 	--IS_USER_PROCESS = 1
 
---AND DB_Name(database_id) IN ('dbSigaImcCorMariaRS', 'dbSigaParaisoSaber', 'dbSigaEcoVillePE')
-	 
---AND LOGIN_NAME IN ('userMeuFuturo','')
+		--AND DB_Name(database_id) IN ('dbSigaFenix', 'dbSigaParaisoSaber', 'dbSigaEcoVillePE')
+			 
+		--AND LOGIN_NAME IN ('user','')
 
 	--AND HOST_NAME IN ('APP')
 	--AND DATEDIFF(MINUTE, LAST_REQUEST_START_TIME, GETDATE()) > 1 -- LOGIN_TIME

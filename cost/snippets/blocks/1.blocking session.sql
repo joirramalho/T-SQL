@@ -1,4 +1,5 @@
 --13set21
+--https://www.dbrnd.com/2016/12/sql-server-script-to-find-waiting-queries-which-are-block-by-other-running-queries-find-block-transaction/
               
 SELECT
 	dowt.session_id

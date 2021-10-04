@@ -1,14 +1,12 @@
-
---15set21
+--04out21
 --https://stackoverflow.com/questions/4305691/need-to-list-all-triggers-in-sql-server-database-with-table-name-and-tables-sch
 --https://www.mssqltips.com/sqlservertip/5950/how-do-sql-server-triggers-work-for-insert-update-delete-and-truncate/
 
 SELECT
-	sysobjects.name AS trigger_name
+	OBJECT_NAME(parent_obj) AS table_name
+	,sysobjects.name AS trigger_name
 	--    ,USER_NAME(sysobjects.uid) AS trigger_owner 
 	--    ,s.name AS table_schema 
-    ,
-	OBJECT_NAME(parent_obj) AS table_name
 	--    ,OBJECTPROPERTY(id, 'ExecIsTriggerDisabled') AS [disabled] 
     ,
 	CASE 
@@ -52,7 +50,7 @@ INNER JOIN sys.schemas s
 WHERE
 	sysobjects.type = 'TR'
 	
-	AND OBJECT_NAME(parent_obj) IN ('TbDiarioAluno')
+	AND OBJECT_NAME(parent_obj) IN ('TbFaseNotaAluno')
 	
 ORDER BY
 	OBJECT_NAME(parent_obj)

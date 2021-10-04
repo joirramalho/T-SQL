@@ -1,0 +1,1 @@
+--https://www.dbrnd.com/2016/12/sql-server-the-truth-about-table-with-nolock-select-read-uncommitted-data/
