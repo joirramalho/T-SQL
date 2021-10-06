@@ -27,7 +27,7 @@ ORDER BY
 -- total_worker_time
 SELECT TOP 10
 	OBJECT_NAME(object_id, database_id) AS ObjectName
-	, SUM(total_worker_time) AS TotalWorkerTime
+	, SUM(total_worker_time) AS SumOftotal_worker_time
 FROM
 	sys.dm_exec_procedure_stats
 WHERE OBJECT_NAME(object_id, database_id) IS NOT NULL
@@ -38,10 +38,10 @@ ORDER BY
 
 	
 
--- SumOfTotalLogicalReads
+-- SumOftotal_logical_reads
 SELECT TOP 10
 	OBJECT_NAME(object_id, database_id) AS ObjectName
-	, SUM(total_logical_reads) AS SumOfTotalLogicalReads
+	, SUM(total_logical_reads) AS SumOftotal_logical_reads
 FROM
 	sys.dm_exec_procedure_stats
 WHERE OBJECT_NAME(object_id, database_id) IS NOT NULL
