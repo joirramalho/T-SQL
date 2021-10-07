@@ -1,7 +1,7 @@
---15set21
+--07out21
 --Reset SQL user account guids 
 
-USE  dbSigaRosaCamara;
+USE  dbSigaAraraAzul;
 
 DECLARE @UserName nvarchar(255) 
 

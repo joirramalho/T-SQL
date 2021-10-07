@@ -18,7 +18,7 @@
 
 
 
---USE dbSigaRosaCamara;
+--USE dbSigaAraraAzul;
 
 
 	--CREATE USER 	[romario.barbalho] 	FOR LOGIN [romario.barbalho] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
@@ -83,9 +83,11 @@
 
 
 --Censo
-	--ALTER ROLE [db_datareader] ADD MEMBER [active.filipe]
-	--GRANT EXECUTE ON OBJECT::FnExtrairNumeroToString TO [active.filipe]
-	--EXEC sp_change_users_login 'Update_one', 'active.filipe', 'active.filipe';
+	--	dbSigaFACHO (SQL10); dbSigaAraraAzul (SQL08)
+
+		--ALTER ROLE [db_datareader] ADD MEMBER [active.filipe];
+		--GRANT EXECUTE ON OBJECT::FnExtrairNumeroToString TO [active.filipe];
+		--EXEC sp_change_users_login 'Update_one', 'active.filipe', 'active.filipe';
 
 
 
