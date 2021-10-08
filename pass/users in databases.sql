@@ -27,8 +27,8 @@ EXEC dbo.sp_foreachdb N'
 	    WHERE   (u.type in (''U'', ''S'', ''G'', ''C'', ''K'' ,''E'', ''X''))
 	        
 	        AND name NOT IN ( ''sigaadmin'', ''sigainternet'', ''sys'', ''guest'', ''dbo'', ''INFORMATION_SCHEMA'')
---			AND name NOT LIKE ''user%'' 
-			AND name NOT LIKE ''active.%'' 
+			AND name NOT LIKE ''user%'' 
+			AND name LIKE ''active.%'' 
 	    
 	    ORDER BY    [Name] ASC
 '
@@ -40,4 +40,4 @@ EXEC dbo.sp_foreachdb N'
 --,@name_pattern='dbSigaA';
 --,@database_list = 'db'
 
-SELECT * FROM #users;
+SELECT * FROM #users ORDER BY 2,1 --DropCmd;

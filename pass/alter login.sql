@@ -21,7 +21,7 @@
 --USE dbSigaAraraAzul;
 
 
-	--CREATE USER 	[romario.barbalho] 	FOR LOGIN [romario.barbalho] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
+	--CREATE USER 	[active.fabricia] 	FOR LOGIN [active.fabricia] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
 	
 		--DROP USER [userINSTBRASILIA];
 	
@@ -38,7 +38,7 @@
 
 --DATABASE ROLE
 --ADD 
-	--USE dbSigaModelo127;
+	--USE CRM_307506;
 
 	--ALTER ROLE [db_datareader] ADD MEMBER [userRestauraBancoVPS];
 	--ALTER ROLE [db_datawriter] ADD MEMBER [userRestauraBancoVPS];
@@ -46,7 +46,7 @@
 	--GRANT EXECUTE TO [romario.barbalho]; -- wantuilson -- (LAB4 xp_readerrorlog)
     	--REVOKE EXECUTE TO [romario.barbalho];
 
-	--ALTER ROLE [db_owner] ADD MEMBER [romario.barbalho];
+	--ALTER ROLE [db_owner] ADD MEMBER [active.fabricia];
 	--ALTER ROLE [db_ddladmin] ADD MEMBER [active.mardelson];
 
 --DROP

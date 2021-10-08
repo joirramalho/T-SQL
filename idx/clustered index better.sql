@@ -1,8 +1,7 @@
+--071021
 -- Dirceu Resende
 
-use dbSigaContemporaneo
-
-SELECT DB_NAME()
+USE dbSigaGGE;
 
 SELECT  TableName = OBJECT_NAME(idx.object_id), NonUsefulClusteredIndex = idx.name, ShouldBeClustered = nc.nonclusteredname, Clustered_User_Seeks = c.user_seeks, NonClustered_User_Seeks = nc.user_seeks, Clustered_User_Lookups = c.user_lookups, DatabaseName = DB_NAME(c.database_id)
 FROM    sys.indexes idx

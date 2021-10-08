@@ -17,7 +17,7 @@ CREATE TABLE [dbo].[TbHistorico_Auditoria](
 	IdEstabelecimentoEnsino int NULL,
 	DiasLetivos smallint NULL,
 	CargaHorariaTotal numeric(8,2) NULL,
-	Observacao varchar(800) NULL,
+	Observacao varchar(MAX) NULL,
 	IdSerie int NULL,
 	CargaHorariaTotalExibicao varchar(10) NULL,
 	StCHIgnorarSoma bit NULL,

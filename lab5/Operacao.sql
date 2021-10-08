@@ -141,9 +141,9 @@ sp_DesmascararBanco
 
 
 
---RESTORE DATABASE CRM_CordCNSD FROM DISK = 'C:\TEMP\dbSigaCordCNSD_full.bak' WITH FILE = 1, MOVE N'dbSiga_Data' TO N'C:\SQL\CordCNSD.mdf', MOVE N'dbSiga_log' TO N'C:\SQL\CordCNSD_log.ldf', RECOVERY,  NOUNLOAD,  STATS = 25	--, REPLACE
+--RESTORE DATABASE CRM_307506 FROM DISK = 'C:\TEMP\dbSigaEscolaSerra_full.bak' WITH FILE = 1, MOVE N'dbSiga_Data' TO N'C:\SQL\dbSigaEscolaSerra.mdf', MOVE N'dbSiga_log' TO N'C:\SQL\dbSigaEscolaSerra_log.ldf', NORECOVERY,  NOUNLOAD,  STATS = 25	--, REPLACE
 
-	--RESTORE DATABASE CRM_288959_18Ago FROM DISK = 'C:\Restore\dbSigaEminente_diff.bak' WITH RECOVERY
+	--RESTORE DATABASE CRM_307506 FROM DISK = 'C:\TEMP\dbSigaEscolaSerra_diff.bak' WITH RECOVERY
 
 --SELECT TOP 10 * FROM CRM_288959_18Ago.dbo.TbAuditoria ORDER BY IdAuditoria DESC
 

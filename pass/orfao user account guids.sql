@@ -1,7 +1,7 @@
 --07out21
 --Reset SQL user account guids 
 
-USE  dbSigaAraraAzul;
+USE  dbActiveCantinaDivinoMestre;
 
 DECLARE @UserName nvarchar(255) 
 
