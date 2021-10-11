@@ -21,7 +21,7 @@ WHERE
 	--and user_access <> 1 	-- SINGLE_USER
 	--and name NOT IN ('?')
 	--and create_Date > '2020-04-08 12:47:10.447'	
-	--and name LIKE 'dbSigaImcCorMariaRS%'
+	--and name LIKE 'dbCrmActivesoft%'
 ORDER BY
 	create_date DESC;
 

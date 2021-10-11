@@ -14,7 +14,7 @@
 
 
 -- PASSWORD
-	-- ALTER LOGIN [userMeuFuturo] 	WITH PASSWORD = 'AgR3HuK2.W'; -- sigainternet userISO_PowerBI service.account
+	-- ALTER LOGIN [userIES_Inetep] 	WITH PASSWORD = '****'; -- sigainternet userISO_PowerBI service.account
 
 
 
