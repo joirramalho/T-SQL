@@ -22,7 +22,7 @@ WHERE
 
 --AND DB_Name(database_id) IN ('CRM_291110', 'dbSigaParaisoSaber', 'dbSigaEcoVillePE')
 			 
-AND LOGIN_NAME IN ('userIES_Inetep','')
+--AND LOGIN_NAME IN ('userIES_Inetep','')
 
 	--AND HOST_NAME IN ('APP')
 	--AND DATEDIFF(MINUTE, LAST_REQUEST_START_TIME, GETDATE()) > 1 -- LOGIN_TIME

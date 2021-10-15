@@ -3,7 +3,9 @@
 
 --USER_SEEKS + USER_SCANS + USER_LOOKUPS + USER_UPDATES
 
+
 DECLARE @db	VARCHAR(64) = 'dbSigaSemiBatista'
+
 
 select
 	d.name as [database],

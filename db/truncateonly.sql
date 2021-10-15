@@ -65,10 +65,4 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 ,@user_only = 1
 ,@suppress_quotename=1
 --,@name_pattern='dbSigaStCatarina';
- ,@database_list = 'dbCRMActivesoft' 
-
--- ,@database_list = 'dbSigaStaClara, dbSigaCecda, dbSigaCBrasileiro, dbSigaInstBrasil' 
- 
- 
- 
--- dbActiveCRM2
+ ,@database_list = 'dbSigaTorresPadua' 

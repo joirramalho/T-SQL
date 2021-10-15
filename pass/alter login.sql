@@ -5,7 +5,7 @@
 
 --LOGIN --
 	--SENHA COM 10 caracteres
-		--CREATE LOGIN [userRosaCamara] 	WITH PASSWORD=N'***', DEFAULT_DATABASE=[dbSigaRosaCamara], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
+		--CREATE LOGIN [active.pinto] 	WITH PASSWORD=N'AntonioPinto@.', DEFAULT_DATABASE=[master], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
 		--CREATE LOGIN [userEcoVillePE] 	WITH PASSWORD=N'***', DEFAULT_DATABASE=[dbSigaEcoVillePE], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
 
 		--ALTER LOGIN [userRestauraBancoVPS] DISABLE;
@@ -18,10 +18,10 @@
 
 
 
---USE dbSigaAraraAzul;
+--USE dbLogRestore;
 
 
-	--CREATE USER 	[active.fabricia] 	FOR LOGIN [active.fabricia] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
+	--CREATE USER 	[romario.barbalho] 	FOR LOGIN [romario.barbalho] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
 	
 		--DROP USER [userINSTBRASILIA];
 	
@@ -46,7 +46,7 @@
 	--GRANT EXECUTE TO [romario.barbalho]; -- wantuilson -- (LAB4 xp_readerrorlog)
     	--REVOKE EXECUTE TO [romario.barbalho];
 
-	--ALTER ROLE [db_owner] ADD MEMBER [active.fabricia];
+	--ALTER ROLE [db_owner] ADD MEMBER [romario.barbalho];
 	--ALTER ROLE [db_ddladmin] ADD MEMBER [active.mardelson];
 
 --DROP
