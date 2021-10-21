@@ -1,7 +1,7 @@
 --07out21
 --Reset SQL user account guids 
 
-USE  dbActiveCantinaDivinoMestre;
+USE  dbSigaCOGNOS;
 
 DECLARE @UserName nvarchar(255) 
 

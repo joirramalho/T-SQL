@@ -38,6 +38,6 @@ EXEC dbo.sp_foreachdb N'
 ,@user_only = 1
 ,@suppress_quotename=1
 --,@name_pattern='dbSigaA';
---,@database_list = 'db'
+,@database_list = 'dbSigaWillyJanz'
 
 SELECT * FROM #users ORDER BY 2,1 --DropCmd;

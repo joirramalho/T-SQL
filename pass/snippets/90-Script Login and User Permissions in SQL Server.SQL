@@ -2,7 +2,7 @@
 --Script Login and User Permissions in SQL Server
     -- http://udayarumilli.com/script-login-user-permissions-sql-server/
 
-USE dbSigaEnfermagemIsrael
+--USE dbSigaDCC
 
 PRINT 'USE ['+DB_NAME()+']';
 PRINT 'GO'

@@ -75,5 +75,5 @@ ORDER BY OBJ.name, DBP.permission_name ASC, DBP.state_desc ASC
 
 --
 
-use MASTER
+--use MASTER
 
