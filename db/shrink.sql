@@ -9,9 +9,9 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 
 	DBCC SHRINKDATABASE(?);
 
-		EXEC sp_MSforeachtable @command1="ALTER INDEX ALL ON $ REBUILD WITH (ONLINE=OFF)", @replacechar="$"; -- NAO funciona com dbCrmActivesoft
+--		EXEC sp_MSforeachtable @command1="ALTER INDEX ALL ON $ REBUILD WITH (ONLINE=OFF)", @replacechar="$"; -- NAO funciona com dbCrmActivesoft
 
-			EXEC sp_updatestats;
+--			EXEC sp_updatestats;
 
 	IF CHARINDEX( ''dbSiga'', ''?'') > 0
 		DBCC SHRINKFILE (dbSiga_Log , 0, TRUNCATEONLY);
@@ -38,7 +38,4 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 ,@user_only = 1
 ,@suppress_quotename=1
 -- ,@name_pattern='dbSigaSalePetrolina_Arquivo0';
-,@database_list = 'dbSigaVieiraBrum, dbSigaCBrasileiro, dbSigaCepop';  
-
-
-
+,@database_list = 'dbCrmActivesoft';  

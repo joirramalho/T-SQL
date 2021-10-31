@@ -63,7 +63,7 @@ sp_restore
             -- dbLogRestore..sp_restore 'dbSigaModeloWEB', '273581', 'active.luizmatheus', 'NAO', 'NAO', 'nuvem'
 
     -- LOCAL
-		--dbLogRestore..sp_restore 'dbSigaSantaGertrudes202108131800', '285557Set03', 'active.rogeriobrollo', 'NAO', 'NAO', 'local'  
+		--dbLogRestore..sp_restore 'dbSigaSantaGertrudes202110201800', '310545', 'active.rogeriobrollo', 'NAO', 'NAO', 'local'  
 
     
     -- RETROATIVO SEMANA ANTERIOR

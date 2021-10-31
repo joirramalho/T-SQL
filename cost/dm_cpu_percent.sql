@@ -1,4 +1,4 @@
---11ago21
+--28out21
 --https://sites.google.com/site/sqlservermsdn/cpu------sql-server
 
 WITH DB_CPU_Stats
@@ -26,7 +26,7 @@ SELECT
 	ORDER BY [CPU_Time_Ms] DESC) AS [row_num],
 	DatabaseName,
 	[CPU_Time_Ms],
-	CAST([CPU_Time_Ms] * 1.0 / SUM([CPU_Time_Ms]) OVER() * 100.0 AS DECIMAL(5,2)) AS [CPUPercent]
+	CAST([CPU_Time_Ms] * 1.0 / SUM([CPU_Time_Ms]) OVER() * 100.0 AS DECIMAL(7,4)) AS [CPUPercent]
 FROM
 	DB_CPU_Stats
 WHERE

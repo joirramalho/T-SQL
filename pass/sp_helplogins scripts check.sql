@@ -1,4 +1,5 @@
 --25ago21
+	--https://www.sqlshack.com/read-sql-server-error-logs-using-the-xp_readerrorlog-command/
 
 SELECT
 	'EXEC SP_HELPLOGINS [' + SP.NAME + ']'

@@ -1,6 +1,6 @@
---29set21
+--25out21
 
---USE [dbSigaSemiBatista];
+--USE [dbCrmActivesoft];
 
 --CREATE INDEX [IX_TbOcorrenciaMovimentacao_CdPrioridade] ON [dbCrmActivesoft].[dbo].[TbOcorrenciaMovimentacao] ([CdPrioridade]) INCLUDE ([IdOcorrenciaMovimentacao], [DataHoraLimite])
 
@@ -12,9 +12,35 @@ FROM    sys.indexes As I
 LEFT    OUTER JOIN sys.dm_db_index_usage_stats As U ON I.object_id = U.object_id AND I.index_id = U.index_id
 WHERE DB_NAME(database_id) = DB_NAME()
 
-    AND I.object_id = OBJECT_ID('TbTurmaDisciplinaPlanoAula') --and I.Name IS NULL -- TbLancamentoCobranca-- TbAuditoria -- TbTituloCobranca -- TbOcorrenciaMovimentacao
+    AND I.object_id = OBJECT_ID('TbOcorrencia') --and I.Name IS NULL -- TbLancamentoCobranca-- TbAuditoria -- TbTituloCobranca -- TbOcorrenciaMovimentacao
 
 ORDER BY U.User_Lookups DESC
+
+
+
+	
+
+--IF EXISTS( SELECT * FROM sys.indexes WHERE name='IX_TbOcorrencia_omUltima_IdOcorrenciaMovimentacao' AND object_id = OBJECT_ID('dbo.TbOcorrencia') )
+--	BEGIN
+--		DROP INDEX [IX_TbOcorrencia_omUltima_IdOcorrenciaMovimentacao] ON [dbo].[TbOcorrencia] WITH ( ONLINE = OFF )
+--	END
+--
+--CREATE INDEX [IX_TbOcorrencia_omUltima_IdOcorrenciaMovimentacao] ON [dbCrmActivesoft].[dbo].[TbOcorrencia] ([omUltima_IdOcorrenciaMovimentacao]) 
+--	INCLUDE ([IdCliente], [TituloOcorrencia], [IdTipoOcorrencia], [IdSistema], [omUltimaMudanca_IdOcorrenciaMovimentacao], [omUltimaMudanca_IdOperador])
+	
+	
+
+--IF EXISTS( SELECT * FROM sys.indexes WHERE name='IX_TbOcorrenciaConclusao' AND object_id = OBJECT_ID('dbo.TbOcorrencia') )
+--	BEGIN
+--		DROP INDEX [IX_TbOcorrenciaConclusao] ON [dbo].[TbOcorrencia] WITH ( ONLINE = OFF )
+--	END
+--
+--IF EXISTS( SELECT * FROM sys.indexes WHERE name='IX_TbOcorrenciaAbertura' AND object_id = OBJECT_ID('dbo.TbOcorrencia') )
+--	BEGIN
+--		DROP INDEX [IX_TbOcorrenciaAbertura] ON [dbo].[TbOcorrencia] WITH ( ONLINE = OFF )
+--	END
+
+
 
 
 

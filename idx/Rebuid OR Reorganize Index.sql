@@ -42,3 +42,7 @@ DECLARE TableCursor CURSOR READ_ONLY FOR
 
    CLOSE TableCursor   
    DEALLOCATE TableCursor
+   
+   
+   
+   

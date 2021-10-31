@@ -86,7 +86,6 @@ ORDER BY
 	name
 
 
-
 --SELECT 
 --	-- database_id,
 --	CONVERT(VARCHAR(1000), DB.name) AS dbName,

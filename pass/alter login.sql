@@ -5,7 +5,7 @@
 
 --LOGIN --
 	--SENHA COM 10 caracteres
-		--CREATE LOGIN [userWillyJanz] 	WITH PASSWORD=N'***', DEFAULT_DATABASE=[dbSigaWillyJanz], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
+		--CREATE LOGIN [active.filipe] 	WITH PASSWORD=N'***', DEFAULT_DATABASE=[dbSigaAraraAzul], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
 		--CREATE LOGIN [userEcoVillePE] 	WITH PASSWORD=N'***', DEFAULT_DATABASE=[dbSigaEcoVillePE], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
 
 		--ALTER LOGIN [userRestauraBancoVPS] DISABLE;
@@ -17,14 +17,14 @@
 
 -- PASSWORD
 	--												'1234567890'
-	-- ALTER LOGIN [userCognos] 	WITH PASSWORD = '***'; -- sigainternet userISO_PowerBI service.account
+	-- ALTER LOGIN [active.pinto] 	WITH PASSWORD = '#PintoPr@j&t@!'; -- sigainternet userISO_PowerBI service.account
 
 
 
---USE CRM_307106;
+--USE dbActiveVendasMundoFantasia;
 
 
-	--CREATE USER 	[active.wantuilson] 	FOR LOGIN [active.wantuilson] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
+	--CREATE USER 	[userMundoFantasia] 	FOR LOGIN [userMundoFantasia] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
 	
 		--DROP USER [userINSTBRASILIA];
 	
@@ -49,7 +49,7 @@
 	--GRANT EXECUTE TO [romario.barbalho]; -- wantuilson -- (LAB4 xp_readerrorlog)
     	--REVOKE EXECUTE TO [romario.barbalho];
 
-	--ALTER ROLE [db_owner] ADD MEMBER [active.wantuilson];
+	--ALTER ROLE [db_owner] ADD MEMBER [userMundoFantasia];
 	--ALTER ROLE [db_ddladmin] ADD MEMBER [active.mardelson];
 
 --DROP
@@ -74,8 +74,9 @@
 		-- EXEC sp_addsrvrolemember 'userRestauraBancoVPS', 'dbcreator'
 		-- EXEC sp_addsrvrolemember 'romario.barbalho', 'securityadmin'
 		
+		-- EXEC sp_addsrvrolemember 'active.pinto', 'sysadmin'
 	--DROP
-	    -- EXEC sp_dropsrvrolemember 'userRestauraBancoVPS', 	'sysadmin'
+	    -- EXEC sp_dropsrvrolemember 'active.pinto', 	'sysadmin'
 
 
 
@@ -86,7 +87,7 @@
 
 
 --Censo
-	--	dbSigaFACHO (SQL10); dbSigaAraraAzul (SQL08)
+	--	dbSigaFACHO (SQL10); USE dbSigaAraraAzul (SQL08)
 
 		--ALTER ROLE [db_datareader] ADD MEMBER [active.filipe];
 		--GRANT EXECUTE ON OBJECT::FnExtrairNumeroToString TO [active.filipe];

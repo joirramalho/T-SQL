@@ -1,8 +1,9 @@
 --22set21
 
---USE dbSigaSemiBatista;
+--USE master;
 
---EXEC  sp_help 'TbLancamentoCobranca'
+--EXEC  sp_help 'TbOcorrencia'
+
 --EXEC  sp_helpindex 'TbLancamentoCobranca'
 
 SELECT
@@ -44,3 +45,5 @@ ORDER BY
 	migs.avg_total_user_cost * migs.avg_user_impact * (migs.user_seeks + migs.user_scans) DESC
 	-- CREATE INDEX [IX_TbOcorrenciaMovimentacao_CdPrioridade] ON [dbCrmActivesoft].[dbo].[TbOcorrenciaMovimentacao] ([CdPrioridade]) 
 	--   INCLUDE ([IdOcorrenciaMovimentacao], [DataHoraLimite])
+	
+	

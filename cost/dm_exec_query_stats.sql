@@ -1,5 +1,5 @@
 
--- 05out21
+-- 28out21
 -- using statement_start_offset and statement_end_offset we get the query text from inside the entire batch
 
 SELECT	TOP 15
@@ -39,7 +39,7 @@ IF OBJECT_ID('TEMPDB..##TEMP') IS NOT NULL	DROP TABLE ##TEMP
 
 CREATE TABLE ##TEMP ( 
 QueryText VARCHAR(MAX),
-total_worker_time INT
+total_worker_time BIGINT
 )
 
 INSERT INTO ##TEMP

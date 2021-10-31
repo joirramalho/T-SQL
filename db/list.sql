@@ -4,18 +4,18 @@ SELECT
 	database_id,
 	name as [ON-LINE],
 	state_desc,
+	create_date,
 	recovery_model_desc,
 	CASE 
 		WHEN is_read_only = 1 THEN 'read-only'
-		ELSE 'R/W'
+		ELSE 'r/w'
 	END AS 'read-write',	
-	user_access_desc,
-	create_date
+	user_access_desc
 FROM
 	sys.databases d
 WHERE
 	database_id > 5
-	--and state = 0 			-- 0 ON-LINE -- 6 OFF-LINE
+	and state = 0 			-- 0 ON-LINE -- 6 OFF-LINE
 	--and recovery_model = 1   -- 1-FULL 3-simple
 	--and is_read_only = 1 	-- Read-only
 	--and user_access <> 1 	-- SINGLE_USER

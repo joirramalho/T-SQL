@@ -1,10 +1,12 @@
---06set21 -- Logins by HASH script out 
+--31out21 -- Logins by HASH script out 
 
 SELECT 
-    SP.name, 
     SP.default_database_name, 
+    SP.name, 
     -- 'sh backup-migracao-diff.sh '   + SP.default_database_name, -- LINUX
     -- 'backup-migracao-diff.bat '     + SP.default_database_name, -- VPS
+
+    './migracao-backup-diff.sh ' + SP.default_database_name + ' ' + SP.name,
 
     './migracao-restore-full-diff.sh ' + SP.default_database_name + ' ' + SP.name + ' ' + CONVERT( NVARCHAR(MAX), SL.password_hash, 1 ) As LOGIN,
     './add-user-after-migracao.sh ' + SP.default_database_name + ' ' + SP.name + ' ' + CONVERT( NVARCHAR(MAX), SL.password_hash, 1 ) AS LOGIN_EEM

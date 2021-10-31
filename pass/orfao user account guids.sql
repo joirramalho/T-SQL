@@ -1,7 +1,7 @@
 --07out21
 --Reset SQL user account guids 
 
-USE  dbSigaCOGNOS;
+USE  dbSigaDLins;
 
 DECLARE @UserName nvarchar(255) 
 
