@@ -17,7 +17,7 @@
 
 -- PASSWORD
 	--												'1234567890'
-	-- ALTER LOGIN [active.pinto] 	WITH PASSWORD = '#PintoPr@j&t@!'; -- sigainternet userISO_PowerBI service.account
+	-- ALTER LOGIN [active.pinto] 	WITH PASSWORD = '****'; -- sigainternet userISO_PowerBI service.account
 
 
 
@@ -36,6 +36,8 @@
 		--GRANT CONNECT  TO [userRestauraBancoVPS];
 			--REVOKE CONNECT  FROM [siga_caruaru];
 
+
+	--EXEC master..sp_addsrvrolemember @loginame = N'romario.barbalho', @rolename = N'sysadmin';
 
 
 
@@ -72,7 +74,9 @@
 --SERVER ROLE
 	--ADD
 		-- EXEC sp_addsrvrolemember 'userRestauraBancoVPS', 'dbcreator'
-		-- EXEC sp_addsrvrolemember 'romario.barbalho', 'securityadmin'
+		-- EXEC sp_addsrvrolemember 'active.filipe', 'dbcreator'
+
+-- EXEC sp_addsrvrolemember 'romario.barbalho', 'securityadmin'
 		
 		-- EXEC sp_addsrvrolemember 'active.pinto', 'sysadmin'
 	--DROP

@@ -1,28 +1,30 @@
--- 28jul21 - userCOLEGIOEAG_PowerBI
--- 17mai21 - userCELogos_PowerBI
--- 19Fev21 - Filipe
+--03nov21 UserACSC_PowerBI
+--19Fev21 - Filipe
 
--- EXEC dbLogMonitor.dbo.sp_ServerName
 
-USE [master]
-GO
-CREATE LOGIN [userCOLEGIOS3_PowerBI] WITH PASSWORD=N'*******', DEFAULT_DATABASE=[dbSigaCOLEGIOS3], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF
-GO
+	--											   '1234567890'
+	CREATE LOGIN [userACSC_PowerBI] WITH PASSWORD=N'***', DEFAULT_DATABASE=[dbSigaDivinoCoracao], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF
 
--- DROP LOGIN [userCOLEGIOEAG_PowerBI]
-
-    -- USE [dbSigaCOLEGIOS3]
-    -- GO
-    -- CREATE USER [userCOLEGIOS3_PowerBI] FOR LOGIN [userCOLEGIOS3_PowerBI]
-    -- GO
-    -- ALTER USER [userCOLEGIOS3_PowerBI] WITH DEFAULT_SCHEMA=[dbo]
-    -- GO
-
-    -- EXEC sp_addrolemember N'rolePowerBI', N'userCOLEGIOS3_PowerBI'
-    -- GO
+			-- DROP LOGIN [userCOLEGIOEAG_PowerBI]
+	
+	    -- USE [dbSigaCNSPerSocorro]
+	    -- CREATE USER [userACSC_PowerBI] FOR LOGIN [userACSC_PowerBI]
+	    	
+			-- Não precisa
+			---- ALTER USER [userACSC_PowerBI] WITH DEFAULT_SCHEMA=[dbo]
+	
+	    -- EXEC sp_addrolemember N'rolePowerBI', N'userACSC_PowerBI'
 
 
 
+	
+--	GRUPOS DE ESCOLAS
+	--		SQL09
+		--		dbSigaDivinoCoracao
+		--		dbSigaStCatarina
+		-- 		dbSigaImcCorMariaRS (offline)
+		--		dbSigaCNSPerSocorro
+	
 
 -- VIEWs consolidades
     GRANT SELECT ON dbo.VwPowerBI_AlunoTurma_Consolidado TO rolePowerBI;

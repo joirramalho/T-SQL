@@ -1,0 +1,1 @@
+https://www.mssqltips.com/sqlservertip/2709/script-to-rename-constraints-and-indexes-to-conform-to-a-sql-server-naming-convention/

@@ -1,6 +1,6 @@
 --22set21
 
---USE master;
+--USE dbSigaGGE;
 
 --EXEC  sp_help 'TbOcorrencia'
 
