@@ -3,7 +3,7 @@
 --ONLINE
 	--ALTER DATABASE dbSigaSandraCavalcan SET ONLINE;
 	
-	--ALTER DATABASE dbSigaPadraoInst SET OFFLINE;
+	--ALTER DATABASE dbSigaModeloWEB SET OFFLINE;
                             
 
 	--DROP

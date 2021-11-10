@@ -13,7 +13,7 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 ,@user_only = 1
 ,@suppress_quotename=1
 -- ,@name_pattern='dbSigaLuizAntonio';
-,@database_list = 'dbSigaWebPadraoInst'
+,@database_list = 'dbSigaLegacyCGrande'
 
 
 

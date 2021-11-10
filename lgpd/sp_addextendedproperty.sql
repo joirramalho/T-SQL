@@ -11,7 +11,7 @@
 
 DECLARE @COLUMN_SEARCH varchar(100)
 
-SET @COLUMN_SEARCH = 'BANCO'
+SET @COLUMN_SEARCH = 'IdSessao'
  
 SELECT
   SCHEMA_NAME(TABLELIST.schema_id) AS Schema_Name,
@@ -35,7 +35,7 @@ SELECT
 FROM sys.tables AS TABLELIST
 INNER JOIN sys.all_columns AS COLLIST
   ON TABLELIST.object_ID = COLLIST.object_id
-WHERE COLLIST.name LIKE '%' + @COLUMN_SEARCH + '%'
+--WHERE COLLIST.name LIKE '%' + @COLUMN_SEARCH + '%'
  
 UNION ALL
  
@@ -59,7 +59,7 @@ SELECT
 FROM sys.tables AS TABLELIST
 INNER JOIN sys.all_columns AS COLLIST
   ON TABLELIST.object_ID = COLLIST.object_id
-WHERE COLLIST.name LIKE '%' + @COLUMN_SEARCH + '%'
+--WHERE COLLIST.name LIKE '%' + @COLUMN_SEARCH + '%'
  
 UNION ALL
   
@@ -85,7 +85,7 @@ SELECT
 FROM sys.tables AS TABLELIST
 INNER JOIN sys.all_columns AS COLLIST
   ON TABLELIST.object_ID = COLLIST.object_id
-WHERE COLLIST.name LIKE '%' + @COLUMN_SEARCH + '%'
+--WHERE COLLIST.name LIKE '%' + @COLUMN_SEARCH + '%'
  
 UNION ALL
  
@@ -110,7 +110,7 @@ SELECT
 FROM sys.tables AS TABLELIST
 INNER JOIN sys.all_columns AS COLLIST
   ON TABLELIST.object_ID = COLLIST.object_id
-WHERE COLLIST.name LIKE '%' + @COLUMN_SEARCH + '%'
+--WHERE COLLIST.name LIKE '%' + @COLUMN_SEARCH + '%'
 ORDER BY TABLELIST.name
 , COLLIST.name;
 			

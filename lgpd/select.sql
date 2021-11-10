@@ -1,3 +1,7 @@
+--Finding a use for Extended Properties in SQL Server
+	--https://eitanblumin.com/2021/07/27/finding-a-use-for-extended-properties-in-sql-server/
+
+
 SELECT
    SCHEMA_NAME(tbl.schema_id) AS SchemaName,	
    tbl.name AS TableName, 
@@ -10,10 +14,35 @@ FROM
    INNER JOIN sys.extended_properties AS p ON p.major_id=tbl.object_id AND p.minor_id=clmns.column_id AND p.class=1
 WHERE
    SCHEMA_NAME(tbl.schema_id)='dbo'
---   and tbl.name='Gen_orgao' 
+   and tbl.name LIKE '%Gen_orgao' 
+--   and clmns.name='sno'
+--   and p.name='SNO'
+--ORDER BY tbl.name
+
+UNION 
+
+SELECT
+   SCHEMA_NAME(tbl.schema_id) AS SchemaName,	
+   tbl.name AS TableName, 
+   clmns.name AS ColumnName,
+   p.name AS ExtendedPropertyName,
+   CAST(p.value AS sql_variant) AS ExtendedPropertyValue
+FROM
+   sys.views AS tbl
+   INNER JOIN sys.all_columns AS clmns ON clmns.object_id=tbl.object_id
+   INNER JOIN sys.extended_properties AS p ON p.major_id=tbl.object_id AND p.minor_id=clmns.column_id AND p.class=1
+WHERE
+   SCHEMA_NAME(tbl.schema_id)='dbo'
+   and tbl.name LIKE '%Gen_orgao%' 
 --   and clmns.name='sno'
 --   and p.name='SNO'
 ORDER BY tbl.name
+
+
+
+
+--select * 
+--from sys.extended_properties 
 
    
 -- ##Comum_Carreira##

@@ -5,7 +5,7 @@
 
 --LOGIN --
 	--SENHA COM 10 caracteres
-		--CREATE LOGIN [active.filipe] 	WITH PASSWORD=N'***', DEFAULT_DATABASE=[dbSigaAraraAzul], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
+		--CREATE LOGIN [active.filipe] 	WITH PASSWORD=N'*****', DEFAULT_DATABASE=[dbSigaModeloWEB], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
 		--CREATE LOGIN [userEcoVillePE] 	WITH PASSWORD=N'***', DEFAULT_DATABASE=[dbSigaEcoVillePE], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
 
 		--ALTER LOGIN [userRestauraBancoVPS] DISABLE;
@@ -21,10 +21,10 @@
 
 
 
---USE dbActiveVendasMundoFantasia;
+--USE dbSigaModeloWEB;
 
 
-	--CREATE USER 	[userMundoFantasia] 	FOR LOGIN [userMundoFantasia] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
+	--CREATE USER 	[active.filipe] 	FOR LOGIN [active.filipe] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
 	
 		--DROP USER [userINSTBRASILIA];
 	

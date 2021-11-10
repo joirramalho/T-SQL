@@ -7,9 +7,9 @@ FROM
 	sys.dm_exec_sessions
 WHERE	login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND PROGRAM_NAME NOT LIKE ('ADO_MESSENGER_ADO%')	--IS_USER_PROCESS = 1
 
---	AND DB_Name(database_id) IN ('dbSigaVieiraBrum', 'dbSigaParaisoSaber', 'dbSigaEcoVillePE')
+	AND DB_Name(database_id) IN ('dbSigaModeloWEB', 'dbSigaParaisoSaber', 'dbSigaEcoVillePE')
 
-	AND LOGIN_NAME IN ('userActiveMessenger','userActivesoft', 'francisco')
+--	AND LOGIN_NAME IN ('userActiveMessenger','userActivesoft', 'francisco')
 
 	--AND HOST_NAME IN ('APP')
 	--AND DATEDIFF(MINUTE, LAST_REQUEST_START_TIME, GETDATE()) > 1 -- LOGIN_TIME
@@ -39,7 +39,7 @@ FROM
 	sys.dm_exec_sessions
 WHERE login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND PROGRAM_NAME LIKE ('ADO_MESSENGER_ADO%')
 
-	AND DB_Name(database_id) IN ('dbCrmActivesoft', 'dbSigaParaisoSaber', 'dbSigaEcoVillePE')
+--	AND DB_Name(database_id) IN ('dbSigaModeloWEB', 'dbSigaParaisoSaber', 'dbSigaEcoVillePE')
 
 ORDER BY
 	last_request_start_time DESC;
@@ -106,4 +106,6 @@ WHERE
 
 ORDER BY
 	Messenger, DatabaseName;
-	
+
+
+
