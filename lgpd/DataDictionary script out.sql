@@ -1,22 +1,26 @@
 DECLARE @COLUMN_SEARCH varchar(100)
 DECLARE @TABLE_SEARCH varchar(100)
 
---SET @COLUMN_SEARCH = 'IdSessao'
-SET @TABLE_SEARCH = 'Gen_Orgao'
+SET @COLUMN_SEARCH = 'DataInclusao'
+SET @TABLE_SEARCH = 'vw_'
  
 SELECT
 --  SCHEMA_NAME(TABLELIST.schema_id) AS Schema_Name,
-COLLIST.column_id ,
+--COLLIST.column_id ,
   	TABLELIST.name AS Table_Name,
   	COLLIST.name AS Column_Name,
 
-	'exec CreateOrUpdateExtendedProperty 	''' +	TABLELIST.name
+	'exec CreateOrUpdateExtendedProperty 	''' 
+	+
+	+	'view'
+  	+	
+  	''', '''	+	TABLELIST.name
   	+
   	''', '''	+	COLLIST.name
   	+
 --	''', '''	+	COALESCE( CAST( p.value AS VARCHAR ), 'Identificador da Operação do Registro' )
---	''', '''	+	'Identificador da Sessão do Registro'
-	''', '''	+	COALESCE( CAST( p.value AS VARCHAR(max) ), COLLIST.name )
+	''', '''	+	'Data da Inclusão do Registro'
+--	''', '''	+	COALESCE( CAST( p.value AS VARCHAR(max) ), COLLIST.name )
   	+
   	''''
 
@@ -24,8 +28,9 @@ FROM sys.views AS TABLELIST
 INNER JOIN sys.all_columns AS COLLIST	ON TABLELIST.object_ID = COLLIST.object_id
 LEFT JOIN sys.extended_properties AS p ON p.major_id=TABLELIST.object_id AND p.minor_id=COLLIST.column_id AND p.class=1
 
---WHERE COLLIST.name LIKE '%' + @COLUMN_SEARCH --+ '%'
-WHERE TABLELIST.name LIKE '%' + @TABLE_SEARCH --+ '%'
+WHERE COLLIST.name LIKE '%' + @COLUMN_SEARCH --+ '%'
+
+AND TABLELIST.name LIKE '%' + @TABLE_SEARCH + '%'
 
 ORDER BY TABLELIST.name, COLLIST.column_id 
 
@@ -33,9 +38,15 @@ ORDER BY TABLELIST.name, COLLIST.column_id
 
 --SELECT * FROM sys.all_columns
 
+
+-- ##Comum_Carreira##
+--EXEC CreateOrUpdateExtendedProperty 'Comum_Carreira','IdCarreira','Identificador da Tabela Comum Carreira'
+--EXEC CreateOrUpdateExtendedProperty 'Comum_Carreira','NomeCarreira','Nome da Carreira'
+--EXEC CreateOrUpdateExtendedProperty 'Comum_Carreira','IdOrgao','Identificador do Órgão da Carreira ({{ base_url_tceadmin2 }}/v2/UnidadeJurisdicionada/)'
 --EXEC CreateOrUpdateExtendedProperty 'Comum_Carreira','DataInclusao','Data da Inclusão do Registro'
 --EXEC CreateOrUpdateExtendedProperty 'Comum_Carreira','IdSessao','Identificador da Sessão do Registro'
---EXEC CreateOrUpdateExtendedProperty 'Comum_Carreira','IdSessaoOperacao','Identificador da Sessão que ocorreu a Operação do Registro'   
+--EXEC CreateOrUpdateExtendedProperty 'Comum_Carreira','IdSessaoOperacao','Identificador da Operação do Registro'
+
 
 
 --exec CreateOrUpdateExtendedProperty 	'Gen_Orgao', 'OrgaoAtivo', 'OrgaoAtivo'
@@ -83,31 +94,8 @@ ORDER BY TABLELIST.name, COLLIST.column_id
 --END
 --
 --
---EXEC CreateOrUpdateExtendedProperty 'Gen_Orgao', 'CodigoOrgao', 'Cod 22'
---EXEC CreateOrUpdateExtendedProperty 'Gen_Orgao', 'IdOrgaoSuperior', 'IdOrgaoSuperior 2'
---EXEC CreateOrUpdateExtendedProperty 'Gen_Orgao', 'CEPOrgao', 'CEPOrgao 2'
---
---
 --
 --SELECT * FROM::fn_listextendedproperty('MS_Description', 'schema', 'dbo', 'table', 'Gen_Orgao', 'column', 'IdSessaoOperacao')
 
 
 
-
-		--EXEC sys.sp_addextendedproperty @name = N'MS_Description',
-		--  	@value = N'Descrevendo tabela de Gen_Orgao.',
-		--  	@level0type = N'SCHEMA',	@level0name = N'dbo',
-		--	@level1type = N'TABLE',		@level1name = N'Gen_Orgao';
-		--
-		--
-		--EXEC sys.sp_addextendedproperty @name = N'MS_Description',
-		--  	@value = N'Descrevendo view de Gen_Orgao.',
-		--  	@level0type = N'SCHEMA',	@level0name = N'dbo',
-		--	@level1type = N'VIEW',		@level1name = N'vw_Gen_Orgao';
-		--
-		--
-		--EXEC sys.sp_addextendedproperty @name = N'MS_Description',
-		--  	@value = N'Nome do Grupo da Unidade Jurisdicionada usado para classificar o Órgão.',
-		--  	@level0type = N'SCHEMA',	@level0name = N'dbo',
-		--	@level1type = N'VIEW',		@level1name = N'vw_Gen_Orgao',
-		--	@level2type = N'Column', 	@level2name = N'NomeGrupoUnidadeJurisdicionada'; 

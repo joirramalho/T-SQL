@@ -1,9 +1,9 @@
 --25set21
 
 --ONLINE
-	--ALTER DATABASE dbSigaSandraCavalcan SET ONLINE;
+	--ALTER DATABASE dbSigaArvoreSaber SET ONLINE;
 	
-	--ALTER DATABASE dbSigaModeloWEB SET OFFLINE;
+	--ALTER DATABASE dbSigaCarrossel SET OFFLINE;
                             
 
 	--DROP

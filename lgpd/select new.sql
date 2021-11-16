@@ -15,9 +15,8 @@ SELECT --objects AND columns
 	ep.name,value 
 	FROM sys.extended_properties ep
 	INNER JOIN sys.objects ob ON ep.major_id=ob.OBJECT_ID AND class=1
-	LEFT OUTER JOIN sys.columns col ON ep.major_id=col.Object_id AND class=1 
-		AND ep.minor_id=col.column_id
-	WHERE ob.name LIKE '%Gen_Orgao'
+	LEFT OUTER JOIN sys.columns col ON ep.major_id=col.Object_id AND class=1 AND ep.minor_id=col.column_id
+	WHERE ep.name = 'MS_Description' -- ob.name LIKE '%Gen_Orgao'
 	ORDER BY PATH
 
 -- UNION ALL

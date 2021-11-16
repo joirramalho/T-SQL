@@ -64,6 +64,5 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 ,@state_desc = N'ONLINE'
 ,@user_only = 1
 ,@suppress_quotename=1
---,@name_pattern='dbSigaStCatarina';
--- ,@database_list = 'dbSigaTorresPadua,dbSigaMonteiroLobato,dbSigaVieiraBrum' -09
- ,@database_list = 'dbSigaCNSPerSocorro' --06
+,@name_pattern='CRM';
+-- ,@database_list = 'dbSigaCastroBarreto' --06

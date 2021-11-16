@@ -1,13 +1,11 @@
 --04nov21
 
-SELECT
-	last_request_start_time, DB_Name(database_id)  AS [DatabaseName], login_name, 'KILL ' + TRIM( CAST( session_id AS CHAR ) ) + ';' AS [kill], program_name, host_name, [status], login_time, row_count, reads, writes, logical_reads
+SELECT	last_request_start_time, DB_Name(database_id)  AS [DatabaseName], login_name, 'KILL ' + TRIM( CAST( session_id AS CHAR ) ) + ';' AS [kill], program_name, host_name, [status], login_time, row_count, reads, writes, logical_reads
 	-- unsuccessful_logons, last_unsuccessful_logon, last_request_end_time
-FROM
-	sys.dm_exec_sessions
+FROM	sys.dm_exec_sessions
 WHERE	login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND PROGRAM_NAME NOT LIKE ('ADO_MESSENGER_ADO%')	--IS_USER_PROCESS = 1
 
-	AND DB_Name(database_id) IN ('dbSigaModeloWEB', 'dbSigaParaisoSaber', 'dbSigaEcoVillePE')
+--	AND DB_Name(database_id) IN ('dbSigaNevesNoturno', 'dbSigaParaisoSaber', 'dbSigaEcoVillePE')
 
 --	AND LOGIN_NAME IN ('userActiveMessenger','userActivesoft', 'francisco')
 
@@ -21,25 +19,12 @@ ORDER BY
 
 
 --ADO_MESSENGER_ADO
-SELECT
-	last_request_start_time AS [last_request_Messenger],
-	DB_Name(database_id) AS [DatabaseName], 
-	login_name,
-	program_name,
-	'KILL ' + TRIM( CAST( session_id AS CHAR ) ) + ';' AS [kill],
---	host_name,
-	[status],
-	login_time,
-	row_count,
-	reads,
-	writes,
-	logical_reads
+SELECT	last_request_start_time AS [last_request_Messenger], DB_Name(database_id) AS [DatabaseName], login_name, program_name, 'KILL ' + TRIM( CAST( session_id AS CHAR ) ) + ';' AS [kill], [status], login_time, row_count, reads, writes, logical_reads
 	-- unsuccessful_logons, last_unsuccessful_logon, last_request_end_time
-FROM
-	sys.dm_exec_sessions
+FROM	sys.dm_exec_sessions
 WHERE login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND PROGRAM_NAME LIKE ('ADO_MESSENGER_ADO%')
 
---	AND DB_Name(database_id) IN ('dbSigaModeloWEB', 'dbSigaParaisoSaber', 'dbSigaEcoVillePE')
+	AND DB_Name(database_id) IN ('dbSigaNevesNoturno', 'dbSigaParaisoSaber', 'dbSigaEcoVillePE')
 
 ORDER BY
 	last_request_start_time DESC;
