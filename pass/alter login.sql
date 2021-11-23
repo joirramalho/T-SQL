@@ -17,14 +17,14 @@
 
 -- PASSWORD
 	--												'1234567890'
-	-- ALTER LOGIN [active.pinto] 	WITH PASSWORD = '****'; -- sigainternet userISO_PowerBI service.account
+	-- ALTER LOGIN [userSANTAREM] 	WITH PASSWORD = '***'; -- sigainternet userISO_PowerBI service.account
 
 
 
---USE dbSigaModeloWEB;
+--USE dbActiveVendasBatSantarem;
 
 
-	--CREATE USER 	[active.filipe] 	FOR LOGIN [active.filipe] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
+	--CREATE USER 	[userSANTAREM] 	FOR LOGIN [userSANTAREM] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
 	
 		--DROP USER [userINSTBRASILIA];
 	
@@ -33,9 +33,11 @@
 			--ALTER LOGIN 	[userWillyJanz] 	WITH  DEFAULT_DATABASE=[dbSigaWillyJanz];
 	
 	
-		--GRANT CONNECT  TO [userRestauraBancoVPS];
+		--GRANT CONNECT  TO [userSANTAREM];
 			--REVOKE CONNECT  FROM [siga_caruaru];
 
+
+	--ALTER ROLE [db_owner] ADD MEMBER [userSANTAREM];
 
 	--EXEC master..sp_addsrvrolemember @loginame = N'romario.barbalho', @rolename = N'sysadmin';
 
@@ -51,7 +53,7 @@
 	--GRANT EXECUTE TO [romario.barbalho]; -- wantuilson -- (LAB4 xp_readerrorlog)
     	--REVOKE EXECUTE TO [romario.barbalho];
 
-	--ALTER ROLE [db_owner] ADD MEMBER [userMundoFantasia];
+	--ALTER ROLE [db_owner] ADD MEMBER [userSANTAREM];
 	--ALTER ROLE [db_ddladmin] ADD MEMBER [active.mardelson];
 
 --DROP

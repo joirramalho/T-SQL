@@ -145,6 +145,10 @@ sp_DesmascararBanco
 
 	--RESTORE DATABASE CRM_307506 FROM DISK = 'C:\TEMP\dbSigaEscolaSerra_diff.bak' WITH RECOVERY
 
+	--RESTORE DATABASE CRM_16nov21 FROM DISK = 'C:\TEMP\dbSigaDiocesanoMossoro_backup_2021_11_15_220600_9714394.bak' WITH RECOVERY
+
+
+
 --SELECT TOP 10 * FROM CRM_288959_18Ago.dbo.TbAuditoria ORDER BY IdAuditoria DESC
 
 

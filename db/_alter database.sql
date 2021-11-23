@@ -47,9 +47,10 @@
 
 --RESTORE FILELISTONLY
 	-- RESTORE FILELISTONLY	FROM DISK = '/TEMP/dbSigaMaristella_Arquivo01_full.bak'
+	-- RESTORE FILELISTONLY	FROM DISK = 'C:\TEMP\dbSigaDiocesanoMossoro_backup_2021_11_15_220600_9714394.bak'
 
 --RESTORE HEADERONLY
-	--RESTORE HEADERONLY	FROM DISK = 'C:\Restore\dbSigaMontessori.bak'
+	--RESTORE HEADERONLY	FROM DISK = 'C:\Restore\dbSigaDiocesanoMossoro_backup_2021_11_15_220600_9714394.bak'
 
 
 

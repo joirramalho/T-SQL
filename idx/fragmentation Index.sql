@@ -1,6 +1,6 @@
 --23set21
 
-USE dbCrmActivesoft;
+USE dbSigaUKLINK;
 
 SELECT
 	OBJECT_NAME(ind.OBJECT_ID) AS TableName,
