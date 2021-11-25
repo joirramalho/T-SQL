@@ -1,6 +1,6 @@
 --22set21
 
-USE dbCrmActivesoft;
+USE dbSigaModuloAracaju
 
 DECLARE @Database NVARCHAR(255)   
 DECLARE @Table NVARCHAR(255)
@@ -13,7 +13,9 @@ DECLARE TableCursor CURSOR READ_ONLY FOR
     SELECT DB_NAME(), OBJECT_NAME(ind.OBJECT_ID), ind.name, indexstats.avg_fragmentation_in_percent
     FROM sys.dm_db_index_physical_stats(DB_ID(), NULL, NULL, NULL, NULL) indexstats 
     INNER JOIN sys.indexes ind ON ind.object_id = indexstats.object_id  AND ind.index_id = indexstats.index_id 
-    WHERE indexstats.avg_fragmentation_in_percent > 5    AND ind.Name is not null 
+    WHERE indexstats.avg_fragmentation_in_percent > 5    
+    		AND ind.Name is not null
+--    		AND OBJECT_NAME(ind.OBJECT_ID) = 'TbAuditoria'
     ORDER BY indexstats.avg_fragmentation_in_percent DESC
     
     OPEN TableCursor   

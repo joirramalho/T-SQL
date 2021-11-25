@@ -30,7 +30,7 @@ DECLARE @word VARCHAR(50),
 DECLARE load_cursor CURSOR FOR 
     SELECT  [TableName], ColumnName, Description 
     FROM dbo._column_details_extended_property
---    WHERE [TableName] = 'Gen_Orgao' --AND ColumnName = 'IdOrgao'
+--    WHERE [TableName] LIKE 'Gen_Pessoa%' --AND ColumnName = 'IdOrgao'
     
 OPEN load_cursor 
 FETCH NEXT FROM load_cursor INTO @TableName, @ColumnName, @ProductName 
@@ -65,6 +65,9 @@ BEGIN
          SET @word = @ProductName 
          SELECT @newWord = NULL 
          SELECT @newWord = synonym FROM _column_details_extended_property_dictionary WHERE synonym = @word COLLATE Latin1_General_CI_AI
+         
+         IF @@ROWCOUNT = 0
+         	INSERT INTO _column_details_extended_property_dictionary ( synonym ) VALUES ( LOWER( @word ) )
 
          IF @newWord IS NOT NULL 
               SET @newProductName = REPLACE(@newProductName, @ProductName, @newWord) 
