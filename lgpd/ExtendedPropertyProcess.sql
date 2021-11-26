@@ -1,9 +1,5 @@
-SELECT TableName, ColumnName, isPrimaryKey, SUBSTRING( TableName, 0, CHARINDEX('_', TableName, 0 ) ) AS PrefixColumnName, SUBSTRING( TableName, CHARINDEX('_', TableName, 0 ) + 1, LEN(TableName) ) as SufixColumnName, Description
-FROM _column_details_extended_property
-WHERE isPrimaryKey = 1
-	AND ColumnName = 'Id' + SUBSTRING( TableName, CHARINDEX('_', TableName, 0 ) + 1, LEN(TableName) )
-	
 --	UPDATE	_column_details_extended_property	SET	Description = NULL 
+/*
 
 SELECT 
 		TableName, 
@@ -11,17 +7,17 @@ SELECT
 		isPrimaryKey, 
 --		SUBSTRING( TableName, 0, CHARINDEX('_', TableName, 0 ) ) AS PrefixColumnName, 
 --		SUBSTRING( TableName, CHARINDEX('_', TableName, 0 ) + 1, LEN(TableName) ) as SufixColumnName, 
---		dbo.Split_On_Upper_Case(	SUBSTRING( ColumnName, CHARINDEX(' ', ColumnName, 0 ) + 1, LEN( ColumnName ) )	), 
+--		dbo.fn_SplitOnUpperCase(	SUBSTRING( ColumnName, CHARINDEX(' ', ColumnName, 0 ) + 1, LEN( ColumnName ) )	), 
 		Description
 FROM _column_details_extended_property
 WHERE ColumnName LIKE '%situacao%' --OR ColumnName LIKE '%Telefone%' 
-
+*/
 
 
 --Identificador de tabela (PK) com nome do campo compatível com nome da tabela 
 	UPDATE	_column_details_extended_property
 	SET
-	    _column_details_extended_property.Description = 'Identificador de ' + dbo.Split_On_Upper_Case(	SUBSTRING( ColumnName, CHARINDEX(' ', ColumnName, 0 ) + 1, LEN( ColumnName ) )	)
+	    _column_details_extended_property.Description = 'Identificador de ' + dbo.fn_SplitOnUpperCase(	SUBSTRING( ColumnName, CHARINDEX(' ', ColumnName, 0 ) + 1, LEN( ColumnName ) )	)
 	WHERE isPrimaryKey = 1
 		AND ColumnName = 'Id' + SUBSTRING( TableName, CHARINDEX('_', TableName, 0 ) + 1, LEN(TableName) );
 
@@ -48,7 +44,7 @@ WHERE ColumnName LIKE '%situacao%' --OR ColumnName LIKE '%Telefone%'
 	BEGIN
 		UPDATE	_column_details_extended_property
 			SET		Description = IIF( 	@Description IS NOT  NULL, @Description, 
-										COALESCE( @PrefixColumnName, '' ) + dbo.Split_On_Upper_Case( 	SUBSTRING( ColumnName, CHARINDEX( ' ', ColumnName, 0 ) + 1, LEN( ColumnName ) )		) + COALESCE( @SufixColumnName, '' )
+										COALESCE( @PrefixColumnName, '' ) + dbo.fn_SplitOnUpperCase( 	SUBSTRING( ColumnName, CHARINDEX( ' ', ColumnName, 0 ) + 1, LEN( ColumnName ) )		) + COALESCE( @SufixColumnName, '' )
 									)
 			WHERE 	ColumnName LIKE @ColumnName  
 					AND Description IS NULL
@@ -61,5 +57,5 @@ WHERE ColumnName LIKE '%situacao%' --OR ColumnName LIKE '%Telefone%'
 
 -- Descrever demais casos
 	UPDATE	_column_details_extended_property
-			SET		Description = dbo.Split_On_Upper_Case( 	SUBSTRING( ColumnName, CHARINDEX( ' ', ColumnName, 0 ) + 1, LEN( ColumnName ) )		)
+			SET		Description = dbo.fn_SplitOnUpperCase( 	SUBSTRING( ColumnName, CHARINDEX( ' ', ColumnName, 0 ) + 1, LEN( ColumnName ) )		)
 			WHERE 	Description IS NULL;

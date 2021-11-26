@@ -5,22 +5,22 @@
 EXEC dbLogMonitor.dbo.sp_foreachdb N'
     USE ?
 
---    IF NOT EXISTS( SELECT * FROM sys.indexes WHERE name=''IX_TbTituloCobranca_Persistido_DataHora_UltimaAlteracao'' AND object_id = OBJECT_ID(''dbo.TbTituloCobranca_Persistido'') )
---        BEGIN
---            CREATE INDEX [IX_TbTituloCobranca_Persistido_DataHora_UltimaAlteracao] 
---                ON [?].[dbo].[TbTituloCobranca_Persistido] ([DataHora_UltimaAlteracao])
---
---            SELECT DB_NAME()  
---        END
---	 ELSE
---	     BEGIN
---	         SELECT ''JÁ EXISTE IX_TbTituloCobranca_Persistido_DataHora_UltimaAlteracao EM ?''
---	     END
-
     IF NOT EXISTS( SELECT * FROM sys.indexes WHERE name=''IX_TbTituloCobranca_Persistido_DataHora_UltimaAlteracao'' AND object_id = OBJECT_ID(''dbo.TbTituloCobranca_Persistido'') )
         BEGIN
-            SELECT DB_NAME()  
+            CREATE INDEX [IX_TbTituloCobranca_Persistido_DataHora_UltimaAlteracao] 
+                ON [?].[dbo].[TbTituloCobranca_Persistido] ([DataHora_UltimaAlteracao])
+
+            PRINT DB_NAME()  
         END
+	 ELSE
+	     BEGIN
+	         SELECT ''JÁ EXISTE IX_TbTituloCobranca_Persistido_DataHora_UltimaAlteracao EM ?''
+	     END
+
+--    IF NOT EXISTS( SELECT * FROM sys.indexes WHERE name=''IX_TbTituloCobranca_Persistido_DataHora_UltimaAlteracao'' AND object_id = OBJECT_ID(''dbo.TbTituloCobranca_Persistido'') )
+--        BEGIN
+--            PRINT DB_NAME()  
+--        END
 
 '
 ,@print_command_only = 0 -- Obrigatório Gerar script

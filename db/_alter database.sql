@@ -3,7 +3,7 @@
 --ONLINE
 	--ALTER DATABASE dbSigaArvoreSaber SET ONLINE;
 	
-	--ALTER DATABASE dbSigaCarrossel SET OFFLINE;
+	--ALTER DATABASE dbSigaArvoreSaber SET OFFLINE;
                             
 
 	--DROP

@@ -11,21 +11,21 @@
 
 
 /* To prevent any potential data loss issues, you should review this script in detail before running it outside the context of the database designer.*/
-BEGIN TRANSACTION
-SET QUOTED_IDENTIFIER ON
-SET ARITHABORT ON
-SET NUMERIC_ROUNDABORT OFF
-SET CONCAT_NULL_YIELDS_NULL ON
-SET ANSI_NULLS ON
-SET ANSI_PADDING ON
-SET ANSI_WARNINGS ON
-COMMIT
-BEGIN TRANSACTION
-ALTER TABLE dbo._column_details_extended_property ADD
-	IsError bit NOT NULL CONSTRAINT DF__column_details_extended_property_IsError DEFAULT 0,
-	Description varchar(512) NULL
-ALTER TABLE dbo._column_details_extended_property SET (LOCK_ESCALATION = TABLE)
-COMMIT
+--BEGIN TRANSACTION
+--SET QUOTED_IDENTIFIER ON
+--SET ARITHABORT ON
+--SET NUMERIC_ROUNDABORT OFF
+--SET CONCAT_NULL_YIELDS_NULL ON
+--SET ANSI_NULLS ON
+--SET ANSI_PADDING ON
+--SET ANSI_WARNINGS ON
+--COMMIT
+--BEGIN TRANSACTION
+--ALTER TABLE dbo._column_details_extended_property ADD
+--	IsError bit NOT NULL CONSTRAINT DF__column_details_extended_property_IsError DEFAULT 0,
+--	Description varchar(512) NULL
+--ALTER TABLE dbo._column_details_extended_property SET (LOCK_ESCALATION = TABLE)
+--COMMIT
 
 
 
@@ -48,7 +48,9 @@ SELECT
 --     , COLUMNPROPERTY(OBJECT_ID('[' + col.TABLE_SCHEMA + '].[' + col.TABLE_NAME + ']'), col.COLUMN_NAME, 'IsComputed')AS IsComputed
      , CAST(ISNULL(pk.is_primary_key, 0)AS bit)AS IsPrimaryKey
 
-     INTO _column_details_extended_property
+
+--     INTO _column_details_extended_property
+     
      
      FROM INFORMATION_SCHEMA.COLUMNS AS col
        LEFT JOIN(SELECT SCHEMA_NAME(o.schema_id)AS TABLE_SCHEMA
@@ -62,7 +64,7 @@ SELECT
                                                   AND col.TABLE_SCHEMA = pk.TABLE_SCHEMA
                                                   AND col.COLUMN_NAME = pk.COLUMN_NAME
 
- WHERE col.TABLE_NAME NOT IN ('_flyway_schema_history', '_column_details_extended_property', 'sysdiagrams')
+ WHERE col.TABLE_NAME NOT IN ('_flyway_schema_history', '_column_details_extended_property', '_column_details_extended_property_dictionary', '_column_details_extended_property_keyword', 'sysdiagrams')
    AND col.TABLE_SCHEMA = 'dbo'
    AND EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE INFORMATION_SCHEMA.TABLES.TABLE_NAME = col.TABLE_NAME AND INFORMATION_SCHEMA.TABLES.TABLE_TYPE = 'BASE TABLE' )
    
