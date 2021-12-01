@@ -1,16 +1,10 @@
---23nov21
+--30nov21
 
 --Standardize SQL Server data with text lookup and replace function
 	--https://www.mssqltips.com/sqlservertip/1052/standardize-sql-server-data-with-text-lookup-and-replace-function/
 
 --SQL Case Sensitive String Compare
 	--https://stackoverflow.com/questions/3969059/sql-case-sensitive-string-compare/66393472#66393472
-
-
---CREATE TABLE [dbo].[_column_details_extended_property_dictionary] ( 
---    [synonym] 	[VARCHAR] (256) COLLATE SQL_Latin1_General_CP1_CI_AS NULL , 
---    [word] 		[VARCHAR] (256) COLLATE SQL_Latin1_General_CP1_CI_AS NULL  
---) ON [PRIMARY] 
 
 --sp_ExtendedPropertyDictionary
 
@@ -45,7 +39,7 @@ BEGIN
 	WHILE @@FETCH_STATUS = 0 
 	BEGIN 
 		SET @oldProductName = @ProductName 
-	    SET @ProductName = LTRIM(RTRIM(@ProductName)) 
+	    SET @ProductName = LTRIM( RTRIM( @ProductName ) ) 
 	     
 	    SET @newProductName = @ProductName 
 	
@@ -60,11 +54,11 @@ BEGIN
 	              BEGIN 
 	                 
 	                SELECT @newWord = NULL 
-	                SELECT @newWord = synonym FROM _column_details_extended_property_dictionary WHERE synonym = @word COLLATE Latin1_General_CI_AI 
+	                SELECT @newWord = Palavra FROM BdDicionarioDados.dbo.DicionarioDados WHERE Palavra = @word COLLATE Latin1_General_CI_AI 
 	                IF @newWord IS NOT NULL 
-						SET @newProductName = REPLACE(@newProductName, @word, @newWord) 
+						SET @newProductName = REPLACE( @newProductName, @word, @newWord ) 
 	                ELSE
-						INSERT INTO _column_details_extended_property_dictionary( synonym )	VALUES( @word )
+						INSERT INTO BdDicionarioDados.dbo.DicionarioDados( Palavra )	VALUES( LOWER( @word ) )
 	
 	              END 
 	              SET @ProductName = RIGHT(@ProductName, LEN(@ProductName) - @position) 
@@ -73,11 +67,11 @@ BEGIN
 	          
 	         SET @word = @ProductName 
 	         SELECT @newWord = NULL 
-	         SELECT @newWord = synonym FROM _column_details_extended_property_dictionary WHERE synonym = @word COLLATE Latin1_General_CI_AI
+	         SELECT @newWord = Palavra FROM BdDicionarioDados.dbo.DicionarioDados WHERE Palavra = @word COLLATE Latin1_General_CI_AI
 	             	
 	
 	         IF @newWord IS NOT NULL 
-	              SET @newProductName = REPLACE(@newProductName, @ProductName, @newWord) 
+	              SET @newProductName = REPLACE( @newProductName, @ProductName, @newWord ) 
 	    END 
 	
 	    IF  @oldProductName COLLATE Latin1_General_CI_AS  <> @newProductName COLLATE Latin1_General_CI_AS    
@@ -85,7 +79,7 @@ BEGIN
 	--         SELECT @oldProductName AS OldProductName, @newProductName AS NewProductName
 	
 	         UPDATE dbo._column_details_extended_property 
-	         	SET Description =  UPPER(LEFT(@newProductName,1))+LOWER(SUBSTRING(@newProductName,2,LEN(@newProductName)))
+	         	SET Description =  UPPER(LEFT(@newProductName,1)) + LOWER( SUBSTRING(@newProductName,2,LEN(@newProductName)) )
 	         	WHERE TableName = @TableName AND ColumnName = @ColumnName 
 	    END 
 	

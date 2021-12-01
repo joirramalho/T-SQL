@@ -6,9 +6,9 @@ SELECT
     -- 'sh backup-migracao-diff.sh '   + SP.default_database_name, -- LINUX
     -- 'backup-migracao-diff.bat '     + SP.default_database_name, -- VPS
 
-    './migracao-backup-diff.sh ' + SP.default_database_name + ' ' + SP.name,
+    './migracao-backup-diff.sh ' + SP.default_database_name + ' ' + SP.name As [Backup Diff],
 
-    './migracao-restore-full-diff.sh ' + SP.default_database_name + ' ' + SP.name + ' ' + CONVERT( NVARCHAR(MAX), SL.password_hash, 1 ) As LOGIN,
+    './migracao-restore-full-diff.sh ' + SP.default_database_name + ' ' + SP.name + ' ' + CONVERT( NVARCHAR(MAX), SL.password_hash, 1 ) As [Restore Full],
     './add-user-after-migracao.sh ' + SP.default_database_name + ' ' + SP.name + ' ' + CONVERT( NVARCHAR(MAX), SL.password_hash, 1 ) AS LOGIN_EEM
     
     -- ,'ALTER LOGIN ' + SP.name + ' WITH DEFAULT_DATABASE = ' + SP.default_database_name

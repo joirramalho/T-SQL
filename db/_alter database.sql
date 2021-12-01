@@ -1,7 +1,7 @@
 --25set21
 
 --ONLINE
-	--ALTER DATABASE dbSigaArvoreSaber SET ONLINE;
+	--ALTER DATABASE dbSigaImcCorMariaRS SET ONLINE;
 	
 	--ALTER DATABASE dbSigaArvoreSaber SET OFFLINE;
                             
@@ -19,7 +19,7 @@
 
 
 --READ_WRITE & READ_ONLY
-	--ALTER DATABASE dbSigaOneWay    SET  READ_WRITE WITH NO_WAIT
+	--ALTER DATABASE dbSigaImcCorMariaRS    SET  READ_WRITE WITH NO_WAIT
 
 	--ALTER DATABASE dbSigaEcoVillePE    SET  READ_ONLY WITH NO_WAIT
 

@@ -1,4 +1,4 @@
---25nov21
+--30nov21
 
 --SELECT dbo.Split_On_Upper_Case('IdNumeroCNPJ')
 

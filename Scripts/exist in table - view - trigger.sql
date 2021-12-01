@@ -1,3 +1,4 @@
+--27nov21
 -- Exist IN Table, View ou Trigger
 
 SELECT * 
@@ -18,3 +19,23 @@ SELECT DISTINCT
  WHERE m.definition Like '%TbAlunoTurma%';
  
 sp_helptext 'SpAlunoTurmaAlterarTurma2'
+
+
+
+--Find all TABLES/VIEWS containing column with specified name
+	SELECT * --TABLE_NAME, COLUMN_NAME
+	FROM INFORMATION_SCHEMA.COLUMNS
+	WHERE table_schema = 'dbo'
+	AND TABLE_NAME = 'VwLancamentoCobrancaContabil'
+	AND column_name like 'ValorDescontoNaoCondicionadoPROUNI';
+
+
+--Find all TABLES (ONLY) containing column with specified name
+	--	SELECT      c.name  AS 'ColumnName'
+	--	            ,t.name AS 'TableName'
+	--	FROM        sys.columns c
+	--	JOIN        sys.tables  t   ON c.object_id = t.object_id
+	--	WHERE       c.name LIKE '%ValorDescontoNaoCondicionadoPROUNI%'
+	--	ORDER BY    TableName, ColumnName;
+	
+

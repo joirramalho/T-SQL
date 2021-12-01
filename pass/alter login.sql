@@ -8,23 +8,23 @@
 		--CREATE LOGIN [active.filipe] 	WITH PASSWORD=N'*****', DEFAULT_DATABASE=[dbSigaModeloWEB], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
 		--CREATE LOGIN [userEcoVillePE] 	WITH PASSWORD=N'***', DEFAULT_DATABASE=[dbSigaEcoVillePE], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
 
-		--ALTER LOGIN [userRestauraBancoVPS] DISABLE;
+		--ALTER LOGIN [userMUNDODACRIANCA] DISABLE;
 
 			--DROP LOGIN [userINSTBRASILIA];
 
---			ALTER LOGIN [userCEJA] ENABLE;
+--			ALTER LOGIN [userICM_RS] ENABLE;
 
 
 -- PASSWORD
 	--												'1234567890'
-	-- ALTER LOGIN [userSANTAREM] 	WITH PASSWORD = '***'; -- sigainternet userISO_PowerBI service.account
+	-- ALTER LOGIN [userICM_RS] 	WITH PASSWORD = '******'; -- sigainternet userISO_PowerBI service.account
 
 
 
---USE dbActiveVendasBatSantarem;
+--USE dbSigaImcCorMariaRS;
 
 
-	--CREATE USER 	[userSANTAREM] 	FOR LOGIN [userSANTAREM] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
+	--CREATE USER 	[userICM_RS] 	FOR LOGIN [userICM_RS] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
 	
 		--DROP USER [userINSTBRASILIA];
 	
@@ -37,7 +37,7 @@
 			--REVOKE CONNECT  FROM [siga_caruaru];
 
 
-	--ALTER ROLE [db_owner] ADD MEMBER [userSANTAREM];
+	--ALTER ROLE [db_owner] ADD MEMBER [userICM_RS];
 
 	--EXEC master..sp_addsrvrolemember @loginame = N'romario.barbalho', @rolename = N'sysadmin';
 
