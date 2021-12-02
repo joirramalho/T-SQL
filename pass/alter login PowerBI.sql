@@ -1,13 +1,13 @@
---03nov21 UserACSC_PowerBI
+--01dez21 UserACSC_PowerBI
 --19Fev21 - Filipe
 
 
-	--											   '1234567890'
-	CREATE LOGIN [userACSC_PowerBI] WITH PASSWORD=N'***', DEFAULT_DATABASE=[dbSigaDivinoCoracao], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF
+	--											   		'1234567890'
+	CREATE LOGIN [userSANTATEC_PowerBI] WITH PASSWORD=N'****', DEFAULT_DATABASE=[dbSigaSANTATEC], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF
 
 			-- DROP LOGIN [userCOLEGIOEAG_PowerBI]
 	
-	    -- USE [dbSigaCNSPerSocorro]
+	    -- USE [dbSigaImcCorMariaRS]
 	    -- CREATE USER [userACSC_PowerBI] FOR LOGIN [userACSC_PowerBI]
 	    	
 			-- Não precisa
@@ -22,13 +22,13 @@
 	--		SQL09
 		--		dbSigaDivinoCoracao
 		--		dbSigaStCatarina
-		-- 		dbSigaImcCorMariaRS (offline)
+		-- 		dbSigaImcCorMariaRS (offline) -> ONLINE
 		--		dbSigaCNSPerSocorro
 	
 
 -- VIEWs consolidades
-    GRANT SELECT ON dbo.VwPowerBI_AlunoTurma_Consolidado TO rolePowerBI;
     GRANT SELECT ON dbo.VwPowerBI_AlunoTurmaHistorico_Consolidado TO rolePowerBI;
+    GRANT SELECT ON dbo.VwPowerBI_AlunoTurma_Consolidado TO rolePowerBI;
     GRANT SELECT ON dbo.VwPowerBI_Financeiro_Consolidado TO rolePowerBI;
     GRANT SELECT ON dbo.VwPowerBI_LancamentoCobrancaRecebimento_Consolidado TO rolePowerBI;
 

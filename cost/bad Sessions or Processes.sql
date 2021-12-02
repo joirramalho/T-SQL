@@ -1,6 +1,6 @@
 
---04out21
---https://www.dbrnd.com/2017/02/sql-server-script-to-find-bad-sessions-or-processes-block-transaction-waiting-session/
+--01dez21
+	--https://www.dbrnd.com/2017/02/sql-server-script-to-find-bad-sessions-or-processes-block-transaction-waiting-session/
 
 SELECT
 	TOP 25

@@ -1,13 +1,15 @@
 --29nov21
 
-SELECT	last_request_start_time, DB_Name(database_id)  AS [DatabaseName], login_name, 'KILL ' + TRIM( CAST( session_id AS CHAR ) ) + ';' AS [kill], program_name, host_name, [status], login_time, row_count, reads, writes, logical_reads
+SELECT	last_request_start_time, DB_Name(database_id)  AS [DatabaseName], login_name, 'KILL ' + TRIM( CAST( session_id AS CHAR ) ) + ';' AS [kill], program_name, logical_reads, host_name, [status], login_time, row_count, reads, writes
 	-- unsuccessful_logons, last_unsuccessful_logon, last_request_end_time
 FROM	sys.dm_exec_sessions
 WHERE	login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND PROGRAM_NAME NOT LIKE ('ADO_MESSENGER_ADO%')	--IS_USER_PROCESS = 1
 
-	AND DB_Name(database_id) IN ('dbSigaImcCorMariaRS', '', '')
+--	AND DB_Name(database_id) IN ('dbSigaColTiradentes', '', '')
 
---	AND LOGIN_NAME IN ('userSANTAREM','userActivesoft', 'francisco')
+	AND LOGIN_NAME IN ('userActiveCrmSIGAWeb','userActivesoft', 'francisco')
+
+--AND program_name IN ('httpd')
 
 	--AND HOST_NAME IN ('APP')
 	--AND DATEDIFF(MINUTE, LAST_REQUEST_START_TIME, GETDATE()) > 1 -- LOGIN_TIME
@@ -23,7 +25,7 @@ SELECT	DB_Name(database_id)  AS [DatabaseName], count(*) AS QtdeConnections
 FROM	sys.dm_exec_sessions
 WHERE	login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND PROGRAM_NAME NOT LIKE ('ADO_MESSENGER_ADO%')	--IS_USER_PROCESS = 1
 
---	AND DB_Name(database_id) IN ('dbSigaMasterAviação', 'dbSigaParaisoSaber', 'dbSigaEcoVillePE')
+--	AND DB_Name(database_id) IN ('dbSigaColTiradentes', 'dbSigaParaisoSaber', 'dbSigaEcoVillePE')
 
 --	AND LOGIN_NAME IN ('userSANTAREM','userActivesoft', 'francisco')
 
@@ -42,7 +44,7 @@ SELECT	last_request_start_time AS [last_request_Messenger], DB_Name(database_id)
 FROM	sys.dm_exec_sessions
 WHERE login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND PROGRAM_NAME LIKE ('ADO_MESSENGER_ADO%')
 
-	AND DB_Name(database_id) IN ('dbSigaImcCorMariaRS', '', '')
+--	AND DB_Name(database_id) IN ('dbSigaColTiradentes', '', '')
 
 ORDER BY
 	last_request_start_time DESC;

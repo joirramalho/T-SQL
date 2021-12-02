@@ -21,17 +21,14 @@ BEGIN
 	    @oldProductName VARCHAR(500),  
 	    @newWord VARCHAR(50)
 	
-		DECLARE @TableName 			sysname
-		DECLARE @ColumnName 		sysname
-		DECLARE @Description 		VARCHAR(512)
+	DECLARE @TableName 			sysname
+	DECLARE @ColumnName 		sysname
+	DECLARE @Description 		VARCHAR(512)
 	
-	    DECLARE @ProductName VARCHAR(500)
-	--    @ProductID INT 
+    DECLARE @ProductName VARCHAR(500)
 	
 	DECLARE load_cursor CURSOR FOR 
-	    SELECT  [TableName], ColumnName, Description 
-	    FROM dbo._column_details_extended_property
-	    
+	    SELECT  [TableName], ColumnName, Description	FROM dbo._column_details_extended_property
 	    
 	OPEN load_cursor 
 	FETCH NEXT FROM load_cursor INTO @TableName, @ColumnName, @ProductName 
@@ -50,7 +47,7 @@ BEGIN
 	         BEGIN 
 	              SET @word = LTRIM(RTRIM(LEFT(@ProductName, @position - 1))) 
 	              
-	              IF @word <> '' 
+	              IF LEN( @word ) > 1 -- @word <> '' AND 
 	              BEGIN 
 	                 
 	                SELECT @newWord = NULL 
@@ -58,11 +55,16 @@ BEGIN
 	                IF @newWord IS NOT NULL 
 						SET @newProductName = REPLACE( @newProductName, @word, @newWord ) 
 	                ELSE
-						INSERT INTO BdDicionarioDados.dbo.DicionarioDados( Palavra )	VALUES( LOWER( @word ) )
+	                	BEGIN 
+							INSERT INTO BdDicionarioDados.dbo.DicionarioDados( Palavra )	VALUES( LOWER( @word ) )
+							
+							PRINT 'INSERT ' + @newProductName + ' ' + @word
+
+						END
 	
 	              END 
-	              SET @ProductName = RIGHT(@ProductName, LEN(@ProductName) - @position) 
-	              SET @position = CHARINDEX(' ', @ProductName, 1) 
+	              SET @ProductName 	= RIGHT( @ProductName, LEN(@ProductName) - @position ) 
+	              SET @position 	= CHARINDEX( ' ', @ProductName, 1 ) 
 	         END 
 	          
 	         SET @word = @ProductName 
@@ -77,9 +79,10 @@ BEGIN
 	    IF  @oldProductName COLLATE Latin1_General_CI_AS  <> @newProductName COLLATE Latin1_General_CI_AS    
 	    BEGIN 
 	--         SELECT @oldProductName AS OldProductName, @newProductName AS NewProductName
+--		    PRINT @oldProductName + ' UPDATE to ' + @newProductName
 	
 	         UPDATE dbo._column_details_extended_property 
-	         	SET Description =  UPPER(LEFT(@newProductName,1)) + LOWER( SUBSTRING(@newProductName,2,LEN(@newProductName)) )
+	         	SET Description =  UPPER( LEFT( @newProductName, 1 ) ) + LOWER( SUBSTRING( @newProductName, 2, LEN( @newProductName ) ) )
 	         	WHERE TableName = @TableName AND ColumnName = @ColumnName 
 	    END 
 	

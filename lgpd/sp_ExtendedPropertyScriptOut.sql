@@ -3,7 +3,7 @@
 --exec sp_ExtendedPropertyScriptOut NULL, 'data%', 1
 --exec sp_ExtendedPropertyScriptOut 'Gen_PessoaE%', 'nome%', 1
 
---sp_ExtendedPropertyScriptOut @REBUILD = 1
+--	sp_ExtendedPropertyScriptOut @REBUILD = 1		@COLUMN_SEARCH = '%HASH%',
 
 IF (OBJECT_ID('dbo.sp_ExtendedPropertyScriptOut') IS NOT NULL) DROP PROCEDURE sp_ExtendedPropertyScriptOut;
 
@@ -16,13 +16,17 @@ BEGIN
 	
 	SELECT
 	--  SCHEMA_NAME(TABLELIST.schema_id) AS Schema_Name,
---	  	TABLELIST.name AS Table_Name,
---	  	COLLIST.column_id,
---	  	COLLIST.name AS Column_Name,
+	  	TABLELIST.name AS Table_Name,
+	  	COLLIST.column_id,
+	  	COLLIST.name AS Column_Name,
+	  		  	
 		'exec CreateOrUpdateExtendedProperty 	''' +	'table'	+	
 	  	''', '''	+	TABLELIST.name	+
 	  	''', '''	+	COLLIST.name	+
-		''', '''	+	IIF( @REBUILD = 0, COALESCE( CAST( p.value AS VARCHAR(max) ), cdep.Description ), cdep.Description )
+		''', '''	+	IIF( @REBUILD = 0, 
+							COALESCE( CAST( p.value AS VARCHAR(max) ), '0' + cdep.Description ), 
+							cdep.Description + COALESCE( 	( SELECT TOP 1 Sufix FROM _column_details_extended_property_keyword	WHERE COLLIST.name LIKE ColumnName ORDER BY ID ), '' )
+							)
 		+ '''' AS [ExtendedPropertyScriptOut]
 	
 	FROM 	sys.tables AS TABLELIST
@@ -30,11 +34,11 @@ BEGIN
 	LEFT 	JOIN sys.extended_properties 			AS p 		ON p.major_id = TABLELIST.object_id 		AND p.minor_id = COLLIST.column_id AND p.class = 1
 	LEFT 	JOIN _column_details_extended_property  AS cdep 	ON cdep.TableName = TABLELIST.name AND cdep.ColumnName = COLLIST.name
 	WHERE 	TABLELIST.name NOT IN ('_flyway_schema_history', '_column_details_extended_property', '_column_details_extended_property_dictionary', '_column_details_extended_property_keyword', 'sysdiagrams' )
---		AND ExtendedPropertyScriptOut IS NOT NULL
-		AND
-		(
-			( @TABLE_SEARCH IS NOT NULL AND TABLELIST.name LIKE @TABLE_SEARCH ) OR ( @COLUMN_SEARCH IS NOT NULL AND COLLIST.name LIKE @COLUMN_SEARCH ) OR ( @TABLE_SEARCH IS NULL AND @COLUMN_SEARCH IS NULL )
-		)
+		--		AND ExtendedPropertyScriptOut IS NOT NULL
+--		AND
+--		(
+--			( @TABLE_SEARCH IS NOT NULL AND TABLELIST.name LIKE @TABLE_SEARCH ) OR ( @COLUMN_SEARCH IS NOT NULL AND COLLIST.name LIKE @COLUMN_SEARCH ) OR ( @TABLE_SEARCH IS NULL AND @COLUMN_SEARCH IS NULL )
+--		)
 			
 	--UNION ALL
 	--
@@ -58,6 +62,6 @@ BEGIN
 	--	AND COLLIST.name LIKE '%' + @COLUMN_SEARCH + '%'
 	--	AND TABLELIST.name LIKE '%' + @TABLE_SEARCH + '%'
 	
-	ORDER BY TABLELIST.name, COLLIST.name
+	ORDER BY TABLELIST.name, COLLIST.column_id
 
 END 
