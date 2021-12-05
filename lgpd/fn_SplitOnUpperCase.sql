@@ -1,6 +1,6 @@
 --02dez21
 
---SELECT dbo.fn_SplitOnUpperCase('AnexoSIAIDPAnexo14')
+--SELECT dbo.fn_SplitOnUpperCase('NormaExtincao')
 
 IF (OBJECT_ID('dbo.fn_SplitOnUpperCase') IS NOT NULL) DROP FUNCTION fn_SplitOnUpperCase;
 

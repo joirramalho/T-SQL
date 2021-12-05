@@ -1,4 +1,4 @@
---20set21
+--04dez21
 --04jul21
 
 -- use dbCrmActivesoft
@@ -47,9 +47,7 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 				-- DBCC SHRINKFILE ( dbSigaSalesianoSaoJose_Arquivo_log , 0, TRUNCATEONLY)
 
                 -- DBCC SHRINKFILE (dbSigaSalePetrolina_Arquivo03_log, 0, TRUNCATEONLY) 
-                -- DBCC SHRINKFILE (dbSigaContemporaneo_Arquivo01, 0, TRUNCATEONLY) 
-
-                
+                 
 
                 -- DBCC SHRINKFILE (dbCantinaActive_log, 0, TRUNCATEONLY) 
                 
@@ -64,5 +62,5 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 ,@state_desc = N'ONLINE'
 ,@user_only = 1
 ,@suppress_quotename=1
-,@name_pattern='CRM';
+,@name_pattern='dbCrmActivesoft';
 -- ,@database_list = 'dbSigaCastroBarreto' --06

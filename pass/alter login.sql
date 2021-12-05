@@ -30,7 +30,7 @@
 	
 	
 	--	DEFAULT_DATABASE
-			--ALTER LOGIN 	[userWillyJanz] 	WITH  DEFAULT_DATABASE=[dbSigaWillyJanz];
+			--ALTER LOGIN 	[active.anderson] 	WITH  DEFAULT_DATABASE=[master];
 	
 	
 		--GRANT CONNECT  TO [userSANTAREM];

@@ -1,4 +1,4 @@
---29set21
+--04dez21
 
 EXEC dbLogMonitor.dbo.sp_foreachdb N'
     ALTER DATABASE [?] SET RECOVERY SIMPLE WITH NO_WAIT;
@@ -15,10 +15,13 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 
 	IF CHARINDEX( ''dbSiga'', ''?'') > 0
 		DBCC SHRINKFILE (dbSiga_Log , 0, TRUNCATEONLY);
+
 	ELSE IF ( CHARINDEX( ''dbActiveBib'', ''?'') > 0 ) OR ( CHARINDEX( ''dbBib'', ''?'') > 0 )
 		DBCC SHRINKFILE (dbSigaBiblioteca_Log , 0, TRUNCATEONLY); 
+
 	ELSE IF ( CHARINDEX( ''dbCantina'', ''?'') > 0 ) OR ( CHARINDEX( ''dbActive'', ''?'') > 0 )
 		DBCC SHRINKFILE (dbCantinaActive_log , 0, TRUNCATEONLY);
+
 	ELSE IF ( CHARINDEX( ''dbCrmActivesoft'', ''?'') > 0 ) 
 		DBCC SHRINKFILE (dbActiveCRM2_Log , 0, TRUNCATEONLY);
 	ELSE 

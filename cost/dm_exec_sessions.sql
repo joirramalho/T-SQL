@@ -7,7 +7,7 @@ WHERE	login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' 
 
 --	AND DB_Name(database_id) IN ('dbSigaColTiradentes', '', '')
 
-	AND LOGIN_NAME IN ('userActiveCrmSIGAWeb','userActivesoft', 'francisco')
+--	AND LOGIN_NAME IN ('userActiveCrmSIGAWeb','userActivesoft', 'francisco')
 
 --AND program_name IN ('httpd')
 

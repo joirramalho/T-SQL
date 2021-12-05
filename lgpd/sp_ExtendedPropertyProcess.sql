@@ -1,3 +1,5 @@
+--03dez21
+
 --	UPDATE	_column_details_extended_property	SET	Description = NULL 
 /*
 
@@ -23,7 +25,7 @@ WHERE ColumnName LIKE '%situacao%' --OR ColumnName LIKE '%Telefone%'
 
 	--Identificador de tabela (PK) existente em outras tabelas como FK 
 	UPDATE	_column_details_extended_property
-	SET		Description = ( SELECT Description FROM _column_details_extended_property base WHERE base.ColumnName = _column_details_extended_property.ColumnName AND Description IS NOT NULL )
+	SET		Description = ( SELECT TOP 1 Description FROM _column_details_extended_property base WHERE base.ColumnName = _column_details_extended_property.ColumnName AND Description IS NOT NULL )
 	WHERE 	Description IS NULL;
 
 	
@@ -35,7 +37,7 @@ WHERE ColumnName LIKE '%situacao%' --OR ColumnName LIKE '%Telefone%'
 	DECLARE @SufixColumnName 	VARCHAR(256)
 	DECLARE @Description 		VARCHAR(512)
 	
-	DECLARE c CURSOR FOR SELECT * FROM _column_details_extended_property_keyword WHERE ( Description IS NOT NULL OR Prefix IS NOT NULL OR Sufix IS NOT NULL ) ORDER BY ID
+	DECLARE c CURSOR FOR SELECT * FROM BdDicionarioDados.dbo.keyword k WHERE ( Description IS NOT NULL OR Prefix IS NOT NULL OR Sufix IS NOT NULL ) ORDER BY ID
 	OPEN c
 	FETCH NEXT FROM c INTO @ID, @ColumnName, @Description, @PrefixColumnName, @SufixColumnName
 	WHILE @@FETCH_STATUS =0

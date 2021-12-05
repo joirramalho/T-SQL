@@ -28,7 +28,7 @@ BEGIN
     DECLARE @ProductName VARCHAR(500)
 	
 	DECLARE load_cursor CURSOR FOR 
-	    SELECT  [TableName], ColumnName, Description	FROM dbo._column_details_extended_property
+	    SELECT  [TableName], ColumnName, Description	FROM dbo._column_details_extended_property WHERE Description LIKE '%Eco%'
 	    
 	OPEN load_cursor 
 	FETCH NEXT FROM load_cursor INTO @TableName, @ColumnName, @ProductName 
@@ -45,11 +45,15 @@ BEGIN
 	    BEGIN 
 	         WHILE @position > 0 
 	         BEGIN 
-	              SET @word = LTRIM(RTRIM(LEFT(@ProductName, @position - 1))) 
+	              SET @word = LTRIM( RTRIM( LEFT(@ProductName, @position	- 1		))) 
 	              
-	              IF LEN( @word ) > 1 -- @word <> '' AND 
+	              
+	              IF  @word <> '' AND LEN( @word ) > 1 
 	              BEGIN 
-	                 
+
+			PRINT @ProductName
+	        PRINT @word
+		              
 	                SELECT @newWord = NULL 
 	                SELECT @newWord = Palavra FROM BdDicionarioDados.dbo.DicionarioDados WHERE Palavra = @word COLLATE Latin1_General_CI_AI 
 	                IF @newWord IS NOT NULL 
@@ -75,6 +79,8 @@ BEGIN
 	         IF @newWord IS NOT NULL 
 	              SET @newProductName = REPLACE( @newProductName, @ProductName, @newWord ) 
 	    END 
+	    
+	    PRINT '---'
 	
 	    IF  @oldProductName COLLATE Latin1_General_CI_AS  <> @newProductName COLLATE Latin1_General_CI_AS    
 	    BEGIN 

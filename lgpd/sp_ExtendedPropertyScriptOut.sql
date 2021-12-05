@@ -1,3 +1,5 @@
+--03dez21
+
 --exec sp_ExtendedPropertyScriptOut NULL, NULL, 1
 --exec sp_ExtendedPropertyScriptOut 'Gen_Pessoa%', NULL,  1
 --exec sp_ExtendedPropertyScriptOut NULL, 'data%', 1
@@ -24,8 +26,8 @@ BEGIN
 	  	''', '''	+	TABLELIST.name	+
 	  	''', '''	+	COLLIST.name	+
 		''', '''	+	IIF( @REBUILD = 0, 
-							COALESCE( CAST( p.value AS VARCHAR(max) ), '0' + cdep.Description ), 
-							cdep.Description + COALESCE( 	( SELECT TOP 1 Sufix FROM _column_details_extended_property_keyword	WHERE COLLIST.name LIKE ColumnName ORDER BY ID ), '' )
+							COALESCE( CAST( p.value AS VARCHAR(max) ), cdep.Description ), 
+							cdep.Description + COALESCE( 	( SELECT TOP 1 Sufix FROM BdDicionarioDados.dbo.keyword k 	WHERE COLLIST.name LIKE ColumnName ORDER BY ID ), '' )
 							)
 		+ '''' AS [ExtendedPropertyScriptOut]
 	
@@ -33,7 +35,7 @@ BEGIN
 	INNER 	JOIN sys.all_columns 					AS COLLIST	ON TABLELIST.object_ID = COLLIST.object_id
 	LEFT 	JOIN sys.extended_properties 			AS p 		ON p.major_id = TABLELIST.object_id 		AND p.minor_id = COLLIST.column_id AND p.class = 1
 	LEFT 	JOIN _column_details_extended_property  AS cdep 	ON cdep.TableName = TABLELIST.name AND cdep.ColumnName = COLLIST.name
-	WHERE 	TABLELIST.name NOT IN ('_flyway_schema_history', '_column_details_extended_property', '_column_details_extended_property_dictionary', '_column_details_extended_property_keyword', 'sysdiagrams' )
+	WHERE 	TABLELIST.name NOT IN ('_flyway_schema_history', '_column_details_extended_property', 'sysdiagrams' )
 		--		AND ExtendedPropertyScriptOut IS NOT NULL
 --		AND
 --		(

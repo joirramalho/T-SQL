@@ -1,6 +1,6 @@
 --22set21
 
-USE dbSigaModuloAracaju
+	--USE dbSigaModuloAracaju
 
 DECLARE @Database NVARCHAR(255)   
 DECLARE @Table NVARCHAR(255)

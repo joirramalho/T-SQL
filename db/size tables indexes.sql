@@ -1,5 +1,5 @@
 --20set21
---https://www.sqlshack.com/how-to-monitor-total-sql-server-indexes-size/
+	--https://www.sqlshack.com/how-to-monitor-total-sql-server-indexes-size/
 
 --USE db;
 
