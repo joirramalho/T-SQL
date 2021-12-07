@@ -1,5 +1,5 @@
---13set21
---https://www.dbrnd.com/2016/12/sql-server-script-to-find-waiting-queries-which-are-block-by-other-running-queries-find-block-transaction/
+--06dez21
+	--https://www.dbrnd.com/2016/12/sql-server-script-to-find-waiting-queries-which-are-block-by-other-running-queries-find-block-transaction/
               
 SELECT
 	dowt.session_id
@@ -35,13 +35,11 @@ WHERE
 	
 SELECT
 	der.session_id
-	,
-	ib.event_info AS QueryText
+	,ib.event_info AS QueryText
 FROM
 	sys.dm_exec_requests AS der
 JOIN sys.dm_exec_sessions AS des 
-	ON
-	des.session_id = der.session_id
+	ON	des.session_id = der.session_id
 CROSS APPLY sys.dm_exec_input_buffer(der.session_id,
 	der.request_id) AS ib
 WHERE

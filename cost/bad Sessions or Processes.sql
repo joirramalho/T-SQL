@@ -7,11 +7,11 @@ SELECT
 	TOP 25
 	CONVERT(float, cpu / datediff(SECOND, login_time, getdate())) AS PScore -- find block process
 	,spid
+	,blocked
 	,RTRIM(status) AS status
 	,login_time
 	,last_batch
 --	,cmd
-	,blocked
 	,open_tran
 	,CONVERT(varchar(64), db_name(dbid)) AS DBName
 	,RTRIM(waitresource) AS WaitResource

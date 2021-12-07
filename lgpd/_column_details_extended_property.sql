@@ -1,15 +1,11 @@
---03dez21
-
--- Collation?!
-
+--06dez21
 
 -- Bdc.dbo.[_column_details_extended_property] definition
 
--- Drop table
+	--DROP TABLE Bdc.dbo.[_column_details_extended_property];
 
--- DROP TABLE Bdc.dbo.[_column_details_extended_property];
-
---	TRUNCATE TABLE Bdc.dbo.[_column_details_extended_property];
+	--TRUNCATE TABLE Bdc.dbo.[_column_details_extended_property];
+		--SELECT * FROM _column_details_extended_property
 
 
 IF OBJECT_ID('dbo._column_details_extended_property') IS  NULL
@@ -30,8 +26,21 @@ IF OBJECT_ID('dbo._column_details_extended_property') IS  NULL
 	);
 
 
+--TABLES & VIEWS
+INSERT	INTO _column_details_extended_property ( [Database], Owner, TableName )
+	SELECT 
+		col.TABLE_CATALOG AS [Database]
+	     , col.TABLE_SCHEMA AS Owner
+	     , col.TABLE_NAME AS TableName
 
-INSERT     INTO _column_details_extended_property 
+	FROM INFORMATION_SCHEMA.TABLES AS col
+
+ WHERE col.TABLE_NAME NOT IN ('_flyway_schema_history', '_column_details_extended_property', 'sysdiagrams')   
+ ORDER BY col.TABLE_NAME;
+ 
+
+-- COLUMNs
+INSERT	INTO _column_details_extended_property 
 	SELECT 
 		col.TABLE_CATALOG AS [Database]
 	     , col.TABLE_SCHEMA AS Owner
@@ -53,8 +62,7 @@ INSERT     INTO _column_details_extended_property
 	     0, 	-- WARNIG
 	     NULL
 
---     INTO _column_details_extended_property
-     
+--INTO _column_details_extended_property
      
 	FROM INFORMATION_SCHEMA.COLUMNS AS col
 	LEFT JOIN(	SELECT SCHEMA_NAME(o.schema_id)AS TABLE_SCHEMA
@@ -73,4 +81,3 @@ INSERT     INTO _column_details_extended_property
    AND EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE INFORMATION_SCHEMA.TABLES.TABLE_NAME = col.TABLE_NAME AND INFORMATION_SCHEMA.TABLES.TABLE_TYPE = 'BASE TABLE' )
    
  ORDER BY col.TABLE_NAME, col.ORDINAL_POSITION;
- 

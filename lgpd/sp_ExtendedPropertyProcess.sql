@@ -1,8 +1,8 @@
---03dez21
+--06dez21
 
 --	UPDATE	_column_details_extended_property	SET	Description = NULL 
-/*
 
+/*
 SELECT 
 		TableName, 
 		ColumnName, 
@@ -15,7 +15,12 @@ FROM _column_details_extended_property
 WHERE ColumnName LIKE '%situacao%' --OR ColumnName LIKE '%Telefone%' 
 */
 
+-- Descrever TABLES 
+	UPDATE	_column_details_extended_property
+	SET		Description = 'Tabela de ' + dbo.fn_SplitOnUpperCase( 	SUBSTRING( TableName,  CHARINDEX( '_', TableName ) + 1, LEN( TableName ) )		)
+	WHERE 	LEFT( TableName, 3 ) <> 'vw_' AND ColumnName IS NULL
 
+	
 --Identificador de tabela (PK) com nome do campo compatível com nome da tabela 
 	UPDATE	_column_details_extended_property
 	SET		_column_details_extended_property.Description = 'Identificador de ' + dbo.fn_SplitOnUpperCase(	SUBSTRING( ColumnName, CHARINDEX(' ', ColumnName, 0 ) + 1, LEN( ColumnName ) )	)
@@ -32,7 +37,7 @@ WHERE ColumnName LIKE '%situacao%' --OR ColumnName LIKE '%Telefone%'
 
 -- Descrever casos específicos
 	DECLARE @ID INT
-	DECLARE @ColumnName 		VARCHAR(32)
+	DECLARE @ColumnName 		sysname
 	DECLARE @PrefixColumnName 	VARCHAR(32)
 	DECLARE @SufixColumnName 	VARCHAR(256)
 	DECLARE @Description 		VARCHAR(512)
@@ -45,7 +50,7 @@ WHERE ColumnName LIKE '%situacao%' --OR ColumnName LIKE '%Telefone%'
 		UPDATE	_column_details_extended_property
 			SET		Description = IIF( 	@Description IS NOT  NULL, @Description, 
 										COALESCE( @PrefixColumnName, '' ) + dbo.fn_SplitOnUpperCase( 	SUBSTRING( ColumnName, CHARINDEX( ' ', ColumnName, 0 ) + 1, LEN( ColumnName ) )		)
-									) --  + COALESCE( @SufixColumnName, '' )
+									)  + ' ' + COALESCE( @SufixColumnName, '' )
 			WHERE 	ColumnName LIKE @ColumnName  
 					AND Description IS NULL
 	
@@ -59,3 +64,22 @@ WHERE ColumnName LIKE '%situacao%' --OR ColumnName LIKE '%Telefone%'
 	UPDATE	_column_details_extended_property
 	SET		Description = dbo.fn_SplitOnUpperCase( 	SUBSTRING( ColumnName, CHARINDEX( ' ', ColumnName, 0 ) + 1, LEN( ColumnName ) )		)
 	WHERE 	Description IS NULL;
+
+
+
+-- Descrever demais casos
+	UPDATE	_column_details_extended_property
+	SET		Description = dbo.fn_SplitOnUpperCase( 	SUBSTRING( ColumnName, CHARINDEX( ' ', ColumnName, 0 ) + 1, LEN( ColumnName ) )		)
+	WHERE 	Description IS NULL;
+
+
+
+
+
+--SELECT TableName, SUBSTRING( TableName,  CHARINDEX( '_', TableName ) + 1, LEN( TableName ) )
+--,dbo.fn_SplitOnUpperCase( 	SUBSTRING( TableName,  CHARINDEX( '_', TableName ) + 1, LEN( TableName ) )		) 
+--FROM _column_details_extended_property
+--WHERE LEFT( TableName, 3 ) <> 'vw_' AND ColumnName IS NULL
+
+
+EXEC dbo.sp_ExtendedPropertyDictionary

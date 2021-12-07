@@ -1,8 +1,8 @@
---25nov21
+--06dez21
 
 IF (OBJECT_ID('dbo.sp_CreateOrUpdateExtendedProperty') IS NOT NULL) DROP PROCEDURE sp_CreateOrUpdateExtendedProperty;
 
-CREATE PROCEDURE sp_CreateOrUpdateExtendedProperty( @ObjectType CHAR(8), @ObjectName VARCHAR(64), @ColumnName VARCHAR(64), @Description VARCHAR(512) )
+CREATE PROCEDURE sp_CreateOrUpdateExtendedProperty( @ObjectType CHAR(8), @ObjectName sysname, @ColumnName sysname, @Description VARCHAR(512) )
 AS
 BEGIN
     SET NOCOUNT ON;

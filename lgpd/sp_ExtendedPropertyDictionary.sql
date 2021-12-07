@@ -1,4 +1,4 @@
---30nov21
+--06dez21
 
 --Standardize SQL Server data with text lookup and replace function
 	--https://www.mssqltips.com/sqlservertip/1052/standardize-sql-server-data-with-text-lookup-and-replace-function/
@@ -16,7 +16,7 @@ BEGIN
     SET NOCOUNT ON;
 
 	DECLARE @word VARCHAR(50),  
-	    @position INT,  
+	    @position INT,
 	    @newProductName VARCHAR(500),  
 	    @oldProductName VARCHAR(500),  
 	    @newWord VARCHAR(50)
@@ -28,75 +28,76 @@ BEGIN
     DECLARE @ProductName VARCHAR(500)
 	
 	DECLARE load_cursor CURSOR FOR 
-	    SELECT  [TableName], ColumnName, Description	FROM dbo._column_details_extended_property WHERE Description LIKE '%Eco%'
+	    SELECT  [TableName], ColumnName, Description	FROM dbo._column_details_extended_property 
+--	    WHERE Description LIKE '%Identificador de Despesa Categoria Economica%' AND TableName = 'Anexo01_DespesaCategoriaEconomica'
 	    
 	OPEN load_cursor 
 	FETCH NEXT FROM load_cursor INTO @TableName, @ColumnName, @ProductName 
 	
 	WHILE @@FETCH_STATUS = 0 
-	BEGIN 
-		SET @oldProductName = @ProductName 
-	    SET @ProductName = LTRIM( RTRIM( @ProductName ) ) 
-	     
-	    SET @newProductName = @ProductName 
+		BEGIN 
+			SET @oldProductName = @ProductName 
+		    SET @ProductName = LTRIM( RTRIM( @ProductName ) ) 
+		     
+		    SET @newProductName = @ProductName 
+		
+		    SET @position = CHARINDEX(' ', @ProductName, 1) 
+		    
+		    
+	--	    BEGIN 
+			WHILE @position > 0
+				BEGIN
+					IF @position <> LEN( @ProductName ) 
+			         	SET @word = LTRIM( RTRIM( LEFT(@ProductName, @position	- 1	)))
+					ELSE 
+						SET @word = LTRIM( RTRIM( LEFT(@ProductName, @position		)))
 	
-	    SET @position = CHARINDEX(' ', @ProductName, 1) 
-	
-	    BEGIN 
-	         WHILE @position > 0 
-	         BEGIN 
-	              SET @word = LTRIM( RTRIM( LEFT(@ProductName, @position	- 1		))) 
-	              
-	              
-	              IF  @word <> '' AND LEN( @word ) > 1 
-	              BEGIN 
-
-			PRINT @ProductName
-	        PRINT @word
 		              
-	                SELECT @newWord = NULL 
-	                SELECT @newWord = Palavra FROM BdDicionarioDados.dbo.DicionarioDados WHERE Palavra = @word COLLATE Latin1_General_CI_AI 
-	                IF @newWord IS NOT NULL 
-						SET @newProductName = REPLACE( @newProductName, @word, @newWord ) 
-	                ELSE
-	                	BEGIN 
-							INSERT INTO BdDicionarioDados.dbo.DicionarioDados( Palavra )	VALUES( LOWER( @word ) )
-							
-							PRINT 'INSERT ' + @newProductName + ' ' + @word
+					IF  @word <> '' 
+						BEGIN 
+			                SELECT @newWord = NULL 
+			                SELECT @newWord = Palavra FROM BdDicionarioDados.dbo.DicionarioDados WHERE Palavra = @word COLLATE Latin1_General_CI_AI 
+		
+			                IF @newWord IS NOT NULL 
+								SET @newProductName = REPLACE( @newProductName, @word, @newWord ) 
+			                ELSE
+								INSERT INTO BdDicionarioDados.dbo.DicionarioDados( Palavra )	VALUES( LOWER( @word ) )
+						END 
 
-						END
-	
-	              END 
-	              SET @ProductName 	= RIGHT( @ProductName, LEN(@ProductName) - @position ) 
-	              SET @position 	= CHARINDEX( ' ', @ProductName, 1 ) 
-	         END 
+					SET @ProductName 	= RIGHT( @ProductName, LEN(@ProductName) - @position ) 
+					SET @position 	= CHARINDEX( ' ', @ProductName, 1 )
+			              
+		
+					IF 	@position = 0 AND LEN( @ProductName ) > 0
+						SET @position = LEN( @ProductName ) 
+				END
 	          
-	         SET @word = @ProductName 
+	         SET 	@word = @ProductName
+	         
 	         SELECT @newWord = NULL 
 	         SELECT @newWord = Palavra FROM BdDicionarioDados.dbo.DicionarioDados WHERE Palavra = @word COLLATE Latin1_General_CI_AI
 	             	
 	
 	         IF @newWord IS NOT NULL 
 	              SET @newProductName = REPLACE( @newProductName, @ProductName, @newWord ) 
-	    END 
-	    
-	    PRINT '---'
+	--	    END 
 	
-	    IF  @oldProductName COLLATE Latin1_General_CI_AS  <> @newProductName COLLATE Latin1_General_CI_AS    
-	    BEGIN 
-	--         SELECT @oldProductName AS OldProductName, @newProductName AS NewProductName
---		    PRINT @oldProductName + ' UPDATE to ' + @newProductName
-	
-	         UPDATE dbo._column_details_extended_property 
-	         	SET Description =  UPPER( LEFT( @newProductName, 1 ) ) + LOWER( SUBSTRING( @newProductName, 2, LEN( @newProductName ) ) )
-	         	WHERE TableName = @TableName AND ColumnName = @ColumnName 
-	    END 
-	
-	    FETCH NEXT FROM load_cursor INTO @TableName, @ColumnName, @ProductName 
-	END 
-	
+		    
+		    IF  @oldProductName COLLATE Latin1_General_CI_AS  <> @newProductName COLLATE Latin1_General_CI_AS    
+			    BEGIN 
+					IF @ColumnName IS NOT NULL
+					    UPDATE dbo._column_details_extended_property 
+				         	SET Description =  UPPER( LEFT( @newProductName, 1 ) ) + LOWER( SUBSTRING( @newProductName, 2, LEN( @newProductName ) ) )
+				         	WHERE TableName = @TableName AND ColumnName = @ColumnName 
+				    ELSE 
+					    UPDATE dbo._column_details_extended_property 
+				         	SET Description =  UPPER( LEFT( @newProductName, 1 ) ) + LOWER( SUBSTRING( @newProductName, 2, LEN( @newProductName ) ) )
+				         	WHERE TableName = @TableName AND ColumnName IS NULL
+			    END 
+		
+		    FETCH NEXT FROM load_cursor INTO @TableName, @ColumnName, @ProductName 
+		END
 	
 	CLOSE load_cursor 
 	DEALLOCATE load_cursor
-
 END

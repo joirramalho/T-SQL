@@ -1,0 +1,2 @@
+--05dez21
+	--https://www.sqlshack.com/t-sql-regex-commands-in-sql-server/
