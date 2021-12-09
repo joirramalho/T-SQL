@@ -3,7 +3,7 @@
 --ONLINE
 	--ALTER DATABASE dbSigaImcCorMariaRS SET ONLINE;
 	
-	--ALTER DATABASE dbSigaArvoreSaber SET OFFLINE;
+	--ALTER DATABASE dbSigaEDUCACIONALMAC SET OFFLINE;
                             
 
 	--DROP

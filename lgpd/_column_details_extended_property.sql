@@ -4,14 +4,14 @@
 
 	--DROP TABLE Bdc.dbo.[_column_details_extended_property];
 
-	--TRUNCATE TABLE Bdc.dbo.[_column_details_extended_property];
+	--TRUNCATE TABLE dbo.[_column_details_extended_property];
 		--SELECT * FROM _column_details_extended_property
-
 
 IF OBJECT_ID('dbo._column_details_extended_property') IS  NULL
 	CREATE TABLE dbo.[_column_details_extended_property] (
 		[Database] nvarchar(128) COLLATE SQL_Latin1_General_CP1_CI_AI NULL,
 		Owner nvarchar(128) COLLATE SQL_Latin1_General_CP1_CI_AI NULL,
+		TableType	varchar(10),
 		TableName sysname COLLATE SQL_Latin1_General_CP1_CI_AI NOT NULL,
 		ColumnName sysname COLLATE SQL_Latin1_General_CP1_CI_AI NULL,
 		OrdinalPosition int NULL,
@@ -25,18 +25,21 @@ IF OBJECT_ID('dbo._column_details_extended_property') IS  NULL
 		Description varchar(512) COLLATE SQL_Latin1_General_CP1_CI_AI NULL
 	);
 
-
 --TABLES & VIEWS
-INSERT	INTO _column_details_extended_property ( [Database], Owner, TableName )
-	SELECT 
-		col.TABLE_CATALOG AS [Database]
-	     , col.TABLE_SCHEMA AS Owner
-	     , col.TABLE_NAME AS TableName
+	INSERT	INTO _column_details_extended_property ( [Database], Owner, TableType, TableName )
+		SELECT 
+			col.TABLE_CATALOG AS [Database]
+		    ,col.TABLE_SCHEMA AS Owner
+		    ,col.TABLE_TYPE AS TableType	     
+		    ,col.TABLE_NAME AS TableName
+		FROM INFORMATION_SCHEMA.TABLES AS col
+		WHERE col.TABLE_NAME NOT IN ('_flyway_schema_history', '_column_details_extended_property', 'sysdiagrams')
+			AND NOT EXISTS (SELECT * FROM _column_details_extended_property cdep WHERE col.TABLE_NAME = cdep.TableName )
+		ORDER BY col.TABLE_NAME;
 
-	FROM INFORMATION_SCHEMA.TABLES AS col
+	DELETE _column_details_extended_property 
+		WHERE 	NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES tables WHERE tables.TABLE_NAME = _column_details_extended_property.TableName )
 
- WHERE col.TABLE_NAME NOT IN ('_flyway_schema_history', '_column_details_extended_property', 'sysdiagrams')   
- ORDER BY col.TABLE_NAME;
  
 
 -- COLUMNs
@@ -44,6 +47,7 @@ INSERT	INTO _column_details_extended_property
 	SELECT 
 		col.TABLE_CATALOG AS [Database]
 	     , col.TABLE_SCHEMA AS Owner
+	     , 'COLUMN' AS TableType
 	     , col.TABLE_NAME AS TableName
 	     , col.COLUMN_NAME AS ColumnName
 	     , col.ORDINAL_POSITION AS OrdinalPosition
@@ -54,16 +58,13 @@ INSERT	INTO _column_details_extended_property
 	     , CAST(CASE col.IS_NULLABLE
 	                WHEN 'NO' THEN 0
 	                ELSE 1
-	            END AS bit)AS IsNullable
-	            
+	            END AS bit)AS IsNullable       
 	--     , COLUMNPROPERTY(OBJECT_ID('[' + col.TABLE_SCHEMA + '].[' + col.TABLE_NAME + ']'), col.COLUMN_NAME, 'IsIdentity')AS IsIdentity
 	--     , COLUMNPROPERTY(OBJECT_ID('[' + col.TABLE_SCHEMA + '].[' + col.TABLE_NAME + ']'), col.COLUMN_NAME, 'IsComputed')AS IsComputed
-	     , CAST(ISNULL(pk.is_primary_key, 0)AS bit)AS IsPrimaryKey,
+	     , CAST(ISNULL(pk.is_primary_key, 0) AS bit)AS IsPrimaryKey,
 	     0, 	-- WARNIG
 	     NULL
-
---INTO _column_details_extended_property
-     
+--INTO _column_details_extended_property   
 	FROM INFORMATION_SCHEMA.COLUMNS AS col
 	LEFT JOIN(	SELECT SCHEMA_NAME(o.schema_id)AS TABLE_SCHEMA
                       , o.name AS TABLE_NAME

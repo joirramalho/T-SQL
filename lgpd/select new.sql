@@ -1,3 +1,6 @@
+--select * 	from sys.extended_properties 
+
+
 SELECT --objects AND columns
 	CASE WHEN ob.parent_object_id>0 THEN OBJECT_SCHEMA_NAME(ob.parent_object_id) + '.' + OBJECT_NAME(ob.parent_object_id) + '.' + ob.name 
 		ELSE OBJECT_SCHEMA_NAME(ob.object_id)+'.'+ob.name 

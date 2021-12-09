@@ -1,4 +1,4 @@
---06dez21
+--09dez21
 
 --Standardize SQL Server data with text lookup and replace function
 	--https://www.mssqltips.com/sqlservertip/1052/standardize-sql-server-data-with-text-lookup-and-replace-function/
@@ -8,13 +8,13 @@
 
 --sp_ExtendedPropertyDictionary
 
-IF (OBJECT_ID('dbo.sp_ExtendedPropertyDictionary') IS NOT NULL) DROP PROCEDURE sp_ExtendedPropertyDictionary;
+IF (OBJECT_ID('dbo.sp_ExtendedPropertyDictionary') IS NOT NULL) DROP PROCEDURE dbo.sp_ExtendedPropertyDictionary;
 
-CREATE PROCEDURE sp_ExtendedPropertyDictionary
+CREATE PROCEDURE dbo.sp_ExtendedPropertyDictionary
 AS
 BEGIN
     SET NOCOUNT ON;
-
+   
 	DECLARE @word VARCHAR(50),  
 	    @position INT,
 	    @newProductName VARCHAR(500),  
@@ -29,7 +29,7 @@ BEGIN
 	
 	DECLARE load_cursor CURSOR FOR 
 	    SELECT  [TableName], ColumnName, Description	FROM dbo._column_details_extended_property 
---	    WHERE Description LIKE '%Identificador de Despesa Categoria Economica%' AND TableName = 'Anexo01_DespesaCategoriaEconomica'
+	--	    WHERE Description LIKE '%Identificador de Despesa Categoria Economica%' AND TableName = 'Anexo01_DespesaCategoriaEconomica'
 	    
 	OPEN load_cursor 
 	FETCH NEXT FROM load_cursor INTO @TableName, @ColumnName, @ProductName 
