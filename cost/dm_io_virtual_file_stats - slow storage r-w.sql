@@ -1,10 +1,11 @@
--- 20jul21
+--10dez21
 
 -- https://www.brentozar.com/blitz/slow-storage-reads-writes/
 
 	SELECT  DB_NAME(a.database_id) AS [Database Name] ,
-        b.name + N' [' + b.type_desc COLLATE SQL_Latin1_General_CP1_CI_AS + N']' AS [Logical File Name] ,
-        UPPER(SUBSTRING(b.physical_name, 1, 2)) AS [Drive] ,
+        b.name AS [Logical File Name],
+        b.type_desc COLLATE SQL_Latin1_General_CP1_CI_AS AS [Type],
+--        UPPER(SUBSTRING(b.physical_name, 1, 2)) AS [Drive],
         CAST(( ( a.size_on_disk_bytes / 1024.0 ) / (1024.0*1024.0) ) AS DECIMAL(9,2)) AS [Size (GB)] ,
         a.io_stall_read_ms AS [Total IO Read Stall] ,
         a.num_of_reads AS [Total Reads] ,

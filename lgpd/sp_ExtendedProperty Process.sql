@@ -12,7 +12,8 @@ SELECT
 --		dbo.fn_SplitOnUpperCase(	SUBSTRING( ColumnName, CHARINDEX(' ', ColumnName, 0 ) + 1, LEN( ColumnName ) )	), 
 		Description
 FROM _column_details_extended_property
-WHERE ColumnName LIKE '%situacao%' --OR ColumnName LIKE '%Telefone%' 
+--WHERE ColumnName LIKE '%situacao%' --OR ColumnName LIKE '%Telefone%' 
+ORDER BY TableName, ColumnName 
 */
 
 -- Descrever TABLES 

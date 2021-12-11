@@ -5,9 +5,9 @@ SELECT	last_request_start_time, DB_Name(database_id)  AS [DatabaseName], login_n
 FROM	sys.dm_exec_sessions
 WHERE	login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND PROGRAM_NAME NOT LIKE ('ADO_MESSENGER_ADO%')	--IS_USER_PROCESS = 1
 
---	AND DB_Name(database_id) IN ('dbSigaEDUCACIONALMAC', '', '')
+	AND DB_Name(database_id) IN ('dbSigaSantaRosa', '', '')
 
---	AND LOGIN_NAME IN ('userActiveCrmSIGAWeb','userActivesoft', 'francisco')
+--	AND LOGIN_NAME IN ('dbSigaStaClara','', 'francisco')
 
 --AND program_name IN ('httpd')
 
@@ -25,7 +25,7 @@ SELECT	DB_Name(database_id)  AS [DatabaseName], count(*) AS QtdeConnections
 FROM	sys.dm_exec_sessions
 WHERE	login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND PROGRAM_NAME NOT LIKE ('ADO_MESSENGER_ADO%')	--IS_USER_PROCESS = 1
 
-	AND DB_Name(database_id) IN ('dbSigaEDUCACIONALMAC', 'dbSigaParaisoSaber', 'dbSigaEcoVillePE')
+	AND DB_Name(database_id) IN ('dbSigaSantaRosa', 'dbSigaParaisoSaber', 'dbSigaEcoVillePE')
 
 --	AND LOGIN_NAME IN ('userSANTAREM','userActivesoft', 'francisco')
 
@@ -44,7 +44,7 @@ SELECT	last_request_start_time AS [last_request_Messenger], DB_Name(database_id)
 FROM	sys.dm_exec_sessions
 WHERE login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND PROGRAM_NAME LIKE ('ADO_MESSENGER_ADO%')
 
-	AND DB_Name(database_id) IN ('dbSigaEDUCACIONALMAC', '', '')
+	AND DB_Name(database_id) IN ('dbSigaSantaRosa', '', '')
 
 ORDER BY
 	last_request_start_time DESC;

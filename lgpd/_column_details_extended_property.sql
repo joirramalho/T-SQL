@@ -1,4 +1,4 @@
---06dez21
+--10dez21
 
 -- Bdc.dbo.[_column_details_extended_property] definition
 
@@ -38,7 +38,7 @@ IF OBJECT_ID('dbo._column_details_extended_property') IS  NULL
 		ORDER BY col.TABLE_NAME;
 
 	DELETE _column_details_extended_property 
-		WHERE 	NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES tables WHERE tables.TABLE_NAME = _column_details_extended_property.TableName )
+		WHERE 	NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES tables WHERE tables.TABLE_NAME = _column_details_extended_property.TableName );
 
  
 

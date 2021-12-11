@@ -1,4 +1,4 @@
---09dez21
+--10dez21
 
 --Standardize SQL Server data with text lookup and replace function
 	--https://www.mssqltips.com/sqlservertip/1052/standardize-sql-server-data-with-text-lookup-and-replace-function/
@@ -29,7 +29,7 @@ BEGIN
 	
 	DECLARE load_cursor CURSOR FOR 
 	    SELECT  [TableName], ColumnName, Description	FROM dbo._column_details_extended_property 
-	--	    WHERE Description LIKE '%Identificador de Despesa Categoria Economica%' AND TableName = 'Anexo01_DespesaCategoriaEconomica'
+--	    WHERE  TableName = 'Achado' AND ColumnName = 'Concluido'
 	    
 	OPEN load_cursor 
 	FETCH NEXT FROM load_cursor INTO @TableName, @ColumnName, @ProductName 
@@ -43,8 +43,9 @@ BEGIN
 		
 		    SET @position = CHARINDEX(' ', @ProductName, 1) 
 		    
+			IF 	@position = 0 AND LEN( @ProductName ) > 0
+				SET @position = LEN( @ProductName ) 
 		    
-	--	    BEGIN 
 			WHILE @position > 0
 				BEGIN
 					IF @position <> LEN( @ProductName ) 
@@ -52,7 +53,6 @@ BEGIN
 					ELSE 
 						SET @word = LTRIM( RTRIM( LEFT(@ProductName, @position		)))
 	
-		              
 					IF  @word <> '' 
 						BEGIN 
 			                SELECT @newWord = NULL 
@@ -72,18 +72,17 @@ BEGIN
 						SET @position = LEN( @ProductName ) 
 				END
 	          
-	         SET 	@word = @ProductName
+	        SET 	@word = @ProductName
 	         
-	         SELECT @newWord = NULL 
-	         SELECT @newWord = Palavra FROM BdDicionarioDados.dbo.DicionarioDados WHERE Palavra = @word COLLATE Latin1_General_CI_AI
+	        SELECT 	@newWord = NULL 
+			SELECT 	@newWord = Palavra FROM BdDicionarioDados.dbo.DicionarioDados WHERE Palavra = @word COLLATE Latin1_General_CI_AI
 	             	
 	
-	         IF @newWord IS NOT NULL 
-	              SET @newProductName = REPLACE( @newProductName, @ProductName, @newWord ) 
-	--	    END 
-	
+			IF @newWord IS NOT NULL 
+				SET @newProductName = REPLACE( @newProductName, @ProductName, @newWord ) 
+
 		    
-		    IF  @oldProductName COLLATE Latin1_General_CI_AS  <> @newProductName COLLATE Latin1_General_CI_AS    
+			IF  @oldProductName COLLATE Latin1_General_CI_AS  <> @newProductName COLLATE Latin1_General_CI_AS    
 			    BEGIN 
 					IF @ColumnName IS NOT NULL
 					    UPDATE dbo._column_details_extended_property 

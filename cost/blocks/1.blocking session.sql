@@ -29,6 +29,7 @@ CROSS APPLY sys.dm_exec_sql_text(der.plan_handle) as dest
 CROSS APPLY sys.dm_exec_query_plan(der.plan_handle) as deqp
 WHERE
 	dowt.session_id > 50
+ORDER BY dowt.blocking_session_id
 	
 	
 

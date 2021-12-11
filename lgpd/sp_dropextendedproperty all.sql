@@ -1,4 +1,4 @@
---09dez21
+--10dez21
 /*
 This script will generate calls to sp_dropextendedproperty for every
 extended property that exists in your database.
@@ -43,7 +43,8 @@ set nocount on;
 	from sys.extended_properties xp
 	join sys.tables t on xp.major_id = t.object_id
 	where xp.class_desc = 'OBJECT_OR_COLUMN'
-	and xp.minor_id = 0
+		and xp.minor_id = 0
+	ORDER BY object_name(xp.major_id)
 	
 union
 
