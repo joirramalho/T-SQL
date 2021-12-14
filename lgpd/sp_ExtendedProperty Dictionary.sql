@@ -1,4 +1,4 @@
---10dez21
+--13dez21
 
 --Standardize SQL Server data with text lookup and replace function
 	--https://www.mssqltips.com/sqlservertip/1052/standardize-sql-server-data-with-text-lookup-and-replace-function/
@@ -8,9 +8,11 @@
 
 --sp_ExtendedPropertyDictionary
 
-IF (OBJECT_ID('dbo.sp_ExtendedPropertyDictionary') IS NOT NULL) DROP PROCEDURE dbo.sp_ExtendedPropertyDictionary;
 
-CREATE PROCEDURE dbo.sp_ExtendedPropertyDictionary
+IF OBJECT_ID('dbo.sp_ExtendedPropertyDictionary', 'P') IS NULL
+	EXECUTE('CREATE PROCEDURE dbo.sp_ExtendedPropertyDictionary AS SELECT 1');
+
+ALTER PROCEDURE dbo.sp_ExtendedPropertyDictionary
 AS
 BEGIN
     SET NOCOUNT ON;

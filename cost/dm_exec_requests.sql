@@ -1,4 +1,4 @@
---10dez21
+--14dez21
 	--Monitoring SQL Server with Dynamic Management Objects – Requests
 		--https://www.sqlshack.com/monitoring-sql-server-with-dynamic-management-objects-requests/
 /*
@@ -8,6 +8,14 @@ Sleeping
 Suspended
 Runnable
  */
+
+DECLARE @DatabaseName 	sysname = NULL
+DECLARE @LoginName 		sysname = NULL
+
+--SET @DatabaseName = 'dbSigaModulo%'
+--SET @LoginName 	= 'sigainternet'
+
+
 SELECT 
 	s.session_id, s.login_time, s.host_name, s.program_name,
 	s.login_name
@@ -26,6 +34,9 @@ INNER JOIN sys.dm_exec_connections c	ON s.session_id = c.session_id
 -- added join to sys.dm_exec_requests
 INNER JOIN sys.dm_exec_requests r ON s.session_id = r.session_id
 WHERE s.is_user_process = 1
+	AND DB_Name(s.database_id) LIKE ISNULL( @DatabaseName, DB_Name(s.database_id) ) 		
+	AND LOGIN_NAME LIKE ISNULL( @LoginName, LOGIN_NAME ) 	
+
 
 
 
@@ -61,3 +72,5 @@ FROM sys.dm_exec_sessions s
 INNER JOIN sys.dm_exec_connections c	ON s.session_id = c.session_id 
 INNER JOIN sys.dm_exec_requests r	ON s.session_id = r.session_id
 WHERE s.is_user_process = 1
+	AND DB_Name(s.database_id) LIKE ISNULL( @DatabaseName, DB_Name(s.database_id) ) 		
+	AND LOGIN_NAME LIKE ISNULL( @LoginName, LOGIN_NAME ) 	

@@ -1,11 +1,14 @@
---10dez21
-
--- Bdc.dbo.[_column_details_extended_property] definition
-
-	--DROP TABLE Bdc.dbo.[_column_details_extended_property];
+--13dez21
 
 	--TRUNCATE TABLE dbo.[_column_details_extended_property];
 		--SELECT * FROM _column_details_extended_property
+
+/*
+ CREATE UNIQUE NONCLUSTERED INDEX [FK_DicionarioDados_Palavra] ON [dbo].[DicionarioDados]
+(
+	[Palavra] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
+ */
 
 IF OBJECT_ID('dbo._column_details_extended_property') IS  NULL
 	CREATE TABLE dbo.[_column_details_extended_property] (

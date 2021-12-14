@@ -1,17 +1,15 @@
---10dez21
+--13dez21
 
 --	       1         2         3   		 4         5         6         7
 --1234567890123456789012345678901234567890123456789012345678901234567890
 --ValorDespesasInscritasEmRestosAPagarNaoProcessadosEmExercicioAnterior
 
---EXEC dbo.sp_ExtendedPropertyScriptOut @REBUILD = 1	@COLUMN_SEARCH = '%HASH%',
---EXEC dbo.sp_ExtendedPropertyScriptOut @REBUILD = 1, 	@TABLE_SEARCH = 'vw%'
+--EXEC dbo.sp_ExtendedPropertyScriptOut @REBUILD = 1,	@COLUMN_SEARCH = 'UsuarioInclusao%'
+--EXEC dbo.sp_ExtendedPropertyScriptOut @REBUILD = 1, 	@TABLE_SEARCH = 'TransicaoSituacaoObra%'
 
 --IF (OBJECT_ID('dbo.sp_ExtendedPropertyScriptOut') IS NOT NULL) DROP PROCEDURE sp_ExtendedPropertyScriptOut;
 
-IF OBJECT_ID('dbo.sp_ExtendedPropertyScriptOut', 'P') IS NULL
-	EXECUTE('CREATE PROCEDURE dbo.sp_ExtendedPropertyScriptOut AS SELECT 1');
-
+IF OBJECT_ID('dbo.sp_ExtendedPropertyScriptOut', 'P') IS NULL	EXECUTE('CREATE PROCEDURE dbo.sp_ExtendedPropertyScriptOut AS SELECT 1');
 
 ALTER PROCEDURE dbo.sp_ExtendedPropertyScriptOut( @TABLE_SEARCH 	sysname = NULL, @COLUMN_SEARCH 	sysname = NULL, @REBUILD BIT = 0 )
 AS
@@ -48,13 +46,14 @@ BEGIN
 		AND	(	( @TABLE_SEARCH IS NOT NULL AND TABLELIST.name LIKE @TABLE_SEARCH ) OR ( @COLUMN_SEARCH IS NOT NULL AND COLLIST.name LIKE @COLUMN_SEARCH ) OR ( @TABLE_SEARCH IS NULL AND @COLUMN_SEARCH IS NULL )	)	
 
 
+		
 	UNION ALL -- Table
 
 	SELECT
 	  	TABLELIST.name AS Table_Name,
 	  	0,
 	  	'',
-		'',
+	  	'',
 	  		  	
 		'exec dbo.sp_CreateOrUpdateExtendedProperty 	''' +	'Table'	+	
 	  	''', '''	+	TABLELIST.name	+
@@ -106,4 +105,3 @@ BEGIN
 	
 	ORDER BY TABLELIST.name, COLLIST.column_id
 END
-

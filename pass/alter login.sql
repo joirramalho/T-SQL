@@ -4,9 +4,9 @@
 
 
 --LOGIN --
-	--SENHA COM 10 caracteres
-		--CREATE LOGIN [active.filipe] 	WITH PASSWORD=N'*****', DEFAULT_DATABASE=[dbSigaModeloWEB], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
-		--CREATE LOGIN [userEcoVillePE] 	WITH PASSWORD=N'***', DEFAULT_DATABASE=[dbSigaEcoVillePE], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
+	--SENHA COM 10 caracteres								'1234567890'		
+		--CREATE LOGIN [active.filipe] 		WITH PASSWORD= N'*****', DEFAULT_DATABASE=[dbSigaModeloWEB], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
+		--CREATE LOGIN [userModuloAracaju] 	WITH PASSWORD= N'*****', DEFAULT_DATABASE=[dbSigaModuloAracaju], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
 
 		--ALTER LOGIN [userMUNDODACRIANCA] DISABLE;
 
@@ -21,25 +21,25 @@
 
 
 
---USE dbSigaImcCorMariaRS;
+--USE dbBibModuloAracaju;
 
 
-	--CREATE USER 	[userICM_RS] 	FOR LOGIN [userICM_RS] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
+	--CREATE USER 	[userModuloAracaju] 	FOR LOGIN [userModuloAracaju] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
 	
 		--DROP USER [userINSTBRASILIA];
 	
 	
 	--	DEFAULT_DATABASE
-			--ALTER LOGIN 	[active.anderson] 	WITH  DEFAULT_DATABASE=[master];
+			--ALTER LOGIN 	[userModuloAracaju] 	WITH  DEFAULT_DATABASE=[dbSigaModuloAracaju];
 	
 	
-		--GRANT CONNECT  TO [userSANTAREM];
+		--GRANT CONNECT  TO [userModuloAracaju];
 			--REVOKE CONNECT  FROM [siga_caruaru];
 
 
-	--ALTER ROLE [db_owner] ADD MEMBER [userICM_RS];
+	--ALTER ROLE [db_owner] ADD MEMBER [userModuloAracaju];
 
-	--EXEC master..sp_addsrvrolemember @loginame = N'romario.barbalho', @rolename = N'sysadmin';
+		--EXEC master..sp_addsrvrolemember @loginame = N'romario.barbalho', @rolename = N'sysadmin';
 
 
 

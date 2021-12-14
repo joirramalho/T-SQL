@@ -2,7 +2,7 @@
 
 SET NOCOUNT ON
 
-USE [dbSigaImcCorMariaRS]; -- 
+--USE [dbSigaImcCorMariaRS]; -- 
 
 SELECT TOP (10) DB_NAME(), [Tabela],[DataHora], [DescricaoOperacao] FROM [dbo].[TbAuditoria]     order by Datahora DESC;
 SELECT TOP (5) [DataHora],[IPHost],[Arquivo],[IdUsuario],[TitpoUsuario],[Acao],[ParametroStr] FROM [dbo].[TbLogWeb] order by IdLogWeb DESC;

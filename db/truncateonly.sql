@@ -54,7 +54,6 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 
  		ALTER DATABASE [?] SET RECOVERY FULL WITH NO_WAIT
 
-
     END
 '
 ,@print_command_only = 0 -- Obrigatório Gerar script
@@ -62,5 +61,5 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 ,@state_desc = N'ONLINE'
 ,@user_only = 1
 ,@suppress_quotename=1
-,@name_pattern='dbSigaCBrasileiro';
+,@name_pattern='dbCrmActivesoft';
 -- ,@database_list = 'dbSigaCastroBarreto' --06
