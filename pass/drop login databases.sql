@@ -1,4 +1,4 @@
---24ago21
+--14dez21
 -- USER of ALL Database
 
 
@@ -54,15 +54,4 @@ SELECT Databasename, UserName FROM #Databases ORDER BY 2,1
 
 
 -- SELECT Databasename, 'DROP SCHEMA sigauser', UserName FROM #Databases ORDER BY DatabaseName, UserName
-
-
-
--- sp_who2
---Use dbSigaSANTATEC;	DROP USER [activeuser];
-
---SQL07
---Use dbSigaLubienska;	DROP USER [ClipEscola]; -- REMOVIDO
-
---SQL06
---ERRO AO LISTAS USERs de DATABASES
 

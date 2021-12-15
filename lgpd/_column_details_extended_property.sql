@@ -1,7 +1,7 @@
---13dez21
+--14dez21
 
 	--TRUNCATE TABLE dbo.[_column_details_extended_property];
-		--SELECT * FROM _column_details_extended_property
+		--SELECT * FROM _column_details_extended_property ORDER BY TableName, OrdinalPosition
 
 /*
  CREATE UNIQUE NONCLUSTERED INDEX [FK_DicionarioDados_Palavra] ON [dbo].[DicionarioDados]

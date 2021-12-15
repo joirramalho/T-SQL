@@ -5,7 +5,7 @@
 --ValorDespesasInscritasEmRestosAPagarNaoProcessadosEmExercicioAnterior
 
 --EXEC dbo.sp_ExtendedPropertyScriptOut @REBUILD = 1,	@COLUMN_SEARCH = 'UsuarioInclusao%'
---EXEC dbo.sp_ExtendedPropertyScriptOut @REBUILD = 1, 	@TABLE_SEARCH = 'TransicaoSituacaoObra%'
+--EXEC dbo.sp_ExtendedPropertyScriptOut @REBUILD = 1, 	@TABLE_SEARCH = 'Atividade%'
 
 --IF (OBJECT_ID('dbo.sp_ExtendedPropertyScriptOut') IS NOT NULL) DROP PROCEDURE sp_ExtendedPropertyScriptOut;
 

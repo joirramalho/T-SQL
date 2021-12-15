@@ -1,9 +1,9 @@
---14dez21
+--15dez21
 
 DECLARE @DatabaseName 	sysname = NULL
 DECLARE @LoginName 		sysname = NULL
 
-SET @DatabaseName = 'dbSigaModulo%'
+--SET @DatabaseName = 'dbSigaModulo%'
 --SET @LoginName 	= 'sigainternet'
 
 SELECT	DB_Name(database_id)  AS [DatabaseName], last_request_start_time, login_name, RTRIM( 'KILL ' + CAST( session_id AS CHAR ) ) + ';' AS [kill], program_name, host_name, [status], login_time, logical_reads, row_count, reads, writes
@@ -16,7 +16,7 @@ WHERE	login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' 
 	--AND HOST_NAME IN ('APP')
 	--AND DATEDIFF(MINUTE, LAST_REQUEST_START_TIME, GETDATE()) > 1 -- LOGIN_TIME
 	--AND OPEN_TRANSACTION_COUNT = 0
-ORDER BY DB_Name(database_id)
+ORDER BY DB_Name(database_id), last_request_start_time DESC
 	
 
 --QtdeConnections
@@ -32,7 +32,7 @@ ORDER BY count(*) DESC
 
 
 --ADO_MESSENGER_ADO
-SELECT	DB_Name(database_id)  AS [DatabaseName], last_request_start_time, login_name, RTRIM( 'KILL ' + CAST( session_id AS CHAR ) ) + ';' AS [kill], program_name, host_name, [status], login_time, logical_reads, row_count, reads, writes
+SELECT	DB_Name(database_id)  AS [DatabaseName], last_request_start_time, login_name, RTRIM( 'KILL ' + CAST( session_id AS CHAR ) ) + ';' AS [kill], program_name, [status], login_time, logical_reads, row_count, reads, writes
 FROM	sys.dm_exec_sessions
 WHERE login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND PROGRAM_NAME LIKE ('ADO_MESSENGER_ADO%')
 	AND DB_Name(database_id) LIKE ISNULL( @DatabaseName, DB_Name(database_id) ) 		
@@ -41,9 +41,8 @@ ORDER BY DB_Name(database_id)
 
                             
 --GROUP BY program_name
-SELECT
-	program_name,
-	COUNT(*)
+SELECT program_name, COUNT(*)
+	
 FROM
 	sys.dm_exec_sessions
 WHERE
@@ -52,7 +51,7 @@ WHERE
 GROUP BY
 	program_name
 ORDER BY
-	program_name
+	COUNT(*) DESC, program_name
 
 
 
