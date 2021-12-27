@@ -1,8 +1,4 @@
-USE dbSigaRosaCamara;
-
---- USE dbSigaNSLourdesGravata;
--- USE dbSigaAuxilRecife;
-
+USE dbSigaModuloAracaju;
 
 -- TbServicoPrecoDesconto
 ALTER TABLE [dbo].[TbServicoPrecoDesconto] DROP CONSTRAINT [PK_TbServicoPrecoDesconto]

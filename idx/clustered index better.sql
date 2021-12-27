@@ -1,7 +1,7 @@
 --071021
 -- Dirceu Resende
 
-USE dbSigaGGE;
+--USE dbSigaGGE;
 
 SELECT  TableName = OBJECT_NAME(idx.object_id), NonUsefulClusteredIndex = idx.name, ShouldBeClustered = nc.nonclusteredname, Clustered_User_Seeks = c.user_seeks, NonClustered_User_Seeks = nc.user_seeks, Clustered_User_Lookups = c.user_lookups, DatabaseName = DB_NAME(c.database_id)
 FROM    sys.indexes idx
@@ -17,6 +17,6 @@ WHERE idx.type_desc IN ( 'clustered', 'heap' )
     AND nc.user_seeks > ( c.user_seeks * 1.50 ) -- 150%
     AND nc.user_seeks >= ( c.user_lookups * 0.75 ) -- 75%
     
-    AND OBJECT_NAME(idx.object_id) = 'TbSituacaoAlunoDisciplina' --TbLancamentoFinanceiro
+    AND OBJECT_NAME(idx.object_id) = 'TbRefreshToken' --TbLancamentoFinanceiro
 
 ORDER BY  nc.user_seeks DESC

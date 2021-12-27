@@ -1,8 +1,4 @@
-USE dbSigaRosaCamara;
-
--- USE dbSigaNSLourdesGravata;
--- USE dbSigaAuxilRecife;
-
+USE dbSigaModuloAracaju;
 
 
 IF OBJECT_ID('dbo.[FK_TbCaptacaoParametro_TbUnidade]') IS NOT NULL 
@@ -111,23 +107,22 @@ GO
 
 
 -- NOME PK ERRADOS
--- ALTER TABLE [dbo].[TbUnidadeTermoConsentimento] DROP CONSTRAINT [FK__TbUnidade__IdUni__5D1B8657];
+-- ALTER TABLE [dbo].[TbUnidadeTermoConsentimento] DROP CONSTRAINT [FK__TbUnidade__IdUni__76BB5CC9];
 
 -- NOME CORRETO
 ALTER TABLE [dbo].[TbUnidadeTermoConsentimento] DROP CONSTRAINT [FK_TbUnidadeTermoConsentimento_TbUnidade]
 GO
 
 
--- 20mai21
 ALTER TABLE [dbo].[TbPosTransacao] DROP CONSTRAINT [FK_TbPosTransacao_TbUnidade];
-GO
 
 
+ALTER TABLE [dbo].[TbCalendarioEvento] DROP CONSTRAINT [FK_TbCalendarioEvento_TbUnidade];
 
+ALTER TABLE [dbo].[TbPlanoContasContabil] DROP CONSTRAINT [FK_TbPlanoContasContabil_TbUnidade];
 
 
 -- TbUnidade 
-
     ALTER TABLE [dbo].[TbUnidade] DROP CONSTRAINT [PK_TbUnidade];
 
 
@@ -141,7 +136,20 @@ GO
 	GO
 
 
--- 20mai21
+ALTER TABLE dbSigaModuloAracaju.dbo.TbPlanoContasContabil ADD CONSTRAINT FK_TbPlanoContasContabil_TbUnidade FOREIGN KEY (IdUnidade) 
+REFERENCES dbSigaModuloAracaju.dbo.TbUnidade(IdUnidade);	
+	
+ALTER TABLE [dbo].[TbPlanoContasContabil] CHECK CONSTRAINT [FK_TbPlanoContasContabil_TbUnidade]
+
+
+
+ALTER TABLE dbSigaCeja.dbo.TbCalendarioEvento ADD CONSTRAINT FK_TbCalendarioEvento_TbUnidade FOREIGN KEY (IdUnidade) 
+REFERENCES dbSigaCeja.dbo.TbUnidade(IdUnidade);	
+
+ALTER TABLE [dbo].[TbCalendarioEvento] CHECK CONSTRAINT [FK_TbCalendarioEvento_TbUnidade]
+
+
+
 ALTER TABLE [dbo].[TbPosTransacao] WITH CHECK ADD CONSTRAINT [FK_TbPosTransacao_TbUnidade] FOREIGN KEY([IdUnidade]) 
 		REFERENCES [dbo].[TbUnidade] ([IdUnidade])
 

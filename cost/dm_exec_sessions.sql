@@ -1,15 +1,17 @@
---15dez21
+--25dez21
+
+--sp_who2
 
 DECLARE @DatabaseName 	sysname = NULL
 DECLARE @LoginName 		sysname = NULL
 
---SET @DatabaseName = 'dbSigaModulo%'
+--SET @DatabaseName = 'dbSigaMapleBearNatal%'
 --SET @LoginName 	= 'sigainternet'
 
-SELECT	DB_Name(database_id)  AS [DatabaseName], last_request_start_time, login_name, RTRIM( 'KILL ' + CAST( session_id AS CHAR ) ) + ';' AS [kill], program_name, host_name, [status], login_time, logical_reads, row_count, reads, writes
-	-- unsuccessful_logons, last_unsuccessful_logon, last_request_end_time
+SELECT	DB_Name(database_id)  AS [DatabaseName], last_request_start_time, login_name, RTRIM( 'KILL ' + CAST( session_id AS CHAR ) ) + ';' AS [kill], program_name, host_name, [status], login_time--, logical_reads, row_count, reads, writes
+-- unsuccessful_logons, last_unsuccessful_logon, last_request_end_time
 FROM	sys.dm_exec_sessions
-WHERE	login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND PROGRAM_NAME NOT LIKE ('ADO_MESSENGER_ADO%')	--IS_USER_PROCESS = 1
+WHERE	login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND PROGRAM_NAME NOT LIKE ('ADO_MESSENGER_ADO%') AND PROGRAM_NAME NOT LIKE ('ADO_SIGA_NFSe%')	--IS_USER_PROCESS = 1
 	AND DB_Name(database_id) LIKE ISNULL( @DatabaseName, DB_Name(database_id) ) 		
 	AND LOGIN_NAME LIKE ISNULL( @LoginName, LOGIN_NAME ) 	
 	--AND program_name IN ('httpd')
@@ -31,10 +33,10 @@ ORDER BY count(*) DESC
 
 
 
---ADO_MESSENGER_ADO
-SELECT	DB_Name(database_id)  AS [DatabaseName], last_request_start_time, login_name, RTRIM( 'KILL ' + CAST( session_id AS CHAR ) ) + ';' AS [kill], program_name, [status], login_time, logical_reads, row_count, reads, writes
+--ADO_MESSENGER_ADO & ADO_SIGA_NFSe
+SELECT	DB_Name(database_id)  AS [DatabaseName], last_request_start_time, login_name, RTRIM( 'KILL ' + CAST( session_id AS CHAR ) ) + ';' AS [kill], program_name, [status], login_time, host_name--, logical_reads, row_count, reads, writes
 FROM	sys.dm_exec_sessions
-WHERE login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND PROGRAM_NAME LIKE ('ADO_MESSENGER_ADO%')
+WHERE login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND ( PROGRAM_NAME LIKE ('ADO_MESSENGER_ADO%') OR PROGRAM_NAME LIKE ('ADO_SIGA_NFSe%') )
 	AND DB_Name(database_id) LIKE ISNULL( @DatabaseName, DB_Name(database_id) ) 		
 ORDER BY DB_Name(database_id)
 	
@@ -72,6 +74,7 @@ JOIN sys.dm_exec_connections AS c
     ON c.session_id = s.session_id
 WHERE
 	s.login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND s.PROGRAM_NAME LIKE ('ADO_MESSENGER_ADO%')
+	AND DB_Name(database_id) LIKE ISNULL( @DatabaseName, DB_Name(database_id) ) 		
 
 GROUP BY
 	client_net_address
@@ -106,3 +109,20 @@ ORDER BY
 
 
 
+
+	
+--LIST BY DB_Name(database_id) CONNECTION messenger
+--SELECT
+--	DB_Name(database_id) AS [DatabaseName], PROGRAM_NAME, COUNT(*)
+--FROM
+--	sys.dm_exec_sessions s
+--JOIN sys.dm_exec_connections AS c
+--    ON c.session_id = s.session_id
+--WHERE
+--	s.login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND s.PROGRAM_NAME LIKE ('ADO_MESSENGER_ADO%')
+--	AND DB_Name(database_id) LIKE ISNULL( @DatabaseName, DB_Name(database_id) ) 		
+--	AND LOGIN_NAME LIKE ISNULL( @LoginName, LOGIN_NAME ) 	
+--GROUP BY DB_Name(database_id), PROGRAM_NAME
+--HAVING COUNT(*)>1
+--ORDER BY
+--	DatabaseName, PROGRAM_NAME

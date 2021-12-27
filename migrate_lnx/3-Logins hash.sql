@@ -1,15 +1,13 @@
---31out21 -- Logins by HASH script out 
+--24dez21 -- Logins by HASH script out 
 
 SELECT 
-    SP.default_database_name, 
-    SP.name, 
+    SP.default_database_name, SP.name, 
     -- 'sh backup-migracao-diff.sh '   + SP.default_database_name, -- LINUX
     -- 'backup-migracao-diff.bat '     + SP.default_database_name, -- VPS
 
+    './migracao-restore-full-diff.sh ' + SP.default_database_name + ' ' + SP.name + ' ' + CONVERT( NVARCHAR(MAX), SL.password_hash, 1 ) As [Restore FULL],
     './migracao-backup-diff.sh ' + SP.default_database_name + ' ' + SP.name As [Backup Diff],
-
-    './migracao-restore-full-diff.sh ' + SP.default_database_name + ' ' + SP.name + ' ' + CONVERT( NVARCHAR(MAX), SL.password_hash, 1 ) As [Restore Full],
-    './add-user-after-migracao.sh ' + SP.default_database_name + ' ' + SP.name + ' ' + CONVERT( NVARCHAR(MAX), SL.password_hash, 1 ) AS LOGIN_EEM
+    './add-user-after-migracao.sh ' + SP.default_database_name + ' ' + SP.name + ' ' + CONVERT( NVARCHAR(MAX), SL.password_hash, 1 ) AS LOGIN_EscolaEmMovimento
     
     -- ,'ALTER LOGIN ' + SP.name + ' WITH DEFAULT_DATABASE = ' + SP.default_database_name
 FROM sys.server_principals AS SP 
@@ -23,12 +21,11 @@ WHERE SP.type IN ('S','G','U')
         AND SP.name <> 'distributor_admin'
         AND SP.name NOT LIKE 'active.%'
         -- AND SP.name <> ('user')
-        AND SP.name <> ('sigainternet')
+        AND SP.name NOT IN ('sigainternet', 'service.account')
 
         AND sp.is_disabled = 0 -- enabled
 
         -- AND SP.default_database_name LIKE 'master%' 
-
         -- AND EXISTS ( SELECT * FROM sys.databases d WHERE d.state_desc = 'ONLINE' )
         -- AND EXISTS ( SELECT * FROM sys.databases d WHERE d.name = sp.default_database_name AND d.state_desc = 'ONLINE' )
 -- ORDER BY SP.default_database_name

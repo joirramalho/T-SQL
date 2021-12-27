@@ -10,7 +10,7 @@ SELECT
 	'ALTER INDEX ' + QUOTENAME(ind.name) + ' ON ' + QUOTENAME(object_name(ind.object_id)) +
 	CASE
 		WHEN indexstats.avg_fragmentation_in_percent>30 THEN ' REBUILD;'
-		WHEN indexstats.avg_fragmentation_in_percent >= 5 THEN 'REORGANIZE;'
+		WHEN indexstats.avg_fragmentation_in_percent >= 5 THEN ' REORGANIZE;'
 		ELSE NULL
 	END as [SQLQuery]
 	-- if <5 not required, so no query needed

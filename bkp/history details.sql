@@ -1,6 +1,6 @@
---26set21
---Backup History Details  -- udayarumilli
-    -- http://udayarumilli.com/sql-server-backup-and-restore-reports/
+--25dez21
+	--Backup History Details  -- udayarumilli
+	    -- http://udayarumilli.com/sql-server-backup-and-restore-reports/
 
 DECLARE @DBName VARCHAR(200),
 	@Bkp_Type VARCHAR(20)
@@ -28,7 +28,8 @@ SELECT	DISTINCT TOP 150
 	-- , bs.type		AS 'Backup_Type'
 	-- , CAST((bs.backup_size/(1024.00*1024.00)) AS DECIMAL(15,2))		AS 'Bkp_Size (MB)'
 	, CAST((bs.backup_size/(1024.00*1024.00*1024.00)) AS DECIMAL(15,2))	AS 'Bkp_Size (GB)'
-	-- , bms.software_name	AS 'Backup_Software'
+-- , bms.software_name	AS 'Backup_Software'
+	  ,has_backup_checksums
 	, CASE 
 		WHEN bms.is_compressed = 1  THEN 'Yes'
 		WHEN bms.is_compressed = 0 THEN 'No'

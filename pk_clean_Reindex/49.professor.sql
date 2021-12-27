@@ -1,4 +1,4 @@
-USE dbSigaRosaCamara;
+USE dbSigaModuloAracaju;
 
 -- USE dbSigaNSLourdesGravata;
 -- USE dbSigaAuxilRecife;
@@ -75,9 +75,11 @@ GO
 ALTER TABLE [dbo].[TbModeloContrato] DROP CONSTRAINT [FK_TbModeloContrato_TbProfessor]
 GO
 --
+ALTER TABLE [dbo].[TbAlunoObs] DROP CONSTRAINT [FK_TbAlunoObs_IdProfessorRegistro]
 
-	ALTER TABLE [dbo].[TbProfessor] DROP CONSTRAINT [PK_TbProfessor]
-	GO
+
+	ALTER TABLE [dbo].[TbProfessor] DROP CONSTRAINT [PK_TbProfessor];
+
 
 
 	ALTER TABLE [dbo].[TbProfessor] ADD  CONSTRAINT [PK_TbProfessor] PRIMARY KEY CLUSTERED 
@@ -87,6 +89,13 @@ GO
 	GO
 
 
+ALTER TABLE dbSigaModuloAracaju.dbo.TbAlunoObs ADD CONSTRAINT FK_TbAlunoObs_IdProfessorRegistro FOREIGN KEY (IdProfessorRegistro) 
+REFERENCES dbSigaModuloAracaju.dbo.TbProfessor(IdProfessor);
+	
+ALTER TABLE [dbo].[TbAlunoObs] CHECK CONSTRAINT [FK_TbAlunoObs_IdProfessorRegistro]
+
+	
+	
 -- 22Out20
 ALTER TABLE [dbo].[TbModeloContrato]  WITH CHECK ADD  CONSTRAINT [FK_TbModeloContrato_TbProfessor2] FOREIGN KEY([IdColaboradorTestemunha2])
 REFERENCES [dbo].[TbProfessor] ([IdProfessor])

@@ -1,0 +1,3 @@
+--15dez21
+	--MERGE para inserir, atualizar e apagar dados com apenas 1 comando
+	--https://www.dirceuresende.com/blog/sql-server-como-utilizar-o-comando-merge-para-inserir-atualizar-e-apagar-dados-com-apenas-1-comando/

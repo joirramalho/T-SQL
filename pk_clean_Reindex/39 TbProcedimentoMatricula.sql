@@ -1,9 +1,4 @@
-USE dbSigaRosaCamara;
-
---- USE dbSigaNSLourdesGravata;
--- USE dbSigaAuxilRecife;
-
-
+USE dbSigaModuloAracaju;
 
 -- TbProcedimentoMatricula        
 ALTER TABLE [dbo].[TbAlunoTurmaProcedimentoMatricula] DROP CONSTRAINT [FK_TbAlunoTurmaProcedimentoMatricula_TbProcedimentoMatricula]

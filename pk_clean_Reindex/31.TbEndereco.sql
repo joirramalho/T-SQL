@@ -1,4 +1,4 @@
-USE dbSigaRosaCamara;
+USE dbSigaModuloAracaju;
 
 -- USE dbSigaNSLourdesGravata;
 -- USE dbSigaAuxilRecife;

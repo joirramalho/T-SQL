@@ -1,7 +1,7 @@
 --07out21
 --Reset SQL user account guids 
 
---USE  dbBibImcCorMariaRS;
+USE  master;
 
 DECLARE @UserName nvarchar(255) 
 

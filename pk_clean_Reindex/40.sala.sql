@@ -1,7 +1,4 @@
-USE dbSigaRosaCamara;
-
---- USE dbSigaNSLourdesGravata;
--- USE dbSigaAuxilRecife;
+USE dbSigaModuloAracaju;
 
 -- TbSala
 ALTER TABLE [dbo].[TbAtividadeDistribuicaoAluno] DROP CONSTRAINT [FK_TbAtividadeDistribuicaoAluno_TbSala]

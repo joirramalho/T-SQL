@@ -1,4 +1,4 @@
--- 29set21 - dbSigaSalePetrolina_Arquivo0X
+--23dez21
 
 -- P@ssw0rd.
 
@@ -17,7 +17,7 @@
 
 -- PASSWORD
 	--												'1234567890'
-	-- ALTER LOGIN [userICM_RS] 	WITH PASSWORD = '******'; -- sigainternet userISO_PowerBI service.account
+	-- ALTER LOGIN [sigainternet] 	WITH PASSWORD = '****'; -- sigainternet userISO_PowerBI service.account
 
 
 
@@ -30,7 +30,7 @@
 	
 	
 	--	DEFAULT_DATABASE
-			--ALTER LOGIN 	[userModuloAracaju] 	WITH  DEFAULT_DATABASE=[dbSigaModuloAracaju];
+			--ALTER LOGIN 	[userTeresaLisieux] 	WITH  DEFAULT_DATABASE=[dbSigaTeresaLisieux];
 	
 	
 		--GRANT CONNECT  TO [userModuloAracaju];

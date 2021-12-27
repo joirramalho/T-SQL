@@ -1,4 +1,4 @@
---26set21
+--23dez21
 
 SELECT
 	database_id,
@@ -14,7 +14,7 @@ SELECT
 FROM
 	sys.databases d
 WHERE
-	database_id > 5
+	database_id > 4
 	and state = 0 			-- 0 ON-LINE -- 6 OFF-LINE
 	--and recovery_model = 1   -- 1-FULL 3-simple
 	--and is_read_only = 1 	-- Read-only
@@ -37,7 +37,7 @@ SELECT
 FROM
 	sys.databases d
 WHERE
-	database_id > 5
+	database_id > 4
 	and state = 6	-- 0 ON-LINE -- 6 OFF-LINE 
 ORDER BY
 	create_date DESC

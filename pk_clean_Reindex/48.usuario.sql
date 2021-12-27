@@ -1,8 +1,4 @@
-USE dbSigaRosaCamara;
-
--- USE dbSigaNSLourdesGravata;
--- USE dbSigaAuxilRecife;
-
+USE dbSigaModuloAracaju;
 
 
 ALTER TABLE [dbo].[TbAlmoxMaterialMovimentacao] DROP CONSTRAINT [FK_TbAlmoxMaterialMovimentacao_TbUsuario]
@@ -206,9 +202,19 @@ GO
 ALTER TABLE [dbo].[TbSolicitacaoProcedimentoMatricula] DROP CONSTRAINT [FK_TbSolicitacaoProcedimentoMatricula_TbUsuario]
 GO
 
+ALTER TABLE [dbo].[TbArqArquivo] DROP CONSTRAINT [FK_TbArqArquivo_IdUsuarioInsercao];
 
-	ALTER TABLE [dbo].[TbUsuario] DROP CONSTRAINT [PK_TbUsuario]
-	GO
+ALTER TABLE [dbo].[TbTituloCobranca_Persistido] DROP CONSTRAINT [FK_TbTituloCobranca_Persistido_TbUsuario];
+
+ALTER TABLE [dbo].[TbTituloCobrancaEnvio] DROP CONSTRAINT [FK_TbTituloCobrancaEnvio_TbUsuario];
+
+
+
+
+
+
+	ALTER TABLE [dbo].[TbUsuario] DROP CONSTRAINT [PK_TbUsuario];
+
 
 
 -- TbUsuario - 2a.Parte
@@ -216,16 +222,35 @@ GO
     ALTER TABLE [dbo].[TbUsuario] ADD  CONSTRAINT [PK_TbUsuario] PRIMARY KEY CLUSTERED 
 	(
 			[IdUsuario] ASC
-	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 90) ON [PRIMARY]
-	GO
+	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 90) ON [PRIMARY];
 
+
+	
+ALTER TABLE dbSigaModuloAracaju.dbo.TbTituloCobrancaEnvio ADD CONSTRAINT FK_TbTituloCobrancaEnvio_TbUsuario FOREIGN KEY (IdUsuario) 
+REFERENCES dbSigaModuloAracaju.dbo.TbUsuario(IdUsuario);
+	
+ALTER TABLE [dbo].[TbTituloCobrancaEnvio] CHECK CONSTRAINT [FK_TbTituloCobrancaEnvio_TbUsuario];
+	
+	
+ALTER TABLE dbSigaModuloAracaju.dbo.TbTituloCobranca_Persistido ADD CONSTRAINT FK_TbTituloCobranca_Persistido_TbTituloCobranca FOREIGN KEY (IdTituloCobranca) 
+REFERENCES dbSigaModuloAracaju.dbo.TbTituloCobranca(IdTituloCobranca);
+	
+ALTER TABLE [dbo].[TbTituloCobranca_Persistido] CHECK CONSTRAINT [FK_TbTituloCobranca_Persistido_TbTituloCobranca];
+	
+	
+	
+ALTER TABLE [dbo].[TbArqArquivo] WITH CHECK ADD CONSTRAINT [FK_TbArqArquivo_IdUsuarioInsercao] FOREIGN KEY([IdUsuarioInsercao]) 
+REFERENCES [dbo].[TbUsuario] ([IdUsuario]); 
+	
+ALTER TABLE [dbo].[TbArqArquivo] CHECK CONSTRAINT [FK_TbArqArquivo_IdUsuarioInsercao];
+	
+	
 
 -- 21jul21
 ALTER TABLE [dbo].[TbSolicitacaoProcedimentoMatricula] WITH CHECK ADD CONSTRAINT [FK_TbSolicitacaoProcedimentoMatricula_TbUsuario] FOREIGN KEY([IdUsuario]) 
-REFERENCES [dbo].[TbUsuario] ([IdUsuario]) 
-GO 
-ALTER TABLE [dbo].[TbSolicitacaoProcedimentoMatricula] CHECK CONSTRAINT [FK_TbSolicitacaoProcedimentoMatricula_TbUsuario]
-GO
+REFERENCES [dbo].[TbUsuario] ([IdUsuario]);
+
+ALTER TABLE [dbo].[TbSolicitacaoProcedimentoMatricula] CHECK CONSTRAINT [FK_TbSolicitacaoProcedimentoMatricula_TbUsuario];
 	
 
 

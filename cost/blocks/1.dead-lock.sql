@@ -1,4 +1,4 @@
--- 03ago21 - dbSigaFACHO & CRM
+-- 20dez21
 -- 17mai21 - (@P1 nvarchar(60))SELECT [TbAccessToken].[IdAccessToken]
 
 
@@ -25,53 +25,3 @@ FROM
 CROSS APPLY TargetData.nodes('RingBufferTarget/event[@name="xml_deadlock_report"]') AS XEventData (xed)
 ORDER BY 
     CreationDate DESC
-
-
-
--- use dbCrmActivesoft
--- sp_help 'dbCrmActivesoft.dbo.TbAccessToken'
-
--- SELECT TOP 5 IdAccessToken
--- FROM dbCrmActivesoft.dbo.TbAccessToken
--- order by IdAccessToken DESC
-
-
-
--- USE [dbLogMonitor]
--- GO
-
--- EXEC dbLogMonitor.dbo.sp_where
-
--- IF (OBJECT_ID('dbo.Tabela1') IS NOT NULL) DROP TABLE dbo.Tabela1
--- CREATE TABLE dbo.Tabela1 (
---     Id INT IDENTITY(1, 1),
---     Nome VARCHAR(100)
--- )
-
--- INSERT INTO dbo.Tabela1 ( Nome )
--- VALUES ('Dirceu'), ('Resende')
-
--- IF (OBJECT_ID('dbo.Tabela2') IS NOT NULL) DROP TABLE dbo.Tabela2
--- CREATE TABLE dbo.Tabela2 (
---     Id INT IDENTITY(1, 1),
---     Nome VARCHAR(100)
--- )
-
--- INSERT INTO dbo.Tabela2 ( Nome )
--- VALUES ('DBA'), ('SQL Server')
-
-
-
-
-
--- Gerando deadlock
--- BEGIN TRAN
--- UPDATE Tabela1 set Nome = 'teste' where Id = 1
-
-
--- BEGIN TRAN
--- UPDATE Tabela2 set Nome = 'teste' where Id = 1
-
-
-
---ROLLBACK

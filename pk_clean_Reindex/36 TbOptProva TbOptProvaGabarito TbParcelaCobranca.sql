@@ -1,8 +1,4 @@
-USE dbSigaRosaCamara;
-
--- USE dbSigaNSLourdesGravata;
--- USE dbSigaAuxilRecife;
-
+USE dbSigaModuloAracaju;
 
 -- TbOptProva
 ALTER TABLE [dbo].[TbOptProvaAlunoTurma] DROP CONSTRAINT [FK_TbOptProvaAlunoTurma_TbOptProva]

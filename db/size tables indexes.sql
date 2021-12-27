@@ -1,4 +1,4 @@
---20set21
+--20dez21
 	--https://www.sqlshack.com/how-to-monitor-total-sql-server-indexes-size/
 
 --USE db;
@@ -12,7 +12,7 @@ index_size varchar(25) NULL,
 unused varchar(25) NULL )
 
 DECLARE cp1 CURSOR LOCAL fast_forward read_only FOR
-    SELECT
+    SELECT 
 	name
 FROM
 	sysobjects
@@ -44,7 +44,9 @@ END
 CLOSE cp1
 DEALLOCATE cp1
 
-SELECT
+SELECT 
+	'INSERT INTO #TabelasExportacao (NomeTabela) VALUES (''' + name + ''')',
+
 	name AS 'Nome'
        ,
 	ROWS AS 'Linhas'
@@ -71,8 +73,8 @@ SELECT
 FROM
 	@tmpTamTabela
 ORDER BY
-	CONVERT(int, replace(ROWS, ' KB', '')) DESC
---	name
+--	CONVERT(int, replace(ROWS, ' KB', '')) DESC
+	name
 	
 	
 

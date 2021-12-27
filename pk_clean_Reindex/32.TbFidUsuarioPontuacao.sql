@@ -1,7 +1,4 @@
-USE dbSigaRosaCamara;
-
--- USE dbSigaNSLourdesGravata;
--- USE dbSigaAuxilRecife;
+USE dbSigaModuloAracaju;
 
 ALTER TABLE [dbo].[TbFidUsuarioPontuacao] DROP CONSTRAINT [PK_TbFidUsuarioPontuacao]
 GO

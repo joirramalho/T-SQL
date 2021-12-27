@@ -1,7 +1,4 @@
-USE dbSigaRosaCamara;
-
--- USE dbSigaNSLourdesGravata;
--- USE dbSigaAuxilRecife;
+USE dbSigaModuloAracaju;
 
 -- TbGrupo 
 ALTER TABLE [dbo].[TbFuncionalidadeGrupo] DROP CONSTRAINT [FK_TbFuncionalidadeGrupo_TbGrupo]

@@ -42,17 +42,3 @@ EXCEPT
 ORDER BY state_desc
 
 DROP TABLE #dbusers;
-
-
---DROP LOGIN [userUniversoUno];
---DROP LOGIN [userLiriosMossoro];
---DROP LOGIN [userETEF];
---DROP LOGIN [userFATEPE];
---DROP LOGIN [userDenizard];
---DROP LOGIN [userExato];
---DROP LOGIN [userSaoLucas];
---DROP LOGIN [userCulturaRecife];
---DROP LOGIN [userTerceiroMilenio];
---DROP LOGIN [userCulturaPetro];
---DROP LOGIN [userAmBatistaREC];
---DROP LOGIN [userMundoImaginacao];

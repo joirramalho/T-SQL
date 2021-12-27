@@ -1,0 +1,3 @@
+--15dez21
+--Quebrando strings em sub-strings utilizando separador (Split string)v
+	--https://www.dirceuresende.com/blog/quebrando-strings-em-sub-strings-utilizando-separador-no-sql-server/
