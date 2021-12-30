@@ -61,5 +61,5 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 ,@state_desc = N'ONLINE'
 ,@user_only = 1
 ,@suppress_quotename=1
-,@name_pattern='dbCrmActivesoft';
+,@name_pattern='dbSigaIES_Amadeus';
 -- ,@database_list = 'dbSigaCastroBarreto' --06

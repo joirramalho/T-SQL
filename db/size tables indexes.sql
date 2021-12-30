@@ -45,7 +45,7 @@ CLOSE cp1
 DEALLOCATE cp1
 
 SELECT 
-	'INSERT INTO #TabelasExportacao (NomeTabela) VALUES (''' + name + ''')',
+--	'INSERT INTO #TabelasExportacao (NomeTabela) VALUES (''' + name + ''')',
 
 	name AS 'Nome'
        ,
@@ -73,8 +73,8 @@ SELECT
 FROM
 	@tmpTamTabela
 ORDER BY
---	CONVERT(int, replace(ROWS, ' KB', '')) DESC
-	name
+	CONVERT(int, replace(ROWS, ' KB', '')) DESC
+--	name
 	
 	
 

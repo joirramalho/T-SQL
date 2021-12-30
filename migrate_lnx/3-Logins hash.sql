@@ -23,8 +23,10 @@ WHERE SP.type IN ('S','G','U')
         -- AND SP.name <> ('user')
         AND SP.name NOT IN ('sigainternet', 'service.account')
 
-        AND sp.is_disabled = 0 -- enabled
 
+--        AND sp.is_disabled = 0 -- enabled
+
+        
         -- AND SP.default_database_name LIKE 'master%' 
         -- AND EXISTS ( SELECT * FROM sys.databases d WHERE d.state_desc = 'ONLINE' )
         -- AND EXISTS ( SELECT * FROM sys.databases d WHERE d.name = sp.default_database_name AND d.state_desc = 'ONLINE' )
@@ -39,12 +41,6 @@ ORDER BY SP.name
 
     -- ALTER LOGIN [userSaleParalela] WITH DEFAULT_DATABASE = [dbSigaSaleParalela]
 
-
--- select name as username
--- from sys.database_principals
--- where type not in ('A', 'G', 'R', 'X') and sid is not null and name != 'guest'
---     AND name NOT IN ('activeuser','sigaadmin', 'sigainternet', 'dbo', 'sigauser')
--- order by username;
 
 
 -- SELECT  'sh restore-migracao-full-diff.sh ' + SP.default_database_name + ' ' + SP.name + ' ' + CONVERT( NVARCHAR(MAX), SL.password_hash, 1 )

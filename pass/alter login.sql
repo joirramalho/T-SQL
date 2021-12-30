@@ -4,9 +4,8 @@
 
 
 --LOGIN --
-	--SENHA COM 10 caracteres								'1234567890'		
-		--CREATE LOGIN [active.filipe] 		WITH PASSWORD= N'*****', DEFAULT_DATABASE=[dbSigaModeloWEB], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
-		--CREATE LOGIN [userModuloAracaju] 	WITH PASSWORD= N'*****', DEFAULT_DATABASE=[dbSigaModuloAracaju], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
+	--SENHA COM 10 caracteres											'1234567890'		
+		--CREATE LOGIN [userModuloAracajuReadOnly] 		WITH PASSWORD= N'******', DEFAULT_DATABASE=[dbSigaModuloAracaju], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
 
 		--ALTER LOGIN [userMUNDODACRIANCA] DISABLE;
 
@@ -20,17 +19,23 @@
 	-- ALTER LOGIN [sigainternet] 	WITH PASSWORD = '****'; -- sigainternet userISO_PowerBI service.account
 
 
+	-- re-enable login without password	
+	    -- ALTER LOGIN [active.filipe] WITH CHECK_POLICY = OFF;
+	    -- ALTER LOGIN [active.filipe] WITH CHECK_POLICY = ON;
 
---USE dbBibModuloAracaju;
 
 
-	--CREATE USER 	[userModuloAracaju] 	FOR LOGIN [userModuloAracaju] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
+
+--USE dbSigaModeloFiscalize;
+
+
+	--CREATE USER 	[userModuloAracajuReadOnly] 	FOR LOGIN [userModuloAracajuReadOnly] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
 	
 		--DROP USER [userINSTBRASILIA];
 	
 	
 	--	DEFAULT_DATABASE
-			--ALTER LOGIN 	[userTeresaLisieux] 	WITH  DEFAULT_DATABASE=[dbSigaTeresaLisieux];
+			--ALTER LOGIN 	[userModuloAracajuReadOnly] 	WITH  DEFAULT_DATABASE=[dbSigaModuloAracaju];
 	
 	
 		--GRANT CONNECT  TO [userModuloAracaju];
@@ -47,13 +52,13 @@
 --ADD 
 	--USE CRM_307506;
 
-	--ALTER ROLE [db_datareader] ADD MEMBER [userRestauraBancoVPS];
+	--ALTER ROLE [db_datareader] ADD MEMBER [userModuloAracajuReadOnly];
 	--ALTER ROLE [db_datawriter] ADD MEMBER [userRestauraBancoVPS];
 	
 	--GRANT EXECUTE TO [romario.barbalho]; -- wantuilson -- (LAB4 xp_readerrorlog)
     	--REVOKE EXECUTE TO [romario.barbalho];
 
-	--ALTER ROLE [db_owner] ADD MEMBER [userSANTAREM];
+	--ALTER ROLE [db_owner] ADD MEMBER [active.filipe];
 	--ALTER ROLE [db_ddladmin] ADD MEMBER [active.mardelson];
 
 --DROP

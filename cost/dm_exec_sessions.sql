@@ -5,8 +5,8 @@
 DECLARE @DatabaseName 	sysname = NULL
 DECLARE @LoginName 		sysname = NULL
 
---SET @DatabaseName = 'dbSigaMapleBearNatal%'
---SET @LoginName 	= 'sigainternet'
+SET @DatabaseName = 'dbSigaModuloAracaju%'
+--SET @LoginName 	= 'userModuloAracajuReadOnly%'
 
 SELECT	DB_Name(database_id)  AS [DatabaseName], last_request_start_time, login_name, RTRIM( 'KILL ' + CAST( session_id AS CHAR ) ) + ';' AS [kill], program_name, host_name, [status], login_time--, logical_reads, row_count, reads, writes
 -- unsuccessful_logons, last_unsuccessful_logon, last_request_end_time

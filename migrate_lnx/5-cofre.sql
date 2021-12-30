@@ -114,7 +114,8 @@ SELECT	*
 FROM
 	[DBCRMACTIVESOFT].[DBO].[TBCLIENTE]
 WHERE
---	 ServidorDatabase_Biblioteca = 'dbBibFaculdadeEvolucao'
+	 ServidorDatabase_Biblioteca IS NOT NULL
 	 
-	 SiglaUnidade LIKE '%IES%' AND servidorIP = '172.31.28.131' -- VPS02a
+	 AND servidorIP = '172.31.28.131' -- VPS02a
+--	 SiglaUnidade LIKE '%IES%' 
  */	

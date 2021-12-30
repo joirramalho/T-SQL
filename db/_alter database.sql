@@ -3,7 +3,7 @@
 --ONLINE
 	--ALTER DATABASE dbSigaUniversoSaber SET ONLINE;
 	
-	--ALTER DATABASE dbSigaSistemaPetropolis SET OFFLINE;
+	--ALTER DATABASE dbLogMonitor SET OFFLINE;
                             
 
 	--DROP
