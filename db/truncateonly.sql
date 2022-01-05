@@ -1,11 +1,10 @@
---04dez21
---04jul21
+--05jan21
 
 -- use dbCrmActivesoft
 
 -- DBCC SHRINKFILE (dbActiveCRM2_Log , 0, TRUNCATEONLY)
 
-EXEC dbLogMonitor.dbo.sp_foreachdb N'
+EXEC dbo.sp_foreachdb N'
     --IF DB_NAME() NOT IN  (''dbCantinaActive'', ''dbActivePainelEletronico'' )
         USE ?
 
@@ -61,5 +60,5 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 ,@state_desc = N'ONLINE'
 ,@user_only = 1
 ,@suppress_quotename=1
-,@name_pattern='dbSigaIES_Amadeus';
--- ,@database_list = 'dbSigaCastroBarreto' --06
+--,@name_pattern='dbSigaIES_Amadeus'
+ ,@database_list = ', ' --06

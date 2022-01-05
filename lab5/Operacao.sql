@@ -140,6 +140,8 @@ sp_DesmascararBanco
     -- "c:\Program Files\Amazon\AWSCLI\aws.exe" s3api get-object --bucket activesoft-sql-backup-full --key dbSigaMUNDOFANTASIA_full.zip --version-id owLxlj0U8rqUsbsEhECAEVRFvqvvg2B_ dbSigaMUNDOFANTASIA_full.zip
 
 
+"c:\Program Files\Amazon\AWSCLI\aws.exe" s3 cp s3://activesoft-vps-backup/ClientesBancoLocal/dbSigaDiocesanoMossoro_backup_2021_11_29_220601_0541604.zip 	C:\Restore\ --region sa-east-1
+
 
 --RESTORE DATABASE CRM_307506 FROM DISK = 'C:\TEMP\dbSigaEscolaSerra_full.bak' WITH FILE = 1, MOVE N'dbSiga_Data' TO N'C:\SQL\dbSigaEscolaSerra.mdf', MOVE N'dbSiga_log' TO N'C:\SQL\dbSigaEscolaSerra_log.ldf', NORECOVERY,  NOUNLOAD,  STATS = 25	--, REPLACE
 

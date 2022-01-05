@@ -1,9 +1,9 @@
 --25set21
 
 --ONLINE
-	--ALTER DATABASE dbSigaUniversoSaber SET ONLINE;
+	--ALTER DATABASE SQL08_20210726_lixo SET ONLINE;
 	
-	--ALTER DATABASE dbLogMonitor SET OFFLINE;
+	--ALTER DATABASE SQL08_20210726_lixo SET OFFLINE;
                             
 
 	--DROP

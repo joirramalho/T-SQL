@@ -1,4 +1,6 @@
-SELECT 
+--03dez21
+
+SELECT  
     t.NAME AS TableName,
 --    s.Name AS SchemaName,
     p.rows,
@@ -25,4 +27,5 @@ WHERE
 GROUP BY 
     t.Name, s.Name, p.Rows
 ORDER BY 
-    TotalSpaceMB DESC, t.Name
+    t.Name
+--    TotalSpaceMB DESC, t.Name

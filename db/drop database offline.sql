@@ -1,6 +1,6 @@
 --13dez21
 
-EXEC dbLogMonitor.dbo.sp_foreachdb N'
+EXEC dbo.sp_foreachdb N'
     ALTER DATABASE [?] SET ONLINE;
 
     DROP DATABASE [?];
@@ -13,4 +13,4 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 ,@user_only = 1
 ,@suppress_quotename=1
 -- ,@name_pattern='dbSigaLuizAntonio';
-,@database_list = 'dbSigaCPO'
+,@database_list = 'SQL08_20210726_lixo'

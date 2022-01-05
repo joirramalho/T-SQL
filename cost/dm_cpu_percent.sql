@@ -1,10 +1,10 @@
---28out21
+--05dez22
 --https://sites.google.com/site/sqlservermsdn/cpu------sql-server
 
 WITH DB_CPU_Stats
 AS
 (
-SELECT
+SELECT TOP 20
 	DatabaseID,
 	DB_Name(DatabaseID) AS [DatabaseName],
 	SUM(total_worker_time) AS [CPU_Time_Ms]

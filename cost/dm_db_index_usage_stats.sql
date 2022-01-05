@@ -1,13 +1,13 @@
---18set21
---HTTPS://DBA.STACKEXCHANGE.COM/QUESTIONS/72163/HOW-TO-FIGURE-OUT-DISK-I-O-BY-TABLE
+--04dez22
+	--https://dba.stackexchange.com/questions/72163/how-to-figure-out-disk-i-o-by-table
+	--user_seeks + user_scans + user_lookups + user_updates
 
---USER_SEEKS + USER_SCANS + USER_LOOKUPS + USER_UPDATES
+--sys.dm_db_index_usage_stats por Database
+
+--USE dbSigaFACHO
 
 
-DECLARE @db	VARCHAR(64) = 'dbSigaSemiBatista'
-
-
-select
+select TOP 50
 	d.name as [database],
 	object_name(s.[object_id]) as [object name],
 	i.[name] as [index name],
@@ -25,16 +25,13 @@ join sys.databases d on
 where
 	objectproperty(s.[object_id],
 	'isusertable') = 1
-
-	and d.name = @db
-
 order by
 	user_seeks + user_scans + user_lookups + user_updates desc
 
 
 	
 --leaf_insert_count + leaf_update_count + leaf_delete_count desc
-select
+select TOP 50
 	d.name,
 	t.name,
 	object_name(a.[object_id]) as [object name],
@@ -57,8 +54,5 @@ join sys.databases d on
 where
 	objectproperty(a.[object_id],
 	'isusertable') = 1
-	
-	and d.name = @db
-
 order by
 	a.leaf_insert_count + a.leaf_update_count + a.leaf_delete_count desc
