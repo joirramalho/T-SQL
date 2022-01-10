@@ -4,6 +4,7 @@
 
 --CREATE INDEX [IX_TbOcorrenciaMovimentacao_CdPrioridade] ON [dbCrmActivesoft].[dbo].[TbOcorrenciaMovimentacao] ([CdPrioridade]) INCLUDE ([IdOcorrenciaMovimentacao], [DataHoraLimite])
 
+
 SELECT  OBJECT_NAME(I.object_id) As Tabela, I.Name As Indice,
 	    U.User_Seeks As Pesquisas, U.User_Scans As Varreduras, U.User_Lookups As LookUps,
 	    U.Last_User_Seek As UltimaPesquisa, U.Last_User_Scan As UltimaVarredura,
@@ -17,6 +18,10 @@ WHERE DB_NAME(database_id) = DB_NAME()
 ORDER BY user_seeks + user_scans + user_lookups + user_updates DESC
 
 
+--FACHO
+--IX_TbLancamentoCobranca_IdServico	119	0	0
+--IX_TbLancamentoCobranca_IdAlunoTaxa	12	0	0
+--IX_TbLancamentoCobrancaParcelaServico	2	0	0
 
 	
 

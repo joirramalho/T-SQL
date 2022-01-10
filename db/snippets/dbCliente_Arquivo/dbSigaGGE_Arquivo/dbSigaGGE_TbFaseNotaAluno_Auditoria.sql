@@ -1,9 +1,9 @@
--- EXEC dbLogMonitor.dbo.sp_Where
+--07jan22
 
 -- use dbSigaGGE
 
--- SELECT YEAR(DAtaHora), COUNT(*) FROM dbSigaGGE.dbo.TbAuditoria    GROUP by YEAR(DAtaHora)
--- SELECT YEAR(DAtaHora), COUNT(*) FROM dbSigaGGE_Arquivo.dbo.TbAuditoria    GROUP by YEAR(DAtaHora)
+ SELECT YEAR(DAtaHora), COUNT(*) FROM dbSigaGGE.dbo.TbFaseNotaAluno_Auditoria    GROUP by YEAR(DAtaHora)
+ SELECT YEAR(DAtaHora), COUNT(*) FROM dbSigaGGE_Arquivo.dbo.TbFaseNotaAluno_Auditoria    GROUP by YEAR(DAtaHora)
 
     -- CREATE DATABASE dbSigaGGE_Arquivo
 
@@ -55,7 +55,9 @@ EXEC sp_help 'TbAuditoria'
 SET IDENTITY_INSERT dbSigaGGE_Arquivo.dbo.TbFaseNotaAluno_Auditoria ON;
 
 INSERT INTO dbSigaGGE_Arquivo.dbo.TbFaseNotaAluno_Auditoria ( IdFaseNotaAlunoAuditoria,DataHora,Operacao,IdUsuario,IdProfessor,IdDisciplina,IdTurma,IdAluno,IdFaseNota,Nota01, Nota02, Nota03, Nota04, Nota05, Nota06, Nota07, Nota08, Nota09, Nota10, IdFormulaComposicao, StNotaConfirmada, NotaFase, Faltas, QuantAulasDadas, StNotaFaseExibirDisp )
-        SELECT IdFaseNotaAlunoAuditoria,DataHora,Operacao,IdUsuario,IdProfessor,IdDisciplina,IdTurma,IdAluno,IdFaseNota,Nota01, Nota02, Nota03, Nota04, Nota05, Nota06, Nota07, Nota08, Nota09, Nota10, IdFormulaComposicao, StNotaConfirmada, NotaFase, Faltas, QuantAulasDadas, StNotaFaseExibirDisp    FROM dbSigaGGE.dbo.TbFaseNotaAluno_Auditoria WHERE YEAR(DAtaHora) = 2020
+        SELECT IdFaseNotaAlunoAuditoria,DataHora,Operacao,IdUsuario,IdProfessor,IdDisciplina,IdTurma,IdAluno,IdFaseNota,Nota01, Nota02, Nota03, Nota04, Nota05, Nota06, Nota07, Nota08, Nota09, Nota10, IdFormulaComposicao, StNotaConfirmada, NotaFase, Faltas, QuantAulasDadas, StNotaFaseExibirDisp    
+        	FROM dbSigaGGE.dbo.TbFaseNotaAluno_Auditoria 
+        	WHERE YEAR(DAtaHora) = 2021
 
 
 
@@ -71,12 +73,12 @@ SELECT YEAR(DATAHORA), COUNT(*)
 
 
 -- DECLARE @BatchSize INT = 10000
-
+--
 -- WHILE 1 = 1
 -- BEGIN
 -- 	DELETE TOP (@BatchSize)
 -- 	FROM [dbSigaGGE].[dbo].[TbFaseNotaAluno_Auditoria]
--- 	where YEAR(DAtaHora) = 2020 --AND month( CreatedAt ) = 2 --AND revokedAt IS NOT NULL
- 
+-- 	where YEAR(DAtaHora) = 2021 --AND month( CreatedAt ) = 2 --AND revokedAt IS NOT NULL
+-- 
 -- 	IF @@ROWCOUNT < @BatchSize BREAK
 -- END

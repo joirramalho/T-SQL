@@ -1,3 +1,5 @@
+--07jan22
+
 -- use dbSigaGGE
 
 -- SELECT YEAR(DAtaHora), COUNT(*) FROM dbSigaGGE.dbo.TbAuditoria    GROUP by YEAR(DAtaHora)
@@ -61,9 +63,17 @@ SET IDENTITY_INSERT dbSigaGGE_Arquivo.dbo.TbAuditoria ON;
 
 INSERT INTO dbSigaGGE_Arquivo.dbo.TbAuditoria ( Tabela, IdUsuario, Operacao, DataHora, ValorChave1, ValorChave2, ValorChave3, ValorChave4, ValorChave5, DescricaoOperacao, IdAuditoria )
         SELECT Tabela, IdUsuario, Operacao, DataHora, ValorChave1, ValorChave2, ValorChave3, ValorChave4, ValorChave5, DescricaoOperacao, IdAuditoria
-            FROM dbSigaGGE.dbo.TbAuditoria WHERE YEAR(DAtaHora) = 2020 
+            FROM dbSigaGGE.dbo.TbAuditoria WHERE YEAR(DAtaHora) = 2021 
 
--- (2095849 rows affected)
--- 4790499 rows affected
--- 2735231 rows
--- 1984795 rows
+            
+            
+-- DECLARE @BatchSize INT = 10000
+--
+-- WHILE 1 = 1
+-- BEGIN
+-- 	DELETE TOP (@BatchSize)
+-- 	FROM [dbSigaGGE].[dbo].[TbAuditoria]
+-- 	where YEAR(DAtaHora) = 2021 --AND month( CreatedAt ) = 2 --AND revokedAt IS NOT NULL
+-- 
+-- 	IF @@ROWCOUNT < @BatchSize BREAK
+-- END            

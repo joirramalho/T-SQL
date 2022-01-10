@@ -1,11 +1,9 @@
---25dez21
-
---sp_who2
+--10jan22
 
 DECLARE @DatabaseName 	sysname = NULL
 DECLARE @LoginName 		sysname = NULL
 
-SET @DatabaseName = 'dbLogMonitor%'
+--SET @DatabaseName = 'dbSigaGGE%'
 --SET @LoginName 	= 'userModuloAracajuReadOnly%'
 
 SELECT	DB_Name(database_id)  AS [DatabaseName], last_request_start_time, login_name, RTRIM( 'KILL ' + CAST( session_id AS CHAR ) ) + ';' AS [kill], program_name, host_name, [status], login_time--, logical_reads, row_count, reads, writes
@@ -23,7 +21,7 @@ ORDER BY DB_Name(database_id), last_request_start_time DESC
 
 --QtdeConnections
 SELECT	DB_Name(database_id)  AS [DatabaseName], count(*) AS QtdeConnections
-	-- unsuccessful_logons, last_unsuccessful_logon, last_request_end_time
+-- unsuccessful_logons, last_unsuccessful_logon, last_request_end_time
 FROM	sys.dm_exec_sessions
 WHERE	login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND PROGRAM_NAME NOT LIKE ('ADO_MESSENGER_ADO%')	--IS_USER_PROCESS = 1
 	AND DB_Name(database_id) LIKE ISNULL( @DatabaseName, DB_Name(database_id) ) 		
@@ -50,6 +48,7 @@ FROM
 WHERE
 	 login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) 
 	 AND PROGRAM_NAME NOT LIKE ('ADO_MESSENGER_ADO%') AND PROGRAM_NAME NOT LIKE ('ADO_ActiveMessenger%') AND PROGRAM_NAME NOT LIKE ('DBeaver%')
+	AND DB_Name(database_id) LIKE ISNULL( @DatabaseName, DB_Name(database_id) ) 		
 GROUP BY
 	program_name
 ORDER BY

@@ -15,7 +15,7 @@ SELECT	TOP 30
                            as [Text],
 	qs.execution_count,
 	qs.total_logical_reads,
-	qs.last_logical_reads,
+--	qs.last_logical_reads,
 	qs.total_logical_writes
 --	qs.last_logical_writes,
 --	qs.last_worker_time

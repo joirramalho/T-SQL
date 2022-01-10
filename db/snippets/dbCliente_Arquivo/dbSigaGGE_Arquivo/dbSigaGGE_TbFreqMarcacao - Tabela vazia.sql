@@ -1,9 +1,9 @@
--- EXEC dbLogMonitor.dbo.sp_Where
+--07jan22
 
 -- use dbSigaGGE
 
--- SELECT YEAR(DAtaHora), COUNT(*) FROM dbSigaGGE.dbo.TbAuditoria    GROUP by YEAR(DAtaHora)
--- SELECT YEAR(DAtaHora), COUNT(*) FROM dbSigaGGE_Arquivo.dbo.TbAuditoria    GROUP by YEAR(DAtaHora)
+-- SELECT YEAR(DataMarcacao), COUNT(*) FROM dbSigaGGE.dbo.TbFreqMarcacao    GROUP by YEAR(DAtaHora)
+-- SELECT YEAR(DataMarcacao), COUNT(*) FROM dbSigaGGE_Arquivo.dbo.TbFreqMarcacao    GROUP by YEAR(DAtaHora)
 
     -- CREATE DATABASE dbSigaGGE_Arquivo
 
@@ -69,14 +69,14 @@ INSERT INTO dbSigaGGE_Arquivo.dbo.TbFreqMarcacao ( IdMarcacao, DataMarcacao, IdP
 
 
 
-SELECT YEAR(DATAHORA), COUNT(*)
+SELECT YEAR(DataMarcacao), COUNT(*)
   FROM [dbSigaGGE].[dbo].[TbFreqMarcacao]
-  GROUP BY YEAR(DATAHORA)
+  GROUP BY YEAR(DataMarcacao)
 
 
-  SELECT YEAR(DATAHORA), COUNT(*)
+  SELECT YEAR(DataMarcacao), COUNT(*)
   FROM [dbSigaGGE_Arquivo].[dbo].[TbFreqMarcacao]
-  GROUP BY YEAR(DATAHORA)
+  GROUP BY YEAR(DataMarcacao)
 
 
 

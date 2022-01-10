@@ -1,4 +1,4 @@
--- RENOMEAR A TABELA _TbLancamentoCobranca_AjusteNFSe_20220103 com *** Replace All ***
+-- RENOMEAR A TABELA _TbLancamentoCobranca_AjusteNFSe_20220107 com *** Replace All ***
 
 -- INSERIR OS T͍TULOS QUE DEVEM SER DESVINCULADOS NA CONSULTA A SEGUIR
 
@@ -9,14 +9,14 @@ BEGIN TRAN
 SELECT	IdTituloCobranca, SituacaoTituloCobranca, ValorServico, NomeAluno,
 	NFSe_NumeroMIN = ( SELECT NFSe_Numero FROM TbNotaFiscal nf WHERE nf.IdNotaFiscal = ( SELECT MIN(IdNotaFiscal) FROM TbLancamentoCobranca lc WHERE lc.IdTituloCobrancaGerado = tc.IdTituloCobranca ) ),
 	NFSe_NumeroMAX = ( SELECT NFSe_Numero FROM TbNotaFiscal nf WHERE nf.IdNotaFiscal = ( SELECT MAX(IdNotaFiscal) FROM TbLancamentoCobranca lc WHERE lc.IdTituloCobrancaGerado = tc.IdTituloCobranca ) )
-INTO	_TbLancamentoCobranca_AjusteNFSe_20220103
+INTO	_TbLancamentoCobranca_AjusteNFSe_20220107
 FROM	VwTituloCobrancaDescricao tc
-WHERE	IdTituloCobranca IN ( 67773, 67774, 67775, 67776  )
+WHERE	IdTituloCobranca IN ( 78344  )
 ORDER	BY IdTituloCobranca 
 
 
 SELECT	* 
-FROM	_TbLancamentoCobranca_AjusteNFSe_20220103
+FROM	_TbLancamentoCobranca_AjusteNFSe_20220107
 
 -- TIRAR PRINT DO SELECT ACIMA; CONFERIR NOME DOS CLIENTES E DEPOIS ENVIAR PARA FABÍOLA.
 
@@ -28,7 +28,7 @@ FROM	_TbLancamentoCobranca_AjusteNFSe_20220103
 
 UPDATE	TbLancamentoCobranca 
 SET	IdNotaFiscal=NULL
-WHERE	IdTituloCobrancaGerado IN ( SELECT IdTituloCobranca FROM _TbLancamentoCobranca_AjusteNFSe_20220103 )
+WHERE	IdTituloCobrancaGerado IN ( SELECT IdTituloCobranca FROM _TbLancamentoCobranca_AjusteNFSe_20220107 )
 
 --COMMIT
 --ROLLBACK

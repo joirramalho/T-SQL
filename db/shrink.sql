@@ -1,6 +1,6 @@
 --23dez21
 
-EXEC dbLogMonitor.dbo.sp_foreachdb N'
+EXEC dbo.sp_foreachdb N'
     ALTER DATABASE [?] SET RECOVERY SIMPLE WITH NO_WAIT;
 
     USE [?];
@@ -9,9 +9,9 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 
 	DBCC SHRINKDATABASE(?);
 
---		EXEC sp_MSforeachtable @command1="ALTER INDEX ALL ON $ REBUILD WITH (ONLINE=OFF)", @replacechar="$"; -- NAO funciona com dbCrmActivesoft
+		EXEC sp_MSforeachtable @command1="ALTER INDEX ALL ON $ REBUILD WITH (ONLINE=OFF)", @replacechar="$"; -- NAO funciona com dbCrmActivesoft
 --
---			EXEC sp_updatestats;
+			EXEC sp_updatestats;
 
 	IF CHARINDEX( ''dbSiga'', ''?'') > 0
 		DBCC SHRINKFILE (dbSiga_Log , 0, TRUNCATEONLY);
@@ -31,7 +31,7 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 		--	DBCC SHRINKFILE (dbSigaGGE_Arquivo_log , 0, TRUNCATEONLY);
 
 
-	ALTER DATABASE [?] SET RECOVERY FULL WITH NO_WAIT;
+--	ALTER DATABASE [?] SET RECOVERY FULL WITH NO_WAIT;
 
 '
 ,@print_command_only = 0 -- Obrigatório Gerar script
@@ -40,7 +40,7 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 ,@user_only = 1
 ,@suppress_quotename=1
 -- ,@name_pattern='dbSigaSalePetrolina_Arquivo0';
-,@database_list = 'dbCrmActivesoft';  
+,@database_list = 'dbSigaGGE_Arquivo';  
 
 
---	DBCC CHECKDB([dbSigaEficacia]); -- WITH TABLERESULTS
+--	DBCC CHECKDB([dbSigaGGE]); -- WITH TABLERESULTS

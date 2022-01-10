@@ -27,5 +27,5 @@ WHERE
 GROUP BY 
     t.Name, s.Name, p.Rows
 ORDER BY 
-    t.Name
---    TotalSpaceMB DESC, t.Name
+--    t.Name
+    TotalSpaceMB DESC, t.Name

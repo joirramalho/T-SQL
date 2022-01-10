@@ -14,9 +14,9 @@ SELECT TOP 50  -- *
 	,deqs.execution_count 
 	,deqs.total_rows 
 	,deqs.last_rows 
-	,deqs.last_worker_time 
+--	,deqs.last_worker_time 
 	,deqs.total_worker_time 
-	,deqs.last_logical_reads 
+--	,deqs.last_logical_reads 
 	,deqs.total_logical_reads 
 FROM 	sys.dm_exec_query_stats AS deqs
 CROSS 	APPLY sys.dm_exec_sql_text(deqs.sql_handle) AS dest

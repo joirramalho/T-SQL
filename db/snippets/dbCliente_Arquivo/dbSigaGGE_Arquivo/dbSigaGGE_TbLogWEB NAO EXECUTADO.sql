@@ -1,9 +1,9 @@
--- EXEC dbLogMonitor.dbo.sp_Where
+--07jan22
 
 -- use dbSigaGGE
 
--- SELECT YEAR(DAtaHora), COUNT(*) FROM dbSigaGGE.dbo.TbAuditoria    GROUP by YEAR(DAtaHora)
--- SELECT YEAR(DAtaHora), COUNT(*) FROM dbSigaGGE_Arquivo.dbo.TbAuditoria    GROUP by YEAR(DAtaHora)
+-- SELECT YEAR(DAtaHora), COUNT(*) FROM dbSigaGGE.dbo.TbLogWEB    GROUP by YEAR(DAtaHora)
+-- SELECT YEAR(DAtaHora), COUNT(*) FROM dbSigaGGE_Arquivo.dbo.TbLogWEB    GROUP by YEAR(DAtaHora)
 
     -- CREATE DATABASE dbSigaGGE_Arquivo
 

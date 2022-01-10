@@ -1,6 +1,9 @@
---04dez22
+--07jan22
 	--https://www.dbrnd.com/2016/11/sql-server-script-to-find-top-20-stored-procedure-which-are-utilizing-more-cpu/
-	
+
+DECLARE @DatabaseName 	sysname = NULL
+
+--SET @DatabaseName = 'dbSigaENSVitoriasRN%'
 
 SELECT
 	TOP 20
@@ -18,7 +21,8 @@ SELECT
     ,(total_physical_reads / execution_count) AS AvgPhysicalReads
 FROM
 	sys.dm_exec_procedure_stats
-WHERE OBJECT_NAME(object_id, database_id) IS NOT NULL
+WHERE 
+	DB_Name(database_id) LIKE ISNULL( @DatabaseName, DB_Name(database_id) ) 		
 ORDER BY
 	AvgLogicalReads DESC
 	
@@ -30,7 +34,8 @@ SELECT TOP 10
 	, SUM(total_worker_time) AS SumOftotal_worker_time
 FROM
 	sys.dm_exec_procedure_stats
-WHERE OBJECT_NAME(object_id, database_id) IS NOT NULL
+WHERE 
+	DB_Name(database_id) LIKE ISNULL( @DatabaseName, DB_Name(database_id) ) 		
 GROUP BY OBJECT_NAME(object_id, database_id)
 ORDER BY
 	SUM(total_worker_time)	DESC
