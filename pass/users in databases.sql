@@ -37,7 +37,7 @@ EXEC dbo.sp_foreachdb N'
 -- ,@state_desc = N'OFFLINE'
 ,@user_only = 1
 ,@suppress_quotename=1
---,@name_pattern='dbSigaA';
-,@database_list = 'dbSigaWillyJanz'
+,@name_pattern='dbSigaA';
+--,@database_list = 'dbSigaWillyJanz'
 
 SELECT * FROM #users ORDER BY 2,1 --DropCmd;

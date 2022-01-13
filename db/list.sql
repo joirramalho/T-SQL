@@ -1,6 +1,6 @@
 --10jan22
 
-SELECT
+SELECT 
 	database_id,
 	name as [ON-LINE],
 	state_desc,

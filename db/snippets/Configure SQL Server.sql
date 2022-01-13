@@ -1,5 +1,6 @@
---26nov21
-Configure SQL Server on Linux with the mssql-conf tool
+--11jan22
+
+--Configure SQL Server on Linux with the mssql-conf tool
 
 
 -- Configure SQL Server on Linux with the mssql-conf tool
@@ -91,7 +92,7 @@ reboot
 		
 	
 	-- Enable the SQL Server Agent
-    sudo /opt/mssql/bin/mssql-conf set sqlagent.enabled true
+    sudo /opt/mssql/bin/mssql-conf set sqlagent.enabled false
 
     sudo systemctl restart mssql-server
     
@@ -167,6 +168,7 @@ total 65604
             -- https://docs.microsoft.com/pt-br/sql/linux/sql-server-linux-performance-best-practices?view=sql-server-ver15
 
         sudo /opt/mssql/bin/mssql-conf set memory.memorylimitmb 30720
+        sudo /opt/mssql/bin/mssql-conf set memory.memorylimitmb 61440
 		
 			--Opções de configuração de memória do servidor
 				-- https://docs.microsoft.com/pt-br/sql/database-engine/configure-windows/server-memory-server-configuration-options?view=sql-server-ver15#example-a-set-the-max-server-memory-option-to-4-gb
@@ -175,7 +177,11 @@ total 65604
 			
 			RECONFIGURE;
 			
-			sp_configure 'max server memory', 30720;
+			-- 30GB 
+				sp_configure 'max server memory', 30720;
+
+			-- 60GB 
+				sp_configure 'max server memory', 61440;
 			
 			RECONFIGURE;
 			
@@ -184,7 +190,7 @@ total 65604
 			-- jan 18 16:49:11 ip-172-31-29-224.sa-east-1.compute.internal sqlservr[15590]: 2021-01-18 16:49:11.65 spid52      Configuration option 'max server memory (MB)' changed from 3686 to 30720. Run t...o install.
         
         
-		        sudo systemctl restart mssql-server
+			sudo systemctl restart mssql-server
 		
 		
 		

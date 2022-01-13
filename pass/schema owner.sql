@@ -1,6 +1,6 @@
---25ago21
+--12jan22
 
-EXEC dbLogMonitor.dbo.sp_foreachdb N' 
+EXEC dbo.sp_foreachdb N' 
     USE [?]
 
     SELECT  s.Name AS SchemaName, u.*
@@ -13,5 +13,5 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 -- ,@state_desc = N'OFFLINE'
 ,@user_only = 1
 ,@suppress_quotename=1
-,@name_pattern='dbBibDiocCaruaru';
+,@name_pattern='dbSiga';
 -- ,@database_list = 'dbSigaAldeiaPE'

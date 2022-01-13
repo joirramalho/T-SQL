@@ -16,7 +16,7 @@
 
 -- PASSWORD
 	--												'1234567890'
-	-- ALTER LOGIN [sigainternet] 	WITH PASSWORD = '****'; -- sigainternet userISO_PowerBI service.account
+	-- ALTER LOGIN [active.anderson] 	WITH PASSWORD = 'P@ssw0rd.'; -- sigainternet userISO_PowerBI service.account
 
 
 	-- re-enable login without password	
@@ -26,23 +26,23 @@
 
 
 
---USE dbSigaModeloFiscalize;
+--USE dbVendasConectaExped;
 
 
-	--CREATE USER 	[userModuloAracajuReadOnly] 	FOR LOGIN [userModuloAracajuReadOnly] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
+	--CREATE USER 	[userCONECTAEXPEDICIO] 	FOR LOGIN [userCONECTAEXPEDICIO] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
 	
 		--DROP USER [userINSTBRASILIA];
 	
 	
 	--	DEFAULT_DATABASE
-			--ALTER LOGIN 	[userModuloAracajuReadOnly] 	WITH  DEFAULT_DATABASE=[dbSigaModuloAracaju];
+			--ALTER LOGIN 	[userCONECTAEXPEDICIO] 	WITH  DEFAULT_DATABASE=[dbVendasConectaExped];
 	
 	
 		--GRANT CONNECT  TO [userModuloAracaju];
 			--REVOKE CONNECT  FROM [siga_caruaru];
 
 
-	--ALTER ROLE [db_owner] ADD MEMBER [userModuloAracaju];
+	--ALTER ROLE [db_owner] ADD MEMBER [userCONECTAEXPEDICIO];
 
 		--EXEC master..sp_addsrvrolemember @loginame = N'romario.barbalho', @rolename = N'sysadmin';
 

@@ -44,7 +44,7 @@ EXEC dbo.sp_foreachdb N'
         
                 -- ALTER DATABASE [?] SET  READ_ONLY WITH NO_WAIT
  
-DBCC SHRINKFILE ( dbSigaGGE_Arquivo_log , 0, TRUNCATEONLY)
+--DBCC SHRINKFILE ( dbSigaGGE_Arquivo_log , 0, TRUNCATEONLY)
 
                 -- DBCC SHRINKFILE (dbSigaSalePetrolina_Arquivo03_log, 0, TRUNCATEONLY) 
                  
@@ -52,7 +52,7 @@ DBCC SHRINKFILE ( dbSigaGGE_Arquivo_log , 0, TRUNCATEONLY)
                 -- DBCC SHRINKFILE (dbCantinaActive_log, 0, TRUNCATEONLY) 
                 
 
--- 		ALTER DATABASE [?] SET RECOVERY FULL WITH NO_WAIT
+ 		ALTER DATABASE [?] SET RECOVERY FULL WITH NO_WAIT
 
     END
 '
@@ -62,4 +62,4 @@ DBCC SHRINKFILE ( dbSigaGGE_Arquivo_log , 0, TRUNCATEONLY)
 ,@user_only = 1
 ,@suppress_quotename=1
 --,@name_pattern='dbSigaIES_Amadeus'
- ,@database_list = 'dbSigaGGE_Arquivo' --06
+ ,@database_list = 'dbSigaSeiAnglo' --06
