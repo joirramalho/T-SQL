@@ -1,6 +1,6 @@
-USE dbSigaModuloAracaju;
+USE dbSigaMariaStela;
 
---sp_helpindex "TbLancamentoCobranca"
+--sp_helpindex "TbAluno"
 
 -- TbAlunoFichaMedica
 ALTER TABLE [dbo].[TbAlunoFichaMedica] DROP CONSTRAINT [PK_TbAlunoFichaMedica]

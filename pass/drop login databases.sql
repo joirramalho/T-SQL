@@ -9,7 +9,7 @@ IF (OBJECT_ID('tempdb..#Databases') IS NOT NULL)
 
 CREATE TABLE tempdb..#Databases(     DatabaseName VARCHAR(128),    UserName    VARCHAR(128),     CreateDate DATETIME )
 
-EXEC dbLogMonitor.dbo.sp_foreachdb N'
+EXEC dbo.sp_foreachdb N'
 --	IF [?] IN (''dbActivePainelEletronico'')
 --	BEGIN
 		USE ?

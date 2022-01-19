@@ -1,7 +1,4 @@
-USE dbSigaModuloAracaju;
-
--- USE dbSigaNSLourdesGravata;
--- USE dbSigaAuxilRecife;
+USE dbSigaMariaStela;
 
 
 -- Novo
@@ -89,8 +86,7 @@ ALTER TABLE [dbo].[TbAlunoObs] DROP CONSTRAINT [FK_TbAlunoObs_IdProfessorRegistr
 	GO
 
 
-ALTER TABLE dbSigaModuloAracaju.dbo.TbAlunoObs ADD CONSTRAINT FK_TbAlunoObs_IdProfessorRegistro FOREIGN KEY (IdProfessorRegistro) 
-REFERENCES dbSigaModuloAracaju.dbo.TbProfessor(IdProfessor);
+ALTER TABLE dbo.TbAlunoObs ADD CONSTRAINT FK_TbAlunoObs_IdProfessorRegistro FOREIGN KEY (IdProfessorRegistro) REFERENCES dbo.TbProfessor(IdProfessor);
 	
 ALTER TABLE [dbo].[TbAlunoObs] CHECK CONSTRAINT [FK_TbAlunoObs_IdProfessorRegistro]
 

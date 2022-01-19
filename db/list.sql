@@ -3,6 +3,7 @@
 SELECT 
 	database_id,
 	name as [ON-LINE],
+	'./backup.sh ' + name as [ON-LINE],
 	state_desc,
 	create_date,
 	recovery_model_desc,
@@ -23,8 +24,10 @@ WHERE
 	--and create_Date > '2020-04-08 12:47:10.447'	
 	--and name LIKE 'dbCrmActivesoft%'
 ORDER BY
+--	name
 	create_date DESC;
 
+	
 
 --OFFLINE
 SELECT

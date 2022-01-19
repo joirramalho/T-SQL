@@ -1,4 +1,4 @@
-USE dbSigaModuloAracaju;
+USE dbSigaMariaStela;
 
 -- TbPeriodo 
 IF OBJECT_ID('dbo.FK_TbAlunoCursoDesconto_TbPeriodo') IS NOT NULL
@@ -94,6 +94,8 @@ ALTER TABLE [dbo].[TbServicoAdicional] DROP CONSTRAINT [FK_TbServicoAdicional_Tb
 GO
 
 
+ALTER TABLE [dbo].[TbSerie] DROP CONSTRAINT [FK_TbSerie_TbPeriodo_ItFor]
+GO
 
 ---
 
@@ -107,6 +109,12 @@ GO
 	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 90) ON [PRIMARY]
 	GO
 
+
+	
+ALTER TABLE [dbo].[TbSerie] WITH CHECK ADD CONSTRAINT [FK_TbSerie_TbPeriodo_ItFor] FOREIGN KEY([ItFor_IdPeriodo]) 	REFERENCES [dbo].[TbPeriodo] ([IdPeriodo])
+GO
+ALTER TABLE [dbo].[TbSerie] CHECK CONSTRAINT [FK_TbSerie_TbPeriodo_ItFor]
+GO
 
 
 ALTER TABLE [dbo].[TbServicoAdicional] WITH CHECK ADD CONSTRAINT [FK_TbServicoAdicional_TbPeriodo] FOREIGN KEY([IdPeriodo]) 

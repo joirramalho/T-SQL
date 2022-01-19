@@ -4,20 +4,21 @@
 DECLARE @DatabaseName 	sysname = NULL
 DECLARE @ObjectName 	sysname = NULL
 
---SET @DatabaseName = 'dbSigaMaterDei%'
+--SET @DatabaseName = 'dbCrmActivesoft%'
 --SET @ObjectName = 'SpAvisoTelaInicial%'
 
 SELECT
 	TOP 20
-    (total_logical_reads / execution_count) AS AvgLogicalReads
+    total_worker_time
     ,DB_NAME(database_id) AS DatabaseName
 --	,OBJECT_SCHEMA_NAME(object_id,database_id) AS SchemaName
 	,OBJECT_NAME(object_id, database_id) AS ObjectName
---	,cached_time AS CachedTime,
+--	,cached_time AS CachedTime
 	,last_execution_time AS LastExecutionTime
     ,execution_count AS TotalNumberOfExecution
     ,(total_worker_time / execution_count) AS AvgCPUTime
-    ,(total_elapsed_time / execution_count) AS AvgElapsedTime
+    ,(total_logical_reads / execution_count) AS AvgLogicalReads
+--    ,(total_elapsed_time / execution_count) AS AvgElapsedTime
     ,(total_logical_writes / execution_count) AS AvgLogicalWrites
     ,(total_physical_reads / execution_count) AS AvgPhysicalReads
 FROM
@@ -26,7 +27,7 @@ WHERE
 	DB_Name(database_id) LIKE ISNULL( @DatabaseName, DB_Name(database_id) ) 
 	AND OBJECT_NAME(object_id, database_id) LIKE ISNULL( @ObjectName, OBJECT_NAME(object_id, database_id) )
 ORDER BY
-	AvgLogicalReads DESC
+	total_worker_time DESC
 	
 
 	

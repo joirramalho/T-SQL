@@ -19,5 +19,5 @@ WHERE 1=1
     -- )
     -- AND GC.NomeGrupo LIKE '%5'
 	AND VersaoDB_Atual >= 1065171 -- Limite mínimo
-    AND VersaoDB_Atual < 1065181
+--    AND VersaoDB_Atual < 1065181
     -- AND C.IdCliente <> 5862

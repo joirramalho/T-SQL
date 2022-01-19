@@ -1,10 +1,38 @@
---10jan22
+--14jan22
 
 DECLARE @DatabaseName 	sysname = NULL
 DECLARE @LoginName 		sysname = NULL
 
---SET @DatabaseName = 'dbSigaFacCatolicaRN%'
+SET @DatabaseName = 'dbSigaMariaStela%'
 --SET @LoginName 	= 'userModuloAracajuReadOnly%'
+
+-- Databases on & offline
+SELECT 
+		CASE 
+		WHEN state = 0 THEN 'ONLINE'
+		ELSE '-- offline --'
+	END AS 'state',
+	name, program_name, last_request_start_time, login_name, RTRIM( 'KILL ' + CAST( session_id AS CHAR ) ) + ';' AS [kill], login_time, host_name, recovery_model_desc,
+	CASE 
+		WHEN is_read_only = 1 THEN 'read-only'
+		ELSE 'r/w'
+	END AS 'read-write'
+FROM	sys.databases d
+LEFT JOIN sys.dm_exec_sessions s ON d.database_id  = s.database_id
+WHERE
+	d.database_id > 4
+--	and login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND PROGRAM_NAME NOT LIKE ('ADO_MESSENGER_ADO%') AND PROGRAM_NAME NOT LIKE ('ADO_SIGA_NFSe%')	--IS_USER_PROCESS = 1
+--	and state = 0 			-- 0 ON-LINE -- 6 OFF-LINE
+	--and recovery_model = 1   -- 1-FULL 3-simple
+	--and is_read_only = 1 	-- Read-only
+	--and user_access <> 1 	-- SINGLE_USER
+	--and name NOT IN ('?')
+	--and create_Date > '2020-04-08 12:47:10.447'	
+	--and name LIKE 'dbCrmActivesoft%'
+ORDER BY state_desc DESC, name, program_name DESC
+
+
+
 
 SELECT	DB_Name(database_id)  AS [DatabaseName], last_request_start_time, login_name, RTRIM( 'KILL ' + CAST( session_id AS CHAR ) ) + ';' AS [kill], program_name, host_name, [status], login_time--, logical_reads, row_count, reads, writes
 -- unsuccessful_logons, last_unsuccessful_logon, last_request_end_time
@@ -18,6 +46,7 @@ WHERE	login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' 
 	--AND OPEN_TRANSACTION_COUNT = 0
 ORDER BY DB_Name(database_id), last_request_start_time DESC
 	
+
 
 --QtdeConnections
 SELECT	DB_Name(database_id)  AS [DatabaseName], count(*) AS QtdeConnections

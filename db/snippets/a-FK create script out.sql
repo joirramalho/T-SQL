@@ -3,7 +3,8 @@
 	--Script to generate the creation script of all foreign key constraints
 	--www.percyreyes.com
 
-	--USE db;
+	--USE dbSigaMariaStela;
+
 
 declare @ForeignKeyID int
 declare @ForeignKeyName varchar(4000)

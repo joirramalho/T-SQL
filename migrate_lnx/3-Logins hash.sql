@@ -24,7 +24,7 @@ WHERE SP.type IN ('S','G','U')
         AND SP.name NOT IN ('sigainternet', 'service.account')
 
 
---        AND sp.is_disabled = 0 -- enabled
+        AND sp.is_disabled = 0 -- enabled
 
         
         -- AND SP.default_database_name LIKE 'master%' 

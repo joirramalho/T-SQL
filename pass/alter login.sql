@@ -4,8 +4,8 @@
 
 
 --LOGIN --
-	--SENHA COM 10 caracteres											'1234567890'		
-		--CREATE LOGIN [userModuloAracajuReadOnly] 		WITH PASSWORD= N'******', DEFAULT_DATABASE=[dbSigaModuloAracaju], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
+	--SENHA COM 10 caracteres									'1234567890'		
+		--CREATE LOGIN [userMariaStela] 		WITH PASSWORD= N'****', DEFAULT_DATABASE=[dbSigaMariaStela], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
 
 		--ALTER LOGIN [userMUNDODACRIANCA] DISABLE;
 
@@ -16,7 +16,7 @@
 
 -- PASSWORD
 	--												'1234567890'
-	-- ALTER LOGIN [active.anderson] 	WITH PASSWORD = 'P@ssw0rd.'; -- sigainternet userISO_PowerBI service.account
+	-- ALTER LOGIN [active.aaa] 	WITH PASSWORD = 'P@ssw0rd.'; -- sigainternet userISO_PowerBI service.account
 
 
 	-- re-enable login without password	
@@ -26,10 +26,10 @@
 
 
 
---USE dbVendasConectaExped;
+--USE dbSigaMariaStela;
 
 
-	--CREATE USER 	[userCONECTAEXPEDICIO] 	FOR LOGIN [userCONECTAEXPEDICIO] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
+	--CREATE USER 	[userMariaStela] 	FOR LOGIN [userMariaStela] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
 	
 		--DROP USER [userINSTBRASILIA];
 	
@@ -42,7 +42,7 @@
 			--REVOKE CONNECT  FROM [siga_caruaru];
 
 
-	--ALTER ROLE [db_owner] ADD MEMBER [userCONECTAEXPEDICIO];
+	--ALTER ROLE [db_owner] ADD MEMBER [userMariaStela];
 
 		--EXEC master..sp_addsrvrolemember @loginame = N'romario.barbalho', @rolename = N'sysadmin';
 

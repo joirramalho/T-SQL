@@ -1,4 +1,4 @@
---14dez21
+--19jan22
 
 --USE dbSigaPadraoInst
 
@@ -9,13 +9,11 @@
 
 --VersaoDB_Atual by CRM
 SELECT
-	[VersaoDB_Atual]
-,
-	COUNT(*)
+	[VersaoDB_Atual], COUNT(*)
 FROM
 	[dbCrmActivesoft].[dbo].[TbCliente]
 WHERE	( 
-      ServidorIP IN ('172.31.16.24', '172.31.44.127', '172.31.19.237', '172.31.31.254', '172.31.18.113', '172.31.17.88', '172.31.21.223', '172.31.20.88', '172.31.22.23', '172.31.27.161')
+      ServidorIP IN ('172.31.16.24', '172.31.28.240', '172.31.28.131', '172.31.19.237', '172.31.31.254', '172.31.18.113', '172.31.17.88', '172.31.21.223', '172.31.20.88', '172.31.22.23', '172.31.27.161')
 		AND ServidorIP NOT IN ('172.31.17.105', '172.31.27.137', '172.31.27.138')
 		--PRD & LAB4 )
   		)
@@ -32,7 +30,9 @@ ORDER BY
 
 SELECT 
 -- [CodigoCliente]
-      [NomeCliente] AS [LOCAL],
+   [NomeGrupo]
+	,NomeOperador
+      ,[NomeCliente] AS [LOCAL]
     --   ,[Licencas]
     --   ,[Operadores]
     --   ,[DadosConexao]
@@ -41,15 +41,14 @@ SELECT
     --   ,[IdOperadorVendedor]
     --   ,[TipoCliente]
     --   ,[ObservacaoSetorComercial]
-    --   ,[IdGrupoAtendimento]
     --   ,[IdClienteCongregacao]
     --   ,[StRequerOrcamento]
     --   ,[IdVPS]
-      [SiglaUnidade],
+      ,[SiglaUnidade]
     --   ,[SituacaoLicencaUso]
     --   ,[ServidorAlias]
     
-      [ServidorIP]
+      ,[ServidorIP]
     
     --   ,[ServidorPorta]
     --   ,[ServidorDatabase]
@@ -68,16 +67,18 @@ SELECT
       ,[ServidorLocalIP]
     --   ,[ServidorLocalPorta]
       ,COUNT(*)
-  FROM [dbCrmActivesoft].[dbo].[TbCliente]
+  FROM [dbCrmActivesoft].[dbo].[TbCliente] c
+  LEFT JOIN [dbCrmActivesoft].[dbo].TbGrupoAtendimento ga ON ga.IdGrupoAtendimento = c.IdGrupoAtendimento 
+  LEFT JOIN [dbCrmActivesoft].[dbo].TbOperador o ON ga.IdOperadorResponsavel = o.IdOperador 
   WHERE 1=1
     AND 
     ( 
-      ServidorIP  NOT IN ('172.31.16.24', '172.31.44.127', '172.31.19.237', '172.31.31.254', '172.31.18.113', '172.31.17.88', '172.31.21.223', '172.31.20.88', '172.31.22.23', '172.31.27.161', '172.31.31.201')
+      ServidorIP  NOT IN ('172.31.16.24', '172.31.28.240', '172.31.28.131', '172.31.19.237', '172.31.31.254', '172.31.18.113', '172.31.17.88', '172.31.21.223', '172.31.20.88', '172.31.22.23', '172.31.27.161', '172.31.31.201')
     AND ServidorIP NOT  IN ('172.31.17.105', '172.31.27.137', '172.31.27.138') --PRD & LAB4 )
   )
     AND TipoCliente IN ('A')
     AND VersaoDB_Atual NOT IN (1001200,1064990,1065089,1065092)
 
   
-  GROUP BY NomeCliente,[SiglaUnidade], ServidorIP, ServidorLocalIP --VersaoDB_Atual
-  ORDER BY NomeCliente,[SiglaUnidade], ServidorIP, ServidorLocalIP --VersaoDB_Atual
+  GROUP BY NomeGrupo, NomeOperador, NomeCliente,[SiglaUnidade], ServidorIP, ServidorLocalIP --VersaoDB_Atual
+  ORDER BY NomeGrupo, NomeOperador, NomeCliente,[SiglaUnidade], ServidorIP, ServidorLocalIP --VersaoDB_Atual

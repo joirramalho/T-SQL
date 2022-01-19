@@ -1,9 +1,7 @@
--- EXEC dbLogMonitor.dbo.sp_Where
+--16jan22
+--22abr21
 
--- 03ago21
--- 22abr21
-
-EXEC dbLogMonitor.dbo.sp_foreachdb N'
+EXEC dbo.sp_foreachdb N'
         SET NOCOUNT ON
 
         CREATE TABLE #CheckDB([Error] INT,[Level] INT,[State] INT,[MessageText] VARCHAR(MAX),[RepairLevel] INT,[Status] INT,[DbId] INT,[DbFragId] INT,[ObjectID] INT,[IndexId] INT,[PartitionId] INT,[AllocUnitId] INT,[RidDbId] INT,[RidPruId] INT,[File] INT,[Page] INT,[Slot] INT,[RefDbID] INT,[RefPruId] INT,[RefFile] INT,[RefPage] INT,[RefSlot] INT,[Allocation] INT);
@@ -11,7 +9,12 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
         INSERT INTO #CheckDB([Error], [Level], [State], [MessageText], [RepairLevel],[Status], [DbId], [DbFragId], [ObjectID], [IndexId], [PartitionId],[AllocUnitId], [RidDbId], [RidPruId], [File], [Page], [Slot], [RefDbID],[RefPruId], [RefFile], [RefPage], [RefSlot], [Allocation])
             EXEC (''DBCC CHECKDB([?]) WITH TABLERESULTS'');
 
-    INSERT INTO dbLogMonitor.dbo.DBCC_CheckDB ( [Error], [Level], [State], [MessageText], [RepairLevel],[Status], [DbId], [DbFragId], [ObjectID], [IndexId] )--, [PartitionId],[AllocUnitId], [RidDbId], [RidPruId], [File], [Page], [Slot], [RefDbID],[RefPruId], [RefFile], [RefPage], [RefSlot], [Allocation])
+--    INSERT INTO dbLogMonitor.dbo.DBCC_CheckDB ( [Error], [Level], [State], [MessageText], [RepairLevel],[Status], [DbId], [DbFragId], [ObjectID], [IndexId] )--, [PartitionId],[AllocUnitId], [RidDbId], [RidPruId], [File], [Page], [Slot], [RefDbID],[RefPruId], [RefFile], [RefPage], [RefSlot], [Allocation])
+
+		USE [?]
+
+		SELECT DB_NAME();
+
         SELECT [Error], [Level], [State], [MessageText], [RepairLevel],[Status], [DbId], [DbFragId], [ObjectID], [IndexId] FROM #CheckDB WHERE Error = 8989 AND Error NOT IN ( 2593, 8997 )
 '
 ,@print_command_only = 0 -- Obrigatório Gerar script
@@ -19,8 +22,8 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 ,@state_desc = N'ONLINE'
 ,@user_only = 1
 ,@suppress_quotename=1
-,@name_pattern='dbSigaCELogos';
--- ,@database_list = 'dbSigaA'
+--,@name_pattern='dbSigaAbenpC';
+ ,@database_list = 'dbSigaSantanna, dbSigaNeves, dbSigaSantaRosa, dbSigaLourdinasCG, dbSigaFenix'
 
 
 -- 

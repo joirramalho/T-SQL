@@ -21,7 +21,7 @@ SELECT DB_NAME()
 -- Script INSERT INTO
 EXEC dbo.sp_foreachdb N'
     BEGIN TRAN
-		SELECT  * INTO VPS04_20220105_Dados2019.dbo.?_TbAuditoria FROM ?.dbo.TbAuditoria WHERE Tabela IN (''TbCaixaLancamento'',''TbCaixaMovimentacao'',''TbConta'',''TbLancamentoConsumo'',''TbLancamentoConsumoItem'',''TbLancamentoCredito'',''TbProdutoEstoque'') AND year(DataHora) < ( year( getdate() ) - 2 )
+		SELECT  * INTO VPS03_20220115_Dados2019.dbo.?_TbAuditoria FROM ?.dbo.TbAuditoria WHERE Tabela IN (''TbCaixaLancamento'',''TbCaixaMovimentacao'',''TbConta'',''TbLancamentoConsumo'',''TbLancamentoConsumoItem'',''TbLancamentoCredito'',''TbProdutoEstoque'') AND year(DataHora) < ( year( getdate() ) - 2 )
 
 		DELETE  FROM ?.dbo.TbAuditoria  WHERE Tabela IN (''TbCaixaLancamento'',''TbCaixaMovimentacao'',''TbConta'',''TbLancamentoConsumo'',''TbLancamentoConsumoItem'',''TbLancamentoCredito'',''TbProdutoEstoque'') AND year(DataHora) < ( year( getdate() ) - 2 )
     COMMIT

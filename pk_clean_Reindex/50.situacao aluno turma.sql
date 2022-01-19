@@ -1,4 +1,4 @@
-USE dbSigaModuloAracaju;
+USE dbSigaMariaStela;
 
 
 IF OBJECT_ID('dbo.[FK_TbParametroInternet_InscrEvento_IdSituacaoAlunoTurmaParticipante]') IS NOT NULL 
@@ -35,10 +35,19 @@ GO
 ALTER TABLE [dbo].[TbParametroAssinaturaEletronica] DROP CONSTRAINT [FK_TbModeloContrato_TbSituacaoAlunoTurma]
 GO
 
-
-
-ALTER TABLE [dbo].[TbSituacaoAlunoTurma] DROP CONSTRAINT [PK_TbSituacaoAlunoTurma]
+ALTER TABLE [dbo].[TbItinerarioFormativoSituacaoAlunoTurma] DROP CONSTRAINT [FK_TbItinerarioFormativoSituacaoAlunoTurma_TbSituacaoAlunoTurma]
 GO
+
+
+ALTER TABLE [dbo].[TbSerie] DROP CONSTRAINT [FK_TbSerie_TbSituacaoAlunoTurma_ItFor_IdSituacaoAlunoTurmaAposMatricula]
+Go
+
+ALTER TABLE [dbo].[TbCaptacaoParametro] DROP CONSTRAINT [FK_TbCaptacaoParametro_SituacaoAluno]
+Go
+
+
+	ALTER TABLE [dbo].[TbSituacaoAlunoTurma] DROP CONSTRAINT [PK_TbSituacaoAlunoTurma]
+	GO
 
 
 
@@ -51,7 +60,24 @@ GO
 	GO
 
 
-    
+	
+ALTER TABLE [dbo].[TbCaptacaoParametro] WITH CHECK ADD CONSTRAINT [FK_TbCaptacaoParametro_SituacaoAluno] FOREIGN KEY([SituacaoAluno]) REFERENCES [dbo].[TbSituacaoAlunoTurma] ([IdSituacaoAlunoTurma]); 	
+GO
+ALTER TABLE [dbo].[TbCaptacaoParametro] CHECK CONSTRAINT [FK_TbCaptacaoParametro_SituacaoAluno]
+GO
+
+	
+ALTER TABLE [dbo].[TbSerie] WITH CHECK ADD CONSTRAINT [FK_TbSerie_TbSituacaoAlunoTurma_ItFor_IdSituacaoAlunoTurmaAposMatricula] FOREIGN KEY([ItFor_IdSituacaoAlunoTurmaAposMatricula]) REFERENCES [dbo].[TbSituacaoAlunoTurma] ([IdSituacaoAlunoTurma]); 	
+GO
+ALTER TABLE [dbo].[TbSerie] CHECK CONSTRAINT [FK_TbSerie_TbSituacaoAlunoTurma_ItFor_IdSituacaoAlunoTurmaAposMatricula]
+GO
+	
+
+ALTER TABLE [dbo].[TbItinerarioFormativoSituacaoAlunoTurma] WITH CHECK ADD CONSTRAINT [FK_TbItinerarioFormativoSituacaoAlunoTurma_TbSituacaoAlunoTurma] FOREIGN KEY([IdSituacaoAlunoTurma])  REFERENCES [dbo].[TbSituacaoAlunoTurma] ([IdSituacaoAlunoTurma]); 
+GO
+ALTER TABLE [dbo].[TbItinerarioFormativoSituacaoAlunoTurma] CHECK CONSTRAINT [FK_TbItinerarioFormativoSituacaoAlunoTurma_TbSituacaoAlunoTurma]
+GO	
+	
 
 ALTER TABLE [dbo].[TbParametroAssinaturaEletronica]  WITH CHECK ADD  CONSTRAINT [FK_TbModeloContrato_TbSituacaoAlunoTurma] FOREIGN KEY([IdSituacaoAlunoTurmaDestino])
 REFERENCES [dbo].[TbSituacaoAlunoTurma] ([IdSituacaoAlunoTurma])

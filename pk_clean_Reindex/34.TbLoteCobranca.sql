@@ -1,4 +1,4 @@
-USE dbSigaModuloAracaju;
+USE dbSigaMariaStela;
 
 -- TbLoteCobranca
 ALTER TABLE [dbo].[TbLancamentoCobranca] DROP CONSTRAINT [FK_TbLancamentoCobranca_TbLoteCobranca]

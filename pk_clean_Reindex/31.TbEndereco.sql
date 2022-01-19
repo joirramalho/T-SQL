@@ -1,4 +1,4 @@
-USE dbSigaModuloAracaju;
+USE dbSigaMariaStela;
 
 -- USE dbSigaNSLourdesGravata;
 -- USE dbSigaAuxilRecife;

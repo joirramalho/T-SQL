@@ -1,4 +1,4 @@
-USE dbSigaModuloAracaju;
+USE dbSigaMariaStela;
 
 
 ALTER TABLE [dbo].[TbAlmoxMaterialMovimentacao] DROP CONSTRAINT [FK_TbAlmoxMaterialMovimentacao_TbUsuario]
@@ -226,14 +226,12 @@ ALTER TABLE [dbo].[TbTituloCobrancaEnvio] DROP CONSTRAINT [FK_TbTituloCobrancaEn
 
 
 	
-ALTER TABLE dbSigaModuloAracaju.dbo.TbTituloCobrancaEnvio ADD CONSTRAINT FK_TbTituloCobrancaEnvio_TbUsuario FOREIGN KEY (IdUsuario) 
-REFERENCES dbSigaModuloAracaju.dbo.TbUsuario(IdUsuario);
+ALTER TABLE dbo.TbTituloCobrancaEnvio ADD CONSTRAINT FK_TbTituloCobrancaEnvio_TbUsuario FOREIGN KEY (IdUsuario) REFERENCES dbo.TbUsuario(IdUsuario);
 	
 ALTER TABLE [dbo].[TbTituloCobrancaEnvio] CHECK CONSTRAINT [FK_TbTituloCobrancaEnvio_TbUsuario];
 	
 	
-ALTER TABLE dbSigaModuloAracaju.dbo.TbTituloCobranca_Persistido ADD CONSTRAINT FK_TbTituloCobranca_Persistido_TbTituloCobranca FOREIGN KEY (IdTituloCobranca) 
-REFERENCES dbSigaModuloAracaju.dbo.TbTituloCobranca(IdTituloCobranca);
+ALTER TABLE dbo.TbTituloCobranca_Persistido ADD CONSTRAINT FK_TbTituloCobranca_Persistido_TbTituloCobranca FOREIGN KEY (IdTituloCobranca) REFERENCES dbo.TbTituloCobranca(IdTituloCobranca);
 	
 ALTER TABLE [dbo].[TbTituloCobranca_Persistido] CHECK CONSTRAINT [FK_TbTituloCobranca_Persistido_TbTituloCobranca];
 	

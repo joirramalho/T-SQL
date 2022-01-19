@@ -3,7 +3,7 @@
     -- https://www.mssqltips.com/sqlservertip/3443/script-all-primary-keys-unique-constraints-and-foreign-keys-in-a-sql-server-database-using-tsql/
 
 
---USE db;
+--USE dbSigaMariaStela;
 
 declare @ForeignKeyName varchar(4000)
 declare @ParentTableName varchar(4000)

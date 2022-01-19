@@ -62,4 +62,4 @@ EXEC dbo.sp_foreachdb N'
 ,@user_only = 1
 ,@suppress_quotename=1
 --,@name_pattern='dbSigaIES_Amadeus'
- ,@database_list = 'dbSigaSeiAnglo' --06
+ ,@database_list = 'dbSigaSaoJorge' --06 

@@ -3,6 +3,9 @@
 --SCRIPT TO GENERATE THE CREATION SCRIPT OF ALL PK AND UNIQUE CONSTRAINTS.
 	--https://www.mssqltips.com/sqlservertip/3443/script-all-primary-keys-unique-constraints-and-foreign-keys-in-a-sql-server-database-using-tsql/
 
+--USE dbSigaMariaStela;
+
+
 declare @SchemaName varchar(100)
 declare @TableName varchar(256)
 declare @IndexName varchar(256)

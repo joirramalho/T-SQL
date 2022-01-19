@@ -1,6 +1,12 @@
+--18jan22
+	-- using statement_start_offset and statement_end_offset we get the query text from inside the entire batch
 
--- 27dez21
--- using statement_start_offset and statement_end_offset we get the query text from inside the entire batch
+DECLARE @DatabaseName 	sysname = NULL
+DECLARE @LoginName 		sysname = NULL
+
+SET @DatabaseName = 'dbSigaMariaStela%'
+--SET @LoginName 	= 'userModuloAracajuReadOnly%'
+
 
 SELECT	TOP 30
 	qs.total_worker_time,
@@ -28,13 +34,15 @@ FROM
        CROSS APPLY sys.dm_exec_sql_text(qs.sql_handle) qt
 	-- Retrieve the query plan
        CROSS APPLY sys.dm_exec_query_plan(qs.plan_handle) qp
+WHERE	
+	DB_Name(qp.dbid) LIKE ISNULL( @DatabaseName, DB_Name(qp.dbid) ) 		
+--	AND LOGIN_NAME LIKE ISNULL( @LoginName, LOGIN_NAME ) 	
 ORDER BY
 	qs.total_worker_time DESC	-- CPU time
 	
 	
 	
 
-/*
 IF OBJECT_ID('TEMPDB..##TEMP') IS NOT NULL	DROP TABLE ##TEMP
 
 CREATE TABLE ##TEMP ( 
@@ -60,11 +68,10 @@ ORDER BY
 	qs.total_worker_time DESC	-- CPU time
 	
 
-SELECT 	SUM( total_worker_time ), QueryText
-FROM ##TEMP
-GROUP BY QueryText
-ORDER BY SUM( total_worker_time ) DESC
-*/
+	SELECT 	SUM( total_worker_time ) total_worker_time, QueryText
+	FROM ##TEMP
+	GROUP BY QueryText
+	ORDER BY SUM( total_worker_time ) DESC
 	
 	
 /*	

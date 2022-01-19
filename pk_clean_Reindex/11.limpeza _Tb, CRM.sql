@@ -105,7 +105,7 @@ BEGIN
 
                 PRINT ''
         
-		SET @cmd = 'SELECT * INTO SQL10_20210906_lixo.dbo.' + @Database + '_' + @TableName + ' FROM ' + @FullTableName
+--		SET @cmd = 'SELECT * INTO SQL10_20210906_lixo.dbo.' + @Database + '_' + @TableName + ' FROM ' + @FullTableName
 		PRINT @cmd 
       	----EXEC (@cmd) 
         

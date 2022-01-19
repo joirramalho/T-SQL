@@ -1,6 +1,6 @@
 --02set21
 
-EXEC DBLOGMONITOR.DBO.SP_FOREACHDB N' 
+EXEC dbo.sp_foreachdb N' 
     USE [?]
 
     IF EXISTS(  

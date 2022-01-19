@@ -1,4 +1,4 @@
---23dez21
+--15jan22
 
 EXEC dbo.sp_foreachdb N'
     ALTER DATABASE [?] SET RECOVERY SIMPLE WITH NO_WAIT;
@@ -7,7 +7,7 @@ EXEC dbo.sp_foreachdb N'
 
 	SELECT DB_NAME();
 
---	DBCC SHRINKDATABASE(?);
+	DBCC SHRINKDATABASE(?);
 
 
 		EXEC sp_MSforeachtable @command1="ALTER INDEX ALL ON $ REBUILD WITH (ONLINE=OFF)", @replacechar="$"; -- NAO funciona com dbCrmActivesoft
@@ -42,7 +42,16 @@ EXEC dbo.sp_foreachdb N'
 ,@user_only = 1
 ,@suppress_quotename=1
 -- ,@name_pattern='dbSigaSalePetrolina_Arquivo0';
-,@database_list = 'dbSigaFacCatolicaRN';  
+,@database_list = 'dbSigaModuloAracaju, dbSigaCTEAD, dbSigaViverde, dbSigaOneWay' 
 
 
---	DBCC CHECKDB([dbSigaFacCatolicaRN]); -- WITH TABLERESULTS
+-- Fazer backup 
+--./backup.sh dbSigaModuloAracaju && ./backup.sh dbSigaCTEAD && ./backup.sh dbSigaViverde && ./backup.sh dbSigaOneWay
+
+--	DBCC CHECKDB([dbSigaMariaStela]); -- WITH TABLERESULTS
+
+
+
+
+--ALTER DATABASE [dbCrmActivesoft] SET RECOVERY SIMPLE WITH NO_WAIT;
+--DBCC SHRINKFILE (dbActiveCRM2_Data_ColetaDados , 0, TRUNCATEONLY);

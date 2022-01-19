@@ -1,4 +1,4 @@
-USE dbSigaModuloAracaju;
+USE dbSigaMariaStela;
 
 -- TbSerie & TbTurma --- TbPeriodo & TbUsuario
 IF OBJECT_ID('dbo.FK_TbCaptacaoAlunoInteressado_TbSerie') IS NOT NULL
@@ -51,6 +51,8 @@ ALTER TABLE [dbo].[TbTextoPersonalizadoSerie] DROP CONSTRAINT [FK_TbTextoPersona
 ALTER TABLE [dbo].[TbTurma] DROP CONSTRAINT [FK_TbTurma_TbSerie]
 
 
+ALTER TABLE [dbo].[TbItinerarioFormativoSituacaoAlunoTurma] DROP CONSTRAINT [FK_TbItinerarioFormativoSituacaoAlunoTurma_TbSerie]
+
 
 	ALTER TABLE [dbo].[TbSerie] DROP CONSTRAINT [PK_TbSerie]
 	
@@ -62,7 +64,12 @@ ALTER TABLE [dbo].[TbTurma] DROP CONSTRAINT [FK_TbTurma_TbSerie]
 	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 90) ON [PRIMARY]
 	
 
-                                                                                                                                                                                                                                                                 
+
+ALTER TABLE [dbo].[TbItinerarioFormativoSituacaoAlunoTurma] WITH CHECK ADD CONSTRAINT [FK_TbItinerarioFormativoSituacaoAlunoTurma_TbSerie] FOREIGN KEY([IdSerie]) 	REFERENCES [dbo].[TbSerie] ([IdSerie]); 
+ALTER TABLE [dbo].[TbItinerarioFormativoSituacaoAlunoTurma] CHECK CONSTRAINT [FK_TbItinerarioFormativoSituacaoAlunoTurma_TbSerie]
+
+	
+	
 IF	EXISTS		( SELECT *	FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'TbCaptacaoAlunoInteressado'	AND COLUMN_NAME = 'IdSerie' )
 	AND	EXISTS	( SELECT *	FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'TbSerie'					AND COLUMN_NAME = 'IdSerie' )
 	BEGIN

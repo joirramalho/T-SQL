@@ -6,7 +6,7 @@ IF (OBJECT_ID('tempdb..#TmpVersion') IS NOT NULL)
 
 CREATE TABLE [dbo].[#TmpVersion]    ([DatabaseName] VARCHAR(32) NULL, [Version] VARCHAR(16) NULL );
 
-EXEC dbLogMonitor.dbo.sp_foreachdb N'
+EXEC dbo.sp_foreachdb N'
     USE [?]
 
     INSERT INTO #TmpVersion ([DatabaseName], [Version])
