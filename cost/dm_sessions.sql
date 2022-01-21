@@ -3,7 +3,7 @@
 DECLARE @DatabaseName 	sysname = NULL
 DECLARE @LoginName 		sysname = NULL
 
-SET @DatabaseName = 'dbSigaMariaStela%'
+--SET @DatabaseName = 'dbSigaMenino%'
 --SET @LoginName 	= 'userModuloAracajuReadOnly%'
 
 -- Databases on & offline

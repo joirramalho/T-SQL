@@ -16,7 +16,7 @@
 
 -- PASSWORD
 	--												'1234567890'
-	-- ALTER LOGIN [active.aaa] 	WITH PASSWORD = 'P@ssw0rd.'; -- sigainternet userISO_PowerBI service.account
+	-- ALTER LOGIN [sigainternet] 	WITH PASSWORD = '*****'; -- sigainternet userISO_PowerBI service.account
 
 
 	-- re-enable login without password	

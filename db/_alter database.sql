@@ -5,12 +5,8 @@
 	
 	--ALTER DATABASE dbSigaAbenpSaoBento SET OFFLINE;
 
-
-                            
-
-	--DROP
-		--DROP DATABASE dbSigaRaizes
-
+		--DROP
+			--DROP DATABASE dbSigaRaizes
 
 
 --SINGLE_USER & MULTI_USER
@@ -21,14 +17,14 @@
 
 
 --READ_WRITE & READ_ONLY
-	--ALTER DATABASE dbSigaMariaStela    SET  READ_WRITE WITH NO_WAIT
+	--ALTER DATABASE dbSigaContemporaneo_Arquivo01    SET  READ_WRITE WITH NO_WAIT
 
-	--ALTER DATABASE dbSigaGGE_Arquivo    SET  READ_ONLY WITH NO_WAIT
+	--ALTER DATABASE dbSigaContemporaneo_Arquivo01    SET  READ_ONLY WITH NO_WAIT
 
 
 
 --SET RECOVERY
-	--ALTER DATABASE [dbSigaModuloAracaju_Arquivo01] SET RECOVERY SIMPLE WITH NO_WAIT;
+	--ALTER DATABASE [dbSigaModuloAracaju_Arquivo] SET RECOVERY SIMPLE WITH NO_WAIT;
 
 	--ALTER DATABASE [dbSigaMariaStela] SET RECOVERY FULL WITH NO_WAIT
 
@@ -53,7 +49,6 @@
 
 --RESTORE HEADERONLY
 	--RESTORE HEADERONLY	FROM DISK = 'C:\Restore\dbSigaDiocesanoMossoro_backup_2021_11_15_220600_9714394.bak'
-
 
 
 

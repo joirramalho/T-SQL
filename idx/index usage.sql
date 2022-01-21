@@ -13,7 +13,7 @@ FROM    sys.indexes As I
 LEFT    OUTER JOIN sys.dm_db_index_usage_stats As U ON I.object_id = U.object_id AND I.index_id = U.index_id
 WHERE DB_NAME(database_id) = DB_NAME()
 
---    AND I.object_id = OBJECT_ID('TbLancamentoCobranca') --and I.Name IS NULL -- TbLancamentoCobranca-- TbAuditoria -- TbTituloCobranca -- TbOcorrenciaMovimentacao
+    AND I.object_id = OBJECT_ID('TbTituloCobrancaBoleto_Auditoria') --and I.Name IS NULL -- TbLancamentoCobranca-- TbAuditoria -- TbTituloCobranca -- TbOcorrenciaMovimentacao
 
 ORDER BY user_seeks + user_scans + user_lookups + user_updates DESC
 

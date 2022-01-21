@@ -7,9 +7,10 @@ SELECT
 FROM sys.dm_exec_connections AS c  
 JOIN sys.dm_exec_sessions AS s  
     ON c.session_id = s.session_id
-where login_name LIKE 'userCentec%'
+--where login_name LIKE 'userCentec%'
 
 
 SELECT * --session_id, client_net_address
     FROM sys.dm_exec_connections
-where session_id IN (69,74,210,245,275)
+--where	client_net_address  IN ('172.31.20.171')
+   --where session_id IN (69,74,210,245,275)

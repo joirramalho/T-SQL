@@ -4,7 +4,7 @@
 DECLARE @DatabaseName 	sysname = NULL
 DECLARE @LoginName 		sysname = NULL
 
-SET @DatabaseName = 'dbSigaMariaStela%'
+--SET @DatabaseName = 'dbSigaMariaStela%'
 --SET @LoginName 	= 'userModuloAracajuReadOnly%'
 
 
