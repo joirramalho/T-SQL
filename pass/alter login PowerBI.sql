@@ -36,6 +36,11 @@
 
 
 -- Use dbCrmActivesoft;
+   
+    -- active.filipe - VPS09 - PowerBI -- 25Jan22
+        -- GRANT UPDATE ON [dbo].TbFuncionalidadeLiberacao TO [active.filipe];
+   
+   
 
     -- active.filipe - VPS-7 - PowerBI -- 28Jan21
         -- GRANT SELECT ON [dbo].TbColetaDados TO [active.filipe];
