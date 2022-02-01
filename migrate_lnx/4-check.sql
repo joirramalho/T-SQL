@@ -2,11 +2,11 @@
 
 SET NOCOUNT ON
 
-USE [dbBibCordUNECIM]; 
+USE [dbBibEstacao]; 
 
-SELECT TOP (10) DB_NAME(), [Tabela],[DataHora], [DescricaoOperacao] FROM [dbo].[TbAuditoria]     order by Datahora DESC;
-SELECT TOP (5) [DataHora],[IPHost],[Arquivo],[IdUsuario],[TitpoUsuario],[Acao],[ParametroStr] FROM [dbo].[TbLogWeb] order by IdLogWeb DESC;
---SELECT TOP (5) *  FROM [dbo].[TbLogMobile]  order by IdLogMobile DESC;
+SELECT TOP (20) DB_NAME(), [Tabela],[DataHora], [DescricaoOperacao] FROM [dbo].[TbAuditoria]     order by Datahora DESC;
+--	SELECT TOP (5) [DataHora],[IPHost],[Arquivo],[IdUsuario],[TitpoUsuario],[Acao],[ParametroStr] FROM [dbo].[TbLogWeb] order by IdLogWeb DESC;
+--	SELECT TOP (5) *  FROM [dbo].[TbLogMobile]  order by IdLogMobile DESC;
 ---
 
 SELECT last_request_start_time, login_time, login_name, host_name, program_name, client_interface_name

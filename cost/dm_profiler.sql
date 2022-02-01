@@ -4,7 +4,7 @@
 
 DECLARE @DatabaseName 	sysname = NULL
 
---SET @DatabaseName = 'dbSigaMariaStela%'
+--SET @DatabaseName = 'dbSigaPassosFirmes%'
 
 SELECT TOP 50  -- *
 	deqs.last_execution_time AS [Time]
@@ -12,11 +12,8 @@ SELECT TOP 50  -- *
 	,OBJECT_NAME(dest.objectid, dest.dbid) AS object_name
 	,dest.TEXT AS [Query]
 	,deqs.execution_count 
-	,deqs.total_rows 
---	,deqs.last_rows 
---	,deqs.last_worker_time 
-	,deqs.total_worker_time 
---	,deqs.last_logical_reads 
+	,deqs.total_rows --	,deqs.last_rows --	,deqs.last_worker_time 
+	,deqs.total_worker_time --	,deqs.last_logical_reads 
 	,deqs.total_logical_reads 
 	,deqs.total_logical_writes 
 FROM 	sys.dm_exec_query_stats AS deqs

@@ -31,7 +31,7 @@ WHERE SP.type IN ('S','G','U')
         -- AND EXISTS ( SELECT * FROM sys.databases d WHERE d.state_desc = 'ONLINE' )
         -- AND EXISTS ( SELECT * FROM sys.databases d WHERE d.name = sp.default_database_name AND d.state_desc = 'ONLINE' )
 -- ORDER BY SP.default_database_name
-ORDER BY SP.name
+ORDER BY SP.default_database_name, SP.name
 
 
 

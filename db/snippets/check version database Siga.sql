@@ -20,7 +20,7 @@ EXEC dbo.sp_foreachdb N'
 ,@state_desc = N'ONLINE'
 ,@user_only = 1
 ,@suppress_quotename=1
-,@name_pattern='dbSiga';
+,@name_pattern='dbActive';
 -- ,@database_list = 'dbSigaA'
 
 SELECT Version, COUNT(*)        FROM #TmpVersion GROUP BY [Version]

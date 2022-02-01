@@ -26,7 +26,7 @@ INNER JOIN sys.master_files AS mf WITH (NOLOCK) ON
 	AND fs.[file_id] = mf.[file_id]
 WHERE
 	1 = 1
-	AND DB_NAME(fs.database_id) IN ('tempdb')
+--	AND DB_NAME(fs.database_id) IN ('tempdb')
 	-- OR DB_NAME(fs.database_id) LIKE 'dbSigaNeves%'
 ORDER BY
 	-- [Database Name]

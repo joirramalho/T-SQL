@@ -9,14 +9,14 @@ BEGIN TRAN
 SELECT	IdTituloCobranca, SituacaoTituloCobranca, ValorServico, NomeAluno,
 	NFSe_NumeroMIN = ( SELECT NFSe_Numero FROM TbNotaFiscal nf WHERE nf.IdNotaFiscal = ( SELECT MIN(IdNotaFiscal) FROM TbLancamentoCobranca lc WHERE lc.IdTituloCobrancaGerado = tc.IdTituloCobranca ) ),
 	NFSe_NumeroMAX = ( SELECT NFSe_Numero FROM TbNotaFiscal nf WHERE nf.IdNotaFiscal = ( SELECT MAX(IdNotaFiscal) FROM TbLancamentoCobranca lc WHERE lc.IdTituloCobrancaGerado = tc.IdTituloCobranca ) )
-INTO	_TbLancamentoCobranca_AjusteNFSe_20220127
+INTO	_TbLancamentoCobranca_AjusteNFSe_20220131a
 FROM	VwTituloCobrancaDescricao tc
-WHERE	IdTituloCobranca IN ( 75333  )
+WHERE	IdTituloCobranca IN ( 79361  )
 ORDER	BY IdTituloCobranca 
 
 
 SELECT	* 
-FROM	_TbLancamentoCobranca_AjusteNFSe_20220127
+FROM	_TbLancamentoCobranca_AjusteNFSe_20220131a
 
 -- TIRAR PRINT DO SELECT ACIMA; CONFERIR NOME DOS CLIENTES E DEPOIS ENVIAR PARA FABÍOLA.
 
@@ -28,7 +28,7 @@ FROM	_TbLancamentoCobranca_AjusteNFSe_20220127
 
 UPDATE	TbLancamentoCobranca 
 SET	IdNotaFiscal=NULL
-WHERE	IdTituloCobrancaGerado IN ( SELECT IdTituloCobranca FROM _TbLancamentoCobranca_AjusteNFSe_20220127 )
+WHERE	IdTituloCobrancaGerado IN ( SELECT IdTituloCobranca FROM _TbLancamentoCobranca_AjusteNFSe_20220131a )
 
 --COMMIT
 --ROLLBACK

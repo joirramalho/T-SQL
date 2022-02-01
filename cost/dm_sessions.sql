@@ -3,7 +3,7 @@
 DECLARE @DatabaseName 	sysname = NULL
 DECLARE @LoginName 		sysname = NULL
 
---SET @DatabaseName = 'dbSigaMenino%'
+SET @DatabaseName = 'dbBibEstacao' -- dbSigaIEPAM or dbSigaAraraAzul -- dbSigaCrodrigues ou dbSigaVitGoncalves
 --SET @LoginName 	= 'userModuloAracajuReadOnly%'
 
 -- Databases on & offline
@@ -21,14 +21,16 @@ FROM	sys.databases d
 LEFT JOIN sys.dm_exec_sessions s ON d.database_id  = s.database_id
 WHERE
 	d.database_id > 4
---	and login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND PROGRAM_NAME NOT LIKE ('ADO_MESSENGER_ADO%') AND PROGRAM_NAME NOT LIKE ('ADO_SIGA_NFSe%')	--IS_USER_PROCESS = 1
+--	AND DB_Name(d.database_id) LIKE ISNULL( @DatabaseName, DB_Name(d.database_id) ) 		
+--	AND LOGIN_NAME LIKE ISNULL( @LoginName, LOGIN_NAME ) 	
+	and login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND PROGRAM_NAME NOT LIKE ('ADO_MESSENGER_ADO%') AND PROGRAM_NAME NOT LIKE ('ADO_SIGA_NFSe%')	--IS_USER_PROCESS = 1
 --	and state = 0 			-- 0 ON-LINE -- 6 OFF-LINE
-	--and recovery_model = 1   -- 1-FULL 3-simple
-	--and is_read_only = 1 	-- Read-only
-	--and user_access <> 1 	-- SINGLE_USER
-	--and name NOT IN ('?')
-	--and create_Date > '2020-04-08 12:47:10.447'	
-	--and name LIKE 'dbCrmActivesoft%'
+--	and recovery_model = 1   -- 1-FULL 3-simple
+--	and is_read_only = 0 	-- Read-only
+--	and user_access <> 1 	-- SINGLE_USER
+--	and name NOT IN ('?')
+--	and create_Date > '2020-04-08 12:47:10.447'	
+--	and name LIKE 'dbCrmActivesoft%'
 ORDER BY state_desc DESC, name, program_name DESC
 
 
@@ -53,8 +55,8 @@ SELECT	DB_Name(database_id)  AS [DatabaseName], count(*) AS QtdeConnections
 -- unsuccessful_logons, last_unsuccessful_logon, last_request_end_time
 FROM	sys.dm_exec_sessions
 WHERE	login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND PROGRAM_NAME NOT LIKE ('ADO_MESSENGER_ADO%')	--IS_USER_PROCESS = 1
-	AND DB_Name(database_id) LIKE ISNULL( @DatabaseName, DB_Name(database_id) ) 		
-	AND LOGIN_NAME LIKE ISNULL( @LoginName, LOGIN_NAME ) 	
+--	AND DB_Name(database_id) LIKE ISNULL( @DatabaseName, DB_Name(database_id) ) 		
+--	AND LOGIN_NAME LIKE ISNULL( @LoginName, LOGIN_NAME ) 	
 GROUP BY DB_Name(database_id)
 ORDER BY count(*) DESC
 
