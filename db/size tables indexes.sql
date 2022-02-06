@@ -73,8 +73,8 @@ SELECT
 FROM
 	@tmpTamTabela
 ORDER BY
-	CONVERT(int, replace(ROWS, ' KB', '')) DESC
---	name
+--	CONVERT(int, replace(ROWS, ' KB', '')) DESC
+	name
 	
 	
 

@@ -5,8 +5,8 @@
 DECLARE @DatabaseName 	sysname = NULL
 DECLARE @TriggerName 	sysname = NULL
 
-SET @DatabaseName = 'dbSigaColegioEAG%'
---SET @TriggerName = 'TgAtualizaMatricula%'
+--SET @DatabaseName = 'dbSigaCPI%'
+--SET @TriggerName = 'TgLancamentoCobrancaValidarRPS%'
 
 
 --SUM( total_worker_time ) by Database e/ou Trigger
@@ -23,9 +23,9 @@ SELECT
 	d.last_elapsed_time
 FROM
 	sys.dm_exec_trigger_stats AS d
---WHERE 
---	DB_Name(database_id) LIKE ISNULL( @DatabaseName, DB_Name(database_id) ) 
---	AND OBJECT_NAME(object_id, database_id) LIKE ISNULL( @TriggerName, OBJECT_NAME(object_id, database_id) )
+WHERE 
+	DB_Name(database_id) LIKE ISNULL( @DatabaseName, DB_Name(database_id) ) 
+	AND OBJECT_NAME(object_id, database_id) LIKE ISNULL( @TriggerName, OBJECT_NAME(object_id, database_id) )
 ORDER BY
 	[total_worker_time] DESC
 	

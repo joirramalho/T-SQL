@@ -1,7 +1,7 @@
 --07out21
 --Reset SQL user account guids 
 
---USE  dbActiveBibAmericanoBatista;
+USE  dbSigaAmericanoBatista;
 
 DECLARE @UserName nvarchar(255) 
 

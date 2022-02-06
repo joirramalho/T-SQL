@@ -1,4 +1,4 @@
-
+--06fev22 - No test
 --21set21
 
 -- UNUSED indexes in SQL Server (updated indexes not used in any seeks, scan or lookup operations)
@@ -16,7 +16,8 @@ SELECT
 	dm_db_index_usage_stats.user_seeks,
 	dm_db_index_usage_stats.user_scans,
 	dm_db_index_usage_stats.user_lookups,
-		'DROP INDEX ' + OBJECT_NAME(dm_db_index_usage_stats.object_id)+ '.' + indexes.name AS Drop_Index
+	'USE [' + DB_NAME(database_id) + '];
+	DROP INDEX ' + OBJECT_NAME(dm_db_index_usage_stats.object_id)+ '.' + indexes.name AS Drop_Index
 FROM
 	sys.dm_db_index_usage_stats
 INNER JOIN sys.objects ON

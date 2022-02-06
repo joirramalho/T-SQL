@@ -3,7 +3,7 @@
 --ONLINE
 	--ALTER DATABASE dbSigaGGE_Arquivo SET ONLINE;
 	
-	--ALTER DATABASE dbSigaAbenpSaoBento SET OFFLINE;
+	--ALTER DATABASE dbSigaColegioNolusa SET OFFLINE;
 
 		--DROP
 			--DROP DATABASE dbSigaRaizes

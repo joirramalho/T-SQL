@@ -16,7 +16,7 @@
 
 -- PASSWORD
 	--												'1234567890'
-	-- ALTER LOGIN [active.joir] 	WITH PASSWORD = '****'; -- sigainternet userISO_PowerBI service.account
+	-- ALTER LOGIN [userAmBatistaEEM] 	WITH PASSWORD = '****'; -- sigainternet userISO_PowerBI service.account
 
 
 	-- re-enable login without password	
@@ -44,7 +44,7 @@
 
 	--ALTER ROLE [db_owner] ADD MEMBER [userMariaStela];
 
-		--EXEC master..sp_addsrvrolemember @loginame = N'romario.barbalho', @rolename = N'sysadmin';
+		--EXEC master..sp_addsrvrolemember @loginame = N'active.pinto', @rolename = N'sysadmin';
 
 
 
@@ -55,7 +55,9 @@
 	--ALTER ROLE [db_datareader] ADD MEMBER [userModuloAracajuReadOnly];
 	--ALTER ROLE [db_datawriter] ADD MEMBER [userRestauraBancoVPS];
 	
-	--GRANT EXECUTE TO [romario.barbalho]; -- wantuilson -- (LAB4 xp_readerrorlog)
+
+--LAB4 xp_readerrorlog
+	--GRANT EXECUTE TO [romario.barbalho]; -- wantuilson
     	--REVOKE EXECUTE TO [romario.barbalho];
 
 	--ALTER ROLE [db_owner] ADD MEMBER [active.filipe];
