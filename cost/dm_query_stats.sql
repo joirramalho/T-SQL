@@ -4,7 +4,7 @@
 DECLARE @DatabaseName 	sysname = NULL
 DECLARE @LoginName 		sysname = NULL
 
-SET @DatabaseName = 'dbCrm%'
+--SET @DatabaseName = 'dbCrm%'
 --SET @LoginName 	= 'userModuloAracajuReadOnly%'
 
 
@@ -34,8 +34,8 @@ FROM
        CROSS APPLY sys.dm_exec_sql_text(qs.sql_handle) qt
 	-- Retrieve the query plan
        CROSS APPLY sys.dm_exec_query_plan(qs.plan_handle) qp
-WHERE	
-	DB_Name(qp.dbid) LIKE ISNULL( @DatabaseName, DB_Name(qp.dbid) ) 		
+--WHERE	
+--	DB_Name(qp.dbid) LIKE ISNULL( @DatabaseName, DB_Name(qp.dbid) ) 		
 --	AND LOGIN_NAME LIKE ISNULL( @LoginName, LOGIN_NAME ) 	
 ORDER BY
 	qs.total_worker_time DESC	-- CPU time

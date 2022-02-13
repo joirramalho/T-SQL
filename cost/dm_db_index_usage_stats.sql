@@ -1,4 +1,4 @@
---07jan22
+--11fev22
 	--https://dba.stackexchange.com/questions/72163/how-to-figure-out-disk-i-o-by-table
 	--user_seeks + user_scans + user_lookups + user_updates
 
@@ -8,7 +8,7 @@
 	--USE dbSigaFACHO
 
 
-select TOP 50
+SELECT TOP 50
 	d.name as [database],
 	object_name(s.[object_id]) as [object name],
 	i.[name] as [index name],
@@ -16,16 +16,16 @@ select TOP 50
 	user_scans,
 	user_lookups,
 	user_updates
-from
-	sys.dm_db_index_usage_stats as s
-inner join sys.indexes as i on	i.[object_id] = s.[object_id]	and i.index_id = s.index_id
-join sys.databases d on	s.database_id = d.database_id
-where
+FROM
+	sys.dm_db_index_usage_stats AS s
+INNER JOIN sys.indexes AS i ON	i.[object_id] = s.[object_id]	and i.index_id = s.index_id
+JOIN sys.databases d on	s.database_id = d.database_id
+WHERE
 	objectproperty(s.[object_id], 'isusertable') = 1
 
 --	AND object_name(s.[object_id]) LIKE 'TbTituloCobranca_Persistido%'
 
-order by
+ORDER BY
 	user_seeks + user_scans + user_lookups + user_updates desc
 
 

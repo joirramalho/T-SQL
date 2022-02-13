@@ -50,7 +50,7 @@ INNER JOIN sys.schemas s
 WHERE
 	sysobjects.type = 'TR'
 	
-	AND OBJECT_NAME(parent_obj) IN ('TbAluno')
+	AND OBJECT_NAME(parent_obj) IN ('TbTurma')
 	
 ORDER BY
 	OBJECT_NAME(parent_obj)

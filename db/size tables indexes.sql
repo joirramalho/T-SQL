@@ -12,15 +12,13 @@ index_size varchar(25) NULL,
 unused varchar(25) NULL )
 
 DECLARE cp1 CURSOR LOCAL fast_forward read_only FOR
-    SELECT 
-	name
+    SELECT name
 FROM
 	sysobjects
 WHERE
 	TYPE = 'U'
 	AND name NOT LIKE '40tena%'
-ORDER BY
-	name
+ORDER BY	name
 
 OPEN cp1
     while 1 = 1
@@ -46,35 +44,16 @@ DEALLOCATE cp1
 
 SELECT 
 --	'INSERT INTO #TabelasExportacao (NomeTabela) VALUES (''' + name + ''')',
-
-	name AS 'Nome'
-       ,
-	ROWS AS 'Linhas'
-       ,
-	CONVERT(int,
-	replace(reserved,
-	' KB',
-	'')) AS 'Tamanho total KB'
-       ,
-	CONVERT(int,
-	replace(DATA,
-	' KB',
-	''))AS 'Dados KB'
-       ,
-	CONVERT(int,
-	replace(index_size,
-	' KB',
-	''))AS 'Index KB'
-       ,
-	CONVERT(int,
-	replace(unused,
-	' KB',
-	''))AS 'Não utilizado KB'
+	name AS 'Nome', ROWS AS 'Linhas',
+	CONVERT(int, replace(reserved, ' KB', '')) AS 'Tamanho total KB',
+	CONVERT(int, replace(DATA, ' KB', '')) AS 'Dados KB',
+	CONVERT(int, replace(index_size, ' KB', '')) AS 'Index KB',
+	CONVERT(int, replace(unused, ' KB', '')) AS 'Não utilizado KB'
 FROM
 	@tmpTamTabela
 ORDER BY
---	CONVERT(int, replace(ROWS, ' KB', '')) DESC
-	name
+	CONVERT(int, replace(ROWS, ' KB', '')) DESC
+--	name
 	
 	
 

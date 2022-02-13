@@ -12,8 +12,8 @@
 DECLARE @DatabaseName 	sysname = NULL
 DECLARE @TableName		sysname = NULL
 
---SET @DatabaseName = 'dbCrmActivesoft' -- dbSigaIEPAM or dbSigaAraraAzul -- dbSigaCrodrigues ou dbSigaVitGoncalves
-SET @TableName = 'TbTituloCobranca' -- dbSigaIEPAM or dbSigaAraraAzul -- dbSigaCrodrigues ou dbSigaVitGoncalves
+--SET @DatabaseName = 'dbSigaGGE' -- dbSigaIEPAM or dbSigaAraraAzul -- dbSigaCrodrigues ou dbSigaVitGoncalves
+SET @TableName = 'TbTituloCobrancaRegistrada' -- dbSigaIEPAM or dbSigaAraraAzul -- dbSigaCrodrigues ou dbSigaVitGoncalves
 
  
 SELECT DB_NAME(c.database_id) as DatabaseName,
@@ -25,7 +25,7 @@ SELECT DB_NAME(c.database_id) as DatabaseName,
 	ISNULL(c.inequality_columns, '') AS [InequalityColumns],
 	ISNULL(c.included_columns, '') AS [IncludedColumns],
 	'USE [' + DB_NAME(c.database_id) + '];
-	CREATE INDEX IDX_'
+	CREATE INDEX IX_'
 	+ REPLACE(REPLACE(REPLACE(REPLACE(ISNULL(equality_columns, '')
 	+ ISNULL(c.inequality_columns, ''),
 	', ', '_'), '[', ''), ']', ''), ' ',

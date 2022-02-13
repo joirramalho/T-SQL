@@ -13,4 +13,7 @@ EXEC dbo.sp_foreachdb N'
 ,@user_only = 1
 ,@suppress_quotename=1
 -- ,@name_pattern='dbSigaLuizAntonio';
-,@database_list = 'dbSigaDenizard_Tec, dbSigaFacCatolicaRN'
+,@database_list = 'dbSigaBomJesusCE'
+
+
+

@@ -1,4 +1,4 @@
---16set21
+--10fev22
 --13mai21
 
 IF (OBJECT_ID('tempdb..#TmpVersion') IS NOT NULL) 
@@ -20,7 +20,7 @@ EXEC dbo.sp_foreachdb N'
 ,@state_desc = N'ONLINE'
 ,@user_only = 1
 ,@suppress_quotename=1
-,@name_pattern='dbActive';
+,@name_pattern='dbSiga';
 -- ,@database_list = 'dbSigaA'
 
 SELECT Version, COUNT(*)        FROM #TmpVersion GROUP BY [Version]

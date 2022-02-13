@@ -1,9 +1,22 @@
---11jan22
+--11fev22
+
+--SHOWPLAN
+	--SET SHOWPLAN_ALL ON
+	--SET SHOWPLAN_ALL OFF
+
+
+	--SELECT p.query_plan
+	--FROM sys.dm_exec_requests AS r
+	--OUTER APPLY sys.dm_exec_text_query_plan(
+	--                r.plan_handle,
+	--                r.statement_start_offset,
+	--                r.statement_end_offset) AS p
+
 
 --ONLINE
-	--ALTER DATABASE dbSigaGGE_Arquivo SET ONLINE;
+	--ALTER DATABASE dbLogMonitor SET ONLINE;
 	
-	--ALTER DATABASE dbSigaColegioNolusa SET OFFLINE;
+	--ALTER DATABASE SQL10_20210906_lixo SET OFFLINE;
 
 		--DROP
 			--DROP DATABASE dbSigaRaizes

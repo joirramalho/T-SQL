@@ -5,8 +5,10 @@
 DECLARE @DatabaseName 	sysname = NULL
 DECLARE @TriggerName 	sysname = NULL
 
+--sp_helptext TgLancamentoCobrancaValidarRPS
+
 --SET @DatabaseName = 'dbSigaCPI%'
---SET @TriggerName = 'TgLancamentoCobrancaValidarRPS%'
+--SET @TriggerName = 'TgAluno_AtualizarGpaDataHoraAlteracao%'
 
 
 --SUM( total_worker_time ) by Database e/ou Trigger

@@ -35,6 +35,7 @@ EXEC dbo.sp_foreachdb N'
 
 	ALTER DATABASE [?] SET RECOVERY FULL WITH NO_WAIT;
 
+
 '
 ,@print_command_only = 0 -- Obrigatório Gerar script
 ,@print_dbname=1
@@ -42,13 +43,13 @@ EXEC dbo.sp_foreachdb N'
 ,@user_only = 1
 ,@suppress_quotename=1
 -- ,@name_pattern='dbSigaSalePetrolina_Arquivo0';
-,@database_list = ', , , , , ' 
+,@database_list = 'dbSigaCristoRei, dbSigaCESFCE, dbSigaSantAna, dbSigaSaoJorge' 
 
 
 -- Fazer backup 
---./backup.sh dbSigaEvolucao && ./backup.sh dbSigaNovaDimensao && ./backup.sh dbSigaSementes && ./backup.sh dbSigaEquipe1 && ./backup.sh dbSigaMadreDeusUnd1 && ./backup.sh dbSigaCristoRedentor
+--./backup.sh dbSigaCristoRei && ./backup.sh dbSigaCESFCE && ./backup.sh dbSigaSantAna && ./backup.sh dbSigaSaoJorge && ./backup.sh dbSigaMadreDeusUnd1 && ./backup.sh dbSigaCristoRedentor
 
---	DBCC CHECKDB([dbActiveBibSantAna]); -- WITH TABLERESULTS
+--	DBCC CHECKDB([dbSigaSalesianoDomBosco]); -- WITH TABLERESULTS
 
 
 

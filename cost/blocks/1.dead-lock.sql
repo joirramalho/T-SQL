@@ -1,4 +1,4 @@
--- 20dez21
+-- 09fev22
 -- 17mai21 - (@P1 nvarchar(60))SELECT [TbAccessToken].[IdAccessToken]
 
 
@@ -23,6 +23,8 @@ FROM
         AND st.target_name = N'ring_buffer'
 ) AS [Data]
 CROSS APPLY TargetData.nodes('RingBufferTarget/event[@name="xml_deadlock_report"]') AS XEventData (xed)
-	WHERE DATEDIFF(HOUR, DATEADD(HOUR, @TimeZone, xed.value('@timestamp', 'datetime2(3)')), GETDATE()  ) < 18
+
+WHERE DATEDIFF(HOUR, DATEADD(HOUR, @TimeZone, xed.value('@timestamp', 'datetime2(3)')), GETDATE()  ) < 12
+
 ORDER BY 
     CreationDate DESC

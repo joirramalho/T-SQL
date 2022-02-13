@@ -1,16 +1,59 @@
---20jan22
+--09fev22
 --NOVA auditoria
 
 
 --1 CREATE TABLE  -------------------------------------------
 
 
---1a CREATE FIELD PRIOR  -------------------------------------------
---ADD FIELD PRIOR_IdFaseNotaAlunoAuditoria
-ALTER TABLE TbTituloCobrancaBoleto_Auditoria	ADD PRIOR_IdTituloCobrancaBoletoAuditoria BIGINT
+	--1a CREATE FIELD PRIOR  -------------------------------------------
+	--ADD FIELD PRIOR_IdFaseNotaAlunoAuditoria
+	ALTER TABLE TbTituloCobrancaBoleto_Auditoria	ADD PRIOR_IdTituloCobrancaBoletoAuditoria BIGINT
 
+	
+	
+	
+EXEC sp_rename 'dbo.TbDiario_Auditoria.DataHora', 'Audit_DataHora', 'COLUMN';
+
+EXEC sp_rename 'dbo.TbDiario_Auditoria.Operacao', 'Audit_Operacao', 'COLUMN';
+
+EXEC sp_rename 'dbo.TbDiario_Auditoria.IdUsuario', 'Audit_IdUsuario', 'COLUMN';
+	
+--	/* To prevent any potential data loss issues, you should review this script in detail before running it outside the context of the database designer.*/
+--BEGIN TRANSACTION
+--SET QUOTED_IDENTIFIER ON
+--SET ARITHABORT ON
+--SET NUMERIC_ROUNDABORT OFF
+--SET CONCAT_NULL_YIELDS_NULL ON
+--SET ANSI_NULLS ON
+--SET ANSI_PADDING ON
+--SET ANSI_WARNINGS ON
+--COMMIT
+--BEGIN TRANSACTION
+--GO
+--EXECUTE sp_rename N'dbo.TbDiarioAluno_Auditoria.DataHora', N'Tmp_Audit_DataHora', 'COLUMN' 
+--GO
+--EXECUTE sp_rename N'dbo.TbDiarioAluno_Auditoria.Operacao', N'Tmp_Audit_Operacao_1', 'COLUMN' 
+--GO
+--EXECUTE sp_rename N'dbo.TbDiarioAluno_Auditoria.IdUsuario', N'Tmp_Audit_IdUsuario_2', 'COLUMN' 
+--GO
+--EXECUTE sp_rename N'dbo.TbDiarioAluno_Auditoria.Tmp_Audit_DataHora', N'Audit_DataHora', 'COLUMN' 
+--GO
+--EXECUTE sp_rename N'dbo.TbDiarioAluno_Auditoria.Tmp_Audit_Operacao_1', N'Audit_Operacao', 'COLUMN' 
+--GO
+--EXECUTE sp_rename N'dbo.TbDiarioAluno_Auditoria.Tmp_Audit_IdUsuario_2', N'Audit_IdUsuario', 'COLUMN' 
+--GO
+--ALTER TABLE dbo.TbDiarioAluno_Auditoria SET (LOCK_ESCALATION = TABLE)
+--GO
+--COMMIT
+
+	
+	
+	
+	
+	
 
 --DROP FK IF EXISTS
+	--TABELA DE AUDITORIA NÃO DEVE TER FK PARA TABEL BASE
 IF OBJECT_ID('dbo.FK_TbTituloCobrancaBoleto_Auditoria_TbTituloCobranca') IS NOT NULL
 BEGIN
 	ALTER TABLE [dbo].[TbTituloCobrancaBoleto_Auditoria] DROP CONSTRAINT [FK_TbTituloCobrancaBoleto_Auditoria_TbTituloCobranca]
@@ -25,11 +68,13 @@ ALTER TABLE [dbo].[TbTituloCobrancaBoleto_Auditoria] ADD  CONSTRAINT [PK_TbTitul
 GO
 
 
---2 CREATE INDEX IX ON Tabela espelho -------------------------------------------
+--CREATE INDEX IX ON Tabela espelho -------------------------------------------
 CREATE INDEX [IX_TbTituloCobrancaBoleto_Auditoria_IdTituloCobranca] ON [dbo].[TbTituloCobrancaBoleto_Auditoria] ([IdTituloCobranca])
 GO
 
 
+--APENAS SE *** NÃO *** EXISTIA TABELA ESPELHADA -------------------------------------------
+	-- POPULAR TABELA ESPELHO com dados da tabela base (Operação "+" ------------------------
 
 
 	
@@ -72,10 +117,6 @@ BEGIN
 	    WHERE TbTituloCobrancaBoleto_Auditoria.IdTituloCobrancaBoletoAuditoria = i.IdTituloCobrancaBoletoAuditoria
 END
 
-
-
---6 APENAS SE *** NÃO *** EXISTIA TABELA ESPELHADA -------------------------------------------
-	-- POPULAR TABELA ESPELHO com dados da tabela base (Operação "+" ------------------------
 
 
 
