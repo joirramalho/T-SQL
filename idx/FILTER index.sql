@@ -1,4 +1,15 @@
---08fev22
+--13fev22
+
+funcionamento dos índices
+	--https://www.dirceuresende.com/blog/entendendo-o-funcionamento-dos-indices-no-sql-server/
+
+Impact of the Column order in SQL Server Composite Indexes
+	--https://www.sqlshack.com/impact-of-the-column-order-in-composite-index-sql-server/
+
+SQL Server index structure and concepts
+--	https://www.sqlshack.com/sql-server-index-structure-and-concepts/
+
+
 
 https://www.red-gate.com/simple-talk/databases/sql-server/performance-sql-server/introduction-to-sql-server-filtered-indexes/
 
@@ -10,6 +21,15 @@ https://www.sqlshack.com/introduction-to-sql-server-filtered-indexes/
 
 
 https://www.mssqltips.com/sqlservertip/1785/sql-server-filtered-indexes-what-they-are-how-to-use-and-performance-advantages/
+
+
+
+What You Can (and Can’t) Do With Filtered Indexes
+    https://www.brentozar.com/archive/2013/11/what-you-can-and-cant-do-with-filtered-indexes/
+
+Filtered Indexes and Dynamic SQL
+    https://www.brentozar.com/archive/2013/11/filtered-indexes-and-dynamic-sql/
+
 
 -- Script 1
 

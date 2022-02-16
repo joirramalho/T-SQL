@@ -1,4 +1,4 @@
---06fev22
+--15fev22
 	--It’s All in the Name, Index Naming Conventions
 	--https://sqlespresso.com/2018/01/10/index-naming-conventions/
 
@@ -13,7 +13,7 @@ DECLARE @DatabaseName 	sysname = NULL
 DECLARE @TableName		sysname = NULL
 
 --SET @DatabaseName = 'dbSigaGGE' -- dbSigaIEPAM or dbSigaAraraAzul -- dbSigaCrodrigues ou dbSigaVitGoncalves
-SET @TableName = 'TbTituloCobrancaRegistrada' -- dbSigaIEPAM or dbSigaAraraAzul -- dbSigaCrodrigues ou dbSigaVitGoncalves
+SET @TableName = 'TbSolicitacao' -- dbSigaIEPAM or dbSigaAraraAzul -- dbSigaCrodrigues ou dbSigaVitGoncalves
 
  
 SELECT DB_NAME(c.database_id) as DatabaseName,
@@ -25,7 +25,7 @@ SELECT DB_NAME(c.database_id) as DatabaseName,
 	ISNULL(c.inequality_columns, '') AS [InequalityColumns],
 	ISNULL(c.included_columns, '') AS [IncludedColumns],
 	'USE [' + DB_NAME(c.database_id) + '];
-	CREATE INDEX IX_'
+	CREATE INDEX IX_' + OBJECT_NAME(c.object_id, c.database_id) + '_'
 	+ REPLACE(REPLACE(REPLACE(REPLACE(ISNULL(equality_columns, '')
 	+ ISNULL(c.inequality_columns, ''),
 	', ', '_'), '[', ''), ']', ''), ' ',
@@ -40,7 +40,7 @@ SELECT DB_NAME(c.database_id) as DatabaseName,
 	THEN 'INCLUDE (' + included_columns + ')'
 	ELSE ''
 	END + '
-	WITH (FILLFACTOR=90, ONLINE=ON)' as CreateIndexStmt,
+	WITH (FILLFACTOR=90)' as CreateIndexStmt,
 	a.LAST_USER_SEEK,
 	a.LAST_USER_SCAN
 FROM sys.dm_db_missing_index_group_stats a

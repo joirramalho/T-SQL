@@ -2,7 +2,7 @@
 --Scripting Out the Logins, Server Role Assignments, and Server Permissions
 	-- http://udayarumilli.com/script-login-user-permissions-sql-server/
 
-USE dbSigaWillyJanz;
+USE processo;
 
 SET NOCOUNT ON
 -- Scripting Out the Logins To Be Created

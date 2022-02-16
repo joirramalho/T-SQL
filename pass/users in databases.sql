@@ -26,9 +26,10 @@ EXEC dbo.sp_foreachdb N'
 	    LEFT OUTER JOIN [?].sys.database_permissions AS dp ON dp.grantee_principal_id = u.principal_id and dp.type = ''CO''
 	    WHERE   (u.type in (''U'', ''S'', ''G'', ''C'', ''K'' ,''E'', ''X''))
 	        
-	        AND name NOT IN ( ''sigaadmin'', ''sigainternet'', ''sys'', ''guest'', ''dbo'', ''INFORMATION_SCHEMA'')
+--	        AND name NOT IN ( ''sigaadmin'', ''sigainternet'', ''sys'', ''guest'', ''dbo'', ''INFORMATION_SCHEMA'')
 			AND name NOT LIKE ''user%'' 
-			AND name LIKE ''active.%'' 
+--			AND name LIKE ''active.%'' 
+			AND name LIKE ''sigaadmin%'' 
 	    
 	    ORDER BY    [Name] ASC
 '
@@ -37,7 +38,7 @@ EXEC dbo.sp_foreachdb N'
 -- ,@state_desc = N'OFFLINE'
 ,@user_only = 1
 ,@suppress_quotename=1
-,@name_pattern='dbSigaA';
+,@name_pattern='dbSiga';
 --,@database_list = 'dbSigaWillyJanz'
 
 SELECT * FROM #users ORDER BY 2,1 --DropCmd;
