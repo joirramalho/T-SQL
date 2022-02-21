@@ -1,15 +1,7 @@
---11fev22
-	--NOVA auditoria
+--21fev22
+	--NOVA auditoria TbTituloCobranca
 
 
---Select *
---From INFORMATION_SCHEMA.COLUMNS
---where TABLE_NAME LIKE 'Tb%' AND  RIGHT(TABLE_NAME, 10 ) <> '_Auditoria' AND  COLUMN_NAME IN ('Operacao','DataHora','IdUsuario') AND TABLE_NAME <> 'TbAuditoria'
-
-
---EXEC sp_rename 'dbo.TbTituloCobranca_Auditoria.DataHora', 'Audit_DataHora', 'COLUMN';
---EXEC sp_rename 'dbo.TbTituloCobranca_Auditoria.Operacao', 'Audit_Operacao', 'COLUMN';
---EXEC sp_rename 'dbo.TbTituloCobranca_Auditoria.IdUsuario', 'Audit_IdUsuario', 'COLUMN';
 
 
 --1 CREATE TABLE  -------------------------------------------
@@ -61,41 +53,29 @@
 		LIQ_IdContaRecebimentoCaixaOperadoraCartao int NULL,
 		DataHoraUltimaAlteracao datetime NULL,
 		StPermitePagarRecebOnlineExcecao bit  NULL,
-		
-		PRIOR_IdTituloCobrancaAuditoria bigint,
-		
 		CONSTRAINT PK_TbTituloCobranca_Auditoria PRIMARY KEY CLUSTERED  
 	(
 		[IdTituloCobrancaAuditoria] ASC
 	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 	) ON [PRIMARY]
 	GO 
-
-
-
-
---2 CREATE INDEX ON PK Tabela ESPELHO -------------------------------------------
 	
-	CREATE INDEX [IX_TbTituloCobranca_Auditoria_IdTituloCobranca] ON [dbo].[TbTituloCobranca_Auditoria] ([IdTituloCobranca])
-	GO
-
-
-
-
---APENAS SE JÁ *** NÃO *** EXISTIA TABELA ESPELHADA -------------------------------------------
-	-- POPULAR TABELA ESPELHO com dados da tabela base (Operação "+" ------------------------
+	
+	
+	
+	
+-- 2 POPULAR TABELA ESPELHO com dados da tabela base (Operação "+" APENAS SE *** NÃO *** EXISTIA TABELA ESPELHADA -------------------------------------------
 
 	INSERT	TbTituloCobranca_Auditoria (		Audit_DataHora,	Audit_Operacao,	Audit_IdUsuario,[IdTituloCobranca], [IdResponsavel], [IdAluno], [DataEmissao], [DataVencimento], [StImpresso], [IdFormaRecebimento], [IdTipoCalculoMultaJuros], [SituacaoTituloCobranca], [DataBaixa], [TipoLiquidacao], [LIQ_ValorRecebidoAMaior], [StPagoPelaSeguradora], [Comentario], [DataPagamento], [LIQ_DataDevolucaoRecebidoAMaior], [DataValidade], [LIQ_IdConta], [Audit_IdUsuarioLiquidacao], [Audit_DataHoraLiquidacao], [Audit_ComentarioLiquidacao], [LIQ_IdContaDevolucaoRecebidoAMaior], [IdAgenteCobrancaRegistrada], [SituacaoCobrancaRegistrada], [StEmailEnviado], [NossoNumeroMigracao], [LIQ_IdChequeDevolucaoRecebidoAMaior], [LinkDoBoleto], [IdTituloNoAgente], [CobRegistrada_StAvisoPendente], [LIQ_IdContaRecebimentoCaixaOperadoraCartao], [DataHoraUltimaAlteracao], [StPermitePagarRecebOnlineExcecao] )
 		SELECT									GETDATE(),		'+',			11, 			[IdTituloCobranca], [IdResponsavel], [IdAluno], [DataEmissao], [DataVencimento], [StImpresso], [IdFormaRecebimento], [IdTipoCalculoMultaJuros], [SituacaoTituloCobranca], [DataBaixa], [TipoLiquidacao], [LIQ_ValorRecebidoAMaior], [StPagoPelaSeguradora], [Comentario], [DataPagamento], [LIQ_DataDevolucaoRecebidoAMaior], [DataValidade], [LIQ_IdConta], [Audit_IdUsuarioLiquidacao], [Audit_DataHoraLiquidacao], [Audit_ComentarioLiquidacao], [LIQ_IdContaDevolucaoRecebidoAMaior], [IdAgenteCobrancaRegistrada], [SituacaoCobrancaRegistrada], [StEmailEnviado], [NossoNumeroMigracao], [LIQ_IdChequeDevolucaoRecebidoAMaior], [LinkDoBoleto], [IdTituloNoAgente], [CobRegistrada_StAvisoPendente], [LIQ_IdContaRecebimentoCaixaOperadoraCartao], [DataHoraUltimaAlteracao], [StPermitePagarRecebOnlineExcecao] FROM TbTituloCobranca 
 	GO 
 
-
+	
 	
 
-
-
-
-
+	
+	
+	
 --3 CREATE TRIGGER na PK Tabela base -------------------------------------------
 	SET ANSI_NULLS ON
 	GO 
@@ -163,11 +143,9 @@
 	END
 	GO
 
-
-
-
-
-
+	
+	
+	
 --4 DROP TRIGGERs ANTIGA ON PK Tabela base -------------------------------------------
 	DROP TRIGGER [dbo].[TgAudit_TbTituloCobrancaD]
 	GO
@@ -178,105 +156,75 @@
 	DROP TRIGGER [dbo].[TgAudit_TbTituloCobrancaU]
 	GO
 
-
-
-
-
-
-
---5 CREATE TRIGGER NOVA ON tabela espelho -------------------------------------------
-
-	--
-	-- Activesoft Consultoria 
-	-- TRIGGER criada pelo Activesoft Service Pack em 18/11/2021 durante atualização para versão 1.065.183.
-	--
 	
-	CREATE TRIGGER [dbo].[TgTituloCobranca_Auditoria_Prior] ON [dbo].[TbTituloCobranca_Auditoria]
-	--ALTER TRIGGER [dbo].[TgTituloCobranca_Auditoria_Prior] ON [dbo].[TbTituloCobranca_Auditoria]
-	FOR INSERT
-	AS
+	
+
+	
+--5 CREATE FUNCTION usadas pela consulta da nova auditoria -------------------------------------------
+
+	CREATE FUNCTION FnAuditoria_Date(
+		@CampoTitulo VARCHAR(96),
+		@CampoValorAntigo SMALLDATETIME,
+		@CampoValorNovo SMALLDATETIME,
+	    @StExibirDiff BIT)
+	RETURNS VARCHAR(128) AS
 	BEGIN
-		SET NOCOUNT ON
-		
-	    UPDATE TbTituloCobranca_Auditoria
-	    SET PRIOR_IdTituloCobrancaAuditoria = 
-			    (
-			    SELECT TOP 1 IdTituloCobrancaAuditoria 
-	         	FROM 	TbTituloCobranca_Auditoria
-	     		WHERE 	IdTituloCobrancaAuditoria < i.IdTituloCobrancaAuditoria	
-						AND IdTituloCobranca = i.IdTituloCobranca 
-	     		ORDER 	BY IdTituloCobrancaAuditoria DESC
-				)
-		    FROM inserted i 
-		    INNER JOIN TbTituloCobranca_Auditoria ON i.IdTituloCobrancaAuditoria = TbTituloCobranca_Auditoria.IdTituloCobrancaAuditoria
-		    WHERE TbTituloCobranca_Auditoria.IdTituloCobrancaAuditoria = i.IdTituloCobrancaAuditoria
+		DECLARE @ValorAntigo VARCHAR(64), @ValorNovo VARCHAR(64)
+		SET @ValorAntigo = ISNULL( REPLACE( CONVERT( VARCHAR(20), @CampoValorAntigo, 103 ) + ' ' + CONVERT( VARCHAR, @CampoValorAntigo, 114 ), ' 00:00:00:000', '' ), '<nulo>' )
+		SET @ValorNovo = ISNULL( REPLACE( CONVERT( VARCHAR(20), @CampoValorNovo, 103 ) + ' ' + CONVERT( VARCHAR, @CampoValorNovo, 114 ), ' 00:00:00:000', '' ), '<nulo>' )
+	
+		IF @StExibirDiff = 1 AND @ValorAntigo <> @ValorNovo
+			RETURN @CampoTitulo + ': ' + @ValorAntigo + ' --> ' + @ValorNovo + CHAR(13)
+	
+	    IF @StExibirDiff = 0
+	        RETURN @CampoTitulo + ': ' + @ValorNovo + CHAR(13)
+	
+		RETURN ''
 	END
 	GO
 
 
-
-
---6 CHECK tabela espelho -------------------------------------------
-
-	--SELECT COUNT(*)  						FROM TbTituloCobranca --WHERE PRIOR_IdTituloCobrancaAuditoria IS NOT NULL
-	--SELECT COUNT(DISTINCT IdTituloCobranca)	FROM TbTituloCobranca_Auditoria --WHERE PRIOR_IdTituloCobrancaAuditoria IS NOT NULL
-
-
-
-
---7 APENAS SE JÁ EXISTIA TABELA ESPELHADA -------------------------------------------
-	-- POPULAR PRIOR_IdTituloCobrancaAuditoria ON tabela espelho -------------------------------------------
-
-	--IF (OBJECT_ID('tempdb..#TEMP_AUDITORIA') IS NOT NULL) DROP TABLE tempdb..#TEMP_AUDITORIA
-	--	CREATE TABLE #tempdb..#TEMP_AUDITORIA ( IdTituloCobrancaAuditoria bigint, PRIOR_IdTituloCobrancaAuditoria bigint )
-	--
-	--INSERT INTO #tempdb..#TEMP_AUDITORIA
-	--	SELECT IdTituloCobrancaAuditoria,
-	--		        (		SELECT 	TOP 1 IdTituloCobrancaAuditoria 
-	--			         	FROM 	TbTituloCobranca_Auditoria
-	--		         		WHERE 	IdTituloCobrancaAuditoria < t.IdTituloCobrancaAuditoria	
-	--								AND IdTituloCobranca = t.IdTituloCobranca
-	--		         		ORDER 	BY IdTituloCobrancaAuditoria DESC
-	--		        ) AS PRIOR_IdTituloCobrancaAuditoria
-	--		from TbTituloCobranca_Auditoria t
-	--
-	--		
-	--UPDATE 	TbTituloCobranca_Auditoria 
-	--SET 	TbTituloCobranca_Auditoria.PRIOR_IdTituloCobrancaAuditoria = #tempdb..#TEMP_AUDITORIA.PRIOR_IdTituloCobrancaAuditoria 
-	--FROM 	TbTituloCobranca_Auditoria, #tempdb..#TEMP_AUDITORIA 
-	--WHERE 	TbTituloCobranca_Auditoria.IdTituloCobrancaAuditoria = #tempdb..#TEMP_AUDITORIA.IdTituloCobrancaAuditoria
-	--		AND #tempdb..#TEMP_AUDITORIA.PRIOR_IdTituloCobrancaAuditoria IS NOT NULL
-
-
-
-			
---8 CHECK de carga ON tabela espelho -------------------------------------------
-			
---	SELECT 
---		audit.*
---		,CASE 
---				WHEN Audit_Operacao ='I' THEN 'Inclusão'
---				WHEN Audit_Operacao ='U' THEN 'Alteração'
---				WHEN Audit_Operacao ='D' THEN 'Remoção'
---				WHEN Audit_Operacao ='+' THEN 'Carga de auditoria'
---				WHEN Audit_Operacao ='O' THEN 'Tipo criado para identificar movimentações antigas' -- CRM 24432
---				ELSE 'r/w'
---			END AS 'NomeOperacao'
---		,u.NomeUsuario
-----		,p.NomeProfessor 
---	FROM TbTituloCobranca_Auditoria audit
---	LEFT JOIN TbUsuario 	u 	ON u.IdUsuario 	= audit.Audit_IdUsuario
-----	LEFT JOIN TbProfessor 	p 	ON p.IdProfessor  	= audit.Audit_IdProfessor
---
---	WHERE IdAluno IN (96656) --96656
-
+	CREATE FUNCTION FnAuditoria_String(
+		@CampoTitulo VARCHAR(96),
+		@CampoValorAntigo VARCHAR(8000),
+		@CampoValorNovo VARCHAR(8000),
+	    @StExibirDiff BIT)
+	RETURNS VARCHAR(8000) AS
+	BEGIN
+		DECLARE @ValorAntigo VARCHAR(8000), @ValorNovo VARCHAR(8000)
+	
+		SET @ValorAntigo = ISNULL( CONVERT( VARCHAR(8000), @CampoValorAntigo ), '<nulo>' )
+		SET @ValorNovo = ISNULL( CONVERT( VARCHAR(8000), @CampoValorNovo ), '<nulo>' )
+	
+		IF @StExibirDiff = 1 AND @ValorAntigo <> @ValorNovo
+	        RETURN @CampoTitulo + ': ' + @ValorAntigo + ' --> ' + @ValorNovo + CHAR(13)
+	
+	    IF @StExibirDiff = 0
+	        RETURN @CampoTitulo + ': ' + @ValorNovo + CHAR(13)
+	
+		RETURN ''
+	END
+	GO
 	
 	
---	SELECT TOP 100 * FROM TbTituloCobranca WHERE YEAR  (DataVencimento) = 2022
---	
---	SELECT TOP 10 * FROM TbTituloCobranca_Auditoria WHERE IdTituloCobranca  = 878581 
-
+	CREATE FUNCTION FnAuditoria_Bool(
+		@CampoTitulo VARCHAR(96),
+		@CampoValorAntigo BIT,
+		@CampoValorNovo BIT,
+	    @StExibirDiff BIT)
+	RETURNS VARCHAR(128) AS
+	BEGIN
+		DECLARE @ValorAntigo VARCHAR(6), @ValorNovo VARCHAR(6)
 	
---	UPDATE TbTituloCobranca
---	SET Comentario = 'A negociação 485 tinha este título como destino e foi excluída-4'
---	WHERE IdTituloCobranca  IN (767937, 880431)
+	    SET @ValorAntigo = (CASE @CampoValorAntigo WHEN 1 THEN 'Sim' WHEN 0 THEN 'Não' ELSE '<nulo>' END)
+		SET @ValorNovo = (CASE @CampoValorNovo WHEN 1 THEN 'Sim' WHEN 0 THEN 'Não' ELSE '<nulo>' END)
+	
+		IF @StExibirDiff = 1 AND @ValorAntigo <> @ValorNovo
+	        RETURN @CampoTitulo + ': ' + @ValorAntigo + ' --> ' + @ValorNovo + CHAR(13)
+	
+	    IF @StExibirDiff = 0
+	        RETURN @CampoTitulo + ': ' + @ValorNovo + CHAR(13)
+	
+		RETURN ''
+	END
+	GO

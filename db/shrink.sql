@@ -43,11 +43,11 @@ EXEC dbo.sp_foreachdb N'
 ,@user_only = 1
 ,@suppress_quotename=1
 -- ,@name_pattern='dbSigaSalePetrolina_Arquivo0';
-,@database_list = 'dbSigaCristoRei, dbSigaCESFCE, dbSigaSantAna, dbSigaSaoJorge' 
+,@database_list = ',,,,' 
 
 
 -- Fazer backup 
---./backup.sh dbSigaCristoRei && ./backup.sh dbSigaCESFCE && ./backup.sh dbSigaSantAna && ./backup.sh dbSigaSaoJorge && ./backup.sh dbSigaMadreDeusUnd1 && ./backup.sh dbSigaCristoRedentor
+--./backup.sh dbSigaCESFCE && ./backup.sh dbSigaCristoRei && ./backup.sh dbSigaSantAna && ./backup.sh dbSigaSaoJorge && ./backup.sh dbSigaCoesi && ./backup.sh dbSigaCristoRedentor
 
 --	DBCC CHECKDB([dbSigaSalesianoDomBosco]); -- WITH TABLERESULTS
 

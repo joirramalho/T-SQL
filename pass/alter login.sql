@@ -29,7 +29,7 @@
 --USE dbSigaMariaStela;
 
 
-	--CREATE USER 	[userMariaStela] 	FOR LOGIN [userMariaStela] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
+	--CREATE USER 	[active.filipe] 	FOR LOGIN [active.filipe] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
 	
 		--DROP USER [userINSTBRASILIA];
 	
@@ -69,7 +69,7 @@
     -- exec sp_droprolemember 'db_datareader', 'active.pollyana';
     -- exec sp_droprolemember 'db_datawriter', 'active.pollyana';
 
-	-- exec sp_droprolemember 'db_owner', 			'userEscolaIsrael';
+	-- exec sp_droprolemember 'db_owner', 			'active.filipe';
     -- exec sp_droprolemember 'db_accessadmin', 	'siga_caruaru';
     -- exec sp_droprolemember 'db_backupoperator', 	'siga_caruaru';
     -- exec sp_droprolemember 'db_datareader', 		'siga_caruaru';

@@ -3,8 +3,8 @@
 DECLARE @DatabaseName 	sysname = NULL
 DECLARE @LoginName 		sysname = NULL
 
---SET @DatabaseName = 'dbSigaPlanetadoSaber' -- dbSigaIEPAM or dbSigaAraraAzul -- dbSigaCrodrigues ou dbSigaVitGoncalves
-SET @LoginName 	= 'sigaadmin%'
+SET @DatabaseName = 'dbSigaPiedade' -- dbSigaIEPAM or dbSigaAraraAzul -- dbSigaCrodrigues ou dbSigaVitGoncalves
+--SET @LoginName 	= 'sigaadmin%'
 
 -- Databases on & offline
 SELECT 

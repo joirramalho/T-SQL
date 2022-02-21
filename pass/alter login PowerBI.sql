@@ -46,6 +46,9 @@
         -- GRANT SELECT ON [dbo].TbColetaDados TO [active.filipe];
         -- GRANT UPDATE ON [dbo].TbColetaIndicador TO [active.filipe];
 
+           -- GRANT UPDATE ON [dbo].TbIsaac_DadosColetados TO [active.filipe]; -- 19fev22
+
+   
         -- GRANT SELECT ON [dbo].[VwPowerBI_ColetaDadosPorCliente] TO [active.filipe]
         -- GRANT ALTER ON [dbo].[VwPowerBI_ColetaDadosPorCliente] TO [active.filipe]
 

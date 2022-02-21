@@ -16,7 +16,7 @@
 --ONLINE
 	--ALTER DATABASE dbLogMonitor SET ONLINE;
 	
-	--ALTER DATABASE dbSigaPortalIsaac SET OFFLINE;
+	--ALTER DATABASE dbSigaEscolaDinamica SET OFFLINE;
 
 		--DROP
 			--DROP DATABASE dbSigaRaizes

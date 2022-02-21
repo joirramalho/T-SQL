@@ -4,7 +4,7 @@
 DECLARE @DatabaseName 	sysname = NULL
 DECLARE @LoginName 		sysname = NULL
 
---SET @DatabaseName = 'dbCrm%'
+--SET @DatabaseName = 'dbCrmActivesoft%'
 --SET @LoginName 	= 'userModuloAracajuReadOnly%'
 
 

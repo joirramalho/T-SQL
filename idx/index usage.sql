@@ -3,9 +3,11 @@
 
 --USE [dbCrmActivesoft];
 
+--sp_help 'TbAlunoTurma'
+
 DECLARE @TableName  sysname = NULL
 
---SET @TableName 	= 'TbSolicitacao'
+SET @TableName 	= 'TbAluno' -- FALTA CRIAR IX em TbRoteiroTreinamentoTarefaUsuario
 
 --CREATE INDEX [IX_TbOcorrenciaMovimentacao_CdPrioridade] ON [dbCrmActivesoft].[dbo].[TbOcorrenciaMovimentacao] ([CdPrioridade]) INCLUDE ([IdOcorrenciaMovimentacao], [DataHoraLimite])
 
@@ -15,7 +17,7 @@ SELECT	DB_NAME(),
 		IIF( is_primary_key = 1, 'sim', '' ) AS 'pk',
 		IIF( type = 1, 'sim', '' ) AS 'cluster',
 		IIF( is_unique = 1, 'sim', '' ) AS 'unique',
-		IIF( is_unique_constraint = 1, 'sim', '' ) AS 'unique_ck',
+		IIF( is_unique_constraint = 1, 'sim', '' ) AS 'u_ck',
 		ISNULL(SUBSTRING(c.[indexed], 0, LEN(c.[indexed])), '') AS [indexed],
 		IIF( type = 1, 'n/a', ISNULL(SUBSTRING(c.[included], 0, LEN(c.[included])), '') ) AS [included], --		ISNULL(SUBSTRING(c.[included], 0, LEN(c.[included])), '.') AS [included],
 		ISNULL(i.filter_definition, '') AS [filtered],  -- Filtro utilizado pelo índice

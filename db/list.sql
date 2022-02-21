@@ -1,9 +1,9 @@
---10jan22
+--17fev22
 
 SELECT 
-	database_id, name as [ON-LINE],
-	'./backup.sh ' + name as [ON-LINE],
-	state_desc, create_date, recovery_model_desc,
+	database_id, name as [Database],
+	'./backup.sh ' + name as [script],
+	state_desc AS state, create_date, recovery_model_desc AS recovery_model,
 	CASE 
 		WHEN is_read_only = 1 THEN 'read-only'
 		ELSE 'r/w'
@@ -27,7 +27,7 @@ ORDER BY
 	
 --OFFLINE
 SELECT
-	name as [OFF-LINE], state_desc,	recovery_model_desc, is_read_only, user_access_desc, create_date
+	name as [Database], state_desc AS state, recovery_model_desc AS recovery_model, is_read_only, user_access_desc AS user_access, create_date
 FROM
 	sys.databases d
 WHERE

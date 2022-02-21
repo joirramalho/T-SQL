@@ -12,11 +12,11 @@
 	
 	
 	
-EXEC sp_rename 'dbo.TbDiario_Auditoria.DataHora', 'Audit_DataHora', 'COLUMN';
+EXEC sp_rename 'dbo.TbTituloCobrancaBoleto_Auditoria.DataHora', 'Audit_DataHora', 'COLUMN';
 
-EXEC sp_rename 'dbo.TbDiario_Auditoria.Operacao', 'Audit_Operacao', 'COLUMN';
+EXEC sp_rename 'dbo.TbTituloCobrancaBoleto_Auditoria.Operacao', 'Audit_Operacao', 'COLUMN';
 
-EXEC sp_rename 'dbo.TbDiario_Auditoria.IdUsuario', 'Audit_IdUsuario', 'COLUMN';
+EXEC sp_rename 'dbo.TbTituloCobrancaBoleto_Auditoria.IdUsuario', 'Audit_IdUsuario', 'COLUMN';
 	
 --	/* To prevent any potential data loss issues, you should review this script in detail before running it outside the context of the database designer.*/
 --BEGIN TRANSACTION
@@ -131,26 +131,26 @@ END
 --8 APENAS SE JÁ EXISTIA TABELA ESPELHADA -------------------------------------------
 	-- POPULAR PRIOR_IdTituloCobrancaBoletoAuditoria ON tabela espelho -------------------------------------------
 
---IF (OBJECT_ID('tempdb..#TEMP_AUDITORIA') IS NOT NULL) DROP TABLE tempdb..#TEMP_AUDITORIA
---	CREATE TABLE tempdb..#TEMP_AUDITORIA ( IdTituloCobrancaBoletoAuditoria bigint, PRIOR_IdTituloCobrancaBoletoAuditoria bigint )
---
---INSERT INTO tempdb..#TEMP_AUDITORIA
---	SELECT IdTituloCobrancaBoletoAuditoria,
---		        (		SELECT 	TOP 1 IdTituloCobrancaBoletoAuditoria 
---			         	FROM 	TbTituloCobrancaBoleto_Auditoria
---		         		WHERE 	IdTituloCobrancaBoletoAuditoria < t.IdTituloCobrancaBoletoAuditoria	
---								AND IdTituloCobranca = t.IdTituloCobranca
---		         		ORDER 	BY IdTituloCobrancaBoletoAuditoria DESC
---		        ) AS PRIOR_IdTituloCobrancaBoletoAuditoria
---		from TbTituloCobrancaBoleto_Auditoria t
---
-----		SELECT * FROM  tempdb..#TEMP_AUDITORIA
---
---UPDATE 	TbTituloCobrancaBoleto_Auditoria 
---SET 	TbTituloCobrancaBoleto_Auditoria.PRIOR_IdTituloCobrancaBoletoAuditoria = tempdb..#TEMP_AUDITORIA.PRIOR_IdTituloCobrancaBoletoAuditoria 
---FROM 	TbTituloCobrancaBoleto_Auditoria, tempdb..#TEMP_AUDITORIA
---WHERE 	TbTituloCobrancaBoleto_Auditoria.IdTituloCobrancaBoletoAuditoria = tempdb..#TEMP_AUDITORIA.IdTituloCobrancaBoletoAuditoria
---		AND tempdb..#TEMP_AUDITORIA.PRIOR_IdTituloCobrancaBoletoAuditoria IS NOT NULL
+IF (OBJECT_ID('tempdb..#TEMP_AUDITORIA') IS NOT NULL) DROP TABLE tempdb..#TEMP_AUDITORIA
+	CREATE TABLE tempdb..#TEMP_AUDITORIA ( IdTituloCobrancaBoletoAuditoria bigint, PRIOR_IdTituloCobrancaBoletoAuditoria bigint )
+
+INSERT INTO tempdb..#TEMP_AUDITORIA
+	SELECT IdTituloCobrancaBoletoAuditoria,
+		        (		SELECT 	TOP 1 IdTituloCobrancaBoletoAuditoria 
+			         	FROM 	TbTituloCobrancaBoleto_Auditoria
+		         		WHERE 	IdTituloCobrancaBoletoAuditoria < t.IdTituloCobrancaBoletoAuditoria	
+								AND IdTituloCobranca = t.IdTituloCobranca
+		         		ORDER 	BY IdTituloCobrancaBoletoAuditoria DESC
+		        ) AS PRIOR_IdTituloCobrancaBoletoAuditoria
+		from TbTituloCobrancaBoleto_Auditoria t
+
+--		SELECT * FROM  tempdb..#TEMP_AUDITORIA
+
+UPDATE 	TbTituloCobrancaBoleto_Auditoria 
+SET 	TbTituloCobrancaBoleto_Auditoria.PRIOR_IdTituloCobrancaBoletoAuditoria = tempdb..#TEMP_AUDITORIA.PRIOR_IdTituloCobrancaBoletoAuditoria 
+FROM 	TbTituloCobrancaBoleto_Auditoria, tempdb..#TEMP_AUDITORIA
+WHERE 	TbTituloCobrancaBoleto_Auditoria.IdTituloCobrancaBoletoAuditoria = tempdb..#TEMP_AUDITORIA.IdTituloCobrancaBoletoAuditoria
+		AND tempdb..#TEMP_AUDITORIA.PRIOR_IdTituloCobrancaBoletoAuditoria IS NOT NULL
 		
 		
 		
@@ -180,8 +180,47 @@ END
 --	
 --	SELECT TOP 100 * FROM TbTituloCobrancaBoleto WHERE YEAR  (DataHoraAtualizacao) = 2022
 --	
---	SELECT TOP 10 * FROM TbTituloCobrancaBoleto_Auditoria WHERE IdTituloCobranca  = 524027 
+	
+--	SELECT  tcb.IdTituloCobrancaBoletoAuditoria, prior.IdTituloCobrancaBoletoAuditoria AS p2
+--	FROM TbTituloCobrancaBoleto_Auditoria tcb
+--	CROSS APPLY (	SELECT 	TOP 1 IdTituloCobrancaBoletoAuditoria 
+--					FROM 	TbTituloCobrancaBoleto_Auditoria
+--					WHERE 	IdTituloCobrancaBoletoAuditoria < tcb.IdTituloCobrancaBoletoAuditoria	
+--						AND IdTituloCobranca = tcb.IdTituloCobranca
+--		         	ORDER 	BY IdTituloCobrancaBoletoAuditoria DESC
+--		          ) AS prior
+--	WHERE PRIOR_IdTituloCobrancaBoletoAuditoria = prior.IdTituloCobrancaBoletoAuditoria AND IdTituloCobranca  IN (929061) --929103
+--ORDER BY IdTituloCobrancaBoletoAuditoria DESC
+	
+	
+	
+	SELECT  tcb.IdTituloCobrancaBoletoAuditoria, tcb.Audit_DataHora , tcb.PRIOR_IdTituloCobrancaBoletoAuditoria , 
+			(	SELECT 	TOP 1 IdTituloCobrancaBoletoAuditoria 
+				FROM 	TbTituloCobrancaBoleto_Auditoria
+				WHERE 	IdTituloCobrancaBoletoAuditoria < tcb.IdTituloCobrancaBoletoAuditoria	
+				AND IdTituloCobranca = tcb.IdTituloCobranca
+		         	ORDER 	BY IdTituloCobrancaBoletoAuditoria DESC
+			) AS prior
+	FROM TbTituloCobrancaBoleto_Auditoria tcb
+	WHERE IdTituloCobranca  IN (929061) --929103
+	ORDER BY IdTituloCobrancaBoletoAuditoria DESC
+
+SELECT  tcb.IdTituloCobrancaBoletoAuditoria
+	FROM TbTituloCobrancaBoleto_Auditoria tcb
+	WHERE  IdTituloCobranca  IN (929061) --929103
+	ORDER BY IdTituloCobrancaBoletoAuditoria DESC
+
+
+Select
+  ColumnA,
+  ColumnB,
+  c.calccolumn1 As calccolumn1,
+  c.calccolumn1 / ColumnC As calccolumn2
+from t42
+cross apply (select (ColumnA + ColumnB) as calccolumn1) as c
+
+
 --	
---	UPDATE TbTituloCobrancaBoleto
---	SET BOL_CodigoBarras = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.'
---	WHERE IdTituloCobranca  IN (592194, 592207)
+	UPDATE TbTituloCobrancaBoleto
+	SET BOL_CodigoBarras = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.'
+	WHERE IdTituloCobranca  IN (929061,929103)
