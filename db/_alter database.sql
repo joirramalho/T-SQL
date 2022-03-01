@@ -14,7 +14,7 @@
 
 
 --ONLINE
-	--ALTER DATABASE dbLogMonitor SET ONLINE;
+	--ALTER DATABASE dbSigaSpinosa SET ONLINE;
 	
 	--ALTER DATABASE dbSigaEscolaDinamica SET OFFLINE;
 
@@ -30,7 +30,7 @@
 
 
 --READ_WRITE & READ_ONLY
-	--ALTER DATABASE dbSigaContemporaneo_Arquivo01    SET  READ_WRITE WITH NO_WAIT
+	--ALTER DATABASE dbSigaPauloFreire    SET  READ_WRITE WITH NO_WAIT
 
 	--ALTER DATABASE dbSigaContemporaneo_Arquivo01    SET  READ_ONLY WITH NO_WAIT
 

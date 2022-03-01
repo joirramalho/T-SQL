@@ -4,7 +4,7 @@
 DECLARE @DatabaseName 	sysname = NULL
 DECLARE @LoginName 		sysname = NULL
 
---SET @DatabaseName = 'dbCrmActivesoft%'
+SET @DatabaseName = 'dbSigaCOLEGIOOSE%'
 --SET @LoginName 	= 'userModuloAracajuReadOnly%'
 
 
@@ -16,9 +16,7 @@ SELECT	TOP 30
                            ((CASE qs.statement_end_offset
                                         WHEN -1 THEN DATALENGTH(qt.TEXT)
                                         ELSE qs.statement_end_offset
-                           END
-                           - qs.statement_start_offset)/ 2)+ 1)
-                           as [Text],
+                           END - qs.statement_start_offset)/ 2)+ 1) AS [Text],
 	qs.execution_count,
 	qs.total_logical_reads,
 --	qs.last_logical_reads,

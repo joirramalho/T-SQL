@@ -14,7 +14,7 @@ sp_exibirBancos
 
 sp_delete
 /*
-    EXEC dbLogRestore.dbo.sp_delete 'dbSigaEminente', '288959'
+    EXEC dbLogRestore.dbo.sp_delete 'dbSigaGGE', 'NovaAuditoria'
 
     -- DROP DATABASE CRM_270731
 

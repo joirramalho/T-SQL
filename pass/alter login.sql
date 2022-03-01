@@ -5,7 +5,7 @@
 
 --LOGIN --
 	--SENHA COM 10 caracteres									'1234567890'		
-		--CREATE LOGIN [userMariaStela] 		WITH PASSWORD= N'****', DEFAULT_DATABASE=[dbSigaMariaStela], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
+		--CREATE LOGIN [userFREIRE] 		WITH PASSWORD= N'FrTHkP1Bz.', DEFAULT_DATABASE=[dbSigaPauloFreire], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
 
 		--ALTER LOGIN [userMUNDODACRIANCA] DISABLE;
 
@@ -16,7 +16,7 @@
 
 -- PASSWORD
 	--												'1234567890'
-	-- ALTER LOGIN [userAmBatistaEEM] 	WITH PASSWORD = '****'; -- sigainternet userISO_PowerBI service.account
+	-- ALTER LOGIN [userFREIRE] 	WITH PASSWORD = '****'; -- sigainternet userISO_PowerBI service.account
 
 
 	-- re-enable login without password	
@@ -26,7 +26,7 @@
 
 
 
---USE dbSigaMariaStela;
+--USE dbSigaPauloFreire;
 
 
 	--CREATE USER 	[active.filipe] 	FOR LOGIN [active.filipe] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson

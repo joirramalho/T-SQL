@@ -3,7 +3,7 @@
 DECLARE @DatabaseName 	sysname = NULL
 DECLARE @LoginName 		sysname = NULL
 
-SET @DatabaseName = 'dbSigaPiedade' -- dbSigaIEPAM or dbSigaAraraAzul -- dbSigaCrodrigues ou dbSigaVitGoncalves
+SET @DatabaseName = 'dbSigaCOLEGIOOSE' -- dbSigaIEPAM or dbSigaAraraAzul -- dbSigaCrodrigues ou dbSigaVitGoncalves
 --SET @LoginName 	= 'sigaadmin%'
 
 -- Databases on & offline
