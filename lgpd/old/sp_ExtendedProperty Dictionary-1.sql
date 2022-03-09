@@ -1,4 +1,4 @@
---07mar22
+--13dez21
 
 --Standardize SQL Server data with text lookup and replace function
 	--https://www.mssqltips.com/sqlservertip/1052/standardize-sql-server-data-with-text-lookup-and-replace-function/
@@ -30,9 +30,8 @@ BEGIN
     DECLARE @ProductName VARCHAR(500)
 	
 	DECLARE load_cursor CURSOR FOR 
-
-		SELECT  [TableName], ColumnName, Description	FROM dbo._column_details_extended_property 
---	    WHERE  TableName IN ('Anexo04_AportesRecursosRPPS', '') --AND ColumnName IS NULL -- = 'Concluido' -- 
+	    SELECT  [TableName], ColumnName, Description	FROM dbo._column_details_extended_property 
+--	    WHERE  TableName = 'Achado' AND ColumnName = 'Concluido'
 	    
 	OPEN load_cursor 
 	FETCH NEXT FROM load_cursor INTO @TableName, @ColumnName, @ProductName 
@@ -40,7 +39,7 @@ BEGIN
 	WHILE @@FETCH_STATUS = 0 
 		BEGIN 
 			SET @oldProductName = @ProductName 
-		    SET @ProductName 	= LTRIM( RTRIM( @ProductName ) ) 
+		    SET @ProductName = LTRIM( RTRIM( @ProductName ) ) 
 		     
 		    SET @newProductName = @ProductName 
 		
@@ -58,27 +57,17 @@ BEGIN
 	
 					IF  @word <> '' 
 						BEGIN 
-			                SELECT @newWord = NULL
-
-							--br_latin1
-			                SELECT @newWord = Palavra FROM BdDicionarioDados.dbo.br_latin1 WHERE Palavra = @word COLLATE Latin1_General_CI_AI AND EmUso = 1 
-
-			                
-			                IF @newWord IS NULL 
-								SELECT @newWord = Vocabulo FROM BdDicionarioDados.dbo.Vocabulo WHERE Vocabulo = @word COLLATE Latin1_General_CI_AI 
-
---print @newWord
-								
-								
-							IF @newWord IS NOT NULL AND LEN( @newWord ) > 1
+			                SELECT @newWord = NULL 
+			                SELECT @newWord = Palavra FROM BdDicionarioDados.dbo.DicionarioDados WHERE Palavra = @word COLLATE Latin1_General_CI_AI 
+		
+			                IF @newWord IS NOT NULL 
 								SET @newProductName = REPLACE( @newProductName, @word, @newWord ) 
 			                ELSE
-								INSERT INTO BdDicionarioDados.dbo.Vocabulo( Vocabulo )	VALUES( @word )
-																
+								INSERT INTO BdDicionarioDados.dbo.DicionarioDados( Palavra )	VALUES( LOWER( @word ) )
 						END 
 
-					SET @ProductName 	= RIGHT( @ProductName, LEN( @ProductName ) - @position ) 
-					SET @position 		= CHARINDEX( ' ', @ProductName, 1 )
+					SET @ProductName 	= RIGHT( @ProductName, LEN(@ProductName) - @position ) 
+					SET @position 	= CHARINDEX( ' ', @ProductName, 1 )
 			              
 		
 					IF 	@position = 0 AND LEN( @ProductName ) > 0
@@ -88,7 +77,7 @@ BEGIN
 	        SET 	@word = @ProductName
 	         
 	        SELECT 	@newWord = NULL 
-			SELECT 	@newWord = Vocabulo FROM BdDicionarioDados.dbo.Vocabulo WHERE Vocabulo = @word COLLATE Latin1_General_CI_AI
+			SELECT 	@newWord = Palavra FROM BdDicionarioDados.dbo.DicionarioDados WHERE Palavra = @word COLLATE Latin1_General_CI_AI
 	             	
 	
 			IF @newWord IS NOT NULL 
@@ -99,11 +88,11 @@ BEGIN
 			    BEGIN 
 					IF @ColumnName IS NOT NULL
 					    UPDATE dbo._column_details_extended_property 
-				         	SET Description =  UPPER( LEFT( @newProductName, 1 ) ) + SUBSTRING( @newProductName, 2, LEN( @newProductName ) )
+				         	SET Description =  UPPER( LEFT( @newProductName, 1 ) ) + LOWER( SUBSTRING( @newProductName, 2, LEN( @newProductName ) ) )
 				         	WHERE TableName = @TableName AND ColumnName = @ColumnName 
 				    ELSE 
 					    UPDATE dbo._column_details_extended_property 
-				         	SET Description =  UPPER( LEFT( @newProductName, 1 ) ) + SUBSTRING( @newProductName, 2, LEN( @newProductName ) )
+				         	SET Description =  UPPER( LEFT( @newProductName, 1 ) ) + LOWER( SUBSTRING( @newProductName, 2, LEN( @newProductName ) ) )
 				         	WHERE TableName = @TableName AND ColumnName IS NULL
 			    END 
 		
@@ -113,5 +102,3 @@ BEGIN
 	CLOSE load_cursor 
 	DEALLOCATE load_cursor
 END
-
-Valor Despesas Inscritas 

@@ -1,9 +1,9 @@
---14jan22
+--06mar22
 
 DECLARE @DatabaseName 	sysname = NULL
 DECLARE @LoginName 		sysname = NULL
 
-SET @DatabaseName = 'dbSigaCOLEGIOOSE' -- dbSigaIEPAM or dbSigaAraraAzul -- dbSigaCrodrigues ou dbSigaVitGoncalves
+--SET @DatabaseName = 'dbSigaCOLEGIOOSE' -- dbSigaIEPAM or dbSigaAraraAzul -- dbSigaCrodrigues ou dbSigaVitGoncalves
 --SET @LoginName 	= 'sigaadmin%'
 
 -- Databases on & offline
@@ -21,9 +21,9 @@ FROM	sys.databases d
 LEFT JOIN sys.dm_exec_sessions s ON d.database_id  = s.database_id
 WHERE
 	d.database_id > 4
+	and login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND PROGRAM_NAME NOT LIKE ('ADO_MESSENGER_ADO%') AND PROGRAM_NAME NOT LIKE ('ADO_SIGA_NFSe%')	--IS_USER_PROCESS = 1
 --	AND DB_Name(d.database_id) LIKE ISNULL( @DatabaseName, DB_Name(d.database_id) ) 		
 --	AND LOGIN_NAME LIKE ISNULL( @LoginName, LOGIN_NAME ) 	
-	and login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND PROGRAM_NAME NOT LIKE ('ADO_MESSENGER_ADO%') AND PROGRAM_NAME NOT LIKE ('ADO_SIGA_NFSe%')	--IS_USER_PROCESS = 1
 --	and state = 0 			-- 0 ON-LINE -- 6 OFF-LINE
 --	and recovery_model = 1   -- 1-FULL 3-simple
 --	and is_read_only = 0 	-- Read-only
@@ -31,23 +31,14 @@ WHERE
 --	and name NOT IN ('?')
 --	and create_Date > '2020-04-08 12:47:10.447'	
 --	and name LIKE 'dbCrmActivesoft%'
-ORDER BY state_desc DESC, name, program_name DESC
-
-
-
-
-SELECT	DB_Name(database_id)  AS [DatabaseName], last_request_start_time, login_name, RTRIM( 'KILL ' + CAST( session_id AS CHAR ) ) + ';' AS [kill], program_name, host_name, [status], login_time--, logical_reads, row_count, reads, writes
--- unsuccessful_logons, last_unsuccessful_logon, last_request_end_time
-FROM	sys.dm_exec_sessions
-WHERE	login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND PROGRAM_NAME NOT LIKE ('ADO_MESSENGER_ADO%') AND PROGRAM_NAME NOT LIKE ('ADO_SIGA_NFSe%')	--IS_USER_PROCESS = 1
-	AND DB_Name(database_id) LIKE ISNULL( @DatabaseName, DB_Name(database_id) ) 		
-	AND LOGIN_NAME LIKE ISNULL( @LoginName, LOGIN_NAME ) 	
 	--AND program_name IN ('httpd')
 	--AND HOST_NAME IN ('APP')
 	--AND DATEDIFF(MINUTE, LAST_REQUEST_START_TIME, GETDATE()) > 1 -- LOGIN_TIME
 	--AND OPEN_TRANSACTION_COUNT = 0
-ORDER BY DB_Name(database_id), last_request_start_time DESC
-	
+ORDER BY 
+--	state_desc DESC, name, program_name DESC
+	last_request_start_time DESC
+
 
 
 --QtdeConnections

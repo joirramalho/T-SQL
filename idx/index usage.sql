@@ -7,7 +7,7 @@
 
 DECLARE @TableName  sysname = NULL
 
-SET @TableName 	= 'TbAluno' -- FALTA CRIAR IX em TbRoteiroTreinamentoTarefaUsuario
+SET @TableName 	= 'TbAuditoria' -- FALTA CRIAR IX em TbRoteiroTreinamentoTarefaUsuario
 
 --CREATE INDEX [IX_TbOcorrenciaMovimentacao_CdPrioridade] ON [dbCrmActivesoft].[dbo].[TbOcorrenciaMovimentacao] ([CdPrioridade]) INCLUDE ([IdOcorrenciaMovimentacao], [DataHoraLimite])
 

@@ -52,6 +52,13 @@
         -- GRANT SELECT ON [dbo].[VwPowerBI_ColetaDadosPorCliente] TO [active.filipe]
         -- GRANT ALTER ON [dbo].[VwPowerBI_ColetaDadosPorCliente] TO [active.filipe]
 
+   
+       	--03Mar22
+   		-- GRANT SELECT ON [dbo].[VwPowerBI_ColetaDados_IndicadoresIsaac] TO [active.filipe]
+        -- GRANT ALTER ON [dbo].[VwPowerBI_ColetaDados_IndicadoresIsaac] TO [active.filipe]
+   		-- GRANT ALTER ON [dbo].[VwPowerBI_ColetaDados_IndicadoresIsaac] TO [active.filipe]
+    
+   
 
     -- active.filipe - VPS-7 - PowerBI -- 11mar21
         -- GRANT SELECT ON [dbo].[VwPowerBI_PesquisaNPSConsolidado] TO [active.filipe];

@@ -1,7 +1,8 @@
 --17fev22
 
 SELECT 
-	database_id, name as [Database],
+--	database_id, 
+	name as [Database],
 	'./backup.sh ' + name as [script],
 	state_desc AS state, create_date, recovery_model_desc AS recovery_model,
 	CASE 
@@ -21,8 +22,8 @@ WHERE
 	--and create_Date > '2020-04-08 12:47:10.447'	
 	--and name LIKE 'dbCrmActivesoft%'
 ORDER BY
---	name
-	create_date DESC;
+	name
+--	create_date DESC;
 
 	
 --OFFLINE

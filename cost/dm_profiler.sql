@@ -4,7 +4,7 @@
 
 DECLARE @DatabaseName 	sysname = NULL
 
---SET @DatabaseName = 'dbSigaAlfa%'
+SET @DatabaseName = 'dbCrmActivesoft%'
 
 SELECT TOP 50  -- *
 	deqs.last_execution_time AS [Time]

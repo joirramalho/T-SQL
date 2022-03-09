@@ -102,5 +102,5 @@ ORDER BY DeadLockNumber
 --DROP TABLE #DeadLockXMLData,#DeadLockDetails
 
 SELECT * FROM #DeadLockXMLData
-SELECT * FROM  #DeadLockDetails
+SELECT * FROM #DeadLockDetails
  

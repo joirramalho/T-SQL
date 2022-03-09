@@ -1,4 +1,4 @@
---09dez21
+--06mar22
 
 --	UPDATE	_column_details_extended_property	SET	Description = NULL 
 	--SELECT * FROM _column_details_extended_property WHERE TableName = 'Atividade' ORDER BY TableName, OrdinalPosition
@@ -23,6 +23,14 @@ ORDER BY TableName, ColumnName
 	WHERE 	TableType = 'BASE TABLE'
 		AND Description IS NULL
 
+		
+--SELECT dbo.fn_SplitOnUpperCase( 	TableName		) FROM _column_details_extended_property
+--	WHERE 	TableType = 'BASE TABLE'
+--		AND Description IS NULL
+
+		
+		
+		
 		
 -- Descrever VIEWs
 	UPDATE	_column_details_extended_property

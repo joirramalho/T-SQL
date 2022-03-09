@@ -1,6 +1,6 @@
---02dez21
+--07mar22
 
---SELECT dbo.fn_SplitOnUpperCase('NormaExtincao')
+--SELECT dbo.fn_SplitOnUpperCase('NormaExtincaoVigente')
 
 IF (OBJECT_ID('dbo.fn_SplitOnUpperCase') IS NOT NULL) DROP FUNCTION fn_SplitOnUpperCase;
 
@@ -36,7 +36,7 @@ BEGIN
 	DECLARE @palavra VARCHAR(50)
 
 	DECLARE load_cursor CURSOR FOR 
-	    SELECT  dbo.fn_PutSpaceBetweenLetters( palavra )	FROM BdDicionarioDados.dbo.DicionarioDados WHERE SIGLA = 1
+	    SELECT  dbo.fn_PutSpaceBetweenLetters( Vocabulo )	FROM BdDicionarioDados.dbo.Vocabulo WHERE Sigla  = 1
 	    
 	OPEN load_cursor 
 	FETCH NEXT FROM load_cursor INTO @palavra 
