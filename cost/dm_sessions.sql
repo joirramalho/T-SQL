@@ -3,7 +3,7 @@
 DECLARE @DatabaseName 	sysname = NULL
 DECLARE @LoginName 		sysname = NULL
 
---SET @DatabaseName = 'dbSigaCOLEGIOOSE' -- dbSigaIEPAM or dbSigaAraraAzul -- dbSigaCrodrigues ou dbSigaVitGoncalves
+--SET @DatabaseName = 'dbSigaCPI' -- dbSigaIEPAM or dbSigaAraraAzul -- dbSigaCrodrigues ou dbSigaVitGoncalves
 --SET @LoginName 	= 'sigaadmin%'
 
 -- Databases on & offline
@@ -147,5 +147,3 @@ ORDER BY
 --HAVING COUNT(*)>1
 --ORDER BY
 --	DatabaseName, PROGRAM_NAME
-	
-	

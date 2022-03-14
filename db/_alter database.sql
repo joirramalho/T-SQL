@@ -14,9 +14,9 @@
 
 
 --ONLINE
-	--ALTER DATABASE dbSigaSpinosa SET ONLINE;
+	--ALTER DATABASE dbLogMonitor SET ONLINE;
 	
-	--ALTER DATABASE dbSigaEscolaDinamica SET OFFLINE;
+	--ALTER DATABASE dbLogMonitor SET OFFLINE;
 
 		--DROP
 			--DROP DATABASE dbSigaRaizes

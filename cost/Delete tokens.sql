@@ -1,4 +1,4 @@
---06mar22
+--11mar22
 
 /*
 	UPDATE tat SET tat.IdSourceRefreshToken = NULL
@@ -59,6 +59,19 @@
  */
 
 
+	
+	
+DELETE tat
+--	SELECT COUNT(*) 
+	FROM TbAccessToken tat 
+	LEFT JOIN TbRefreshToken trt ON trt.IdAccessToken = tat.IdAccessToken 
+	WHERE 1=1
+		AND Expires < GETDATE()
+		AND IdSourceRefreshToken IS NULL
+		AND IdRefreshToken IS NULL
+
+
+
 /*
 ALTER TABLE dbCrmActivesoft.dbo.TbRefreshToken ADD CONSTRAINT FK_TbRefreshToken_TbAccessToken_IdAccessToken FOREIGN KEY (IdAccessToken) 
 	REFERENCES dbCrmActivesoft.dbo.TbAccessToken(IdAccessToken);
@@ -70,14 +83,3 @@ ALTER TABLE dbCrmActivesoft.dbo.TbRefreshToken ADD CONSTRAINT FK_TbRefreshToken_
 	ALTER TABLE dbCrmActivesoft.dbo.TbAccessToken ADD CONSTRAINT FK_TbAccessToken_TbRefreshToken_IdRefreshToken FOREIGN KEY (IdSourceRefreshToken) 
 		REFERENCES dbCrmActivesoft.dbo.TbRefreshToken(IdRefreshToken);
 */
-
-	
-	
-DELETE tat
---	SELECT COUNT(*) 
-	FROM TbAccessToken tat 
-	LEFT JOIN TbRefreshToken trt ON trt.IdAccessToken = tat.IdAccessToken 
-	WHERE 1=1
-		AND Expires < GETDATE()
-		AND IdSourceRefreshToken IS NULL
-		AND IdRefreshToken IS NULL

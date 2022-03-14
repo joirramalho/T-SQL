@@ -1,7 +1,8 @@
 --06mar22
 
 --	UPDATE	_column_details_extended_property	SET	Description = NULL 
-	--SELECT * FROM _column_details_extended_property WHERE TableName = 'Atividade' ORDER BY TableName, OrdinalPosition
+	--SELECT * FROM _column_details_extended_property  WHERE  TableName IS NOT NULL --TableName LIKE 'Anexo01%' 
+--	WHERE TableName = 'Atividade' ORDER BY TableName, OrdinalPosition
 
 /*
 SELECT 
@@ -24,12 +25,9 @@ ORDER BY TableName, ColumnName
 		AND Description IS NULL
 
 		
---SELECT dbo.fn_SplitOnUpperCase( 	TableName		) FROM _column_details_extended_property
---	WHERE 	TableType = 'BASE TABLE'
---		AND Description IS NULL
-
-		
-		
+	--SELECT dbo.fn_SplitOnUpperCase( 	TableName		) FROM _column_details_extended_property
+	--	WHERE 	TableType = 'BASE TABLE'
+	--		AND Description IS NULL		
 		
 		
 -- Descrever VIEWs
@@ -58,9 +56,22 @@ ORDER BY TableName, ColumnName
 	SET		Description = 'Identificador de ' + dbo.fn_SplitOnUpperCase(	SUBSTRING( ColumnName, CHARINDEX(' ', ColumnName, 0 ) + 1, LEN( ColumnName ) )	)
 	WHERE 	
 		ColumnName LIKE 'Id%' AND CHARINDEX(' ', dbo.fn_SplitOnUpperCase(	SUBSTRING( ColumnName, CHARINDEX(' ', ColumnName, 0 ) + 1, LEN( ColumnName ) )	) ) = 0
-		AND Description = ''
+		AND Description IS NULL;
 
 
+	
+	
+--NOVO Identificador de tabela (FK) com apenas um nome (sem separaçÃo de palavras por espaço)
+	UPDATE	_column_details_extended_property
+	SET		Description = 'Identificador de ' + dbo.fn_SplitOnUpperCase(	SUBSTRING( ColumnName, CHARINDEX(' ', ColumnName, 0 ) + 1, LEN( ColumnName ) )	)
+	WHERE 	
+		ColumnName LIKE 'Id%' 
+		AND Description IS NULL;
+	
+	
+	
+	
+	
 -- Descrever casos específicos: keyword
 	DECLARE @ID INT
 	DECLARE @ColumnName 		sysname
@@ -71,7 +82,7 @@ ORDER BY TableName, ColumnName
 	DECLARE c CURSOR FOR SELECT * FROM BdDicionarioDados.dbo.keyword k WHERE ( Description IS NOT NULL OR Prefix IS NOT NULL OR Sufix IS NOT NULL ) ORDER BY ID
 	OPEN c
 	FETCH NEXT FROM c INTO @ID, @ColumnName, @Description, @PrefixColumnName, @SufixColumnName
-	WHILE @@FETCH_STATUS =0
+	WHILE @@FETCH_STATUS = 0
 	BEGIN
 		UPDATE	_column_details_extended_property
 			SET		Description = IIF( 	@Description IS NOT  NULL, @Description, 
@@ -91,7 +102,7 @@ ORDER BY TableName, ColumnName
 -- Descrever demais casos
 	UPDATE	_column_details_extended_property
 	SET		Description = dbo.fn_SplitOnUpperCase( 	SUBSTRING( ColumnName, CHARINDEX( ' ', ColumnName, 0 ) + 1, LEN( ColumnName ) )		)
-	WHERE 	Description IS NULL;
+	WHERE 	Description IS NULL OR Description = '';
 
 
 

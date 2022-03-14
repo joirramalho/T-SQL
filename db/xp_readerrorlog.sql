@@ -1,4 +1,4 @@
--- 03ago21
+-- 09mar22
 
 -- https://www.sqlshack.com/how-to-implement-error-handling-in-sql-server/
 
@@ -17,9 +17,11 @@ INSERT INTO #TmpErrorLog ([LogDate], [ProcessInfo], [Text])
     -- EXEC master.dbo.xp_readerrorlog 0, 1, N'backup', N'error', NULL, NULL, N'desc'
 
     
-SELECT * FROM #TmpErrorLog
+SELECT 	* 
+FROM 	#TmpErrorLog
 -- where Text LIKE '%userFACHO%'
-order by LogDate DESC
+--GROUP BY Text -- Não funciona
+ORDER BY LogDate DESC
 
 
 
@@ -49,5 +51,3 @@ order by LogDate DESC
 --     ERROR_MESSAGE() AS ErrorMessage;
 -- END CATCH;
 -- GO
-
-

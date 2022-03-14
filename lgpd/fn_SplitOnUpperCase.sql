@@ -1,6 +1,6 @@
---07mar22
+--09mar22
 
---SELECT dbo.fn_SplitOnUpperCase('NormaExtincaoVigente')
+--SELECT dbo.fn_SplitOnUpperCase('(Norma;ExtincaoVigenteRPPS_ )')
 
 IF (OBJECT_ID('dbo.fn_SplitOnUpperCase') IS NOT NULL) DROP FUNCTION fn_SplitOnUpperCase;
 
@@ -15,6 +15,10 @@ BEGIN
 	DECLARE @Char CHAR(1)
 	DECLARE @i    INT = 0
 	DECLARE @OutString VARCHAR(4000) = ''
+	
+	
+	SET @String = REPLACE( REPLACE( REPLACE( REPLACE( @String, '(', ''), ')', ''), ';', ''), '_', '')
+
 	
 	IF 	LEFT( @String, 2 ) = 'Id'
 		SET @String = SUBSTRING( @String, 3, LEN( @String) - 2) 
@@ -32,6 +36,8 @@ BEGIN
 	END
 	
 	SET @OutString =  LTRIM( @OutString )
+	
+
 	
 	DECLARE @palavra VARCHAR(50)
 
