@@ -42,14 +42,14 @@ ORDER BY
 
 
 --QtdeConnections
-SELECT	DB_Name(database_id)  AS [DatabaseName], count(*) AS QtdeConnections
--- unsuccessful_logons, last_unsuccessful_logon, last_request_end_time
-FROM	sys.dm_exec_sessions
-WHERE	login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND PROGRAM_NAME NOT LIKE ('ADO_MESSENGER_ADO%')	--IS_USER_PROCESS = 1
---	AND DB_Name(database_id) LIKE ISNULL( @DatabaseName, DB_Name(database_id) ) 		
---	AND LOGIN_NAME LIKE ISNULL( @LoginName, LOGIN_NAME ) 	
-GROUP BY DB_Name(database_id)
-ORDER BY count(*) DESC
+	--	SELECT	DB_Name(database_id)  AS [DatabaseName], count(*) AS QtdeConnections
+	--	-- unsuccessful_logons, last_unsuccessful_logon, last_request_end_time
+	--	FROM	sys.dm_exec_sessions
+	--	WHERE	login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND PROGRAM_NAME NOT LIKE ('ADO_MESSENGER_ADO%')	--IS_USER_PROCESS = 1
+	--	--	AND DB_Name(database_id) LIKE ISNULL( @DatabaseName, DB_Name(database_id) ) 		
+	--	--	AND LOGIN_NAME LIKE ISNULL( @LoginName, LOGIN_NAME ) 	
+	--	GROUP BY DB_Name(database_id)
+	--	ORDER BY count(*) DESC
 
 
 
@@ -79,28 +79,28 @@ ORDER BY
 
 
 --GROUP BY client_net_address
-SELECT
-		CASE 
-		WHEN client_net_address = '172.31.28.81' THEN 'MSG01'
-		WHEN client_net_address = '172.31.28.104' THEN 'MSG02'
-		WHEN client_net_address = '172.31.28.121' THEN 'MSG03'
-		WHEN client_net_address = '172.31.24.57' THEN 'MSG04'
-		WHEN client_net_address = '172.31.22.68' THEN 'MSG05'
-		ELSE client_net_address
-	END AS [Messenger],
-	COUNT(*)
-FROM
-	sys.dm_exec_sessions s
-JOIN sys.dm_exec_connections AS c
-    ON c.session_id = s.session_id
-WHERE
-	s.login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND s.PROGRAM_NAME LIKE ('ADO_MESSENGER_ADO%')
-	AND DB_Name(database_id) LIKE ISNULL( @DatabaseName, DB_Name(database_id) ) 		
-
-GROUP BY
-	client_net_address
-ORDER BY
-	Messenger
+	--SELECT
+	--		CASE 
+	--		WHEN client_net_address = '172.31.28.81' THEN 'MSG01'
+	--		WHEN client_net_address = '172.31.28.104' THEN 'MSG02'
+	--		WHEN client_net_address = '172.31.28.121' THEN 'MSG03'
+	--		WHEN client_net_address = '172.31.24.57' THEN 'MSG04'
+	--		WHEN client_net_address = '172.31.22.68' THEN 'MSG05'
+	--		ELSE client_net_address
+	--	END AS [Messenger],
+	--	COUNT(*)
+	--FROM
+	--	sys.dm_exec_sessions s
+	--JOIN sys.dm_exec_connections AS c
+	--    ON c.session_id = s.session_id
+	--WHERE
+	--	s.login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND s.PROGRAM_NAME LIKE ('ADO_MESSENGER_ADO%')
+	--	AND DB_Name(database_id) LIKE ISNULL( @DatabaseName, DB_Name(database_id) ) 		
+	--
+	--GROUP BY
+	--	client_net_address
+	--ORDER BY
+	--	Messenger
 
 
 
@@ -127,23 +127,4 @@ WHERE
 
 ORDER BY
 	Messenger, DatabaseName
-
-
-
-
 	
---LIST BY DB_Name(database_id) CONNECTION messenger
---SELECT
---	DB_Name(database_id) AS [DatabaseName], PROGRAM_NAME, COUNT(*)
---FROM
---	sys.dm_exec_sessions s
---JOIN sys.dm_exec_connections AS c
---    ON c.session_id = s.session_id
---WHERE
---	s.login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND s.PROGRAM_NAME LIKE ('ADO_MESSENGER_ADO%')
---	AND DB_Name(database_id) LIKE ISNULL( @DatabaseName, DB_Name(database_id) ) 		
---	AND LOGIN_NAME LIKE ISNULL( @LoginName, LOGIN_NAME ) 	
---GROUP BY DB_Name(database_id), PROGRAM_NAME
---HAVING COUNT(*)>1
---ORDER BY
---	DatabaseName, PROGRAM_NAME

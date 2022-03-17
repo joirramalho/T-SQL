@@ -37,7 +37,7 @@ IF OBJECT_ID('dbo._column_details_extended_property') IS  NULL
 		    ,col.TABLE_NAME AS TableName
 		FROM INFORMATION_SCHEMA.TABLES AS col
 		WHERE col.TABLE_NAME NOT IN ('_flyway_schema_history', '_column_details_extended_property', 'sysdiagrams')
-			AND NOT EXISTS (SELECT * FROM _column_details_extended_property cdep WHERE col.TABLE_NAME = cdep.TableName )
+			AND NOT EXISTS (SELECT * FROM _column_details_extended_property cdep WHERE col.TABLE_NAME COLLATE  SQL_Latin1_General_CP1_CI_AI = cdep.TableName )
 		ORDER BY col.TABLE_NAME;
 
 	DELETE _column_details_extended_property 

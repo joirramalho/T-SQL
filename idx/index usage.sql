@@ -3,11 +3,11 @@
 
 --USE [dbSigaCeducVitoria];
 
---sp_help 'TbLogWeb'
+--sp_help 'TbSituacaoAlunoDisciplina'
 
 DECLARE @TableName  sysname = NULL
 
-SET @TableName 	= 'TbLancamentoCobranca' -- FALTA CRIAR IX em TbRoteiroTreinamentoTarefaUsuario
+SET @TableName 	= 'TbSituacaoAlunoDisciplina' -- FALTA CRIAR IX em TbRoteiroTreinamentoTarefaUsuario
 
 --CREATE INDEX [IX_TbOcorrenciaMovimentacao_CdPrioridade] ON [dbCrmActivesoft].[dbo].[TbOcorrenciaMovimentacao] ([CdPrioridade]) INCLUDE ([IdOcorrenciaMovimentacao], [DataHoraLimite])
 
@@ -15,7 +15,7 @@ SELECT	DB_NAME() [database],
 		OBJECT_NAME(I.object_id) As [table],--		I.index_id,
 		I.Name AS [index],
 		IIF( is_primary_key = 1, 'pk', '' ) AS 'pk',
-		IIF( type = 1, 'ck', '' ) AS 'cluster',
+		IIF( type = 1, 'cluster', '' ) AS 'cluster',
 		IIF( is_unique = 1, 'uk', '' ) AS 'uk',
 		IIF( is_unique_constraint = 1, 'uck', '' ) AS 'uck',
 		ISNULL(SUBSTRING(c.[indexed], 0, LEN(c.[indexed])), '') AS [indexed],
