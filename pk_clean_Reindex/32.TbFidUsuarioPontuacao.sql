@@ -1,4 +1,4 @@
-USE dbSigaMariaStela;
+USE dbSigaSantaGertrudes;
 
 
 ALTER TABLE [dbo].[TbFidUsuarioPontuacao] DROP CONSTRAINT [PK_TbFidUsuarioPontuacao]

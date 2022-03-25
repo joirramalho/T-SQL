@@ -1,4 +1,4 @@
---16mar22
+--22mar22
 
 /*
 	UPDATE tat SET tat.IdSourceRefreshToken = NULL
@@ -33,14 +33,14 @@
 		INNER JOIN TbRefreshToken trt ON trt.IdRefreshToken = tat.IdSourceRefreshToken
 		WHERE 1=1
 			AND trt.CreatedAt < GETDATE() - 90
-			AND tat.Expires < GETDATE()
+			AND tat.Expires < GETDATE();
 	
 
 	DELETE
 	--SELECT COUNT(*) FROM 
 		TbRefreshToken
 	WHERE 1=1
-		AND CreatedAt < GETDATE() - 90
+		AND CreatedAt < GETDATE() - 90;
 */
 
 
@@ -55,7 +55,7 @@
 	WHERE 1=1
 		AND Expires < GETDATE()
 		AND trt.IdRefreshToken  IS NULL 
-		AND trt2.IdRefreshToken IS NULL
+		AND trt2.IdRefreshToken IS NULL;
  */
 
 

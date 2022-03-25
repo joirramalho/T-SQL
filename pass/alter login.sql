@@ -4,8 +4,8 @@
 
 
 --LOGIN --
-	--SENHA COM 10 caracteres									'1234567890'		
-		--CREATE LOGIN [userFREIRE] 		WITH PASSWORD= N'FrTP1Bz.', DEFAULT_DATABASE=[dbSigaPauloFreire], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
+	--SENHA COM 10 caracteres								'1234567890'		
+		--CREATE LOGIN [userSantaGertrudes] 		WITH PASSWORD= N'*****', DEFAULT_DATABASE=[dbSigaSantaGertrudes], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
 
 		--ALTER LOGIN [userMUNDODACRIANCA] DISABLE;
 
@@ -26,10 +26,10 @@
 
 
 
---USE dbScriptMigracao;
+--USE dbSigaModeloEEM;
 
 
-	--CREATE USER 	[userScriptMigracao] 	FOR LOGIN [userScriptMigracao] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
+	--CREATE USER 	[active.marley] 	FOR LOGIN [active.marley] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
 	
 		--DROP USER [userINSTBRASILIA];
 	
@@ -42,7 +42,7 @@
 			--REVOKE CONNECT  FROM [siga_caruaru];
 
 
-	--ALTER ROLE [db_owner] ADD MEMBER [userMariaStela];
+	--ALTER ROLE [db_owner] ADD MEMBER [active.marley];
 
 		--EXEC master..sp_addsrvrolemember @loginame = N'active.pinto', @rolename = N'sysadmin';
 
@@ -61,21 +61,21 @@
     	--REVOKE EXECUTE TO [romario.barbalho];
 
 --ADD 
-	--ALTER ROLE [db_owner] ADD MEMBER [userScriptMigracao];
-	--ALTER ROLE [db_ddladmin] ADD MEMBER [active.mardelson];
+	--ALTER ROLE [db_owner] ADD MEMBER [userSantaGertrudes];
+		--ALTER ROLE [db_ddladmin] ADD MEMBER [active.mardelson];
 
---DROP
-	--USE dbBibDiocCaruaru;
-
-	    -- exec sp_droprolemember 'db_datareader', 'active.pollyana';
-	    -- exec sp_droprolemember 'db_datawriter', 'active.pollyana';
+	--DROP
+		--USE dbBibDiocCaruaru;
 	
-		-- exec sp_droprolemember 'db_owner', 			'siga_caruaru';
-	    -- exec sp_droprolemember 'db_accessadmin', 	'siga_caruaru';
-	    -- exec sp_droprolemember 'db_backupoperator', 	'siga_caruaru';
-	    -- exec sp_droprolemember 'db_datareader', 		'siga_caruaru';
-	    -- exec sp_droprolemember 'db_datawriter', 		'siga_caruaru';
-	    -- exec sp_droprolemember 'db_ddladmin', 		'siga_caruaru';
+		    -- exec sp_droprolemember 'db_datareader', 'active.pollyana';
+		    -- exec sp_droprolemember 'db_datawriter', 'active.pollyana';
+		
+			-- exec sp_droprolemember 'db_owner', 			'siga_caruaru';
+		    -- exec sp_droprolemember 'db_accessadmin', 	'siga_caruaru';
+		    -- exec sp_droprolemember 'db_backupoperator', 	'siga_caruaru';
+		    -- exec sp_droprolemember 'db_datareader', 		'siga_caruaru';
+		    -- exec sp_droprolemember 'db_datawriter', 		'siga_caruaru';
+		    -- exec sp_droprolemember 'db_ddladmin', 		'siga_caruaru';
 
 
 

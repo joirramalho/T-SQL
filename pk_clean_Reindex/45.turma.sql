@@ -1,4 +1,4 @@
-USE dbSigaMariaStela;
+USE dbSigaSantaGertrudes;
 
 -- TbTurma 
 ALTER TABLE [dbo].[TbAlunoPeriodo] DROP CONSTRAINT [FK_TbCursoPeriodo_TbTurma]

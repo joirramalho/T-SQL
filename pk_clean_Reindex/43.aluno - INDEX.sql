@@ -1,4 +1,4 @@
-USE dbSigaMariaStela;
+USE dbSigaSantaGertrudes;
 
 
 IF OBJECT_ID('dbo.FK_TbAluno_TbAluno_Vinculado') IS NOT NULL
@@ -87,7 +87,7 @@ ALTER TABLE [dbo].[TbDiarioAulaChamadaOnline] DROP CONSTRAINT [FK_TbDiarioAulaCh
 
 
 
-ALTER TABLE [dbo].[TbAlunoTurmaDocumento] DROP CONSTRAINT [FK__TbAlunoTu__IdAlu__7CA94049];
+ALTER TABLE [dbo].[TbAlunoTurmaDocumento] DROP CONSTRAINT [FK__TbAlunoTu__IdAlu__5D3094F0];
 
 -- OU
 IF OBJECT_ID('dbo.FK_TbAlunoTurmaDocumento_TbAluno') IS NOT NULL

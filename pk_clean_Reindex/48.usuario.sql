@@ -1,4 +1,4 @@
-USE dbSigaMariaStela;
+USE dbSigaSantaGertrudes;
 
 
 ALTER TABLE [dbo].[TbAlmoxMaterialMovimentacao] DROP CONSTRAINT [FK_TbAlmoxMaterialMovimentacao_TbUsuario]
@@ -208,6 +208,7 @@ ALTER TABLE [dbo].[TbTituloCobranca_Persistido] DROP CONSTRAINT [FK_TbTituloCobr
 
 ALTER TABLE [dbo].[TbTituloCobrancaEnvio] DROP CONSTRAINT [FK_TbTituloCobrancaEnvio_TbUsuario];
 
+ALTER TABLE [dbo].[TbNotaFiscal] DROP CONSTRAINT [FK_TbNotaFiscal_TbUsuario_NotaFiscalCancelada_IdUsuario]
 
 
 
@@ -223,6 +224,13 @@ ALTER TABLE [dbo].[TbTituloCobrancaEnvio] DROP CONSTRAINT [FK_TbTituloCobrancaEn
 	(
 			[IdUsuario] ASC
 	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 90) ON [PRIMARY];
+
+
+
+ALTER TABLE [dbo].[TbNotaFiscal]  WITH CHECK ADD  CONSTRAINT [FK_TbNotaFiscal_TbUsuario_NotaFiscalCancelada_IdUsuario] FOREIGN KEY([NotaFiscalCancelada_IdUsuario])	REFERENCES [dbo].[TbUsuario] ([IdUsuario])
+
+ALTER TABLE [dbo].[TbNotaFiscal] CHECK CONSTRAINT [FK_TbNotaFiscal_TbUsuario_NotaFiscalCancelada_IdUsuario]
+
 
 
 	

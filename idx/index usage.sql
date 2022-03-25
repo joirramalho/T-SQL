@@ -3,11 +3,11 @@
 
 --USE [dbSigaCeducVitoria];
 
---sp_help 'TbSituacaoAlunoDisciplina'
+--sp_help 'TbAlunoTurma'
 
 DECLARE @TableName  sysname = NULL
 
-SET @TableName 	= 'TbSituacaoAlunoDisciplina' -- FALTA CRIAR IX em TbRoteiroTreinamentoTarefaUsuario
+SET @TableName 	= 'TbAlunoTurma' -- FALTA CRIAR IX em TbRoteiroTreinamentoTarefaUsuario
 
 --CREATE INDEX [IX_TbOcorrenciaMovimentacao_CdPrioridade] ON [dbCrmActivesoft].[dbo].[TbOcorrenciaMovimentacao] ([CdPrioridade]) INCLUDE ([IdOcorrenciaMovimentacao], [DataHoraLimite])
 

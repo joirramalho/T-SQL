@@ -1,4 +1,4 @@
-USE dbSigaMariaStela;
+USE dbSigaSantaGertrudes;
 
 
 IF OBJECT_ID('dbo.[FK_TbParametroInternet_InscrEvento_IdSituacaoAlunoTurmaParticipante]') IS NOT NULL 

@@ -1,4 +1,4 @@
-USE dbSigaMariaStela;
+USE dbSigaSantaGertrudes;
 
 
 IF OBJECT_ID('dbo.[FK_TbCaptacaoParametro_TbUnidade]') IS NOT NULL 
@@ -107,7 +107,7 @@ GO
 
 
 -- NOME PK ERRADOS
--- ALTER TABLE [dbo].[TbUnidadeTermoConsentimento] DROP CONSTRAINT [FK__TbUnidade__IdUni__333A5B24];
+-- ALTER TABLE [dbo].[TbUnidadeTermoConsentimento] DROP CONSTRAINT [FK__TbUnidade__IdUni__13C1AFCB];
 
 -- NOME CORRETO
 ALTER TABLE [dbo].[TbUnidadeTermoConsentimento] DROP CONSTRAINT [FK_TbUnidadeTermoConsentimento_TbUnidade]

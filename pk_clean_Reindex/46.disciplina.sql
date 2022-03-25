@@ -1,4 +1,4 @@
-USE dbSigaMariaStela;
+USE dbSigaSantaGertrudes;
 
 -- TbDisciplina
 IF OBJECT_ID('dbo.FK_TbAlunoAproveitamentoDisciplina_TbDisciplina') IS NOT NULL

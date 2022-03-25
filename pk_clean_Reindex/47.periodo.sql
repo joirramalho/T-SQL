@@ -1,4 +1,4 @@
-USE dbSigaMariaStela;
+USE dbSigaSantaGertrudes;
 
 -- TbPeriodo 
 IF OBJECT_ID('dbo.FK_TbAlunoCursoDesconto_TbPeriodo') IS NOT NULL

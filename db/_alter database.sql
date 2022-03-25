@@ -39,7 +39,7 @@
 --SET RECOVERY
 	--ALTER DATABASE [dbSigaModuloAracaju_Arquivo] SET RECOVERY SIMPLE WITH NO_WAIT;
 
-	--ALTER DATABASE [dbActiveBibSantAna] SET RECOVERY FULL WITH NO_WAIT
+	--ALTER DATABASE [dbSigaPadraoInst] SET RECOVERY FULL WITH NO_WAIT
 
 
 
@@ -51,7 +51,7 @@
 
 
 --sys.database_files
-	-- USE dbSigaDiocCaruaru;
+	-- USE dbSigaModeloEEM;
 	-- SELECT file_id, name as [logical_file_name],physical_name from sys.database_files
 
 

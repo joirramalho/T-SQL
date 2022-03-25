@@ -50,7 +50,7 @@ INNER JOIN sys.schemas s
 WHERE
 	sysobjects.type = 'TR'
 	
-	AND OBJECT_NAME(parent_obj) IN ('TbTurma')
+	AND OBJECT_NAME(parent_obj) IN ('Tbresponsavel')
 	
 ORDER BY
 	OBJECT_NAME(parent_obj)

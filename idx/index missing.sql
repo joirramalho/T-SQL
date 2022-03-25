@@ -5,17 +5,16 @@
 	--Collecting, aggregating, and analyzing missing SQL Server Index Stats
 	--https://www.sqlshack.com/collecting-aggregating-analyzing-missing-sql-server-index-stats/
 
---EXEC  sp_helpindex 'TbLancamentoCobranca'
+--EXEC  sp_help 'TbFaseNotaAluno'
 
 --USE [Database];  NOT MASTER
-
 
 
 DECLARE @DatabaseName 	sysname = NULL
 DECLARE @TableName		sysname = NULL
 
---SET @DatabaseName = 'dbSigaGGE%' -- dbSigaIEPAM or dbSigaAraraAzul -- dbSigaCrodrigues ou dbSigaVitGoncalves
-SET @TableName = 'TbSituacaoAlunoDisciplina' -- dbSigaIEPAM or dbSigaAraraAzul -- dbSigaCrodrigues ou dbSigaVitGoncalves
+--SET @DatabaseName = 'dbSigaSalesianoDomBosco%' -- dbSigaIEPAM or dbSigaAraraAzul -- dbSigaCrodrigues ou dbSigaVitGoncalves
+SET @TableName = 'TbAlunoTurma' -- dbSigaIEPAM or dbSigaAraraAzul -- dbSigaCrodrigues ou dbSigaVitGoncalves
 
  
 SELECT DB_NAME(c.database_id) as DatabaseName,

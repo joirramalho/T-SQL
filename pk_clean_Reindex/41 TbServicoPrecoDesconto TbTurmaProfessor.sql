@@ -1,4 +1,4 @@
-USE dbSigaMariaStela;
+USE dbSigaSantaGertrudes;
 
 -- TbServicoPrecoDesconto
 ALTER TABLE [dbo].[TbServicoPrecoDesconto] DROP CONSTRAINT [PK_TbServicoPrecoDesconto]

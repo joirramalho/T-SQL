@@ -51,7 +51,7 @@ EXEC dbo.sp_foreachdb N'
 -- Fazer backup 
 --./backup.sh dbSigaCESFCE && ./backup.sh dbSigaCristoRei && ./backup.sh dbSigaSantAna && ./backup.sh dbSigaSaoJorge && ./backup.sh dbSigaCoesi && ./backup.sh dbSigaCristoRedentor
 
---	DBCC CHECKDB([dbSigaCognitivo]); -- WITH TABLERESULTS
+--	DBCC CHECKDB([dbSigaSantaGertrudes]); -- WITH TABLERESULTS
 
 --USE SampleDataBase;
 --EXEC sp_spaceused;

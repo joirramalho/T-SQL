@@ -1,4 +1,4 @@
-USE dbSigaMariaStela;
+USE dbSigaSantaGertrudes;
 
 -- TbGrupo 
 ALTER TABLE [dbo].[TbFuncionalidadeGrupo] DROP CONSTRAINT [FK_TbFuncionalidadeGrupo_TbGrupo]
