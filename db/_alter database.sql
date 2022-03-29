@@ -1,22 +1,25 @@
 --11fev22
 
---SHOWPLAN
-	--SET SHOWPLAN_ALL ON
-	--SET SHOWPLAN_ALL OFF
+--obtain a Query Execution Plan
+	--https://stackoverflow.com/questions/7359702/how-do-i-obtain-a-query-execution-plan-in-sql-server
 
-
-	--SELECT p.query_plan
-	--FROM sys.dm_exec_requests AS r
-	--OUTER APPLY sys.dm_exec_text_query_plan(
-	--                r.plan_handle,
-	--                r.statement_start_offset,
-	--                r.statement_end_offset) AS p
+	--SHOWPLAN
+		--SET SHOWPLAN_ALL ON
+		--SET SHOWPLAN_ALL OFF
+	
+	
+		--SELECT p.query_plan
+		--FROM sys.dm_exec_requests AS r
+		--OUTER APPLY sys.dm_exec_text_query_plan(
+		--                r.plan_handle,
+		--                r.statement_start_offset,
+		--                r.statement_end_offset) AS p
 
 
 --ONLINE
-	--ALTER DATABASE dbLogMonitor SET ONLINE;
+	--ALTER DATABASE dbSigaJEUniCrianca SET ONLINE;
 	
-	--ALTER DATABASE dbLogMonitor SET OFFLINE;
+	--ALTER DATABASE dbSigaJEUniCrianca SET OFFLINE;
 
 		--DROP
 			--DROP DATABASE dbSigaRaizes
@@ -39,7 +42,7 @@
 --SET RECOVERY
 	--ALTER DATABASE [dbSigaModuloAracaju_Arquivo] SET RECOVERY SIMPLE WITH NO_WAIT;
 
-	--ALTER DATABASE [dbSigaPadraoInst] SET RECOVERY FULL WITH NO_WAIT
+	--ALTER DATABASE [dbSigaGGE] SET RECOVERY FULL WITH NO_WAIT
 
 
 

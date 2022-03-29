@@ -26,10 +26,10 @@
 
 
 
---USE dbSigaModeloEEM;
+--USE dbVendasSobralPinto;
 
 
-	--CREATE USER 	[active.marley] 	FOR LOGIN [active.marley] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
+	--CREATE USER 	[userSobralPinto] 	FOR LOGIN [userSobralPinto] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
 	
 		--DROP USER [userINSTBRASILIA];
 	
@@ -42,7 +42,7 @@
 			--REVOKE CONNECT  FROM [siga_caruaru];
 
 
-	--ALTER ROLE [db_owner] ADD MEMBER [active.marley];
+	--ALTER ROLE [db_owner] ADD MEMBER [userSobralPinto];
 
 		--EXEC master..sp_addsrvrolemember @loginame = N'active.pinto', @rolename = N'sysadmin';
 
@@ -61,7 +61,7 @@
     	--REVOKE EXECUTE TO [romario.barbalho];
 
 --ADD 
-	--ALTER ROLE [db_owner] ADD MEMBER [userSantaGertrudes];
+	--ALTER ROLE [db_owner] ADD MEMBER [userSobralPinto];
 		--ALTER ROLE [db_ddladmin] ADD MEMBER [active.mardelson];
 
 	--DROP

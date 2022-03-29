@@ -21,7 +21,7 @@ INNER JOIN sys.columns col1	ON col1.column_id = parent_column_id AND col1.object
 INNER JOIN sys.tables tab2	ON tab2.object_id = fkc.referenced_object_id
 INNER JOIN sys.columns col2	ON col2.column_id = referenced_column_id AND col2.object_id = tab2.object_id
 
-WHERE tab2.name = 'TbFaseNotaAluno_FilaProcessamento'
+WHERE tab2.name = 'TbFaseNotaAluno'
 
 
 
@@ -34,7 +34,7 @@ SELECT
     d1.referenced_entity_name,
 --    d1.referenced_id,
     STUFF((
-            SELECT	', ' + OBJECT_NAME(d2.referencing_id)
+            SELECT	'; ' + OBJECT_NAME(d2.referencing_id)
             FROM	sys.sql_expression_dependencies d2
             WHERE	d2.referenced_id = d1.referenced_id
             ORDER 	BY	OBJECT_NAME(d2.referencing_id)

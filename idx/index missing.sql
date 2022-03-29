@@ -14,7 +14,7 @@ DECLARE @DatabaseName 	sysname = NULL
 DECLARE @TableName		sysname = NULL
 
 --SET @DatabaseName = 'dbSigaSalesianoDomBosco%' -- dbSigaIEPAM or dbSigaAraraAzul -- dbSigaCrodrigues ou dbSigaVitGoncalves
-SET @TableName = 'TbAlunoTurma' -- dbSigaIEPAM or dbSigaAraraAzul -- dbSigaCrodrigues ou dbSigaVitGoncalves
+SET @TableName = 'TbFaseNotaAluno' -- dbSigaIEPAM or dbSigaAraraAzul -- dbSigaCrodrigues ou dbSigaVitGoncalves
 
  
 SELECT DB_NAME(c.database_id) as DatabaseName,
