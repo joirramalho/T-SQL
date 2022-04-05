@@ -1,4 +1,9 @@
 --16mar22
+	--?
+
+	--Different Ways to Find SQL Server Object Dependencies
+	--
+	--https://www.mssqltips.com/sqlservertip/2999/different-ways-to-find-sql-server-object-dependencies/
 
 -- This gives you:
 

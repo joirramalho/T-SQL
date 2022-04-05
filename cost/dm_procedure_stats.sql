@@ -5,7 +5,7 @@ DECLARE @DatabaseName 	sysname = NULL
 DECLARE @ObjectName 	sysname = NULL
 
 --SET @DatabaseName = 'dbCrmActivesoft%'
-SET @ObjectName = 'SpAvisoTelaInicial%'
+--SET @ObjectName = 'SpAvisoTelaInicial%'
 
 SELECT
 	TOP 20

@@ -7,14 +7,13 @@
 
 --EXEC  sp_help 'TbFaseNotaAluno'
 
---USE [Database];  NOT MASTER
+--USE [dbLogMonitor];  NOT MASTER
 
 
-DECLARE @DatabaseName 	sysname = NULL
-DECLARE @TableName		sysname = NULL
+DECLARE @DatabaseName 	sysname = NULL, @TableName		sysname = NULL
 
---SET @DatabaseName = 'dbSigaSalesianoDomBosco%' -- dbSigaIEPAM or dbSigaAraraAzul -- dbSigaCrodrigues ou dbSigaVitGoncalves
-SET @TableName = 'TbFaseNotaAluno' -- dbSigaIEPAM or dbSigaAraraAzul -- dbSigaCrodrigues ou dbSigaVitGoncalves
+--SET @DatabaseName = 'dbActiveBibSaleJuvenal%'
+SET @TableName = 'TbLancamentoCobranca' -- TbLancamentoCobranca		TbTituloCobranca
 
  
 SELECT DB_NAME(c.database_id) as DatabaseName,

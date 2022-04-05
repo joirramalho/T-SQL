@@ -16,7 +16,7 @@
 
 -- PASSWORD
 	--												'1234567890'
-	-- ALTER LOGIN [userFREIRE] 	WITH PASSWORD = '****'; -- sigainternet userISO_PowerBI service.account
+	-- ALTER LOGIN [active.anderson] 	WITH PASSWORD = '****'; -- sigainternet userISO_PowerBI service.account
 
 
 	-- re-enable login without password	
@@ -26,10 +26,10 @@
 
 
 
---USE dbVendasSobralPinto;
+--USE dbBibErnestoGurgel;
 
 
-	--CREATE USER 	[userSobralPinto] 	FOR LOGIN [userSobralPinto] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
+	--CREATE USER 	[userErnestoGurgel] 	FOR LOGIN [userErnestoGurgel] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
 	
 		--DROP USER [userINSTBRASILIA];
 	
@@ -38,11 +38,11 @@
 			--ALTER LOGIN 	[userCONECTAEXPEDICIO] 	WITH  DEFAULT_DATABASE=[dbVendasConectaExped];
 	
 	
-		--GRANT CONNECT  TO [userScriptMigracao];
+		--GRANT CONNECT  TO [userErnestoGurgel];
 			--REVOKE CONNECT  FROM [siga_caruaru];
 
 
-	--ALTER ROLE [db_owner] ADD MEMBER [userSobralPinto];
+	--ALTER ROLE [db_owner] ADD MEMBER [userErnestoGurgel];
 
 		--EXEC master..sp_addsrvrolemember @loginame = N'active.pinto', @rolename = N'sysadmin';
 

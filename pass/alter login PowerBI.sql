@@ -37,7 +37,17 @@
 
 -- Use dbCrmActivesoft;
    
-    -- active.filipe - VPS09 - PowerBI -- 25Jan22
+    --29mar22 Para Raimundinho por Filipe
+    GRANT SELECT ON dbo.VwPowerBI_ColetaDados TO userActiveCrmLeitura;
+    GRANT SELECT ON dbo.VwPowerBI_ColetaDadosMaisRecente TO userActiveCrmLeitura;
+    GRANT SELECT ON dbo.VwPowerBI_ColetaDadosPorCliente TO userActiveCrmLeitura;
+
+   --31mar22 Para Raimundinho por Filipe   
+    GRANT SELECT ON dbo.VwPowerBI_ColetaDados_IndicadoresIsaac TO userActiveCrmLeitura;
+   
+   
+   
+   -- active.filipe - VPS09 - PowerBI -- 25Jan22
         -- GRANT UPDATE ON [dbo].TbFuncionalidadeLiberacao TO [active.filipe];
    
    

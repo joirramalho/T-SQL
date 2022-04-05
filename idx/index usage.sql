@@ -1,13 +1,13 @@
 --10mar22 - Adaptado para index filtered 
 	--https://www.mssqltips.com/sqlservertip/1785/sql-server-filtered-indexes-what-they-are-how-to-use-and-performance-advantages/
 
---USE [dbSigaCeducVitoria];
+--USE [dbSigaSaleParalela];
 
---sp_help 'TbAlunoTurma'
+--sp_help 'TbTurma'
 
 DECLARE @TableName  sysname = NULL
 
-SET @TableName 	= 'TbFaseNotaAluno' -- FALTA CRIAR IX em TbLancamentoCobranca
+SET @TableName 	= 'TbAluno' -- TbLancamentoCobranca	TbTituloCobranca
 
 --CREATE INDEX [IX_TbOcorrenciaMovimentacao_CdPrioridade] ON [dbCrmActivesoft].[dbo].[TbOcorrenciaMovimentacao] ([CdPrioridade]) INCLUDE ([IdOcorrenciaMovimentacao], [DataHoraLimite])
 

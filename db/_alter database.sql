@@ -17,9 +17,9 @@
 
 
 --ONLINE
-	--ALTER DATABASE dbSigaJEUniCrianca SET ONLINE;
+	--ALTER DATABASE dbSigaConvesti SET ONLINE;
 	
-	--ALTER DATABASE dbSigaJEUniCrianca SET OFFLINE;
+	--ALTER DATABASE dbSigaConvesti SET OFFLINE;
 
 		--DROP
 			--DROP DATABASE dbSigaRaizes

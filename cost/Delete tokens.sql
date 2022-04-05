@@ -1,4 +1,4 @@
---29mar22
+--02abr22
 
 /*
 	UPDATE tat SET tat.IdSourceRefreshToken = NULL
@@ -7,10 +7,10 @@
 	WHERE 1=1
 		AND trt.RevokedAt IS NOT NULL
 		AND trt.RevokedAt < GETDATE() - 2
-		AND tat.Expires < GETDATE()	
+		AND tat.Expires < GETDATE()	;
 	
 	
-	DECLARE @BatchSize INT = 25
+	DECLARE @BatchSize INT = 15
 	
 	WHILE 1 = 1
 	BEGIN
@@ -22,7 +22,7 @@
 			AND RevokedAt < GETDATE() - 2
 	 
 		IF @@ROWCOUNT < @BatchSize BREAK
-	END
+	END;
 */
 
 

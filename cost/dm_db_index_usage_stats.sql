@@ -23,7 +23,7 @@ JOIN sys.databases d on	s.database_id = d.database_id
 WHERE
 	objectproperty(s.[object_id], 'isusertable') = 1
 
---	AND object_name(s.[object_id]) LIKE 'TbTituloCobranca_Persistido%'
+	AND object_name(s.[object_id]) LIKE 'TbLancamentoCobranca'
 
 ORDER BY
 	user_seeks + user_scans + user_lookups + user_updates desc
@@ -31,7 +31,7 @@ ORDER BY
 
 	
 --leaf_insert_count + leaf_update_count + leaf_delete_count desc
-select TOP 50
+SELECT  TOP 50
 	d.name,
 --	t.name,
 	object_name(a.[object_id]) as [object name],
@@ -50,7 +50,7 @@ join sys.databases d on	a.database_id = d.database_id	and i.index_id = a.index_i
 where
 	objectproperty(a.[object_id], 'isusertable') = 1
 
---	AND object_name(a.[object_id]) LIKE 'TbTituloCobranca_Persistido%'
+	AND object_name(a.[object_id]) LIKE 'TbLancamentoCobranca'
 
 order by
 	a.leaf_insert_count + a.leaf_update_count + a.leaf_delete_count desc

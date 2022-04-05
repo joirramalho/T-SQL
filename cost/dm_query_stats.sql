@@ -4,9 +4,8 @@
 DECLARE @DatabaseName 	sysname = NULL
 DECLARE @LoginName 		sysname = NULL
 
---SET @DatabaseName = 'dbSigaCELogos%'
---SET @LoginName 	= 'userModuloAracajuReadOnly%'
-
+	--SET @DatabaseName = 'dbBibModuloAracaju%'
+	--SET @LoginName 	= 'userModuloAracajuReadOnly%'
 
 SELECT	TOP 30
 	qs.total_worker_time,
