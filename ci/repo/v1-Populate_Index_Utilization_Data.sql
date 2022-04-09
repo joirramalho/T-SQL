@@ -1,104 +1,6 @@
---30mar22
---Collecting, aggregating, and analyzing missing SQL Server Index Stats
---https://www.sqlshack.com/collecting-aggregating-analyzing-missing-sql-server-index-stats/
+USE dbLogMonitor
+GO
 
---SQL Server Index Performance Tuning Using Built-in Index Utilization Metrics
---https://www.sqlshack.com/sql-server-index-performance-tuning-using-built-in-index-utilization-metrics/
-
-
---VPS08, 04, 11, 06, ci
-
-
-USE dbLogMonitor;
-
-	SELECT	*
-	FROM dbo.Index_Utiliztion_Summary
-	WHERE 1=1
---		AND Database_name = 'dbSigaGGE'
-		AND Table_name = 'TbLancamentoCobranca' 
-		AND Index_Name = 'IX_TbLancamentoCobrancaParcelaServico'
-	--AND Index_Utiliztion_Summary.User_Seek_Count = 0
-	--AND Index_Utiliztion_Summary.User_Scan_Count = 0
-	--AND Index_Utiliztion_Summary.User_Lookup_Count = 0
-	ORDER BY Index_Utiliztion_Summary.User_Seek_Count DESC
-	
-	
-
-	
-
-/*
- * One other way to view this data is to compare scan operations vs. seeks. 
- * This can allow us to understand if an index is being used frequently for queries that are scanning, rather than seeking the index. 
- * Similarly, we can check the lookup count to see if an index is resulting in bookmark lookups frequently. 
- * An index that is scanned heavily may be an indication that a common query that uses it can be optimized further OR A NEW INDEX that could supplement it. 
- * Excessive lookups may indicate queries that would benefit from adding include columns to the existing index.
-
-SELECT
-	CASE WHEN (Index_Utiliztion_Summary.User_Seek_Count + Index_Utiliztion_Summary.User_Scan_Count + Index_Utiliztion_Summary.User_Lookup_Count) = 0 THEN 0 
-	ELSE CAST(Index_Utiliztion_Summary.User_Scan_Count * 100.00 / (Index_Utiliztion_Summary.User_Seek_Count + Index_Utiliztion_Summary.User_Scan_Count + Index_Utiliztion_Summary.User_Lookup_Count) AS DECIMAL(6,3)) END AS [%Scans],
-	
-	CASE WHEN (Index_Utiliztion_Summary.User_Seek_Count + Index_Utiliztion_Summary.User_Scan_Count + Index_Utiliztion_Summary.User_Lookup_Count) = 0 THEN 0 
-	ELSE CAST(Index_Utiliztion_Summary.User_Lookup_Count * 100.00 / (Index_Utiliztion_Summary.User_Seek_Count + Index_Utiliztion_Summary.User_Scan_Count + Index_Utiliztion_Summary.User_Lookup_Count) AS DECIMAL(6,3)) END AS [%Lookups],
-	*
-FROM dbo.Index_Utiliztion_Summary
-	WHERE 1=1
---		AND Database_name = 'dbSigaGGE'
-		AND Table_name = 'TbLancamentoCobranca' 
-		AND Index_name = 'IX_TbLancamentoCobranca_IdTurma'
-ORDER BY Index_Utiliztion_Summary.User_Lookup_Count + Index_Utiliztion_Summary.User_Scan_Count - Index_Utiliztion_Summary.User_Seek_Count DESC;
-*/
-
---EXEC dbo.Populate_Index_Utilization_Data --	@Retention_Period_for_Detail_Data_Days TINYINT = 30,	@Truncate_All_Summary_Data BIT = 0;
-
-
-
-/*
-CREATE TABLE dbo.Index_Utiliztion_Details
-	(	Index_Utiliztion_Metrics_Id INT NOT NULL IDENTITY(1,1) CONSTRAINT PK_Index_Utiliztion_Metrics PRIMARY KEY CLUSTERED,
-		Index_Utiliztion_Details_Create_Datetime DATETIME NOT NULL,
-		[Database_Name] SYSNAME,
-		[Schema_Name] SYSNAME,
-		Table_Name SYSNAME,
-		Index_Name SYSNAME,
-		User_Seek_Count BIGINT,
-		User_Scan_Count BIGINT,
-		User_Lookup_Count BIGINT,
-		User_Update_Count BIGINT,
-		Last_User_Seek DATETIME,
-		Last_User_Scan DATETIME,
-		Last_User_Lookup DATETIME,
-		Last_User_Update DATETIME,
-	);
-CREATE NONCLUSTERED INDEX IX_Index_Utiliztion_Details_indexUtiliztionDetailsCreateDatetime ON dbo.Index_Utiliztion_Details (Index_Utiliztion_Details_Create_Datetime);
- */
-
-
-/*
-CREATE TABLE dbo.Index_Utiliztion_Summary
-	(	Index_Utiliztion_Summary_Id INT NOT NULL IDENTITY(1,1) CONSTRAINT PK_Index_Utiliztion_Summary PRIMARY KEY CLUSTERED,
-		[Database_Name] SYSNAME,
-		[Schema_Name] SYSNAME,
-		Table_Name SYSNAME,
-		Index_Name SYSNAME,
-		User_Seek_Count BIGINT,
-		User_Scan_Count BIGINT,
-		User_Lookup_Count BIGINT,
-		User_Update_Count BIGINT,
-		Last_User_Seek DATETIME,
-		Last_User_Scan DATETIME,
-		Last_User_Lookup DATETIME,
-		Last_User_Update DATETIME,
-		Index_Utiliztion_Summary_Create_Datetime DATETIME NOT NULL,
-		Index_Utiliztion_Summary_Last_Update_Datetime DATETIME NOT NULL,
-		User_Seek_Count_Last_Update BIGINT,
-		User_Scan_Count_Last_Update BIGINT,
-		User_Lookup_Count_Last_Update BIGINT,
-		User_Update_Count_Last_Update BIGINT
-	);
-*/
-
-
-/*
 IF EXISTS (SELECT * FROM sys.procedures WHERE procedures.name = 'Populate_Index_Utilization_Data')
 BEGIN
 	DROP PROCEDURE dbo.Populate_Index_Utilization_Data;
@@ -191,7 +93,7 @@ BEGIN
 				ON tables.object_id = indexes.object_id
 				INNER JOIN ' + @Current_Database_Name + '.sys.schemas
 				ON schemas.schema_id = tables.schema_id
-				WHERE dm_db_index_usage_stats.database_id = (SELECT DB_ID(''' + @Current_Database_Name + '''));';
+				WHERE indexes.name IS NOT NULL AND dm_db_index_usage_stats.database_id = (SELECT DB_ID(''' + @Current_Database_Name + '''));';
 		
 		EXEC sp_executesql @Sql_Command;
  
@@ -319,23 +221,3 @@ BEGIN
  
 	DROP TABLE #Index_Utiliztion_Details;
 END
-*/
-
-
-
-/*
- * 
- * This returns all indexes ordered by the percentage of reads vs. total operations on each. This allows us to understand which indexes are used most efficiently vs. those which are potentially costing us more than they are worth:
- * 
- 
-SELECT
-	Index_Utiliztion_Summary.User_Seek_Count + Index_Utiliztion_Summary.User_Scan_Count + Index_Utiliztion_Summary.User_Lookup_Count AS Total_Reads,
-	CAST((Index_Utiliztion_Summary.User_Seek_Count + Index_Utiliztion_Summary.User_Scan_Count + Index_Utiliztion_Summary.User_Lookup_Count) * 100.00 /
-	(Index_Utiliztion_Summary.User_Seek_Count + Index_Utiliztion_Summary.User_Scan_Count + Index_Utiliztion_Summary.User_Lookup_Count + Index_Utiliztion_Summary.User_Update_Count) AS DECIMAL(6,3)) AS Percent_Reads,
-	*
-FROM dbo.Index_Utiliztion_Summary
-WHERE
-	Database_name = 'dbSigaMultiplo' 
-ORDER BY CAST((Index_Utiliztion_Summary.User_Seek_Count + Index_Utiliztion_Summary.User_Scan_Count + Index_Utiliztion_Summary.User_Lookup_Count) * 100.00 /
-	(Index_Utiliztion_Summary.User_Seek_Count + Index_Utiliztion_Summary.User_Scan_Count + Index_Utiliztion_Summary.User_Lookup_Count + Index_Utiliztion_Summary.User_Update_Count + 0.1) AS DECIMAL(6,3)) ASC;
-*/

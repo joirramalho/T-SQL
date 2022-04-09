@@ -132,20 +132,22 @@ sp_DesmascararBanco
 
     -- GRANT UNMASK TO	[active.jane]; -- DESMASCARAR
 
-
+In._CJydjDDLRTV0ovkV77fuHmOJSA0I
+tf3OcCkeY._ozKx8XdF1flS2wnZVPM0u
 
 -- Download RETROATIVO pós GLACIER
     -- https://activesoft-sql-backup-full.s3.amazonaws.com/dbSigaCESFCE_full.zip?versionId=BJXg51Z22_P15lKlPfdO7cwThD1LIHQp
     
-    -- "c:\Program Files\Amazon\AWSCLI\aws.exe" s3api get-object --bucket activesoft-sql-backup-full --key dbSigaMUNDOFANTASIA_full.zip --version-id owLxlj0U8rqUsbsEhECAEVRFvqvvg2B_ dbSigaMUNDOFANTASIA_full.zip
+    -- "c:\Program Files\Amazon\AWSCLI\aws.exe" s3api get-object --bucket activesoft-sql-backup-full --key dbSigaPiedade_full.zip --version-id In._CJydjDDLRTV0ovkV77fuHmOJSA0I dbSigaPiedade_full.zip
+    -- "c:\Program Files\Amazon\AWSCLI\aws.exe" s3api get-object --bucket activesoft-sql-backup-diff-brasil --key dbSigaPiedade_diff.zip --version-id tf3OcCkeY._ozKx8XdF1flS2wnZVPM0u dbSigaPiedade_diff.zip
 
 
 "c:\Program Files\Amazon\AWSCLI\aws.exe" s3 cp s3://activesoft-vps-backup/ClientesBancoLocal/dbSigaDiocesanoMossoro_backup_2021_11_29_220601_0541604.zip 	C:\Restore\ --region sa-east-1
 
 
---RESTORE DATABASE CRM_307506 FROM DISK = 'C:\TEMP\dbSigaEscolaSerra_full.bak' WITH FILE = 1, MOVE N'dbSiga_Data' TO N'C:\SQL\dbSigaEscolaSerra.mdf', MOVE N'dbSiga_log' TO N'C:\SQL\dbSigaEscolaSerra_log.ldf', NORECOVERY,  NOUNLOAD,  STATS = 25	--, REPLACE
+--RESTORE DATABASE CRM_360760_NOTAS FROM DISK = 'C:\TEMP\dbSigaPiedade_full.bak' WITH FILE = 1, MOVE N'dbSiga_Data' TO N'C:\SQL\dbSigaPiedade.mdf', MOVE N'dbSiga_log' TO N'C:\SQL\dbSigaPiedade_log.ldf', NORECOVERY,  NOUNLOAD,  STATS = 25	--, REPLACE
 
-	--RESTORE DATABASE CRM_307506 FROM DISK = 'C:\TEMP\dbSigaEscolaSerra_diff.bak' WITH RECOVERY
+	--RESTORE DATABASE CRM_360760_NOTAS FROM DISK = 'C:\TEMP\dbSigaPiedade_diff.bak' WITH RECOVERY
 
 	--RESTORE DATABASE CRM_16nov21 FROM DISK = 'C:\TEMP\dbSigaDiocesanoMossoro_backup_2021_11_15_220600_9714394.bak' WITH RECOVERY
 

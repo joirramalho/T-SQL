@@ -1,13 +1,13 @@
 --10mar22 - Adaptado para index filtered 
 	--https://www.mssqltips.com/sqlservertip/1785/sql-server-filtered-indexes-what-they-are-how-to-use-and-performance-advantages/
 
---USE [dbSigaSaleParalela];
+--USE [dbSigaSalesianoDomBosco];
 
 --sp_help 'TbTurma'
 
 DECLARE @TableName  sysname = NULL
 
-SET @TableName 	= 'TbAluno' -- TbLancamentoCobranca	TbTituloCobranca
+SET @TableName 	= 'TbDiario' -- TbLancamentoCobranca	TbTituloCobranca
 
 --CREATE INDEX [IX_TbOcorrenciaMovimentacao_CdPrioridade] ON [dbCrmActivesoft].[dbo].[TbOcorrenciaMovimentacao] ([CdPrioridade]) INCLUDE ([IdOcorrenciaMovimentacao], [DataHoraLimite])
 

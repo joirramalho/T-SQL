@@ -26,10 +26,10 @@
 
 
 
---USE dbBibErnestoGurgel;
+--USE CRM_360760_NOTAS;
 
 
-	--CREATE USER 	[userErnestoGurgel] 	FOR LOGIN [userErnestoGurgel] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
+	--CREATE USER 	[active.modelo] 	FOR LOGIN [active.modelo] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
 	
 		--DROP USER [userINSTBRASILIA];
 	
@@ -42,7 +42,7 @@
 			--REVOKE CONNECT  FROM [siga_caruaru];
 
 
-	--ALTER ROLE [db_owner] ADD MEMBER [userErnestoGurgel];
+	--ALTER ROLE [db_owner] ADD MEMBER [active.modelo];
 
 		--EXEC master..sp_addsrvrolemember @loginame = N'active.pinto', @rolename = N'sysadmin';
 

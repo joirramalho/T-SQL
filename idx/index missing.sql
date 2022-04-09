@@ -10,10 +10,23 @@
 --USE [dbLogMonitor];  NOT MASTER
 
 
+		--FACHO
+		--TbDiarioFrequencia
+		--CREATE NONCLUSTERED INDEX [missing_index_243_TbDiarioFrequencia] ON TbDiarioFrequencia ([IdAluno], [StPresencaFalta]) INCLUDE ([IdDiarioAula])
+		
+		--dbCantinaPPasso
+		--TbLancamentoCredito
+		--CREATE NONCLUSTERED INDEX [missing_index_18_TbLancamentoCredito] ON TbLancamentoCredito ([IdCaixaMovimentacao]) INCLUDE ([IdConta], [IdLancamentoConsumo], [Valor])
+		
+		--dbBibFACHO
+		--TbBibExemplar
+		--CREATE NONCLUSTERED INDEX [missing_index_8_TbBibExemplar] ON TbBibExemplar ([IdBibFasciculo]) INCLUDE ([IdBibExemplarSituacao], [IdBiblioteca])
+
+
 DECLARE @DatabaseName 	sysname = NULL, @TableName		sysname = NULL
 
 --SET @DatabaseName = 'dbActiveBibSaleJuvenal%'
-SET @TableName = 'TbLancamentoCobranca' -- TbLancamentoCobranca		TbTituloCobranca
+--SET @TableName = 'TbLancamentoCobranca' -- TbLancamentoCobranca		TbTituloCobranca
 
  
 SELECT DB_NAME(c.database_id) as DatabaseName,

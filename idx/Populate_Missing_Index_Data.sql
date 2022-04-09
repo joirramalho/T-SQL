@@ -1,8 +1,8 @@
---10mar22
+--06Apr22
 
 --VPS04; 08; 11
 
--- EXEC dbLogMonitor.dbo.Populate_Missing_Index_Data @Retention_Period_for_Detail_Data_Days = 180, @Delete_All_Summary_Data = 0;
+-- EXEC dbLogMonitor.dbo.Populate_Missing_Index_Data @Retention_Period_for_Detail_Data_Days = 30, @Delete_All_Summary_Data = 0;
 
 
 /*
