@@ -57,7 +57,7 @@ WHERE
 --LEFT OUTER JOIN [TbResourceOwner] ON ([TbAccessToken].[IdResourceOwner] = [TbResourceOwner].[IdResourceOwner]) LEFT OUTER JOIN [TbApplication] ON ([TbAccessToken].[IdApplication] = [TbApplication].[IdApplication]) 
 --WHERE [TbAccessToken].[Token] = @P1
 	
-	
+
 	
 	
 	

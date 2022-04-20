@@ -34,6 +34,12 @@ PRINT @CountWarning
 --IF OBJECT_ID('dbo.sp_ObjectSmells', 'P') IS NULL	EXECUTE('CREATE PROCEDURE dbo.sp_ObjectSmells AS SELECT 1')
 
 
+
+
+--						https://rules.sonarsource.com/tsql
+
+
+
 ALTER PROCEDURE dbo.sp_ObjectSmells
 ( 
 	@DisplayEvidence 	BIT = 0,

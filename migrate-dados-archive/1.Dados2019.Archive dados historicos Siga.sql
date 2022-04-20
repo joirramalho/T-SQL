@@ -1,20 +1,21 @@
---03dez21
+--10abr22
 
---CREATE DATABASE VPS03_20220115_Dados2019;
---ALTER DATABASE [VPS03_20220115_Dados2019] SET RECOVERY SIMPLE WITH NO_WAIT;
+--CREATE DATABASE VPS04_20220410_Dados2019_Arquivo; NAO ARCHIVED
+
+--ALTER DATABASE [VPS04_20220410_Dados2019_Arquivo] SET RECOVERY SIMPLE WITH NO_WAIT;
 
 
 
 EXEC dbo.sp_foreachdb N'
 --    BEGIN TRAN
---        SELECT  * INTO VPS03_20220115_Dados2019.dbo.?_TbFaseNotaAluno_Auditoria FROM ?.dbo.TbFaseNotaAluno_Auditoria WHERE year(DataHora) < ( year( getdate() ) - 2 )
+--        SELECT  * INTO VPS04_20220410_Dados2019_Arquivo.dbo.?_TbFaseNotaAluno_Auditoria FROM ?.dbo.TbFaseNotaAluno_Auditoria WHERE year(DataHora) < ( year( getdate() ) - 2 )
 --
 --        DELETE  FROM ?.dbo.TbFaseNotaAluno_Auditoria  WHERE year(DataHora) < ( year( getdate() ) - 2 )
 --    COMMIT
 
 
 --    BEGIN TRAN
---        SELECT  * INTO VPS03_20220115_Dados2019.dbo.?_TbSituacaoAlunoDisciplina_Auditoria FROM ?.dbo.TbSituacaoAlunoDisciplina_Auditoria WHERE year(DataHora) < ( year( getdate() ) - 2 );
+--        SELECT  * INTO VPS04_20220410_Dados2019_Arquivo.dbo.?_TbSituacaoAlunoDisciplina_Auditoria FROM ?.dbo.TbSituacaoAlunoDisciplina_Auditoria WHERE year(DataHora) < ( year( getdate() ) - 2 );
 --
 --        DELETE  FROM ?.dbo.TbSituacaoAlunoDisciplina_Auditoria  WHERE year(DataHora) < ( year( getdate() ) - 2 );
 --    COMMIT
@@ -22,14 +23,14 @@ EXEC dbo.sp_foreachdb N'
 --
 --
 --    BEGIN TRAN
---        SELECT  * INTO VPS03_20220115_Dados2019.dbo.?_TbMetaSituacaoAlunoDisciplina_Auditoria FROM ?.dbo.TbMetaSituacaoAlunoDisciplina_Auditoria WHERE year(DataHora) < ( year( getdate() ) - 2 );
+--        SELECT  * INTO VPS04_20220410_Dados2019_Arquivo.dbo.?_TbMetaSituacaoAlunoDisciplina_Auditoria FROM ?.dbo.TbMetaSituacaoAlunoDisciplina_Auditoria WHERE year(DataHora) < ( year( getdate() ) - 2 );
 --
 --        DELETE  FROM ?.dbo.TbMetaSituacaoAlunoDisciplina_Auditoria  WHERE year(DataHora) < ( year( getdate() ) - 2 );
 --    COMMIT
 --
 --
     BEGIN TRAN
-        SELECT  * INTO VPS03_20220115_Dados2019.dbo.?_TbAuditoria FROM ?.dbo.TbAuditoria WHERE Tabela IN (''Sistema_Login'',''Sistema_LogOut'',''TbDiarioFrequencia'',''TbDiarioAula'',''TbDiario'',''TbFaseNota'',''TbDiarioAluno'') AND year(DataHora) < ( year( getdate() ) - 2 )
+        SELECT  * INTO VPS04_20220410_Dados2019_Arquivo.dbo.?_TbAuditoria FROM ?.dbo.TbAuditoria WHERE Tabela IN (''Sistema_Login'',''Sistema_LogOut'',''TbDiarioFrequencia'',''TbDiarioAula'',''TbDiario'',''TbFaseNota'',''TbDiarioAluno'') AND year(DataHora) < ( year( getdate() ) - 2 )
 
         DELETE  FROM ?.dbo.TbAuditoria  WHERE Tabela IN (''Sistema_Login'',''Sistema_LogOut'',''TbDiarioFrequencia'',''TbDiarioAula'',''TbDiario'',''TbFaseNota'',''TbDiarioAluno'') AND year(DataHora) < ( year( getdate() ) - 2 )
     COMMIT
@@ -37,26 +38,26 @@ EXEC dbo.sp_foreachdb N'
 
 
     BEGIN TRAN
-        SELECT  * INTO VPS03_20220115_Dados2019.dbo.?_TbAlunoTurmaProcedimentoMatriculaHistorico FROM ?.dbo.TbAlunoTurmaProcedimentoMatriculaHistorico WHERE year(DataAtualizacao) < ( year( getdate() ) - 2 )
+        SELECT  * INTO VPS04_20220410_Dados2019_Arquivo.dbo.?_TbAlunoTurmaProcedimentoMatriculaHistorico FROM ?.dbo.TbAlunoTurmaProcedimentoMatriculaHistorico WHERE year(DataAtualizacao) < ( year( getdate() ) - 2 )
 
         DELETE  FROM ?.dbo.TbAlunoTurmaProcedimentoMatriculaHistorico  WHERE year(DataAtualizacao) < ( year( getdate() ) - 2 )
     COMMIT
 
 
     BEGIN TRAN
-        SELECT  * INTO VPS03_20220115_Dados2019.dbo.?_TbLogWeb FROM ?.dbo.TbLogWeb WHERE year(DataHora) < ( year( getdate() ) - 2 )
+        SELECT  * INTO VPS04_20220410_Dados2019_Arquivo.dbo.?_TbLogWeb FROM ?.dbo.TbLogWeb WHERE year(DataHora) < ( year( getdate() ) - 2 )
 
         DELETE  FROM ?.dbo.TbLogWeb  WHERE year(DataHora) < ( year( getdate() ) - 2 )
     COMMIT
 
     BEGIN TRAN
-        SELECT  * INTO VPS03_20220115_Dados2019.dbo.?_TbLogMobile FROM ?.dbo.TbLogMobile WHERE year(DataHoraLogin) < ( year( getdate() ) - 2 )
+        SELECT  * INTO VPS04_20220410_Dados2019_Arquivo.dbo.?_TbLogMobile FROM ?.dbo.TbLogMobile WHERE year(DataHoraLogin) < ( year( getdate() ) - 2 )
 
         DELETE  FROM ?.dbo.TbLogMobile  WHERE year(DataHoraLogin) < ( year( getdate() ) - 2 )
     COMMIT
 
     BEGIN TRAN
-        SELECT  * INTO VPS03_20220115_Dados2019.dbo.?_TbMensagemCaixaSaida FROM ?.dbo.TbMensagemCaixaSaida WHERE year(DataHoraInsercao) < ( year( getdate() ) - 2 )
+        SELECT  * INTO VPS04_20220410_Dados2019_Arquivo.dbo.?_TbMensagemCaixaSaida FROM ?.dbo.TbMensagemCaixaSaida WHERE year(DataHoraInsercao) < ( year( getdate() ) - 2 )
 
         DELETE  FROM ?.dbo.TbMensagemCaixaSaida  WHERE year(DataHoraInsercao) < ( year( getdate() ) - 2 )
     COMMIT
@@ -67,4 +68,4 @@ EXEC dbo.sp_foreachdb N'
 ,@user_only = 1
 ,@suppress_quotename=1
 -- ,@database_list = 'dbSigaSaleINSA, dbSigaNSLourdesGravata, dbSigaAuxilRecife'
-,@name_pattern='dbSiga';
+,@name_pattern='dbSigaLiceu_Arquivo01';

@@ -1,4 +1,4 @@
---09abr22
+--14abr22
 
 /*
 	UPDATE tat SET tat.IdSourceRefreshToken = NULL
@@ -32,7 +32,7 @@
 		FROM TbAccessToken tat 
 		INNER JOIN TbRefreshToken trt ON trt.IdRefreshToken = tat.IdSourceRefreshToken
 		WHERE 1=1
-			AND trt.CreatedAt < GETDATE() - 90
+			AND trt.CreatedAt < GETDATE() - 5
 			AND tat.Expires < GETDATE();
 	
 

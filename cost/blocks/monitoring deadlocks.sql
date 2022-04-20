@@ -10,6 +10,10 @@ Declaration of the variables
 @GetDeadLocksForLastMinutes For how many number of Minutes to watch for
  
 */
+
+--DROP TABLE #DeadLockXMLData
+--DROP TABLE #DeadLockDetails
+
 SET NOCOUNT ON
 CREATE TABLE #DeadLockXMLData( DeadLockXMLData XML, DeadLockNumber INT )
 CREATE TABLE #DeadLockDetails( ProcessID nVARCHAR(50), HostName nVARCHAR(50), LoginName nVARCHAR(100), ClientApp nVARCHAR(100), Frame nVARCHAR(MAX), TSQLString nVARCHAR(MAX), DeadLockDateTime DATETIME, IsVictim TINYINT, DeadLockNumber INT )

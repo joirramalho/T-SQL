@@ -1,7 +1,7 @@
 -- 07abr22 -- Executado em todos e passado PARA ANDERSON ...
 
 
--- VPS08; VPS04; VPS06...
+-- VPS08; VPS04; VPS06; VPS11; VPS02; VPS01;
 
 EXEC dbo.sp_foreachdb N'
     USE ?
@@ -45,7 +45,7 @@ EXEC dbo.sp_foreachdb N'
 
 --
 --		-- wait for 1 second
-		WAITFOR DELAY ''00:00:01''
+--		WAITFOR DELAY ''00:00:01''
 
 
 

@@ -20,7 +20,7 @@ FROM
 	) AS [Data]
 CROSS APPLY TargetData.nodes('RingBufferTarget/event[@name="xml_deadlock_report"]') AS XEventData (xed)
 
-WHERE DATEDIFF(HOUR, DATEADD(HOUR, @TimeZone, xed.value('@timestamp', 'datetime2(3)')), GETDATE()  ) < 12
+WHERE DATEDIFF(HOUR, DATEADD(HOUR, @TimeZone, xed.value('@timestamp', 'datetime2(3)')), GETDATE()  ) < 3
 
 ORDER BY 
     CreationDate DESC

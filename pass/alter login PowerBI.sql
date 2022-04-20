@@ -2,19 +2,22 @@
 --19Fev21 - Filipe
 
 
-	--											   		'1234567890'
-	CREATE LOGIN [userSANTATEC_PowerBI] WITH PASSWORD=N'****', DEFAULT_DATABASE=[dbSigaSANTATEC], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF
+	--											   	'1234567890'
+	CREATE LOGIN [userZeta_PowerBI] WITH PASSWORD=N'gyFhE4a9kg', DEFAULT_DATABASE=[dbSigaZetaBuritama], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF
 
 			-- DROP LOGIN [userCOLEGIOEAG_PowerBI]
 	
-	    -- USE [dbSigaImcCorMariaRS]
-	    -- CREATE USER [userACSC_PowerBI] FOR LOGIN [userACSC_PowerBI]
-	    	
-			-- Não precisa
-			---- ALTER USER [userACSC_PowerBI] WITH DEFAULT_SCHEMA=[dbo]
-	
-	    -- EXEC sp_addrolemember N'rolePowerBI', N'userACSC_PowerBI'
+	    -- USE [dbSigaZetaBuritama]
 
+			-- CREATE USER [userZeta_PowerBI] FOR LOGIN [userZeta_PowerBI]
+	    	
+	    	-- EXEC sp_addrolemember N'rolePowerBI', N'userZeta_PowerBI'
+
+	
+			-- Não precisa
+				---- ALTER USER [userACSC_PowerBI] WITH DEFAULT_SCHEMA=[dbo]
+	
+	
 
 
 	
