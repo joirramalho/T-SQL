@@ -1,10 +1,10 @@
---05dez22
---https://sites.google.com/site/sqlservermsdn/cpu------sql-server
+--20abr22
+	--https://sites.google.com/site/sqlservermsdn/cpu------sql-server
 
 WITH DB_CPU_Stats
 AS
 (
-SELECT TOP 15
+SELECT TOP 10
 	DatabaseID, DB_Name(DatabaseID) AS [DatabaseName], SUM(total_worker_time) AS [CPU_Time_Ms]
 FROM
 	sys.dm_exec_query_stats AS qs

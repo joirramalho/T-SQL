@@ -1,4 +1,4 @@
---14abr22
+--20abr22
 
 /*
 	UPDATE tat SET tat.IdSourceRefreshToken = NULL
@@ -10,7 +10,7 @@
 		AND tat.Expires < GETDATE()	;
 	
 	
-	DECLARE @BatchSize INT = 15
+	DECLARE @BatchSize INT = 10
 	
 	WHILE 1 = 1
 	BEGIN

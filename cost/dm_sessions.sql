@@ -3,7 +3,7 @@
 DECLARE @DatabaseName 	sysname = NULL
 DECLARE @LoginName 		sysname = NULL
 
---SET @DatabaseName = 'dbSigaCPI' -- dbSigaIEPAM or dbSigaAraraAzul -- dbSigaCrodrigues ou dbSigaVitGoncalves
+--SET @DatabaseName = 'dbSigaCrEscBabyEase' -- dbSigaIEPAM or dbSigaAraraAzul -- dbSigaCrodrigues ou dbSigaVitGoncalves
 --SET @LoginName 	= 'sigaadmin%'
 
 -- Databases on & offline
@@ -54,11 +54,11 @@ ORDER BY
 
 
 --ADO_MESSENGER_ADO & ADO_SIGA_NFSe
-	--	SELECT	DB_Name(database_id)  AS [DatabaseName], last_request_start_time, login_name, RTRIM( 'KILL ' + CAST( session_id AS CHAR ) ) + ';' AS [kill], program_name, [status], login_time, host_name--, logical_reads, row_count, reads, writes
-	--	FROM	sys.dm_exec_sessions
-	--	WHERE login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND ( PROGRAM_NAME LIKE ('ADO_MESSENGER_ADO%') OR PROGRAM_NAME LIKE ('ADO_SIGA_NFSe%') )
-	--		AND DB_Name(database_id) LIKE ISNULL( @DatabaseName, DB_Name(database_id) ) 		
-	--	ORDER BY DB_Name(database_id)
+		SELECT	DB_Name(database_id)  AS [DatabaseName], last_request_start_time, login_name, RTRIM( 'KILL ' + CAST( session_id AS CHAR ) ) + ';' AS [kill], program_name, [status], login_time, host_name--, logical_reads, row_count, reads, writes
+		FROM	sys.dm_exec_sessions
+		WHERE login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND ( PROGRAM_NAME LIKE ('ADO_MESSENGER_ADO%') OR PROGRAM_NAME LIKE ('ADO_SIGA_NFSe%') )
+			AND DB_Name(database_id) LIKE ISNULL( @DatabaseName, DB_Name(database_id) ) 		
+		ORDER BY DB_Name(database_id)
 	
 
                             

@@ -1,4 +1,4 @@
---23mar22
+--20abr22
 	--https://www.red-gate.com/simple-talk/blogs/sql-server-table-smells/
 
 	--Rolling up multiple rows into a single row and column for SQL Server data
@@ -6,6 +6,10 @@
 		--https://www.mssqltips.com/sqlservertip/2914/rolling-up-multiple-rows-into-a-single-row-and-column-for-sql-server-data/
 
 	--https://www.esrf.fr/computing/scientific/FIT2D/FIT2D_REF/node18.html
+
+
+	--	SQL Server (T-SQL) Data Types to system_type_id list (2022 update)
+		--SELECT system_type_id, name as datatype	FROM sys.types	WHERE system_type_id = user_type_id
 /*
 	INFO and WARNING text in the terminal window is identified by one of four initial ``keywords'':
 	
@@ -39,6 +43,10 @@ PRINT @CountWarning
 --						https://rules.sonarsource.com/tsql
 
 
+--IF not exists
+--_column_details_extended_property
+
+
 
 ALTER PROCEDURE dbo.sp_ObjectSmells
 ( 
@@ -63,7 +71,7 @@ BEGIN
 
 		
 	IF OBJECT_ID('TEMPDB..##TEMP') IS NOT NULL
-		DROP TABLE ##TEMP
+		DROP TABLE TEMPDB..##TEMP
 	
 	CREATE TABLE TEMPDB..##TEMP ( [TableName] SYSNAME, Problem VARCHAR(1024), TypeEvidenceOf TINYINT  )
 	
@@ -110,10 +118,10 @@ BEGIN
 		UNION ALL
 
 			--Problems_with_Table_Design
-			SELECT DISTINCT Object_Name(parent_id), 'has a disabled trigger', 3
+			SELECT DISTINCT Object_Name(parent_id), 'trigger [' + name + '] is disabled', 3
 			FROM sys.triggers
 			WHERE is_disabled = 1 AND parent_id > 0
-			
+
 		UNION ALL
 
 			--Problems_with_Table_Design
@@ -163,10 +171,19 @@ BEGIN
 		UNION ALL
 
 			--Problems_with_Data_Types
-        	SELECT Object_Name(object_id), 'deprecated LOB datatype', 3
-          	FROM sys.tables /* found a simpler way! */
-          	WHERE ObjectPropertyEx(object_id, 'TableHasTextImage') = 1 
+          	SELECT Object_Name(t.object_id), 'field [' + c.name + '] is deprecated LOB datatype (text/ntext)', 3 
+          	FROM sys.columns c /* found a simpler way! */
+          	LEFT JOIN sys.tables t ON c.object_id = t.object_id
+          	WHERE ObjectPropertyEx(t.object_id, 'TableHasTextImage') = 1 AND  system_type_id IN (35, 99)
+          	
+		UNION ALL
 
+			--Problems_with_Data_Types
+          	SELECT Object_Name(t.object_id), 'field [' + c.name + '] is inadequate table storage (image)', 3 
+          	FROM sys.columns c /* found a simpler way! */
+          	LEFT JOIN sys.tables t ON c.object_id = t.object_id
+          	WHERE ObjectPropertyEx(t.object_id, 'TableHasTextImage') = 1 AND  system_type_id IN (34)
+          	
          UNION ALL
 	
 			--Problems_with_Data_Types
@@ -189,10 +206,10 @@ BEGIN
 		UNION ALL
 
 			--Problems_with_Table_Design
-        	SELECT DISTINCT Object_Name(object_id), 'disabled Index(es)', 3
+        	SELECT DISTINCT Object_Name(object_id), 'index [' + name + '] is disabled', 3
           	FROM sys.indexes /* don't leave these lying around */
           	WHERE is_disabled = 1
-
+          	
 		UNION ALL
 
 			--Problems_with_Table_Design
@@ -397,7 +414,7 @@ BEGIN
 				--		      FROM  ##TEMP US
 				--		      WHERE US.[Object_ID] = t1.[Object_ID] AND US.TypeEvidenceOf = t1.TypeEvidenceOf
 				--		      FOR XML PATH('') ), 1, 1, '') AS [Problem],
-			FROM  ##TEMP t1
+			FROM  TEMPDB..##TEMP t1
 			WHERE [TableName] NOT IN ('_flyway_schema_history', '_column_details_extended_property', '_database_smells' )
 			ORDER BY TypeEvidenceOf DESC, [TableName]-- 1, 2 DESC
 		END 

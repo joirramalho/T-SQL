@@ -19,7 +19,7 @@
 --ONLINE
 	--ALTER DATABASE dbLogMonitor SET ONLINE;
 	
-	--ALTER DATABASE dbSigaConvesti SET OFFLINE;
+	--ALTER DATABASE dbSigaIMFialho SET OFFLINE;
 
 		--DROP
 			--DROP DATABASE dbSigaRaizes
