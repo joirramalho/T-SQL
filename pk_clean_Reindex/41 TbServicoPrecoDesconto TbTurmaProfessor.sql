@@ -1,4 +1,4 @@
-USE dbSigaSantaGertrudes;
+USE dbSigaIntegral;
 
 -- TbServicoPrecoDesconto
 ALTER TABLE [dbo].[TbServicoPrecoDesconto] DROP CONSTRAINT [PK_TbServicoPrecoDesconto]

@@ -1,4 +1,4 @@
-USE dbSigaSantaGertrudes;
+USE dbSigaIntegral;
 
 --sp_helpindex "TbAluno"
 

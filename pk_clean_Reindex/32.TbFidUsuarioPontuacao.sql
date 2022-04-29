@@ -1,4 +1,4 @@
-USE dbSigaSantaGertrudes;
+USE dbSigaIntegral;
 
 
 ALTER TABLE [dbo].[TbFidUsuarioPontuacao] DROP CONSTRAINT [PK_TbFidUsuarioPontuacao]

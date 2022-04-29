@@ -1,4 +1,4 @@
---18mar22
+--25abr22
 
 --USE dbSigaPadraoInst
 
@@ -78,6 +78,7 @@ SELECT
   )
     AND TipoCliente IN ('A')
     AND VersaoDB_Atual NOT IN (1001200,1064990,1065089,1065092)
+    AND ServidorLocalIP  NOT IN ('')
 
   
   GROUP BY NomeGrupo, NomeOperador, NomeCliente,[SiglaUnidade], ServidorIP, ServidorLocalIP --VersaoDB_Atual

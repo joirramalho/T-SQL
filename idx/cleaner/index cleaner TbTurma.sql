@@ -1,3 +1,4 @@
+--28abr22
 -- 31mar22 -- Executado em todos e passado PARA ANDERSON ...
 
 
@@ -10,14 +11,10 @@ EXEC dbo.sp_foreachdb N'
 
 		IF NOT EXISTS( SELECT * FROM sys.indexes WHERE name=''IX_TbTurma_IdSerie_IdPeriodo_TipoTurma'' AND object_id = OBJECT_ID(''dbo.TbTurma'') )
 		    BEGIN
-				CREATE INDEX IX_TbTurma_IdSerie_IdPeriodo_TipoTurma ON [dbo].[TbTurma]	([IdSerie], [IdPeriodo], [TipoTurma])	WITH (FILLFACTOR=90)
 				PRINT DB_NAME()
+
+				CREATE INDEX IX_TbTurma_IdSerie_IdPeriodo_TipoTurma ON [dbo].[TbTurma]	([IdSerie], [IdPeriodo], [TipoTurma])	WITH (FILLFACTOR=90)
 		    END
-
-
-
-
-
 
 --
 --		-- wait for 1 second

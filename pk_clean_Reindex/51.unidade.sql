@@ -1,4 +1,4 @@
-USE dbSigaSantaGertrudes;
+USE dbSigaIntegral;
 
 
 IF OBJECT_ID('dbo.[FK_TbCaptacaoParametro_TbUnidade]') IS NOT NULL 
@@ -107,7 +107,7 @@ GO
 
 
 -- NOME PK ERRADOS
--- ALTER TABLE [dbo].[TbUnidadeTermoConsentimento] DROP CONSTRAINT [FK__TbUnidade__IdUni__13C1AFCB];
+-- ALTER TABLE [dbo].[TbUnidadeTermoConsentimento] DROP CONSTRAINT [FK__TbUnidade__IdUni__1DD529EA];
 
 -- NOME CORRETO
 ALTER TABLE [dbo].[TbUnidadeTermoConsentimento] DROP CONSTRAINT [FK_TbUnidadeTermoConsentimento_TbUnidade]
@@ -120,6 +120,16 @@ ALTER TABLE [dbo].[TbPosTransacao] DROP CONSTRAINT [FK_TbPosTransacao_TbUnidade]
 ALTER TABLE [dbo].[TbCalendarioEvento] DROP CONSTRAINT [FK_TbCalendarioEvento_TbUnidade];
 
 ALTER TABLE [dbo].[TbPlanoContasContabil] DROP CONSTRAINT [FK_TbPlanoContasContabil_TbUnidade];
+
+
+ALTER TABLE [dbo].[TbCalendarioEvento] DROP CONSTRAINT [FK_TbCalendarioEvento_TbUnidade];
+
+ALTER TABLE [dbo].[TbUnidadeTermoConsentimento] DROP CONSTRAINT [FK__TbUnidade__IdUni__55C47D52];
+
+ALTER TABLE [dbo].[TbPlanoContasContabil] DROP CONSTRAINT [FK_TbPlanoContasContabil_TbUnidade];
+
+ALTER TABLE [dbo].[TbPosTransacao] DROP CONSTRAINT [FK_TbPosTransacao_TbUnidade];
+
 
 
 -- TbUnidade 
@@ -136,6 +146,24 @@ ALTER TABLE [dbo].[TbPlanoContasContabil] DROP CONSTRAINT [FK_TbPlanoContasConta
 	GO
 
 
+ALTER TABLE [dbo].[TbPosTransacao] WITH CHECK ADD CONSTRAINT [FK_TbPosTransacao_TbUnidade] FOREIGN KEY([IdUnidade]) REFERENCES [dbo].[TbUnidade] ([IdUnidade]); 	
+ALTER TABLE [dbo].[TbPosTransacao] CHECK CONSTRAINT [FK_TbPosTransacao_TbUnidade]
+	
+	
+ALTER TABLE [dbo].[TbPlanoContasContabil] WITH CHECK ADD CONSTRAINT [FK_TbPlanoContasContabil_TbUnidade] FOREIGN KEY([IdUnidade]) REFERENCES [dbo].[TbUnidade] ([IdUnidade]); 
+ALTER TABLE [dbo].[TbPlanoContasContabil] CHECK CONSTRAINT [FK_TbPlanoContasContabil_TbUnidade]
+	
+	
+ALTER TABLE [dbo].[TbUnidadeTermoConsentimento] WITH CHECK ADD CONSTRAINT [FK__TbUnidade__IdUni__55C47D52] FOREIGN KEY([IdUnidade]) REFERENCES [dbo].[TbUnidade] ([IdUnidade]); 	
+ALTER TABLE [dbo].[TbUnidadeTermoConsentimento] CHECK CONSTRAINT [FK__TbUnidade__IdUni__55C47D52]
+	
+
+
+ALTER TABLE [dbo].[TbCalendarioEvento] WITH CHECK ADD CONSTRAINT [FK_TbCalendarioEvento_TbUnidade] FOREIGN KEY([IdUnidade]) 	REFERENCES [dbo].[TbUnidade] ([IdUnidade]); 	
+	
+ALTER TABLE [dbo].[TbCalendarioEvento] CHECK CONSTRAINT [FK_TbCalendarioEvento_TbUnidade]
+	
+	
 ALTER TABLE dbo.TbPlanoContasContabil ADD CONSTRAINT FK_TbPlanoContasContabil_TbUnidade FOREIGN KEY (IdUnidade) REFERENCES dbo.TbUnidade(IdUnidade);	
 GO
 ALTER TABLE [dbo].[TbPlanoContasContabil] CHECK CONSTRAINT [FK_TbPlanoContasContabil_TbUnidade]

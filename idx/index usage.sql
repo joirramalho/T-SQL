@@ -3,11 +3,11 @@
 
 --USE [dbSigaSalesianoDomBosco];
 
---sp_help 'TbTurma'
+--sp_help 'TbAluno'
 
 DECLARE @TableName  sysname = NULL
 
-SET @TableName 	= 'TbDiario' -- TbLancamentoCobranca	TbTituloCobranca
+SET @TableName 	= 'TbAlunoCurso' -- TbLancamentoCobranca	TbTituloCobranca
 
 --CREATE INDEX [IX_TbOcorrenciaMovimentacao_CdPrioridade] ON [dbCrmActivesoft].[dbo].[TbOcorrenciaMovimentacao] ([CdPrioridade]) INCLUDE ([IdOcorrenciaMovimentacao], [DataHoraLimite])
 

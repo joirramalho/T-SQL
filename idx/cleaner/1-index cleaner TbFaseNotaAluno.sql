@@ -16,37 +16,45 @@ EXEC dbo.sp_foreachdb N'
 --Se CRIAR NOVO IdFaseNotaAluno DEVE TbFaseNotaAluno_Auditoria, Add IdFaseNotaAluno, Ajust trigger
 
 
+--
+--			IF EXISTS( SELECT * FROM sys.indexes WHERE name=''IX_TbFaseNotaAluno_IdDisciplina'' AND object_id = OBJECT_ID(''dbo.TbFaseNotaAluno'') )
+--			    BEGIN
+--			      DROP INDEX [IX_TbFaseNotaAluno_IdDisciplina] ON [?].[dbo].[TbFaseNotaAluno]
+--			
+--				      	PRINT  ''  tem IX_TbFaseNotaAluno_IdDisciplina''
+--			    END
+--			
+--			
+--			  IF EXISTS( SELECT * FROM sys.indexes WHERE name=''IX_TbFaseNotaAluno_IdAluno'' AND object_id = OBJECT_ID(''dbo.TbFaseNotaAluno'') )
+--			    BEGIN
+--			      DROP INDEX [IX_TbFaseNotaAluno_IdAluno] ON [?].[dbo].[TbFaseNotaAluno]
+--
+--				      	PRINT  ''  tem IX_TbFaseNotaAluno_IdAluno''
+--			    END
+--			
+--			
+--				IF EXISTS( SELECT * FROM sys.indexes WHERE name=''IX_TbFaseNotaAluno_TbFormula'' AND object_id = OBJECT_ID(''dbo.TbFaseNotaAluno'') )
+--				    BEGIN
+--				      DROP INDEX [IX_TbFaseNotaAluno_TbFormula] ON [?].[dbo].[TbFaseNotaAluno]
+--
+--				      	PRINT  ''  tem IX_TbFaseNotaAluno_TbFormula''
+--				    END
+--			
+--			
+--				IF EXISTS( SELECT * FROM sys.indexes WHERE name=''IX_TbFaseNotaAlunoAlunoTurmaFase'' AND object_id = OBJECT_ID(''dbo.TbFaseNotaAluno'') )
+--				BEGIN
+--				  DROP INDEX [IX_TbFaseNotaAlunoAlunoTurmaFase] ON [?].[dbo].[TbFaseNotaAluno]
+--
+--				      	PRINT  ''  tem IX_TbFaseNotaAlunoAlunoTurmaFase''
+--				END
+--			 
+--				IF EXISTS( SELECT * FROM sys.indexes WHERE name=''IX_TbFaseNotaAluno_IdFaseNota'' AND object_id = OBJECT_ID(''dbo.TbFaseNotaAluno'') )
+--				BEGIN
+--				  DROP INDEX [IX_TbFaseNotaAluno_IdFaseNota] ON [?].[dbo].[TbFaseNotaAluno]
+--			
+--				      	PRINT  ''  tem IX_TbFaseNotaAluno_IdFaseNota''
+--				END
 
---					IF EXISTS( SELECT * FROM sys.indexes WHERE name=''IX_TbFaseNotaAluno_IdDisciplina'' AND object_id = OBJECT_ID(''dbo.TbFaseNotaAluno'') )
---					    BEGIN
---					      DROP INDEX [IX_TbFaseNotaAluno_IdDisciplina] ON [?].[dbo].[TbFaseNotaAluno]
---					
---					    END
---					
---					
---					  IF EXISTS( SELECT * FROM sys.indexes WHERE name=''IX_TbFaseNotaAluno_IdAluno'' AND object_id = OBJECT_ID(''dbo.TbFaseNotaAluno'') )
---					    BEGIN
---					      DROP INDEX [IX_TbFaseNotaAluno_IdAluno] ON [?].[dbo].[TbFaseNotaAluno]
---					    END
---					
---					
---						IF EXISTS( SELECT * FROM sys.indexes WHERE name=''IX_TbFaseNotaAluno_TbFormula'' AND object_id = OBJECT_ID(''dbo.TbFaseNotaAluno'') )
---						    BEGIN
---						      DROP INDEX [IX_TbFaseNotaAluno_TbFormula] ON [?].[dbo].[TbFaseNotaAluno]
---						    END
---					
---					
---						IF EXISTS( SELECT * FROM sys.indexes WHERE name=''IX_TbFaseNotaAlunoAlunoTurmaFase'' AND object_id = OBJECT_ID(''dbo.TbFaseNotaAluno'') )
---						BEGIN
---						  DROP INDEX [IX_TbFaseNotaAlunoAlunoTurmaFase] ON [?].[dbo].[TbFaseNotaAluno]
---						END
---					 
---						IF EXISTS( SELECT * FROM sys.indexes WHERE name=''IX_TbFaseNotaAluno_IdFaseNota'' AND object_id = OBJECT_ID(''dbo.TbFaseNotaAluno'') )
---						BEGIN
---						  DROP INDEX [IX_TbFaseNotaAluno_IdFaseNota] ON [?].[dbo].[TbFaseNotaAluno]
---					
---						      	PRINT  ''  tem IX_TbFaseNotaAluno_IdFaseNota''
---						END
 
 	IF EXISTS( SELECT * FROM sys.indexes WHERE name=''IX_TbFaseNotaAluno_IdTurma'' AND object_id = OBJECT_ID(''dbo.TbFaseNotaAluno'') )
 	BEGIN

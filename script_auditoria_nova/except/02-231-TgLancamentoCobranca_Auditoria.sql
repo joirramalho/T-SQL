@@ -5,8 +5,7 @@
 --
 
 
-CREATE TRIGGER [dbo].[TgLancamentoCobranca_Auditoria] ON [dbo].[TbLancamentoCobranca]
---ALTER TRIGGER [dbo].[TgLancamentoCobranca_Auditoria] ON [dbo].[TbLancamentoCobranca]
+ALTER TRIGGER [dbo].[TgLancamentoCobranca_Auditoria] ON [dbo].[TbLancamentoCobranca]
 FOR INSERT, UPDATE, DELETE
 AS
 BEGIN

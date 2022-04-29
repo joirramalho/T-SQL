@@ -1,4 +1,4 @@
-USE dbSigaSantaGertrudes;
+USE dbSigaIntegral;
 
 -- USE dbSigaNSLourdesGravata;
 -- USE dbSigaAuxilRecife;

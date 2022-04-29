@@ -1,3 +1,4 @@
+--28abr22
 -- 31mar22 -- Executado em todos e passado PARA ANDERSON ...
 
 
@@ -6,27 +7,18 @@
 EXEC dbo.sp_foreachdb N'
     USE ?
 
---					
+	PRINT DB_NAME()
 
 		IF EXISTS( SELECT * FROM sys.indexes WHERE name=''IX_TbTituloCobranca_IdFormaRecebimento'' AND object_id = OBJECT_ID(''dbo.TbTituloCobranca'') )
 		    BEGIN
-				PRINT DB_NAME()
-
 		    	DROP INDEX [IX_TbTituloCobranca_IdFormaRecebimento] ON [?].[dbo].[TbTituloCobranca]
 
---		    	PRINT ''DROP INDEX [IX_TbTituloCobranca_IdFormaRecebimento] ''
+		    	PRINT ''	DROP INDEX [IX_TbTituloCobranca_IdFormaRecebimento] ''
 		    END
-
---
-
-
 
 --
 --		-- wait for 1 second
 --		WAITFOR DELAY ''00:00:05''
-
-
-
 '
 ,@print_command_only = 0 -- Obrigatório Gerar script
 ,@print_dbname=0

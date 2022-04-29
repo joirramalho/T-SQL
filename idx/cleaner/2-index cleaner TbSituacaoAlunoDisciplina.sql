@@ -5,11 +5,9 @@
 EXEC dbo.sp_foreachdb N'
     USE ?
 
-	PRINT DB_NAME()  
-
---
 	IF EXISTS( SELECT * FROM sys.indexes WHERE name=''IX_TbSituacaoAlunoDisciplina_IdFormulaComposicaoNota'' AND object_id = OBJECT_ID(''dbo.TbSituacaoAlunoDisciplina'') )	
 	BEGIN
+		PRINT DB_NAME()  
 
 		IF OBJECT_ID(''dbo.FK_TbFaseNotaAluno_TbTurmaDisciplinaAluno'') IS NOT NULL
 	    BEGIN

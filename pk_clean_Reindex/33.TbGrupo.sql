@@ -1,4 +1,4 @@
-USE dbSigaSantaGertrudes;
+USE dbSigaIntegral;
 
 -- TbGrupo 
 ALTER TABLE [dbo].[TbFuncionalidadeGrupo] DROP CONSTRAINT [FK_TbFuncionalidadeGrupo_TbGrupo]
@@ -9,6 +9,13 @@ ALTER TABLE [dbo].[TbSerieGrupo] DROP CONSTRAINT [FK_TbSerieGrupo_TbGrupo]
 GO
 ALTER TABLE [dbo].[TbUsuarioGrupo] DROP CONSTRAINT [FK_TbUsuarioGrupo_TbGrupo]
 GO
+
+ALTER TABLE [dbo].[TbCalendarioEventoGrupo] DROP CONSTRAINT [FK__TbCalenda__IdGru__21118948]
+
+ALTER TABLE [dbo].[TbCalendarioEventoGrupo] DROP CONSTRAINT [FK__TbCalenda__IdCal__7A2CC651]
+
+
+
 
     ALTER TABLE [dbo].[TbGrupo] DROP CONSTRAINT [PK_TbGrupo]
     GO
@@ -21,7 +28,18 @@ GO
     GO
 
 
-                                                                                                                                                                                                                                                                 
+             
+ALTER TABLE [dbo].[TbCalendarioEventoGrupo] WITH CHECK ADD CONSTRAINT [FK__TbCalenda__IdCal__7A2CC651] FOREIGN KEY([IdCalendarioEvento]) 	REFERENCES [dbo].[TbCalendarioEvento] ([IdCalendarioEvento]); 
+GO
+ALTER TABLE [dbo].[TbCalendarioEventoGrupo] CHECK CONSTRAINT [FK__TbCalenda__IdCal__7A2CC651]
+GO
+
+ALTER TABLE [dbo].[TbCalendarioEventoGrupo] WITH CHECK ADD CONSTRAINT [FK__TbCalenda__IdGru__7938A218] FOREIGN KEY([IdGrupo]) REFERENCES [dbo].[TbGrupo] ([IdGrupo]);     
+GO
+ALTER TABLE [dbo].[TbCalendarioEventoGrupo] CHECK CONSTRAINT [FK__TbCalenda__IdGru__7938A218]
+Go
+    
+    
 ALTER TABLE [dbo].[TbFuncionalidadeGrupo] WITH CHECK ADD  CONSTRAINT [FK_TbFuncionalidadeGrupo_TbGrupo] FOREIGN KEY([IdGrupo]) REFERENCES [dbo].[TbGrupo] ([IdGrupo])                                                                                            
 GO
 ALTER TABLE [dbo].[TbFuncionalidadeGrupo] CHECK CONSTRAINT [FK_TbFuncionalidadeGrupo_TbGrupo]

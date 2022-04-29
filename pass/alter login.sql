@@ -5,7 +5,7 @@
 
 --LOGIN --
 	--SENHA COM 10 caracteres								'1234567890'		
-		--CREATE LOGIN [active.filipe] 		WITH PASSWORD= N'***', DEFAULT_DATABASE=[dbSigaFacCatolicaRN], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
+		--CREATE LOGIN [userIntegral] 		WITH PASSWORD= N'*****', DEFAULT_DATABASE=[dbSigaIntegral], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
 
 		--ALTER LOGIN [userMUNDODACRIANCA] DISABLE;
 
@@ -16,7 +16,7 @@
 
 -- PASSWORD
 	--												'1234567890'
-	-- ALTER LOGIN [active.anderson] 	WITH PASSWORD = '****'; -- sigainternet userISO_PowerBI service.account
+	-- ALTER LOGIN [userAlbertEinstein] 	WITH PASSWORD = '***'; -- sigainternet userISO_PowerBI service.account
 
 
 	-- re-enable login without password	
@@ -26,10 +26,10 @@
 
 
 
---USE CRM_360760_NOTAS;
+--USE dbVendasCOLCT;
 
 
-	--CREATE USER 	[active.modelo] 	FOR LOGIN [active.modelo] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
+	--CREATE USER 	[userCOLCT] 	FOR LOGIN [userCOLCT] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
 	
 		--DROP USER [userINSTBRASILIA];
 	
@@ -38,11 +38,11 @@
 			--ALTER LOGIN 	[userCONECTAEXPEDICIO] 	WITH  DEFAULT_DATABASE=[dbVendasConectaExped];
 	
 	
-		--GRANT CONNECT  TO [userErnestoGurgel];
+		--GRANT CONNECT  TO [userCONEXAOSABER];
 			--REVOKE CONNECT  FROM [siga_caruaru];
 
 
-	--ALTER ROLE [db_owner] ADD MEMBER [active.modelo];
+	--ALTER ROLE [db_owner] ADD MEMBER [userCOLCT];
 
 		--EXEC master..sp_addsrvrolemember @loginame = N'active.pinto', @rolename = N'sysadmin';
 
