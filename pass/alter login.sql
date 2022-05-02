@@ -5,7 +5,7 @@
 
 --LOGIN --
 	--SENHA COM 10 caracteres								'1234567890'		
-		--CREATE LOGIN [userIntegral] 		WITH PASSWORD= N'*****', DEFAULT_DATABASE=[dbSigaIntegral], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
+		--CREATE LOGIN [userTENENTEANGELO] 		WITH PASSWORD= N'P@ssw0rd.', DEFAULT_DATABASE=[dbSigaTENENTEANGELO], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
 
 		--ALTER LOGIN [userMUNDODACRIANCA] DISABLE;
 
@@ -16,7 +16,7 @@
 
 -- PASSWORD
 	--												'1234567890'
-	-- ALTER LOGIN [userAlbertEinstein] 	WITH PASSWORD = '***'; -- sigainternet userISO_PowerBI service.account
+	-- ALTER LOGIN [userTENENTEANGELO] 	WITH PASSWORD = '**'; -- sigainternet userISO_PowerBI service.account
 
 
 	-- re-enable login without password	
@@ -26,10 +26,10 @@
 
 
 
---USE dbVendasCOLCT;
+--USE dbSigaTENENTEANGELO;
 
 
-	--CREATE USER 	[userCOLCT] 	FOR LOGIN [userCOLCT] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
+	--CREATE USER 	[userTENENTEANGELO] 	FOR LOGIN [userTENENTEANGELO] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
 	
 		--DROP USER [userINSTBRASILIA];
 	
@@ -42,7 +42,7 @@
 			--REVOKE CONNECT  FROM [siga_caruaru];
 
 
-	--ALTER ROLE [db_owner] ADD MEMBER [userCOLCT];
+	--ALTER ROLE [db_owner] ADD MEMBER [userTENENTEANGELO];
 
 		--EXEC master..sp_addsrvrolemember @loginame = N'active.pinto', @rolename = N'sysadmin';
 
