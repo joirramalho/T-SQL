@@ -1,7 +1,10 @@
 --07out21
 --Reset SQL user account guids 
 
---USE  dbSigaTENENTEANGELO;
+--USE  dbSigaVicentinasINF;
+
+
+--DROP USER [userINSFATIMA];
 
 DECLARE @UserName nvarchar(255) 
 

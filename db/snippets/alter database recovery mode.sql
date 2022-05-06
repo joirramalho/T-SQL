@@ -1,6 +1,6 @@
 --06set21
 
-EXEC dbLogMonitor.dbo.sp_foreachdb N'
+EXEC dbo.sp_foreachdb N'
     IF EXISTS( SELECT name, state_desc, recovery_model_desc, is_read_only, user_access_desc, create_date
                 FROM sys.databases d
                 WHERE name = ''?'' 

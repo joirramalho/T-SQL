@@ -104,7 +104,7 @@ sp_AdicionarUsuario
     -- sigainternet 212458 Mardeson pollyana rogeriobrollo wantuilson
 
     
-    -- dbLogRestore..sp_AdicionarUsuario '290223', 'active.suelio' 
+    -- dbLogRestore..sp_AdicionarUsuario '362106v2', 'active.wantuilson' 
 
     -- dbLogRestore..sp_AdicionarUsuario '262340', 'sigainternet' -- sigainternet 212458 Mardeson pollyana rogeriobrollo
 

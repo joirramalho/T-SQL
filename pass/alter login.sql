@@ -5,18 +5,18 @@
 
 --LOGIN --
 	--SENHA COM 10 caracteres								'1234567890'		
-		--CREATE LOGIN [userTENENTEANGELO] 		WITH PASSWORD= N'P@ssw0rd.', DEFAULT_DATABASE=[dbSigaTENENTEANGELO], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
+		--CREATE LOGIN [userINSFATIMA] 		WITH PASSWORD= N'***', DEFAULT_DATABASE=[dbSigaVicentinasINF], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
 
 		--ALTER LOGIN [userMUNDODACRIANCA] DISABLE;
 
-			--DROP LOGIN [userINSTBRASILIA];
+			--DROP LOGIN [userINSFATIMA];
 
 --			ALTER LOGIN [userICM_RS] ENABLE;
 
 
 -- PASSWORD
 	--												'1234567890'
-	-- ALTER LOGIN [userTENENTEANGELO] 	WITH PASSWORD = '**'; -- sigainternet userISO_PowerBI service.account
+	-- ALTER LOGIN [userINSFATIMA] 	WITH PASSWORD = '****'; -- sigainternet userISO_PowerBI service.account
 
 
 	-- re-enable login without password	
@@ -26,12 +26,12 @@
 
 
 
---USE dbSigaTENENTEANGELO;
+--USE dbSigaVicentinasINF;
 
 
-	--CREATE USER 	[userTENENTEANGELO] 	FOR LOGIN [userTENENTEANGELO] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
+	--CREATE USER 	[userINSFATIMA] 	FOR LOGIN [userINSFATIMA] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
 	
-		--DROP USER [userINSTBRASILIA];
+		--DROP USER [userINSFATIMA];
 	
 	
 	--	DEFAULT_DATABASE
@@ -42,7 +42,7 @@
 			--REVOKE CONNECT  FROM [siga_caruaru];
 
 
-	--ALTER ROLE [db_owner] ADD MEMBER [userTENENTEANGELO];
+	--ALTER ROLE [db_owner] ADD MEMBER [userINSFATIMA];
 
 		--EXEC master..sp_addsrvrolemember @loginame = N'active.pinto', @rolename = N'sysadmin';
 

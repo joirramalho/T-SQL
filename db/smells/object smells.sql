@@ -1,4 +1,4 @@
---28abr22
+--05mai22
 	--https://www.red-gate.com/simple-talk/blogs/sql-server-table-smells/
 
 	--Rolling up multiple rows into a single row and column for SQL Server data
@@ -56,22 +56,22 @@ BEGIN
 	IF OBJECT_ID('dbo._database_smells') IS NOT NULL
 	BEGIN
 		DROP TABLE dbo._database_smells
---		TRUNCATE TABLE dbo._database_smells
-		
---		IF NOT EXISTS (
---						  SELECT * 
---						  FROM   sys.columns 
---						  WHERE  object_id = OBJECT_ID(N'dbo._database_smells') 
---						         AND name = 'Explication' )
---			ALTER TABLE dbo._database_smells ADD Explication VARCHAR(1024) NULL;
---
---		IF NOT EXISTS (
---						  SELECT * 
---						  FROM   sys.columns 
---						  WHERE  object_id = OBJECT_ID(N'dbo._database_smells') 
---						         AND name = 'Command' )
---			ALTER TABLE dbo._database_smells ADD Command VARCHAR(2048) NULL;
-		CREATE TABLE dbo._database_smells ( IdDatabaseSmells INT NOT NULL IDENTITY(1,1), EvidenceOf VARCHAR(16), TypeObjectOf VARCHAR(16), [ObjectName] SYSNAME, Problem VARCHAR(1024), Explication VARCHAR(1024), Command VARCHAR(1024) ) -- , FalsoPositivo BIT NOT NULL  DEFAULT 0
+		--		TRUNCATE TABLE dbo._database_smells
+				
+		--		IF NOT EXISTS (
+		--						  SELECT * 
+		--						  FROM   sys.columns 
+		--						  WHERE  object_id = OBJECT_ID(N'dbo._database_smells') 
+		--						         AND name = 'Explication' )
+		--			ALTER TABLE dbo._database_smells ADD Explication VARCHAR(1024) NULL;
+		--
+		--		IF NOT EXISTS (
+		--						  SELECT * 
+		--						  FROM   sys.columns 
+		--						  WHERE  object_id = OBJECT_ID(N'dbo._database_smells') 
+		--						         AND name = 'Command' )
+		--			ALTER TABLE dbo._database_smells ADD Command VARCHAR(2048) NULL;
+		CREATE TABLE dbo._database_smells ( IdDatabaseSmells INT NOT NULL IDENTITY(1,1), EvidenceOf VARCHAR(16), TypeObjectOf VARCHAR(32), [ObjectName] SYSNAME, Problem VARCHAR(1024), Explication VARCHAR(1024), Command VARCHAR(1024) ) -- , FalsoPositivo BIT NOT NULL  DEFAULT 0
 	END
 
 		
@@ -99,7 +99,7 @@ BEGIN
 	IF OBJECT_ID('TEMPDB..##TEMP') IS NOT NULL
 		DROP TABLE TEMPDB..##TEMP
 	
-	CREATE TABLE TEMPDB..##TEMP ( TypeObjectOf VARCHAR(16), [ObjectName] SYSNAME, Problem VARCHAR(1024), TypeEvidenceOf TINYINT, Explication VARCHAR(1024), Command VARCHAR(1024)  )
+	CREATE TABLE TEMPDB..##TEMP ( TypeObjectOf VARCHAR(32), [ObjectName] SYSNAME, Problem VARCHAR(1024), TypeEvidenceOf TINYINT, Explication VARCHAR(1024), Command VARCHAR(1024)  )
 	
  	
 	
@@ -107,53 +107,207 @@ BEGIN
 	
 		/*
 		 * 
-		 *	4-ERROR
+		 *	CODE
 		 */
-			--Problems_with_Table_Design
-	        SELECT 'TABLE', Object_Name(sys.tables.object_id), 'No primary key (Not explicitly declaring which index is the clustered one)', 4, '', ''
+			--APX1308 – Trigger should be enabled
+			SELECT DISTINCT 'TRIGGER', Object_Name(parent_id), 'trigger [' + name + '] is disabled', 3, 'https://www.sqlshack.com/triggers-in-sql-server/', ''
+			FROM sys.triggers
+			WHERE is_disabled = 1 AND parent_id > 0
+
+		UNION ALL
+			--EI017 Hardcoded current database name in procedure call
+			SELECT 'DATABASE', Object_Name(a.object_id), 'hardcoded database name reference: ' + type_desc COLLATE SQL_Latin1_General_CP1_CI_AI + ' [' + object_name(a.object_id) + '] in ' + DB_NAME() + ' pointing to ' + x.name, 3, 'https://documentation.red-gate.com/codeanalysis/code-analysis-for-sql-server/execution-rules/ei026', ''
+			FROM sys.sql_modules a
+			LEFT JOIN sys.objects o ON o.object_id = a.object_id 
+			CROSS  apply (select name from master.sys.databases where name <> DB_NAME() and database_id > 4 and len(name) > 3) x
+			WHERE patindex(concat('%from%',x.name,'.%.%') collate database_default, a.definition collate database_default ) > 0
+
+		UNION ALL
+
+			--APX1207 – Missing SET NOCOUNT ON before Unatteended DML execution
+			--PE009 No SET NOCOUNT ON before DML
+			SELECT 'PROCEDURE', Object_Name(object_id), 'procedure [' + Object_Name(object_id) + '] has''nt got NOCOUNT ON', 2, 'https://www.sqlshack.com/sql-server-set-options-affect-query-result-set-concat_null_yields_null-set-numeric_roundabort-set-quoted_identifier-set-nocount-set-xact_abort/', ''
+			FROM sys.procedures AS p /* Triggers lacking `SET NOCOUNT ON`, which can cause unexpected results WHEN USING OUTPUT */
+        	WHERE object_definition(object_id) NOT LIKE '%SET NOCOUNT ON%'
+
+		UNION ALL
+
+			--MI008 QUOTED_IDENTIFIERS option inside stored procedure, trigger or function
+        	SELECT 'TRIGGER', Object_Name(ta.object_id), 'trigger [' + Object_Name(tr.object_id) + '] has''nt got NOCOUNT ON', 2, '', ''
+			FROM sys.tables AS ta /* Triggers lacking `SET NOCOUNT ON`, which can cause unexpected results WHEN USING OUTPUT */
+			INNER JOIN sys.triggers 	AS tr ON tr.parent_id = ta.object_id
+			INNER JOIN sys.sql_modules 	AS mo ON tr.object_id = mo.object_id
+        	WHERE definition NOT LIKE '%SET NOCOUNT ON%'
+	        
+		UNION ALL
+
+			--APX1207 – Missing SET NOCOUNT ON before Unatteended DML execution
+			--PE009 No SET NOCOUNT ON before DML
+			SELECT 'PROCEDURE', Object_Name(object_id), 'procedure [' + Object_Name(object_id) + '] has''nt got NOCOUNT ON', 2, 'https://www.sqlshack.com/sql-server-set-options-affect-query-result-set-concat_null_yields_null-set-numeric_roundabort-set-quoted_identifier-set--set-xact_abort/', ''
+			FROM sys.procedures AS p /* Triggers lacking `SET NOCOUNT ON`, which can cause unexpected results WHEN USING OUTPUT */
+        	WHERE object_definition(object_id) LIKE '%SET NOCOUNT OFF%'
+
+		UNION ALL
+
+			--APX1123 – SET NOCOUNT OFF Usage
+			--MI008 QUOTED_IDENTIFIERS option inside stored procedure, trigger or function
+        	SELECT 'TRIGGER', Object_Name(ta.object_id), 'trigger [' + Object_Name(tr.object_id) + '] has got NOCOUNT OFF', 2, '', ''
+			FROM sys.tables AS ta /* Triggers lacking `SET NOCOUNT ON`, which can cause unexpected results WHEN USING OUTPUT */
+			INNER JOIN sys.triggers 	AS tr ON tr.parent_id = ta.object_id
+			INNER JOIN sys.sql_modules 	AS mo ON tr.object_id = mo.object_id
+        	WHERE definition LIKE '%SET NOCOUNT OFF%'
+        	
+
+		UNION ALL
+        	
+			--APX1123 – SET NOCOUNT OFF Usage
+			--MI008 QUOTED_IDENTIFIERS option inside stored procedure, trigger or function
+        	SELECT type_desc, name, 'function [' + name + '] has got NOCOUNT OFF', 2, '', ''
+		  	FROM sys.sql_modules m 
+			INNER JOIN sys.objects o ON m.object_id=o.object_id
+			WHERE type_desc like '%function%' AND definition LIKE '%SET NOCOUNT OFF%'
+			
+		/*
+		 * 
+		 *	DESIGN
+		 */
+		UNION ALL
+
+			--APX1237 – ANSI_NULLS or QUOTED_IDENTIFIER OFF
+			--DEP028 The SQL module was created with ANSI_NULLS and/or QUOTED_IDENTIFIER options set to OFF.
+			SELECT 'TABLE', Object_Name(sys.tables.object_id), 'has ANSI NULLs set to OFF', 2, 'https://docs.microsoft.com/en-us/previous-versions/sql/sql-server-2008/ms143729(v=sql.100)?redirectedfrom=MSDN', ''
+          	FROM sys.tables /* see whether the table has ansii NULLs off*/
+          	WHERE ObjectPropertyEx(object_id, 'IsAnsiNullsOn') = 0
+	        
+		UNION ALL
+	
+			--APX1229 – Missing primary key
+	        SELECT 'TABLE', Object_Name(sys.tables.object_id), 'No primary key', 4, 'https://docs.microsoft.com/en-us/sql/relational-databases/tables/create-primary-keys?view=sql-server-2017', ''
 	        FROM sys.tables /* see whether the table has a primary key */
 	        WHERE ObjectProperty(object_id, 'TableHasPrimaryKey') = 0
 	        
-    	UNION ALL
+		UNION ALL
 
-			--Problems_With_Database_Design
+			--APX1303 – Disabled foreign key
+			SELECT DISTINCT 'FOREIGN KEY', Object_Name(parent_object_id), 'FK [' + name + '] is disabled', 3, 'https://www.sqlshack.com/commonly-used-sql-server-constraints-foreign-key-check-default/', ''
+          	FROM sys.foreign_keys /* build script gone bad? */
+          	WHERE is_disabled = 1
+
+        UNION ALL
+
+        	SELECT DISTINCT 'CONSTRAINT', Object_Name(parent_object_id), 'constraint [' + name + '] is disabled', 3, 'https://www.sqlshack.com/commonly-used-sql-server-constraints-foreign-key-check-default/', ''
+          	FROM sys.check_constraints /* hmm. i wonder why */
+          	WHERE is_disabled = 1
+
+		UNION ALL
+
+        	SELECT DISTINCT 'INDEX', Object_Name(object_id), 'index [' + name + '] is disabled', 3, '', ''
+          	FROM sys.indexes /* don't leave these lying around */
+          	WHERE is_disabled = 1
+          	
+		UNION ALL
+
+        	SELECT DISTINCT 'CONSTRAINT', Object_Name(parent_object_id), 'constraint [' + name + '] is untrusted', 3, 'https://www.sqlshack.com/commonly-used-sql-server-constraints-foreign-key-check-default/', ''
+          	FROM sys.check_constraints /* ETL gone bad? */
+          	WHERE is_not_trusted = 1
+
+		UNION ALL
+
+        	SELECT DISTINCT 'FOREIGN KEY', Object_Name(parent_object_id), 'FK [' + name + '] is untrusted', 3, '', ''
+          	FROM sys.foreign_keys /* Why do you have untrusted FKs?	Constraint was enabled without checking existing rows;	therefore, the constraint may not hold for all rows. */
+          	WHERE is_not_trusted = 1
+			--		UNION ALL
+			--        
+			--			Defining foreign keys without a supporting index
+			--        	SELECT Object_Name(keys.parent_object_id), 'foreign key [' + keys.name + '] that has no supporting index', 3
+			--          	FROM sys.foreign_keys AS keys
+			--            INNER JOIN sys.foreign_key_columns 	AS TheColumns 	ON keys.object_id = constraint_object_id
+			--            LEFT OUTER JOIN sys.index_columns 	AS ic			ON ic.object_id = TheColumns.parent_object_id AND ic.column_id = TheColumns.parent_column_id AND TheColumns.constraint_column_id = ic.key_ordinal
+			--          	WHERE ic.object_id IS NULL
+
+        UNION ALL 
+
+			--APX1222 – Small (N)VARCHAR columns
+			SELECT 'COLUMN', o.name , 'Using varchar(1) or varchar(2) in column [' + c.name + ']. Columns of short or fixed length should have a fixed size since variable-length types have a disproportionate storage overhead)', 3, 'https://docs.microsoft.com/en-us/sql/t-sql/data-types/char-and-varchar-transact-sql?view=sql-server-2017', 'ALTER TABLE ...'
+			FROM sys.columns AS c
+			INNER JOIN sys.objects AS o    ON c.[object_id] = o.[object_id]
+			INNER JOIN sys.schemas AS s    ON o.[schema_id] = s.[schema_id]
+			WHERE c.system_type_id IN (167, 231) -- varchar, nvarchar
+				AND max_length  < 3
+			--			SELECT [TableName], 'Using varchar(1) or varchar(2) in [' + ColumnName + '] (Columns of short or fixed length should have a fixed size since variable-length types have a disproportionate storage overhead)', 3
+			--	        FROM _column_details_extended_property
+			--	        WHERE TableType = 'COLUMN'
+			--				AND DataType IN ('varchar', 'nvarchar' )
+			--				AND MaxLength < 3
+
+	    
+
+		/*
+		 * 
+		 *	Deprecated features
+		 */
+		UNION ALL
+
+			--APX1152 – Deprecated data types: TEXT, NTEXT and IMAGE		
+          	SELECT 'COLUMN', Object_Name(t.object_id), 'field [' + c.name + '] is inadequate table storage (image)', 3 , 'https://docs.microsoft.com/en-us/previous-versions/sql/sql-server-2008/ms143729(v=sql.100)?redirectedfrom=MSDN', ''
+          	FROM sys.columns c /* found a simpler way! */
+          	LEFT JOIN sys.tables t ON c.object_id = t.object_id
+          	WHERE ObjectPropertyEx(t.object_id, 'TableHasTextImage') = 1 AND  system_type_id IN (34)
+				
+		UNION ALL
+	
+			--APX1152 – Deprecated data types: TEXT, NTEXT and IMAGE		
+			--DEP002 WRITETEXT,UPDATETEXT and READTEXT statements are deprecated.		
+          	SELECT 'COLUMN', Object_Name(t.object_id), 'field [' + c.name + '] is deprecated LOB datatype (text/ntext)', 3, 'https://documentation.red-gate.com/scg/sql-code-analysis-documentation/sql-code-guard-ssms-2016-add-in-deprecated/sql-static-code-analysis-rules/deprecated-rules#Deprecatedrules-DEP002DEP002–WRITETEXT,UPDATETEXTandREADTEXTstatementsaredeprecated', ''
+          	FROM sys.columns c /* found a simpler way! */
+          	LEFT JOIN sys.tables t ON c.object_id = t.object_id
+          	WHERE ObjectPropertyEx(t.object_id, 'TableHasTextImage') = 1 AND  system_type_id IN (35, 99)
+          	
+
+         /*
+		 * 
+		 *	QUERY
+		 */
+		UNION ALL
+
+			--APX1230 – SET ROWCOUNT
+			--MI008 QUOTED_IDENTIFIERS option inside stored procedure, trigger or function
+        	SELECT 'TRIGGER', Object_Name(ta.object_id), 'trigger [' + Object_Name(tr.object_id) + '] has''nt got NOCOUNT ON', 2, '', ''
+			FROM sys.tables AS ta /* Triggers lacking `SET NOCOUNT ON`, which can cause unexpected results WHEN USING OUTPUT */
+			INNER JOIN sys.triggers 	AS tr ON tr.parent_id = ta.object_id
+			INNER JOIN sys.sql_modules 	AS mo ON tr.object_id = mo.object_id
+        	WHERE definition LIKE '%SET ROWCOUNT%'
+	        
+		/*
+		 * 
+		 *	Maintenance
+		 */
+	   	UNION ALL
+
 			--JMR
 	        SELECT 'DATABASE', name, 'page_verify_option in [' + name + '] is disable', 4, 'https://docs.microsoft.com/pt-br/sql/relational-databases/policy-based-management/set-the-page-verify-database-option-to-checksum?view=sql-server-ver15', 'ALTER DATABASE [' + name + '] SET PAGE_VERIFY CHECKSUM;'
 			FROM	sys.databases DB
 			WHERE page_verify_option_desc <> 'CHECKSUM'
 
+			
+			
+			
+			
+			
+			
+			
+			
 
 	    /*
 		 * 
 		 *	3-WARNING
 		 */
     	UNION ALL
-        	--Problems_with_Table_Design
-			SELECT DISTINCT 'INDEX', Object_Name(sys.tables.object_id), 'Heaps (Tabelas sem índices clusterizados)', 3, 'https://docs.microsoft.com/pt-br/sql/relational-databases/indexes/heaps-tables-without-clustered-indexes?view=sql-server-ver15', ''
+
+    		SELECT DISTINCT 'INDEX', Object_Name(sys.tables.object_id), 'Heap table', 3, 'Tabelas sem índices clusterizados', 'https://docs.microsoft.com/pt-br/sql/relational-databases/indexes/heaps-tables-without-clustered-indexes?view=sql-server-ver15'
 	        FROM sys.indexes /* see whether the table is a heap */
 	        INNER JOIN sys.tables ON sys.tables.object_id = sys.indexes.object_id
 	        WHERE sys.indexes.type = 0
-
-        UNION ALL
-
-			--Problems_with_Table_Design
-        	SELECT DISTINCT 'CONSTRAINT', Object_Name(parent_object_id), 'disabled constraint(s)', 3, '', ''
-          	FROM sys.check_constraints /* hmm. i wonder why */
-          	WHERE is_disabled = 1
-
-		UNION ALL
-
-			--Problems_with_Table_Design
-        	SELECT DISTINCT 'CONSTRAINT', Object_Name(parent_object_id), 'constraint [' + name + '] is untrusted', 3, '', ''
-          	FROM sys.check_constraints /* ETL gone bad? */
-          	WHERE is_not_trusted = 1
-
-		UNION ALL
-
-			--Problems_with_Table_Design
-			SELECT DISTINCT 'TRIGGER', Object_Name(parent_id), 'trigger [' + name + '] is disabled', 3, '', ''
-			FROM sys.triggers
-			WHERE is_disabled = 1 AND parent_id > 0
 
 		UNION ALL
 
@@ -163,57 +317,8 @@ BEGIN
           	FROM sys.columns AS c
           	WHERE Coalesce(collation_name, '') <> DatabasePropertyEx(Db_Id(), 'Collation')
 
-		UNION ALL 
-
-			--Problems_with_Data_Types
-			SELECT 'COLUMN', o.name , 'Using varchar(1) or varchar(2) in column [' + c.name + ']', 3, 'Columns of short or fixed length should have a fixed size since variable-length types have a disproportionate storage overhead)', 'ALTER TABLE ...'
-			FROM sys.columns AS c
-			INNER JOIN sys.objects AS o    ON c.[object_id] = o.[object_id]
-			INNER JOIN sys.schemas AS s    ON o.[schema_id] = s.[schema_id]
-			WHERE c.system_type_id IN (167, 231) -- varchar, nvarchar
-				AND max_length  < 3
---			SELECT [TableName], 'Using varchar(1) or varchar(2) in [' + ColumnName + '] (Columns of short or fixed length should have a fixed size since variable-length types have a disproportionate storage overhead)', 3
---	        FROM _column_details_extended_property
---	        WHERE TableType = 'COLUMN'
---				AND DataType IN ('varchar', 'nvarchar' )
---				AND MaxLength < 3
 
 		
-			--Problems_with_Data_Types
-			--SELECT [TableName], 'Using varchar(1) or varchar(2) in [' + ColumnName + '] (Columns of short or fixed length should have a fixed size since variable-length types have a disproportionate storage overhead)', 3
-		
-			--		SELECT 
-			--    c.name 'ColumnName',
-			--    t.Name 'Datatype',
-			--    c.max_length 'MaxLength',
-			--    c.precision ,
-			--    c.scale ,
-			--    c.is_nullable,
-			--    ISNULL(i.is_primary_key, 0) 'Primary Key'
-			--FROM    
-			--    sys.columns c
-			--INNER JOIN 		sys.types t ON c.user_type_id = t.user_type_id
-			--LEFT OUTER JOIN sys.index_columns ic ON ic.object_id = c.object_id AND ic.column_id = c.column_id
-			--LEFT OUTER JOIN sys.indexes i ON ic.object_id = i.object_id AND ic.index_id = i.index_id
-		
-		
-		UNION ALL
-	
-			--Problems_with_Data_Types
-			--DEP002 WRITETEXT,UPDATETEXT and READTEXT statements are deprecated.		
-          	SELECT 'COLUMN', Object_Name(t.object_id), 'field [' + c.name + '] is deprecated LOB datatype (text/ntext)', 3, 'https://documentation.red-gate.com/scg/sql-code-analysis-documentation/sql-code-guard-ssms-2016-add-in-deprecated/sql-static-code-analysis-rules/deprecated-rules#Deprecatedrules-DEP002DEP002–WRITETEXT,UPDATETEXTandREADTEXTstatementsaredeprecated', ''
-          	FROM sys.columns c /* found a simpler way! */
-          	LEFT JOIN sys.tables t ON c.object_id = t.object_id
-          	WHERE ObjectPropertyEx(t.object_id, 'TableHasTextImage') = 1 AND  system_type_id IN (35, 99)
-          	
-		UNION ALL
-
-			--Problems_with_Data_Types
-          	SELECT 'COLUMN', Object_Name(t.object_id), 'field [' + c.name + '] is inadequate table storage (image)', 3 , '', ''
-          	FROM sys.columns c /* found a simpler way! */
-          	LEFT JOIN sys.tables t ON c.object_id = t.object_id
-          	WHERE ObjectPropertyEx(t.object_id, 'TableHasTextImage') = 1 AND  system_type_id IN (34)
-          	
          UNION ALL
 	
 			--Problems_with_Data_Types
@@ -222,23 +327,6 @@ BEGIN
 	        WHERE TableType = 'COLUMN'
 					AND DataType IN ( 'money' )
 				
-		UNION ALL
-
-			--Problems_With_Database_Design
-			--EI017 Hardcoded current database name in procedure call
-			SELECT 'DATABASE', Object_Name(a.object_id), 'hardcoded database name reference: ' + type_desc COLLATE SQL_Latin1_General_CP1_CI_AI + ' [' + object_name(a.object_id) + '] in ' + DB_NAME() + ' pointing to ' + x.name, 3, 'https://documentation.red-gate.com/codeanalysis/code-analysis-for-sql-server/execution-rules/ei026', ''
-			FROM sys.sql_modules a
-			LEFT JOIN sys.objects o ON o.object_id = a.object_id 
-			CROSS  apply (select name from master.sys.databases where name <> DB_NAME() and database_id > 4 and len(name) > 3) x
-			WHERE patindex(concat('%from%',x.name,'.%.%') collate database_default, a.definition collate database_default ) > 0
-			
-		UNION ALL
-
-			--Problems_with_Table_Design
-        	SELECT DISTINCT 'INDEX', Object_Name(object_id), 'index [' + name + '] is disabled', 3, '', ''
-          	FROM sys.indexes /* don't leave these lying around */
-          	WHERE is_disabled = 1
-          	
 		UNION ALL
 
 			--Problems_with_Table_Design
@@ -252,36 +340,6 @@ BEGIN
 		UNION ALL
 
 			--Problems_with_Table_Design
-        	SELECT DISTINCT 'FOREIGN KEY', Object_Name(parent_object_id), 'FK [' + name + '] is disabled', 3, '', ''
-          	FROM sys.foreign_keys /* build script gone bad? */
-          	WHERE is_disabled = 1
-
-		UNION ALL
-
-			--Problems_with_Table_Design
-        	SELECT DISTINCT 'FOREIGN KEY', Object_Name(parent_object_id), 'FK [' + name + '] is untrusted', 3, '', ''
-          	FROM sys.foreign_keys /* Why do you have untrusted FKs?	Constraint was enabled without checking existing rows;	therefore, the constraint may not hold for all rows. */
-          	WHERE is_not_trusted = 1
-
-			
-		--		UNION ALL
-		--        
-		--			Defining foreign keys without a supporting index
-		--        	SELECT Object_Name(keys.parent_object_id), 'foreign key [' + keys.name + '] that has no supporting index', 3
-		--          	FROM sys.foreign_keys AS keys
-		--            INNER JOIN sys.foreign_key_columns 	AS TheColumns 	ON keys.object_id = constraint_object_id
-		--            LEFT OUTER JOIN sys.index_columns 	AS ic			ON ic.object_id = TheColumns.parent_object_id AND ic.column_id = TheColumns.parent_column_id AND TheColumns.constraint_column_id = ic.key_ordinal
-		--          	WHERE ic.object_id IS NULL
-
-
-		/*
-		 * 
-		 *	2-NOTE
-		 */
-	        
-		UNION ALL
-
-			--Problems_with_Table_Design
 			--Using too many or too few indexes
        		SELECT 'TABLE', Object_Name(sys.tables.object_id), 'No index at all', 2, '', ''
           	FROM sys.tables /* see whether the table has any index */
@@ -289,7 +347,6 @@ BEGIN
 
 		UNION ALL
 
-			--Problems_with_Table_Design
           	--Using too many indexes
        		SELECT 'INDEX', t.name, 'Using too many indexes', 2, '', ''
 			FROM 	sys.indexes ind 
@@ -310,42 +367,6 @@ BEGIN
         	SELECT 'TABLE', Object_Name(object_id), 'wide table (more than 15 columns)', 2, '', ''
 			FROM sys.tables /* see whether the table has more than 15 columns */
 			WHERE max_column_id_used > 15
-
-		UNION ALL
-
-			--Problems_with_Routines
-			--DEP028 The SQL module was created with ANSI_NULLS and/or QUOTED_IDENTIFIER options set to OFF.
-			SELECT 'TABLE', Object_Name(sys.tables.object_id), 'has ANSI NULLs set to OFF', 2, '', ''
-          	FROM sys.tables /* see whether the table has ansii NULLs off*/
-          	WHERE ObjectPropertyEx(object_id, 'IsAnsiNullsOn') = 0
-	        
-		UNION ALL
-
-			--Problems_with_Routines
-			--MI008 QUOTED_IDENTIFIERS option inside stored procedure, trigger or function
-        	SELECT 'TRIGGER', Object_Name(ta.object_id), 'trigger [' + Object_Name(tr.object_id) + '] has''nt got NOCOUNT ON', 2, '', ''
-			FROM sys.tables AS ta /* Triggers lacking `SET NOCOUNT ON`, which can cause unexpected results WHEN USING OUTPUT */
-			INNER JOIN sys.triggers 	AS tr ON tr.parent_id = ta.object_id
-			INNER JOIN sys.sql_modules 	AS mo ON tr.object_id = mo.object_id
-        	WHERE definition NOT LIKE '%SET NOCOUNT ON%'
-	        
-		UNION ALL
-
-			--Problems_with_Routines
-			--MI008 QUOTED_IDENTIFIERS option inside stored procedure, trigger or function -- JOIR
-        	SELECT 'TRIGGER', Object_Name(ta.object_id), 'trigger [' + Object_Name(tr.object_id) + '] has got NOCOUNT OFF', 2, '', ''
-			FROM sys.tables AS ta /* Triggers lacking `SET NOCOUNT ON`, which can cause unexpected results WHEN USING OUTPUT */
-			INNER JOIN sys.triggers 	AS tr ON tr.parent_id = ta.object_id
-			INNER JOIN sys.sql_modules 	AS mo ON tr.object_id = mo.object_id
-        	WHERE definition LIKE '%SET NOCOUNT OFF%'
-        	
-		UNION ALL
-
-			--Problems_with_Routines
-			--PE009 No SET NOCOUNT ON before DML
-			SELECT 'PROCEDURE', Object_Name(object_id), 'procedure [' + Object_Name(object_id) + '] has''nt got NOCOUNT ON', 2, '', ''
-			FROM sys.procedures AS p /* Triggers lacking `SET NOCOUNT ON`, which can cause unexpected results WHEN USING OUTPUT */
-        	WHERE object_definition(object_id) NOT LIKE '%SET NOCOUNT ON%'
 
 		UNION ALL
 

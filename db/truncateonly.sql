@@ -46,7 +46,7 @@ EXEC dbo.sp_foreachdb N'
  
 --DBCC SHRINKFILE ( dbSigaGGE_Arquivo_log , 0, TRUNCATEONLY)
 
-                -- DBCC SHRINKFILE (dbSigaSalePetrolina_Arquivo03_log, 0, TRUNCATEONLY) 
+                -- DBCC SHRINKFILE (dbSigaSalesianoDomBosco_Arquivo_log, 0, TRUNCATEONLY) 
                  
 
                 -- DBCC SHRINKFILE (dbCantinaActive_log, 0, TRUNCATEONLY) 

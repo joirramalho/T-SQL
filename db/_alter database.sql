@@ -19,7 +19,7 @@
 --ONLINE
 	--ALTER DATABASE dbSigaVicentinasINF SET ONLINE;
 	
-	--ALTER DATABASE dbSigaVicentinasINF SET OFFLINE;
+	--ALTER DATABASE dbSigaSalesianoDomBosco_Arquivo03 SET OFFLINE;
 
 		--DROP
 			--DROP DATABASE dbSigaRaizes
