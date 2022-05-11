@@ -17,9 +17,9 @@
 
 
 --ONLINE
-	--ALTER DATABASE dbSigaVicentinasINF SET ONLINE;
+	--ALTER DATABASE dbSigaSalesianoDomBosco_Arquivo01 SET ONLINE;
 	
-	--ALTER DATABASE dbSigaSalesianoDomBosco_Arquivo03 SET OFFLINE;
+	--ALTER DATABASE dbSigaSalesianoDomBosco_Arquivo01 SET OFFLINE;
 
 		--DROP
 			--DROP DATABASE dbSigaRaizes
@@ -35,7 +35,7 @@
 --READ_WRITE & READ_ONLY
 	--ALTER DATABASE dbActiveBibIntegral    SET  READ_WRITE WITH NO_WAIT
 
-	--ALTER DATABASE dbSigaLiceu_Arquivo02    SET  READ_ONLY WITH NO_WAIT
+	--ALTER DATABASE dbSigaSalesianoDomBosco_Arquivo    SET  READ_ONLY WITH NO_WAIT
 
 
 
@@ -47,9 +47,15 @@
 
 
 --ENABLE & DISABLE TRIGGER
-	--DISABLE TRIGGER dbo.TgAudit_TbAlunoD ON dbo.TbAluno
-	
-	--ENABLE TRIGGER dbo.TgAudit_TbAlunoD  ON dbo.TbAluno
+--	DISABLE TRIGGER dbo.TgContaPagar_AnoMesCompetencia ON dbo.TbContaPagar;
+--DISABLE TRIGGER dbo.TgContaPagar_ContaParcelada ON dbo.TbContaPagar;
+--	DISABLE TRIGGER dbo.TgContaPagar_ExcluirConta ON dbo.TbContaPagar;
+--	DISABLE TRIGGER dbo.TgContaPagarDataBloqueio ON dbo.TbContaPagar;
+--	
+--	ENABLE TRIGGER dbo.TgContaPagar_AnoMesCompetencia  ON dbo.TbContaPagar;
+--ENABLE TRIGGER dbo.TgContaPagar_ContaParcelada  ON dbo.TbContaPagar;
+--	ENABLE TRIGGER dbo.TgContaPagar_ExcluirConta  ON dbo.TbContaPagar;
+--	ENABLE TRIGGER dbo.TgContaPagarDataBloqueio  ON dbo.TbContaPagar;
 
 
 

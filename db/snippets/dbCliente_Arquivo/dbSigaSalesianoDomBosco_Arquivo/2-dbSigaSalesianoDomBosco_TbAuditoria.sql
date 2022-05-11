@@ -85,8 +85,10 @@ INSERT INTO dbSigaSalesianoDomBosco_Arquivo.dbo.TbAuditoria ( Tabela, IdUsuario,
             
         
         
-SELECT  COUNT(*) FROM dbSigaSalesianoDomBosco_Arquivo.dbo.TbAuditoria; 
+SELECT  COUNT(*) FROM dbSigaSalesianoDomBosco_Arquivo.dbo.TbAuditoria;  -- 7165149 = 9.587.844
+SELECT  COUNT(*) FROM dbSigaSalesianoDomBosco.dbo.TbAuditoria WHERE YEAR(DAtaHora) <= 2020 -- 2422695
 
+SELECT	YEAR(DataHORA),   COUNT(*) FROM dbSigaSalesianoDomBosco.dbo.TbAuditoria GROUP BY YEAR(DataHORA);
 SELECT	YEAR(DataHORA),   COUNT(*) FROM dbSigaSalesianoDomBosco_Arquivo.dbo.TbAuditoria GROUP BY YEAR(DataHORA);
 
 

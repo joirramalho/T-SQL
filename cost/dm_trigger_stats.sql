@@ -7,13 +7,13 @@ DECLARE @TriggerName 	sysname = NULL
 
 --sp_helptext TgLancamentoCobrancaValidarRPS
 
---SET @DatabaseName = 'dbSigaCNSPerSocorro%'
+--SET @DatabaseName = 'dbSigaSaleJuvenal%'
 --SET @TriggerName = '%TbTituloCobranca%'
 
 
 --SUM( total_worker_time ) by Database e/ou Trigger
 SELECT
-	TOP 30
+	TOP 20
 	total_worker_time,
 	DB_NAME(database_id) AS 'database_name',
 	OBJECT_NAME(object_id, database_id) AS 'trigger_name',

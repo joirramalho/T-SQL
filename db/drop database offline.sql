@@ -12,8 +12,8 @@ EXEC dbo.sp_foreachdb N'
 ,@state_desc = N'OFFLINE'
 ,@user_only = 1
 ,@suppress_quotename=1
--- ,@name_pattern='dbSigaLuizAntonio';
-,@database_list = 'dbSigaMeninoDeus, dbSigaFeroli, dbSigaAntonioBurgos'
+ ,@name_pattern='dbSigaSalesianoDomBosco_Arquivo01';
+--,@database_list = 'dbSigaSalesianoDomBosco_Arquivo01'
 
 
 

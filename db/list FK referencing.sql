@@ -26,7 +26,7 @@ INNER JOIN sys.columns col1	ON col1.column_id = parent_column_id AND col1.object
 INNER JOIN sys.tables tab2	ON tab2.object_id = fkc.referenced_object_id
 INNER JOIN sys.columns col2	ON col2.column_id = referenced_column_id AND col2.object_id = tab2.object_id
 
-WHERE tab2.name = 'TbFaseNotaAluno'
+WHERE tab2.name = 'TbFavorecido'
 
 
 
@@ -47,6 +47,6 @@ SELECT
           ), 1, 1, '') AS dependent_objects_list
 FROM
     sys.sql_expression_dependencies d1 JOIN sys.objects o ON d1.referenced_id = o.[object_id]
-WHERE 	referenced_entity_name = 'TbSituacaoAlunoDisciplina'
+WHERE 	referenced_entity_name = 'TbContaPagar'
 GROUP 	BY 	o.type_desc, d1.referenced_id, d1.referenced_entity_name
 ORDER 	BY	o.type_desc, d1.referenced_entity_name
