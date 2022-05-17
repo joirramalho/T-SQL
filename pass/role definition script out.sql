@@ -6,7 +6,7 @@
  *                                                                  *
  ********************************************************************/
 DECLARE @roleName VARCHAR(255)
-SET @roleName = 'rolePowerBI'
+SET @roleName = 'role_db_comunicacaoeletronica'
 
 -- Script out the Role
 DECLARE @roleDesc VARCHAR(MAX), @crlf VARCHAR(2)

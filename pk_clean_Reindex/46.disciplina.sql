@@ -1,4 +1,4 @@
-USE dbSigaIntegral;
+USE dbSigaSantissimaTrindade;
 
 -- TbDisciplina
 IF OBJECT_ID('dbo.FK_TbAlunoAproveitamentoDisciplina_TbDisciplina') IS NOT NULL

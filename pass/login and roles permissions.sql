@@ -1,8 +1,26 @@
--- VERSION 1.00 23fev21
+--16mai22
+--23fev21
 
 SET NOCOUNT ON
 
 --USE dbSigaGabarito;
+
+
+--DECLARE @rolename sysname = 'Acesso_ViewAnyDatabase'
+--DECLARE @cmd AS NVARCHAR(MAX) = N''
+--
+--SELECT @cmd = @cmd + '
+--    ALTER ROLE ' + QUOTENAME(@rolename) + ' DROP MEMBER ' + QUOTENAME(members.[name]) + ';'
+--FROM sys.database_role_members AS rolemembers
+--    JOIN sys.database_principals AS roles 
+--        ON roles.[principal_id] = rolemembers.[role_principal_id]
+--    JOIN sys.database_principals AS members 
+--        ON members.[principal_id] = rolemembers.[member_principal_id]
+--WHERE roles.[name]=@rolename
+--
+--EXEC(@cmd);
+
+
 
 DECLARE    @Ds_Usuario VARCHAR(100) = 'active.filipe'
 

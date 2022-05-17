@@ -1,4 +1,4 @@
-USE dbSigaIntegral;
+USE dbSigaSantissimaTrindade;
 
 
 IF OBJECT_ID('dbo.[FK_TbCaptacaoParametro_TbUnidade]') IS NOT NULL 
@@ -124,7 +124,7 @@ ALTER TABLE [dbo].[TbPlanoContasContabil] DROP CONSTRAINT [FK_TbPlanoContasConta
 
 ALTER TABLE [dbo].[TbCalendarioEvento] DROP CONSTRAINT [FK_TbCalendarioEvento_TbUnidade];
 
-ALTER TABLE [dbo].[TbUnidadeTermoConsentimento] DROP CONSTRAINT [FK__TbUnidade__IdUni__55C47D52];
+ALTER TABLE [dbo].[TbUnidadeTermoConsentimento] DROP CONSTRAINT [FK__TbUnidade__IdUni__761C3E4B];
 
 ALTER TABLE [dbo].[TbPlanoContasContabil] DROP CONSTRAINT [FK_TbPlanoContasContabil_TbUnidade];
 

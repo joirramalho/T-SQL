@@ -1,6 +1,6 @@
 --25ago21
 
-USE dbSigaSantAna;
+--USE dbSigaSantAna;
 
 WITH RoleMembers (member_principal_id, role_principal_id)    
 AS  

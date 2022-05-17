@@ -1,4 +1,4 @@
-USE dbSigaIntegral;
+USE dbSigaSantissimaTrindade;
 
 -- TbPeriodo 
 IF OBJECT_ID('dbo.FK_TbAlunoCursoDesconto_TbPeriodo') IS NOT NULL

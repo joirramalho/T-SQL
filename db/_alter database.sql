@@ -17,9 +17,9 @@
 
 
 --ONLINE
-	--ALTER DATABASE dbSigaSalesianoDomBosco_Arquivo01 SET ONLINE;
+	--ALTER DATABASE dbSigaLiceu_Arquivo01 SET ONLINE;
 	
-	--ALTER DATABASE dbSigaSalesianoDomBosco_Arquivo01 SET OFFLINE;
+	--ALTER DATABASE dbCantinaContempUnd3 SET OFFLINE;
 
 		--DROP
 			--DROP DATABASE dbSigaRaizes
@@ -33,16 +33,16 @@
 
 
 --READ_WRITE & READ_ONLY
-	--ALTER DATABASE dbActiveBibIntegral    SET  READ_WRITE WITH NO_WAIT
+	--ALTER DATABASE dbSigaSantissimaTrindade    SET  READ_WRITE WITH NO_WAIT
 
-	--ALTER DATABASE dbSigaSalesianoDomBosco_Arquivo    SET  READ_ONLY WITH NO_WAIT
+	--ALTER DATABASE dbSigaLiceu_Arquivo    SET  READ_ONLY WITH NO_WAIT
 
 
 
 --SET RECOVERY
 	--ALTER DATABASE [dbScriptMigracao] SET RECOVERY SIMPLE WITH NO_WAIT;
 
-	--ALTER DATABASE [dbActiveBibIntegral] SET RECOVERY FULL WITH NO_WAIT
+	--ALTER DATABASE [dbSigaSantissimaTrindade] SET RECOVERY FULL WITH NO_WAIT
 
 
 
@@ -60,7 +60,7 @@
 
 
 --sys.database_files
-	-- USE dbSigaModeloEEM;
+	-- USE dbSigaLiceu_Arquivo;
 	-- SELECT file_id, name as [logical_file_name],physical_name from sys.database_files
 
 

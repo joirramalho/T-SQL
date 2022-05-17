@@ -46,7 +46,7 @@ EXEC dbo.sp_foreachdb N'
  
 --DBCC SHRINKFILE ( dbSigaGGE_Arquivo_log , 0, TRUNCATEONLY)
 
-                -- DBCC SHRINKFILE (dbSigaSalesianoDomBosco_Arquivo_log, 0, TRUNCATEONLY) 
+                -- DBCC SHRINKFILE (dbSigaLiceu_Arquivo_log, 0, TRUNCATEONLY) 
                  
 
                 -- DBCC SHRINKFILE (dbCantinaActive_log, 0, TRUNCATEONLY) 
@@ -61,5 +61,5 @@ EXEC dbo.sp_foreachdb N'
 ,@state_desc = N'ONLINE'
 ,@user_only = 1
 ,@suppress_quotename=1
---,@name_pattern='CRM'
- ,@database_list = 'dbSigaCristoRei' --06 dbSigaCoesi
+,@name_pattern='dbSigaMigracaoAIX'
+-- ,@database_list = 'CRM' --06 dbSigaCoesi

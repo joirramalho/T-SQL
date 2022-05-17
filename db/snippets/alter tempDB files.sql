@@ -1,4 +1,4 @@
--- 11jan22
+-- 15mai22
 -- 05mai21
 
 	-- https://www.brentozar.com/blitz/tempdb-data-files/
@@ -53,7 +53,10 @@ USE [master];
 
 --	USE [master];
 	
-	--ALTER DATABASE [tempdb] ADD FILE (NAME = N'tempdev2', FILENAME = N'/var/opt/mssql/data/tempdb2.ndf' , SIZE = 8MB, FILEGROWTH = 64MB);
+		--tempdb2
+			--ALTER DATABASE [tempdb] ADD FILE (NAME = N'tempdev2', FILENAME = N'/var/opt/mssql/data/tempdb2.ndf' , SIZE = 8MB, FILEGROWTH = 64MB);
+
+	--15mai22 SQL2017Web-Template-v5d; VPS12; 			
 	--ALTER DATABASE [tempdb] ADD FILE (NAME = N'tempdev3', FILENAME = N'/var/opt/mssql/data/tempdb3.ndf' , SIZE = 8MB, FILEGROWTH = 64MB);
 	--ALTER DATABASE [tempdb] ADD FILE (NAME = N'tempdev4', FILENAME = N'/var/opt/mssql/data/tempdb4.ndf' , SIZE = 8MB, FILEGROWTH = 64MB);
 */

@@ -1,4 +1,4 @@
-USE dbSigaIntegral;
+USE dbSigaSantissimaTrindade;
 
 -- TbGrupo 
 ALTER TABLE [dbo].[TbFuncionalidadeGrupo] DROP CONSTRAINT [FK_TbFuncionalidadeGrupo_TbGrupo]
@@ -10,7 +10,7 @@ GO
 ALTER TABLE [dbo].[TbUsuarioGrupo] DROP CONSTRAINT [FK_TbUsuarioGrupo_TbGrupo]
 GO
 
-ALTER TABLE [dbo].[TbCalendarioEventoGrupo] DROP CONSTRAINT [FK__TbCalenda__IdGru__21118948]
+ALTER TABLE [dbo].[TbCalendarioEventoGrupo] DROP CONSTRAINT [FK__TbCalenda__IdGru__782F6F46]
 
 ALTER TABLE [dbo].[TbCalendarioEventoGrupo] DROP CONSTRAINT [FK__TbCalenda__IdCal__7A2CC651]
 

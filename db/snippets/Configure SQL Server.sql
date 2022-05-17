@@ -6,6 +6,7 @@
 -- Configure SQL Server on Linux with the mssql-conf tool
     -- https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-configure-mssql-conf?view=sql-server-ver15
 
+
 ami-014e9f560325b4e33 
     (Amazon Linux 2 with SQL Server 2017 Web Edition AMI provided by Amazon) 
     
@@ -78,8 +79,10 @@ reboot
 		sudo /opt/mssql/bin/mssql-conf set network.tcpport 1435
 			sudo systemctl restart mssql-server
 
+
 	-- Exibir as configurações atuais
 		sudo cat /var/opt/mssql/mssql.conf
+		
 
 	-- Validar conf
 		sudo /opt/mssql/bin/mssql-conf validate

@@ -9,8 +9,8 @@ EXEC dbo.sp_foreachdb N'
     BEGIN
         SELECT DB_NAME();
 
--- ALTER DATABASE [?] SET RECOVERY SIMPLE WITH NO_WAIT;
-        ALTER DATABASE [?] SET RECOVERY FULL WITH NO_WAIT;
+ ALTER DATABASE [?] SET RECOVERY SIMPLE WITH NO_WAIT;
+--        ALTER DATABASE [?] SET RECOVERY FULL WITH NO_WAIT;
     END
 '
 ,@print_command_only = 0 -- Obrigatório Gerar script
@@ -18,5 +18,5 @@ EXEC dbo.sp_foreachdb N'
 ,@state_desc = N'ONLINE'
 ,@user_only = 1
 ,@suppress_quotename=1
--- ,@name_pattern='';
-,@database_list = 'dbSigaPadraoInst'
+ ,@name_pattern='CRM_';
+--,@database_list = 'CRM'

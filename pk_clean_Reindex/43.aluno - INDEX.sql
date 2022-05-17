@@ -1,4 +1,6 @@
-USE dbSigaIntegral;
+USE dbSigaSantissimaTrindade;
+
+-- sp_helpindex 'TbAluno'
 
 
 IF OBJECT_ID('dbo.FK_TbAluno_TbAluno_Vinculado') IS NOT NULL
@@ -87,7 +89,7 @@ ALTER TABLE [dbo].[TbDiarioAulaChamadaOnline] DROP CONSTRAINT [FK_TbDiarioAulaCh
 
 
 
-ALTER TABLE [dbo].[TbAlunoTurmaDocumento] DROP CONSTRAINT [FK__TbAlunoTu__IdAlu__67440F0F];
+ALTER TABLE [dbo].[TbAlunoTurmaDocumento] DROP CONSTRAINT [FK__TbAlunoTu__IdAlu__3F8B2370];
 
 -- OU
 IF OBJECT_ID('dbo.FK_TbAlunoTurmaDocumento_TbAluno') IS NOT NULL

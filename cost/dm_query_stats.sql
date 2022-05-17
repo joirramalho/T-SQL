@@ -4,7 +4,7 @@
 DECLARE @DatabaseName 	sysname = NULL
 DECLARE @LoginName 		sysname = NULL
 
-	--SET @DatabaseName = 'dbSigaSaleJuvenal%'
+	SET @DatabaseName = 'dbSigaLegolar%'
 	--SET @LoginName 	= 'userModuloAracajuReadOnly%'
 
 SELECT	TOP 30

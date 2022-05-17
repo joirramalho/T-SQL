@@ -5,18 +5,18 @@
 
 --LOGIN --
 	--SENHA COM 10 caracteres								'1234567890'		
-		--CREATE LOGIN [userINSFATIMA] 		WITH PASSWORD= N'***', DEFAULT_DATABASE=[dbSigaVicentinasINF], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
+		--CREATE LOGIN [userSTrindade] 		WITH PASSWORD= N'*****', DEFAULT_DATABASE=[dbSigaSantissimaTrindade], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
 
 		--ALTER LOGIN [userMUNDODACRIANCA] DISABLE;
 
-			--DROP LOGIN [userINSFATIMA];
+			--DROP LOGIN [userASLAN];
 
 --			ALTER LOGIN [userICM_RS] ENABLE;
 
 
 -- PASSWORD
 	--												'1234567890'
-	-- ALTER LOGIN [userINSFATIMA] 	WITH PASSWORD = '****'; -- sigainternet userISO_PowerBI service.account
+	-- ALTER LOGIN [active.anderson] 	WITH PASSWORD = '****'; -- sigainternet userISO_PowerBI service.account
 
 
 	-- re-enable login without password	
@@ -26,12 +26,12 @@
 
 
 
---USE dbSigaVicentinasINF;
+--USE dbSigaSantissimaTrindade;
 
 
-	--CREATE USER 	[userINSFATIMA] 	FOR LOGIN [userINSFATIMA] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
+	--CREATE USER 	[userSTrindade] 	FOR LOGIN [userSTrindade] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
 	
-		--DROP USER [userINSFATIMA];
+		--DROP USER [userSaleDomBosco];
 	
 	
 	--	DEFAULT_DATABASE
@@ -42,7 +42,7 @@
 			--REVOKE CONNECT  FROM [siga_caruaru];
 
 
-	--ALTER ROLE [db_owner] ADD MEMBER [userINSFATIMA];
+	--ALTER ROLE [db_owner] ADD MEMBER [userSTrindade];
 
 		--EXEC master..sp_addsrvrolemember @loginame = N'active.pinto', @rolename = N'sysadmin';
 
@@ -61,7 +61,7 @@
     	--REVOKE EXECUTE TO [romario.barbalho];
 
 --ADD 
-	--ALTER ROLE [db_owner] ADD MEMBER [userSobralPinto];
+	--ALTER ROLE [db_owner] ADD MEMBER [teste_view_any_database];
 		--ALTER ROLE [db_ddladmin] ADD MEMBER [active.mardelson];
 
 	--DROP

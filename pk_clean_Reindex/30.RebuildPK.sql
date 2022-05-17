@@ -1,6 +1,6 @@
-USE dbSigaIntegral;
+USE dbSigaSantissimaTrindade;
 
---sp_helpindex "TbAluno"
+--sp_helpindex "TbAlunoFichaMedica"
 
 -- TbAlunoFichaMedica
 ALTER TABLE [dbo].[TbAlunoFichaMedica] DROP CONSTRAINT [PK_TbAlunoFichaMedica]

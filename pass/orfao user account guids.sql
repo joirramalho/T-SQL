@@ -1,7 +1,7 @@
 --07out21
 --Reset SQL user account guids 
 
---USE  dbSigaVicentinasINF;
+--USE  dbSigaSantissimaTrindade;
 
 
 --DROP USER [userINSFATIMA];

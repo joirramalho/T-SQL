@@ -7,7 +7,7 @@ DECLARE @sql nvarchar(max) = N''
  
 SELECT @sql += '[' + COLUMN_NAME + '], ' 
   FROM INFORMATION_SCHEMA.COLUMNS AS d 
-  WHERE TABLE_NAME = 'TbFavorecido'
+  WHERE TABLE_NAME = 'TbFaseNotaAlunoAvaliacao'
   	AND LEFT(COLUMN_NAME,1) <> '_'
 
 SELECT DatabaseCount = @@ROWCOUNT, cmd = @sql;

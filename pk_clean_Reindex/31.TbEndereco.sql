@@ -1,7 +1,7 @@
-USE dbSigaIntegral;
+USE dbSigaSantissimaTrindade;
 
--- USE dbSigaNSLourdesGravata;
--- USE dbSigaAuxilRecife;
+
+--sp_helpindex "TbEndereco"
 
 
 -- TbEndereco

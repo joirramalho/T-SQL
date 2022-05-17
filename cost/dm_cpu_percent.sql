@@ -4,7 +4,7 @@
 WITH DB_CPU_Stats
 AS
 (
-SELECT TOP 10
+SELECT TOP 11
 	DatabaseID, DB_Name(DatabaseID) AS [DatabaseName], SUM(total_worker_time) AS [CPU_Time_Ms]
 FROM
 	sys.dm_exec_query_stats AS qs

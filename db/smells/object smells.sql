@@ -1,4 +1,4 @@
---05mai22
+--13mai22
 	--https://www.red-gate.com/simple-talk/blogs/sql-server-table-smells/
 
 	--Rolling up multiple rows into a single row and column for SQL Server data
@@ -24,8 +24,8 @@ DECLARE @CountError INT, @CountWarning  INT
 
 EXEC [dbo].[sp_ObjectSmells] @DisplayEvidence = 1, @Errors = @CountError OUTPUT, @Warnings = @CountWarning OUTPUT
 
-PRINT @CountError
-PRINT @CountWarning
+--PRINT @CountError
+--PRINT @CountWarning
 */
 
 
@@ -37,6 +37,7 @@ PRINT @CountWarning
 --						https://rules.sonarsource.com/tsql
 
 
+--CREATE PROCEDURE dbo.sp_ObjectSmells
 ALTER PROCEDURE dbo.sp_ObjectSmells
 ( 
 	@DisplayEvidence 	BIT = 0,
@@ -99,7 +100,7 @@ BEGIN
 	IF OBJECT_ID('TEMPDB..##TEMP') IS NOT NULL
 		DROP TABLE TEMPDB..##TEMP
 	
-	CREATE TABLE TEMPDB..##TEMP ( TypeObjectOf VARCHAR(32), [ObjectName] SYSNAME, Problem VARCHAR(1024), TypeEvidenceOf TINYINT, Explication VARCHAR(1024), Command VARCHAR(1024)  )
+	CREATE TABLE TEMPDB..##TEMP ( [TypeObjectOf] VARCHAR(32), [ObjectName] SYSNAME, Problem VARCHAR(1024), TypeEvidenceOf TINYINT, Explication VARCHAR(1024), Command VARCHAR(1024)  )
 	
  	
 	
@@ -109,19 +110,13 @@ BEGIN
 		 * 
 		 *	CODE
 		 */
-			--APX1308 – Trigger should be enabled
-			SELECT DISTINCT 'TRIGGER', Object_Name(parent_id), 'trigger [' + name + '] is disabled', 3, 'https://www.sqlshack.com/triggers-in-sql-server/', ''
-			FROM sys.triggers
-			WHERE is_disabled = 1 AND parent_id > 0
-
-		UNION ALL
-			--EI017 Hardcoded current database name in procedure call
-			SELECT 'DATABASE', Object_Name(a.object_id), 'hardcoded database name reference: ' + type_desc COLLATE SQL_Latin1_General_CP1_CI_AI + ' [' + object_name(a.object_id) + '] in ' + DB_NAME() + ' pointing to ' + x.name, 3, 'https://documentation.red-gate.com/codeanalysis/code-analysis-for-sql-server/execution-rules/ei026', ''
+			EI017 Hardcoded current database name in procedure call
+			SELECT 'DATABASE', Object_Name(a.object_id), 'hardcoded database name reference in ' + type_desc COLLATE SQL_Latin1_General_CP1_CI_AI + ' [' + object_name(a.object_id) + '] in ' + DB_NAME() + ' pointing to ' + x.name, 3, 'https://documentation.red-gate.com/codeanalysis/code-analysis-for-sql-server/execution-rules/ei026', ''
 			FROM sys.sql_modules a
 			LEFT JOIN sys.objects o ON o.object_id = a.object_id 
 			CROSS  apply (select name from master.sys.databases where name <> DB_NAME() and database_id > 4 and len(name) > 3) x
 			WHERE patindex(concat('%from%',x.name,'.%.%') collate database_default, a.definition collate database_default ) > 0
-
+			
 		UNION ALL
 
 			--APX1207 – Missing SET NOCOUNT ON before Unatteended DML execution
@@ -132,6 +127,35 @@ BEGIN
 
 		UNION ALL
 
+			--APX1207 – Missing SET NOCOUNT ON before Unatteended DML execution
+			--PE009 No SET NOCOUNT ON before DML
+			SELECT 'PROCEDURE', Object_Name(object_id), 'procedure [' + Object_Name(object_id) + '] has got NOCOUNT ON', 2, 'https://www.sqlshack.com/sql-server-set-options-affect-query-result-set-concat_null_yields_null-set-numeric_roundabort-set-quoted_identifier-set--set-xact_abort/', ''
+			FROM sys.procedures AS p /* Triggers lacking `SET NOCOUNT ON`, which can cause unexpected results WHEN USING OUTPUT */
+        	WHERE object_definition(object_id) LIKE '%SET NOCOUNT OFF%'
+
+		UNION ALL
+
+			-- APX1271 – SET ANSI_PADDING OFF
+			SELECT 'PROCEDURE', Object_Name(object_id), 'procedure [' + Object_Name(object_id) + '] has got ANSI_PADDING OFF', 3, 'https://docs.microsoft.com/en-us/previous-versions/sql/sql-server-2008/ms143729(v=sql.100)?redirectedfrom=MSDN', ''
+			FROM sys.procedures AS p 
+        	WHERE object_definition(object_id) LIKE '%SET ANSI_PADDING OFF%'
+
+        UNION ALL
+
+			--APX1139 – WAITFOR delay statement
+			SELECT 'PROCEDURE', Object_Name(object_id), 'procedure [' + Object_Name(object_id) + '] has got WAITFOR', 4, 'https://www.sqlshack.com/sql-server-wait-type-waitfor/', ''
+			FROM sys.procedures AS p 
+        	WHERE object_definition(object_id) LIKE '%WAITFOR%' AND Object_Name(object_id) <> 'sp_ObjectSmells'
+        	
+		UNION ALL
+
+			--APX1308 – Trigger should be enabled
+			SELECT DISTINCT 'TRIGGER', Object_Name(parent_id), 'trigger [' + name + '] is disabled', 3, 'https://www.sqlshack.com/triggers-in-sql-server/', ''
+			FROM sys.triggers
+			WHERE is_disabled = 1 AND parent_id > 0
+
+		UNION ALL
+
 			--MI008 QUOTED_IDENTIFIERS option inside stored procedure, trigger or function
         	SELECT 'TRIGGER', Object_Name(ta.object_id), 'trigger [' + Object_Name(tr.object_id) + '] has''nt got NOCOUNT ON', 2, '', ''
 			FROM sys.tables AS ta /* Triggers lacking `SET NOCOUNT ON`, which can cause unexpected results WHEN USING OUTPUT */
@@ -139,15 +163,7 @@ BEGIN
 			INNER JOIN sys.sql_modules 	AS mo ON tr.object_id = mo.object_id
         	WHERE definition NOT LIKE '%SET NOCOUNT ON%'
 	        
-		UNION ALL
-
-			--APX1207 – Missing SET NOCOUNT ON before Unatteended DML execution
-			--PE009 No SET NOCOUNT ON before DML
-			SELECT 'PROCEDURE', Object_Name(object_id), 'procedure [' + Object_Name(object_id) + '] has''nt got NOCOUNT ON', 2, 'https://www.sqlshack.com/sql-server-set-options-affect-query-result-set-concat_null_yields_null-set-numeric_roundabort-set-quoted_identifier-set--set-xact_abort/', ''
-			FROM sys.procedures AS p /* Triggers lacking `SET NOCOUNT ON`, which can cause unexpected results WHEN USING OUTPUT */
-        	WHERE object_definition(object_id) LIKE '%SET NOCOUNT OFF%'
-
-		UNION ALL
+        UNION ALL
 
 			--APX1123 – SET NOCOUNT OFF Usage
 			--MI008 QUOTED_IDENTIFIERS option inside stored procedure, trigger or function
@@ -157,7 +173,15 @@ BEGIN
 			INNER JOIN sys.sql_modules 	AS mo ON tr.object_id = mo.object_id
         	WHERE definition LIKE '%SET NOCOUNT OFF%'
         	
+        UNION ALL
 
+			--MI008 QUOTED_IDENTIFIERS option inside stored procedure, trigger or function
+        	SELECT 'TRIGGER', Object_Name(ta.object_id), 'trigger [' + Object_Name(tr.object_id) + '] has got WAITFOR', 4, '', ''
+			FROM sys.tables AS ta /* Triggers lacking `SET NOCOUNT ON`, which can cause unexpected results WHEN USING OUTPUT */
+			INNER JOIN sys.triggers 	AS tr ON tr.parent_id = ta.object_id
+			INNER JOIN sys.sql_modules 	AS mo ON tr.object_id = mo.object_id
+        	WHERE definition  LIKE '%WAITFOR%'
+	        
 		UNION ALL
         	
 			--APX1123 – SET NOCOUNT OFF Usage
@@ -167,6 +191,7 @@ BEGIN
 			INNER JOIN sys.objects o ON m.object_id=o.object_id
 			WHERE type_desc like '%function%' AND definition LIKE '%SET NOCOUNT OFF%'
 			
+
 		/*
 		 * 
 		 *	DESIGN
@@ -185,6 +210,46 @@ BEGIN
 	        SELECT 'TABLE', Object_Name(sys.tables.object_id), 'No primary key', 4, 'https://docs.microsoft.com/en-us/sql/relational-databases/tables/create-primary-keys?view=sql-server-2017', ''
 	        FROM sys.tables /* see whether the table has a primary key */
 	        WHERE ObjectProperty(object_id, 'TableHasPrimaryKey') = 0
+	        
+    	UNION ALL
+
+			--APX1225 – Missing clustered index
+    		SELECT DISTINCT 'TABLE', Object_Name(sys.tables.object_id), 'Heap table (Tabelas sem índices clusterizados)', 3, 'https://docs.microsoft.com/pt-br/sql/relational-databases/indexes/heaps-tables-without-clustered-indexes?view=sql-server-ver15', ''
+	        FROM sys.indexes /* see whether the table is a heap */
+	        INNER JOIN sys.tables ON sys.tables.object_id = sys.indexes.object_id
+	        WHERE sys.indexes.type = 0
+          	
+		UNION ALL
+
+			--APX1229 – Missing primary key		
+			SELECT 'TABLE', Object_Name(sys.tables.object_id), 'No candidate key', 2, 'https://docs.microsoft.com/en-us/sql/relational-databases/tables/create-primary-keys?view=sql-server-2017', ''
+          	FROM sys.tables /* if no unique constraint then it isn't relational */
+          	WHERE ObjectProperty(object_id, 'TableHasUniqueCnst') = 0	AND ObjectProperty(object_id, 'TableHasPrimaryKey') = 0
+          	
+		UNION ALL
+				
+        	SELECT 'TABLE', Object_Name(object_id), 'wide table (contain ' + CAST( max_column_id_used AS VARCHAR) + ' columns)' + ' (more than 15 columns)' , 2, '', ''
+			FROM sys.tables /* see whether the table has more than 15 columns */
+			WHERE max_column_id_used > 15
+
+		UNION ALL
+
+        	SELECT 'TABLE', Object_Name(object_id), 'unrelated to any other table', 2, '', ''
+          	FROM sys.tables /* found a simpler way! */
+          	WHERE ObjectPropertyEx(object_id, 'TableHasForeignKey') = 0	AND ObjectPropertyEx(object_id, 'TableHasForeignRef') = 0
+            
+		UNION ALL
+
+			SELECT 'TABLE', Object_Name(sys.tables.object_id), 'not referenced by procedure, view or function', 2, '', ''
+			FROM sys.tables /* table not referenced by any routine */
+			LEFT OUTER JOIN sys.sql_expression_dependencies	ON referenced_id = sys.tables.object_id
+			WHERE referenced_id IS NULL
+
+		UNION ALL
+
+			SELECT 'TABLE', Object_Name(sys.tables.object_id), 'can''t be indexed', 2, '', ''
+			FROM sys.tables /* see whether the table has a primary key */
+			WHERE ObjectProperty(object_id, 'IsIndexable') = 0
 	        
 		UNION ALL
 
@@ -205,6 +270,21 @@ BEGIN
           	FROM sys.indexes /* don't leave these lying around */
           	WHERE is_disabled = 1
           	
+		UNION ALL
+
+        	SELECT DISTINCT 'INDEX', Object_Name(object_id), 'low Fill-Factor less than 80%', 3, '', ''
+          	FROM sys.indexes /* a fill factor of less than 80 raises eyebrows */
+          	WHERE fill_factor <> 0	AND fill_factor < 80	AND is_disabled = 0	AND is_hypothetical = 0
+
+		UNION ALL
+
+          	--Using too many indexes
+       		SELECT 'INDEX', t.name, 'Using too many indexes', 2, '', ''
+			FROM 	sys.indexes ind 
+			INNER JOIN sys.tables t ON ind.object_id = t.object_id 
+			GROUP BY t.name
+			HAVING count(*) > 3
+	
 		UNION ALL
 
         	SELECT DISTINCT 'CONSTRAINT', Object_Name(parent_object_id), 'constraint [' + name + '] is untrusted', 3, 'https://www.sqlshack.com/commonly-used-sql-server-constraints-foreign-key-check-default/', ''
@@ -240,8 +320,37 @@ BEGIN
 			--				AND DataType IN ('varchar', 'nvarchar' )
 			--				AND MaxLength < 3
 
-	    
+		UNION ALL
 
+			--column has a collation different from the database', 3
+			SELECT 'COLUMN', Object_Name(c.object_id), 'has a column ''[' + c.name + ']'' that has a collation ''' + collation_name + ''' different from the database', 3, '', ''
+          	FROM sys.columns AS c
+          	WHERE COALESCE(collation_name, '') <> DatabasePropertyEx(Db_Id(), 'Collation')
+
+      	UNION ALL
+
+			--BP022 - Avoid use of the MONEY and SMALLMONEY datatypes      	
+      		SELECT 'COLUMN', t.name, 'possibility to loss precision due to rounding errors Using money/smallmoney in [' + c.name + '] (Using the DECIMAL data type instead)', 3, 'https://www.red-gate.com/hub/product-learning/sql-prompt/avoid-use-money-smallmoney-datatypes', ''
+			FROM  sys.columns c
+			JOIN sys.tables t	ON t.object_id = c.object_id
+			WHERE type_name(user_type_id) in ('smallmoney', 'money')
+
+      	UNION ALL
+
+			--SQL CODE ANALYSIS - The Dangers of using Float or Real Datatypes      	
+      		SELECT 'COLUMN', t.name, 'possibility to loss precision due to rounding errors Using float in [' + c.name + '] (Using the DECIMAL data type instead)', 3, 'https://www.red-gate.com/hub/product-learning/sql-prompt/the-dangers-of-using-float-or-real-datatypes?topic=sql-code-analysis', ''
+			FROM  sys.columns c
+			JOIN sys.tables t	ON t.object_id = c.object_id
+			WHERE type_name(user_type_id) in ('float')
+	        
+      	UNION ALL
+
+			--SQL CODE ANALYSIS - The Dangers of using Float or Real Datatypes      	
+      		SELECT 'COLUMN', t.name, 'possibility to loss precision due to rounding errors Using real in [' + c.name + '] (Using the DECIMAL data type instead)', 3, 'https://www.red-gate.com/hub/product-learning/sql-prompt/the-dangers-of-using-float-or-real-datatypes?topic=sql-code-analysis', ''
+			FROM  sys.columns c
+			JOIN sys.tables t	ON t.object_id = c.object_id
+			WHERE type_name(user_type_id) in ('real')
+	        
 		/*
 		 * 
 		 *	Deprecated features
@@ -277,7 +386,8 @@ BEGIN
 			INNER JOIN sys.triggers 	AS tr ON tr.parent_id = ta.object_id
 			INNER JOIN sys.sql_modules 	AS mo ON tr.object_id = mo.object_id
         	WHERE definition LIKE '%SET ROWCOUNT%'
-	        
+	       
+        	
 		/*
 		 * 
 		 *	Maintenance
@@ -302,44 +412,8 @@ BEGIN
 		 * 
 		 *	3-WARNING
 		 */
-    	UNION ALL
-
-    		SELECT DISTINCT 'INDEX', Object_Name(sys.tables.object_id), 'Heap table', 3, 'Tabelas sem índices clusterizados', 'https://docs.microsoft.com/pt-br/sql/relational-databases/indexes/heaps-tables-without-clustered-indexes?view=sql-server-ver15'
-	        FROM sys.indexes /* see whether the table is a heap */
-	        INNER JOIN sys.tables ON sys.tables.object_id = sys.indexes.object_id
-	        WHERE sys.indexes.type = 0
-
 		UNION ALL
 
-			--Problems_with_Table_Design
-			--column has a collation different from the database', 3
-			SELECT 'COLUMN', Object_Name(c.object_id), 'has a column ''[' + c.name + ']'' that has a collation ''' + collation_name + ''' different from the database', 3, '', ''
-          	FROM sys.columns AS c
-          	WHERE Coalesce(collation_name, '') <> DatabasePropertyEx(Db_Id(), 'Collation')
-
-
-		
-         UNION ALL
-	
-			--Problems_with_Data_Types
-	        SELECT 'TABLE', [TableName], 'possibility to loss precision due to rounding errors Using money in [' + ColumnName + '] (Using the DECIMAL data type instead)', 3, '', ''
-	        FROM _column_details_extended_property
-	        WHERE TableType = 'COLUMN'
-					AND DataType IN ( 'money' )
-				
-		UNION ALL
-
-			--Problems_with_Table_Design
-        	SELECT DISTINCT 'INDEX', Object_Name(object_id), 'low Fill-Factor less than 80%', 3, '', ''
-          	FROM sys.indexes /* a fill factor of less than 80 raises eyebrows */
-          	WHERE fill_factor <> 0
-	            AND fill_factor < 80
-	            AND is_disabled = 0
-	            AND is_hypothetical = 0
-
-		UNION ALL
-
-			--Problems_with_Table_Design
 			--Using too many or too few indexes
        		SELECT 'TABLE', Object_Name(sys.tables.object_id), 'No index at all', 2, '', ''
           	FROM sys.tables /* see whether the table has any index */
@@ -347,30 +421,6 @@ BEGIN
 
 		UNION ALL
 
-          	--Using too many indexes
-       		SELECT 'INDEX', t.name, 'Using too many indexes', 2, '', ''
-			FROM 	sys.indexes ind 
-			INNER JOIN sys.tables t ON ind.object_id = t.object_id 
-			GROUP BY t.name
-			HAVING count(*) > 3
-	
-		UNION ALL
-
-			--Problems_with_Table_Design
-			SELECT 'TABLE', Object_Name(sys.tables.object_id), 'No candidate key', 2, 'APX1229 – Missing primary key', ''
-          	FROM sys.tables /* if no unique constraint then it isn't relational */
-          	WHERE ObjectProperty(object_id, 'TableHasUniqueCnst') = 0	AND ObjectProperty(object_id, 'TableHasPrimaryKey') = 0
-
-		UNION ALL
-				
-			--Problems_with_Table_Design
-        	SELECT 'TABLE', Object_Name(object_id), 'wide table (more than 15 columns)', 2, '', ''
-			FROM sys.tables /* see whether the table has more than 15 columns */
-			WHERE max_column_id_used > 15
-
-		UNION ALL
-
-			--Problems_with_Table_Design
        		SELECT DISTINCT 'COLUMN', Object_Name(object_id), 'unintelligible column names', 2, '', ''
           	FROM sys.columns /* column names with no letters in them */
           	WHERE name COLLATE Latin1_General_CI_AI NOT LIKE '%[A-Z]%' COLLATE Latin1_General_CI_AI
@@ -382,50 +432,23 @@ BEGIN
           	FROM sys.columns /* column names that need delimiters*/
           	WHERE name COLLATE Latin1_General_CI_AI LIKE '%[^_@$#A-Z0-9]%' COLLATE Latin1_General_CI_AI
 
-		UNION ALL
-
-			--Problems_with_Table_Design
-        	SELECT 'TABLE', Object_Name(object_id), 'unrelated to any other table', 2, '', ''
-          	FROM sys.tables /* found a simpler way! */
-          	WHERE ObjectPropertyEx(object_id, 'TableHasForeignKey') = 0
-            AND ObjectPropertyEx(object_id, 'TableHasForeignRef') = 0
 
 		UNION ALL
 
-			--Problems_with_Table_Design
         	SELECT 'INDEX', Object_Name(Ic.object_id), Col_Name(Ic.object_id, Ic.column_id) + ' is a GUID in a clustered index', 2, '', '' /* GUID in a clustered IX */
           	FROM sys.index_columns AS Ic
 			INNER JOIN sys.tables AS tables ON tables.object_id = Ic.object_id
             INNER JOIN sys.columns AS c ON c.object_id = Ic.object_id AND c.column_id = Ic.column_id
             INNER JOIN sys.types AS t ON t.system_type_id = c.system_type_id
             INNER JOIN sys.indexes AS i ON i.object_id = Ic.object_id AND i.index_id = Ic.index_id
-          	WHERE t.name = 'uniqueidentifier'
-            	AND i.type_desc = 'CLUSTERED'
+          	WHERE t.name = 'uniqueidentifier'	AND i.type_desc = 'CLUSTERED'
 
-		UNION ALL
-
-			--Problems_with_Table_Design
-			SELECT 'TABLE', Object_Name(sys.tables.object_id), 'not referenced by procedure, view or function', 2, '', ''
-			FROM sys.tables /* table not referenced by any routine */
-			LEFT OUTER JOIN sys.sql_expression_dependencies	ON referenced_id = sys.tables.object_id
-			WHERE referenced_id IS NULL
-
-		UNION ALL
-
-			--Problems_with_Table_Design
-			SELECT 'TABLE', Object_Name(sys.tables.object_id), 'can''t be indexed', 2, '', ''
-			FROM sys.tables /* see whether the table has a primary key */
-			WHERE ObjectProperty(object_id, 'IsIndexable') = 0
-	        
 		UNION ALL
 
 			--Problems_with_Table_Design
         	SELECT DISTINCT 'TABLE', Object_Name(object_id), 'leftover fake index(es) (restos de índice(s) falso(s))', 2, '', ''
           	FROM sys.indexes /* don't leave these lying around */
           	WHERE is_hypothetical = 1
-
-        	
-
 		/*
 		 * 
 		 *	1-INFO
