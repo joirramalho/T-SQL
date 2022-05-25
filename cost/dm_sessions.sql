@@ -1,9 +1,9 @@
 --16abr22
 
 DECLARE @DatabaseName 	sysname = NULL
-DECLARE @LoginName 		sysname = NULL
+--DECLARE @LoginName 		sysname = NULL
 
---SET @DatabaseName = 'dbSigaCognitivo' -- dbSigaIEPAM or dbSigaAraraAzul -- dbSigaCrodrigues ou dbSigaVitGoncalves
+--SET @DatabaseName = 'dbSigaFFerrari' -- dbSigaIEPAM or dbSigaAraraAzul -- dbSigaCrodrigues ou dbSigaVitGoncalves
 --SET @LoginName 	= 'sigaadmin%'
 
 -- Databases on & offline
@@ -22,7 +22,7 @@ LEFT JOIN sys.dm_exec_sessions s ON d.database_id  = s.database_id
 WHERE
 	d.database_id > 4
 	and login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND PROGRAM_NAME NOT LIKE ('ADO_MESSENGER_ADO%') AND PROGRAM_NAME NOT LIKE ('ADO_SIGA_NFSe%')	--IS_USER_PROCESS = 1
---	AND DB_Name(d.database_id) LIKE ISNULL( @DatabaseName, DB_Name(d.database_id) ) 		
+	AND DB_Name(d.database_id) LIKE ISNULL( @DatabaseName, DB_Name(d.database_id) ) 		
 --	AND LOGIN_NAME LIKE ISNULL( @LoginName, LOGIN_NAME ) 	
 --	and state = 0 			-- 0 ON-LINE -- 6 OFF-LINE
 --	and recovery_model = 1   -- 1-FULL 3-simple
@@ -54,14 +54,15 @@ ORDER BY
 
 
 --ADO_MESSENGER_ADO & ADO_SIGA_NFSe
-		SELECT	DB_Name(database_id)  AS [DatabaseName], last_request_start_time, login_name, RTRIM( 'KILL ' + CAST( session_id AS CHAR ) ) + ';' AS [kill], program_name, [status], login_time, host_name--, logical_reads, row_count, reads, writes
-		FROM	sys.dm_exec_sessions
-		WHERE login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND ( PROGRAM_NAME LIKE ('ADO_MESSENGER_ADO%') OR PROGRAM_NAME LIKE ('ADO_SIGA_NFSe%') )
-			AND DB_Name(database_id) LIKE ISNULL( @DatabaseName, DB_Name(database_id) ) 		
-		ORDER BY DB_Name(database_id)
+--		SELECT	DB_Name(database_id)  AS [DatabaseName], last_request_start_time, login_name, RTRIM( 'KILL ' + CAST( session_id AS CHAR ) ) + ';' AS [kill], program_name, [status], login_time, host_name--, logical_reads, row_count, reads, writes
+--		FROM	sys.dm_exec_sessions
+--		WHERE login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND ( PROGRAM_NAME LIKE ('ADO_MESSENGER_ADO%') OR PROGRAM_NAME LIKE ('ADO_SIGA_NFSe%') )
+----			AND DB_Name(database_id) LIKE ISNULL( @DatabaseName, DB_Name(database_id) ) 		
+--		ORDER BY DB_Name(database_id)
 	
 
                             
+	
 --GROUP BY program_name
 	--SELECT program_name, COUNT(*)
 	--	
@@ -106,26 +107,28 @@ ORDER BY
 
 
 --LIST BY client_net_address, DB_Name(database_id)
-		SELECT
-				CASE 
-				WHEN client_net_address = '172.31.28.81' THEN 'MSG01'
-				WHEN client_net_address = '172.31.28.104' THEN 'MSG02'
-				WHEN client_net_address = '172.31.28.121' THEN 'MSG03'
-				WHEN client_net_address = '172.31.24.57' THEN 'MSG04'
-				WHEN client_net_address = '172.31.22.68' THEN 'MSG05'
-				ELSE client_net_address
-			END AS [Messenger],
-			DB_Name(database_id) AS [DatabaseName]
-		FROM
-			sys.dm_exec_sessions s
-		JOIN sys.dm_exec_connections AS c
-		    ON c.session_id = s.session_id
-		WHERE
-			s.login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND s.PROGRAM_NAME LIKE ('ADO_MESSENGER_ADO%')
-			AND DB_Name(database_id) LIKE ISNULL( @DatabaseName, DB_Name(database_id) ) 		
-			AND LOGIN_NAME LIKE ISNULL( @LoginName, LOGIN_NAME ) 	
-		
-		ORDER BY
-			Messenger, DatabaseName
+--		SELECT
+--				CASE 
+--				WHEN client_net_address = '172.31.28.81' THEN 'MSG01'
+--				WHEN client_net_address = '172.31.28.104' THEN 'MSG02'
+--				WHEN client_net_address = '172.31.28.121' THEN 'MSG03'
+--				WHEN client_net_address = '172.31.24.57' THEN 'MSG04'
+--				WHEN client_net_address = '172.31.22.68' THEN 'MSG05'
+--				ELSE client_net_address
+--			END AS [Messenger],
+--			DB_Name(database_id) AS [DatabaseName]
+--		FROM
+--			sys.dm_exec_sessions s
+--		JOIN sys.dm_exec_connections AS c
+--		    ON c.session_id = s.session_id
+--		WHERE
+--			s.login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND s.PROGRAM_NAME LIKE ('ADO_MESSENGER_ADO%')
+--			AND DB_Name(database_id) LIKE ISNULL( @DatabaseName, DB_Name(database_id) ) 		
+--			AND LOGIN_NAME LIKE ISNULL( @LoginName, LOGIN_NAME ) 	
+--		
+--		ORDER BY
+--			Messenger, DatabaseName
 
+	
+	
 	

@@ -110,7 +110,7 @@ BEGIN
 		 * 
 		 *	CODE
 		 */
-			EI017 Hardcoded current database name in procedure call
+			--EI017 Hardcoded current database name in procedure call
 			SELECT 'DATABASE', Object_Name(a.object_id), 'hardcoded database name reference in ' + type_desc COLLATE SQL_Latin1_General_CP1_CI_AI + ' [' + object_name(a.object_id) + '] in ' + DB_NAME() + ' pointing to ' + x.name, 3, 'https://documentation.red-gate.com/codeanalysis/code-analysis-for-sql-server/execution-rules/ei026', ''
 			FROM sys.sql_modules a
 			LEFT JOIN sys.objects o ON o.object_id = a.object_id 

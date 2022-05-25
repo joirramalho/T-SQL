@@ -1,7 +1,7 @@
 --17ago21
 
 sp_exibirBancos
-    dbLogRestore.dbo.sp_exibirBancos 'CRM', '288959'
+    dbLogRestore.dbo.sp_exibirBancos 'CRM', '372145'
 
     -- dbLogRestore.dbo.sp_exibirBancos  'banco', 'dbSigaFACHO'
 
@@ -63,7 +63,7 @@ sp_restore
             -- dbLogRestore..sp_restore 'dbSigaModeloWEB', '273581', 'active.luizmatheus', 'NAO', 'NAO', 'nuvem'
 
     -- LOCAL
-		--dbLogRestore..sp_restore 'dbSigaSantaGertrudes202110201800', '310545', 'active.rogeriobrollo', 'NAO', 'NAO', 'local'  
+		--dbLogRestore..sp_restore 'dbSigaEspacoEducar_2022-05-24_07h00m', '372145', 'active.wantuilson', 'NAO', 'NAO', 'local'  
 
     
     -- RETROATIVO SEMANA ANTERIOR

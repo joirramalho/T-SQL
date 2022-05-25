@@ -1,4 +1,4 @@
--- 28abr22
+-- 18mai22
 -- 01abr22 -- Executado em todos e passado PARA ANDERSON ...
 
 -- VPS08; VPS04; VPS11; VPS06; VPS09; VPS01; VPS02; VPS03; VPS05; VPS07; VPS10; VPS12.

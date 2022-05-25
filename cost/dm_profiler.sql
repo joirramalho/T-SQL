@@ -1,12 +1,15 @@
+--23mai22
 --14jan22
 	--Logging ALL Queries on a SQL Server 2008 Express Database?
 		--https://stackoverflow.com/questions/123781/logging-all-queries-on-a-sql-server-2008-express-database
 
-DECLARE @DatabaseName 	sysname = NULL
+--USE [dbSiga]
 
---SET @DatabaseName = 'dbSigaENSVitoriasRN%'
+	--DECLARE @DatabaseName 	sysname = NULL
+	
+	--SET @DatabaseName = 'dbSigaASLAN%'
 
-SELECT TOP 50  -- *
+SELECT TOP 20  -- *
 	deqs.last_execution_time AS [Time]
 	,DB_Name(	ISNULL(dest.dbid, CONVERT(SMALLINT, att.value))  	) AS my_dbid
 	,OBJECT_NAME(dest.objectid, dest.dbid) AS object_name
@@ -20,5 +23,5 @@ FROM 	sys.dm_exec_query_stats AS deqs
 CROSS 	APPLY sys.dm_exec_sql_text(deqs.sql_handle) AS dest
 CROSS 	APPLY sys.dm_exec_plan_attributes(deqs.plan_handle) att
 WHERE 	att.attribute='dbid'
-	AND DB_Name(dest.dbid) LIKE ISNULL( @DatabaseName, DB_Name(dest.dbid) ) 		
+	--	AND DB_Name(dest.dbid) LIKE ISNULL( @DatabaseName, DB_Name(dest.dbid) ) 		
 ORDER BY deqs.last_execution_time DESC

@@ -46,13 +46,13 @@ EXEC dbo.sp_foreachdb N'
  
 --DBCC SHRINKFILE ( dbSigaGGE_Arquivo_log , 0, TRUNCATEONLY)
 
-                -- DBCC SHRINKFILE (dbSigaLiceu_Arquivo_log, 0, TRUNCATEONLY) 
+                -- DBCC SHRINKFILE (dbSigaOverdose_Arquivo_log, 0, TRUNCATEONLY) 
                  
 
                 -- DBCC SHRINKFILE (dbCantinaActive_log, 0, TRUNCATEONLY) 
                 
 
- 		ALTER DATABASE [?] SET RECOVERY FULL WITH NO_WAIT
+-- 		ALTER DATABASE [?] SET RECOVERY FULL WITH NO_WAIT
 
     END
 '
@@ -61,5 +61,5 @@ EXEC dbo.sp_foreachdb N'
 ,@state_desc = N'ONLINE'
 ,@user_only = 1
 ,@suppress_quotename=1
-,@name_pattern='dbSigaMigracaoAIX'
--- ,@database_list = 'CRM' --06 dbSigaCoesi
+,@name_pattern='CRM_340689v2'
+-- ,@database_list = 'dbSigaOverdose' --06 dbSigaCoesi

@@ -72,7 +72,8 @@ WHERE
     
  --USE [master]
 --GO
---CREATE LOGIN [TESTE] WITH PASSWORD=N'teste123', DEFAULT_DATABASE=[master], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF
+--CREATE LOGIN [userAslan] WITH PASSWORD=N'RWW39uGkM6', DEFAULT_DATABASE=[dbSigaAslan], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF
+--CREATE LOGIN [userAslan_ReportServer] WITH PASSWORD=N'RWX39uGxM6', DEFAULT_DATABASE=[dbSigaAslan], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF
 --GO
     
 
@@ -82,29 +83,29 @@ WHERE
     
     
 --REVOKE VIEW ANY DATABASE FROM [public]
---REVOKE VIEW ANY DATABASE FROM [teste]
+	--REVOKE VIEW ANY DATABASE FROM [teste]
 --GO
 
     
-ALTER AUTHORIZATION ON DATABASE::dbTeste TO [teste];
-
 SELECT name as [DB Name],
     suser_sname(owner_sid) as [Owner] 
 FROM sys.databases
     
     
-USE [DBTeste]
-GO
+USE [dbSigaAslan]
 
-CREATE USER [teste] FOR LOGIN [teste]
-GO
+	--CREATE USER [userAslan_ReportServer] FOR LOGIN [userAslan_ReportServer]
+	
+	--ALTER ROLE [db_datareader] ADD MEMBER [userAslan_ReportServer]
 
-ALTER ROLE [db_datareader] ADD MEMBER [teste]
-GO
+		--DROP USER [userAslan_ReportServer];
+		--exec sp_droprolemember 'db_datareader', 'userAslan_ReportServer';
 
+
+	ALTER AUTHORIZATION ON DATABASE::dbSigaAslan TO [userAslan_ReportServer];
 
 
 
 SELECT *
 FROM sys.database_permissions
-WHERE grantee_principal_id = USER_ID('teste')
+WHERE grantee_principal_id = USER_ID('userAslan_ReportServer')

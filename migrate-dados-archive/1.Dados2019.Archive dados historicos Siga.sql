@@ -6,6 +6,25 @@
 
 
 
+-- Script SELECT
+EXEC dbo.sp_foreachdb N'
+    USE [?]
+
+	SELECT DB_NAME()
+
+    SELECT Tabela, year( DataHora ), count(*)	FROM ?.dbo.TbAuditoria  WHERE   Tabela IN (''Sistema_Login'',''Sistema_LogOut'',''TbDiarioFrequencia'',''TbDiarioAula'',''TbDiario'',''TbFaseNota'',''TbDiarioAluno'') AND year(DataHora) < ( year( getdate() ) - 1 ) group by Tabela, year( DataHora )        order by year( DataHora ) DESC
+'
+,@print_command_only = 0
+,@print_dbname=0
+,@state_desc = N'ONLINE'
+,@user_only = 1
+,@suppress_quotename=1
+,@name_pattern='dbSigaNeves';
+-- ,@database_list = 'dbSigaNeves';
+
+
+
+
 EXEC dbo.sp_foreachdb N'
 --    BEGIN TRAN
 --        SELECT  * INTO VPS04_20220410_Dados2019_Arquivo.dbo.?_TbFaseNotaAluno_Auditoria FROM ?.dbo.TbFaseNotaAluno_Auditoria WHERE year(DataHora) < ( year( getdate() ) - 2 )
