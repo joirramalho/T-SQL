@@ -17,9 +17,9 @@
 
 
 --ONLINE
-	--ALTER DATABASE dbSigaLiceu_Arquivo01 SET ONLINE;
+	--ALTER DATABASE dbSigaAslan SET ONLINE;
 	
-	--ALTER DATABASE dbCantinaContempUnd3 SET OFFLINE;
+	--ALTER DATABASE dbSigaAslan SET OFFLINE;
 
 		--DROP
 			--DROP DATABASE dbSigaRaizes
@@ -33,16 +33,16 @@
 
 
 --READ_WRITE & READ_ONLY
-	--ALTER DATABASE dbSigaOverdose_Arquivo    SET  READ_WRITE WITH NO_WAIT
+	--ALTER DATABASE dbSigaAslan    SET  READ_WRITE WITH NO_WAIT
 
 	--ALTER DATABASE dbSigaOverdose_Arquivo    SET  READ_ONLY WITH NO_WAIT
 
 
 
 --SET RECOVERY
-	--ALTER DATABASE [dbSigaOverdose_Arquivo] SET RECOVERY SIMPLE WITH NO_WAIT;
+	--ALTER DATABASE [dbLogMonitor] SET RECOVERY SIMPLE WITH NO_WAIT;
 
-	--ALTER DATABASE [dbSigaSantissimaTrindade] SET RECOVERY FULL WITH NO_WAIT
+	--ALTER DATABASE [dbSigaAslan] SET RECOVERY FULL WITH NO_WAIT
 
 
 
@@ -60,7 +60,7 @@
 
 
 --sys.database_files
-	-- USE dbSigaLiceu_Arquivo;
+	-- USE dbSigaIPZenira2;
 	-- SELECT file_id, name as [logical_file_name],physical_name from sys.database_files
 
 

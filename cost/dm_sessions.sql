@@ -21,7 +21,9 @@ FROM	sys.databases d
 LEFT JOIN sys.dm_exec_sessions s ON d.database_id  = s.database_id
 WHERE
 	d.database_id > 4
-	and login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) AND PROGRAM_NAME NOT LIKE ('ADO_MESSENGER_ADO%') AND PROGRAM_NAME NOT LIKE ('ADO_SIGA_NFSe%')	--IS_USER_PROCESS = 1
+	and login_name NOT IN ( 'sa', 'sa_DESATIVADO', 'NT AUTHORITY\NETWORK SERVICE' ) 
+--	AND PROGRAM_NAME NOT LIKE ('ADO_MESSENGER_ADO%') 
+	AND PROGRAM_NAME NOT LIKE ('ADO_SIGA_NFSe%')	--IS_USER_PROCESS = 1
 	AND DB_Name(d.database_id) LIKE ISNULL( @DatabaseName, DB_Name(d.database_id) ) 		
 --	AND LOGIN_NAME LIKE ISNULL( @LoginName, LOGIN_NAME ) 	
 --	and state = 0 			-- 0 ON-LINE -- 6 OFF-LINE

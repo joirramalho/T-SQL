@@ -1,4 +1,4 @@
-USE dbSigaSantissimaTrindade;
+USE dbSigaAslan;
 
 -- TbOptProva
 ALTER TABLE [dbo].[TbOptProvaAlunoTurma] DROP CONSTRAINT [FK_TbOptProvaAlunoTurma_TbOptProva]

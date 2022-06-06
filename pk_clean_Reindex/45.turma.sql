@@ -1,4 +1,4 @@
-USE dbSigaSantissimaTrindade;
+USE dbSigaAslan;
 
 -- TbTurma 
 ALTER TABLE [dbo].[TbAlunoPeriodo] DROP CONSTRAINT [FK_TbCursoPeriodo_TbTurma]
@@ -98,6 +98,15 @@ ALTER TABLE [dbo].[TbServicoAdicionalTurma] DROP CONSTRAINT [FK_TbServicoAdicion
 ALTER TABLE [dbo].[TbCalendarioEventoTurma] DROP CONSTRAINT [FK_TbCalendarioEventoTurma_TbTurma]
 
 
+ALTER TABLE [dbo].[TbFaseNotaAlunoAvaliacao] DROP CONSTRAINT [FK_TbFaseNotaAlunoAvaliacao_TbFaseNotaAvaliacao]
+
+ALTER TABLE [dbo].[TbFaseNotaAvaliacao] DROP CONSTRAINT [FK_TbFaseNotaAvaliacao_IdTurma]
+
+ALTER TABLE [dbo].[TbBlocoAvaliacao] DROP CONSTRAINT [FK_TbBlocoAvaliacao_IdTurma]
+
+ALTER TABLE [dbo].[TbFaseNotaAlunoAvaliacao] DROP CONSTRAINT [FK_TbFaseNotaAlunoAvaliacao_TbTurma]
+
+
 
 	ALTER TABLE [dbo].[TbTurma] DROP CONSTRAINT [PK_TbTurma]
 	
@@ -115,8 +124,31 @@ ALTER TABLE [dbo].[TbCalendarioEventoTurma] DROP CONSTRAINT [FK_TbCalendarioEven
 	
 
 
-ALTER TABLE [dbo].[TbCalendarioEventoTurma] WITH CHECK ADD CONSTRAINT [FK_TbCalendarioEventoTurma_TbTurma] FOREIGN KEY([IdTurma]) 
-REFERENCES [dbo].[TbTurma] ([IdTurma]); 
+ALTER TABLE dbo.TbFaseNotaAlunoAvaliacao ADD CONSTRAINT FK_TbFaseNotaAlunoAvaliacao_TbTurma FOREIGN KEY (IdTurma) REFERENCES dbo.TbTurma(IdTurma);
+	
+ALTER TABLE [dbo].[TbFaseNotaAlunoAvaliacao] CHECK CONSTRAINT [FK_TbFaseNotaAlunoAvaliacao_TbTurma]
+
+
+
+ALTER TABLE [dbo].[TbBlocoAvaliacao] WITH CHECK ADD CONSTRAINT [FK_TbBlocoAvaliacao_IdTurma] FOREIGN KEY([IdTurma]) REFERENCES [dbo].[TbTurma] ([IdTurma]); 
+
+ALTER TABLE [dbo].[TbBlocoAvaliacao] CHECK CONSTRAINT [FK_TbBlocoAvaliacao_IdTurma]
+	
+	
+	
+ALTER TABLE dbo.TbFaseNotaAvaliacao ADD CONSTRAINT FK_TbFaseNotaAvaliacao_IdTurma FOREIGN KEY (IdTurma) REFERENCES dbo.TbTurma(IdTurma);
+	
+ALTER TABLE [dbo].[TbFaseNotaAvaliacao] CHECK CONSTRAINT [FK_TbFaseNotaAvaliacao_IdTurma]
+
+
+	
+ALTER TABLE dbo.TbFaseNotaAlunoAvaliacao ADD CONSTRAINT [FK_TbFaseNotaAlunoAvaliacao_TbFaseNotaAvaliacao] FOREIGN KEY (IdFaseNotaAvaliacao) REFERENCES dbo.TbFaseNotaAvaliacao(IdFaseNotaAvaliacao);
+	
+ALTER TABLE [dbo].[TbFaseNotaAlunoAvaliacao] CHECK CONSTRAINT [FK_TbFaseNotaAlunoAvaliacao_TbFaseNotaAvaliacao]
+	
+	
+	
+ALTER TABLE [dbo].[TbCalendarioEventoTurma] WITH CHECK ADD CONSTRAINT [FK_TbCalendarioEventoTurma_TbTurma] FOREIGN KEY([IdTurma]) REFERENCES [dbo].[TbTurma] ([IdTurma]); 
 
 ALTER TABLE [dbo].[TbCalendarioEventoTurma] CHECK CONSTRAINT [FK_TbCalendarioEventoTurma_TbTurma]
 

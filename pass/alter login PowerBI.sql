@@ -34,6 +34,11 @@
     GRANT SELECT ON dbo.VwPowerBI_AlunoTurma_Consolidado TO rolePowerBI;
     GRANT SELECT ON dbo.VwPowerBI_Financeiro_Consolidado TO rolePowerBI;
     GRANT SELECT ON dbo.VwPowerBI_LancamentoCobrancaRecebimento_Consolidado TO rolePowerBI;
+   
+--	GGE 28mai22
+   	GRANT SELECT ON dbo.VwPowerBI_LancamentoCobrancaDesconto TO rolePowerBI;
+   
+   
 
 
 

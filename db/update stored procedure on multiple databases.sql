@@ -1,4 +1,4 @@
---17mai22
+--26mai22
 --https://stackoverflow.com/questions/22948927/update-stored-procedure-on-multiple-databases
 
 DECLARE @sp_code NVARCHAR(MAX) = 
@@ -10,15 +10,21 @@ DECLARE @sp_code NVARCHAR(MAX) =
 )
 AS
 BEGIN
---	v1f
-
+/**
+	Extras (adaptado or Add by Joir)
+	28/ Dont use Views with `ORDER BY`
+	29/ Triggers using `EXEC`, Don’t use EXEC to run dynamic SQL. It is there only for backward compatibility and is a commonly used vector for SQL injection
+	**/
 	
+
+-- 	v26mai22b
+
 	SET NOCOUNT ON;
 
-	IF OBJECT_ID(''dbo._database_smells'') IS NOT NULL
+
+	IF NOT EXISTS (SELECT * FROM sysobjects WHERE name=''_database_smells'' AND xtype=''U'')
 	BEGIN
-		DROP TABLE dbo._database_smells
-		--		TRUNCATE TABLE dbo._database_smells
+--		DROP TABLE dbo._database_smells
 				
 		--		IF NOT EXISTS (
 		--						  SELECT * 
@@ -33,8 +39,11 @@ BEGIN
 		--						  WHERE  object_id = OBJECT_ID(N''dbo._database_smells'') 
 		--						         AND name = ''Command'' )
 		--			ALTER TABLE dbo._database_smells ADD Command VARCHAR(2048) NULL;
-		CREATE TABLE dbo._database_smells ( IdDatabaseSmells INT NOT NULL IDENTITY(1,1), EvidenceOf VARCHAR(16), TypeObjectOf VARCHAR(32), [ObjectName] SYSNAME, Problem VARCHAR(1024), Explication VARCHAR(1024), Command VARCHAR(1024) ) -- , FalsoPositivo BIT NOT NULL  DEFAULT 0
+		CREATE TABLE dbo._database_smells ( IdDatabaseSmells INT NOT NULL IDENTITY(1,1), EvidenceOf VARCHAR(16), [TypeObjectOf] VARCHAR(32), [ObjectName] SYSNAME, Problem VARCHAR(1024), Explication VARCHAR(1024), Command VARCHAR(1024) ) -- , FalsoPositivo BIT NOT NULL  DEFAULT 0
 	END
+	ELSE
+		TRUNCATE TABLE dbo._database_smells
+
 
 		
 	IF OBJECT_ID(''dbo._column_details_extended_property'') IS NULL
@@ -77,7 +86,7 @@ BEGIN
 			LEFT JOIN sys.objects o ON o.object_id = a.object_id 
 			CROSS  apply (select name from master.sys.databases where name <> DB_NAME() and database_id > 4 and len(name) > 3) x
 			WHERE patindex(concat(''%from%'',x.name,''.%.%'') collate database_default, a.definition collate database_default ) > 0
-
+			
 		UNION ALL
 
 			--APX1207 – Missing SET NOCOUNT ON before Unatteended DML execution
@@ -151,9 +160,7 @@ BEGIN
 		  	FROM sys.sql_modules m 
 			INNER JOIN sys.objects o ON m.object_id=o.object_id
 			WHERE type_desc like ''%function%'' AND definition LIKE ''%SET NOCOUNT OFF%''
-
-
-
+			
 
 		/*
 		 * 
@@ -314,8 +321,6 @@ BEGIN
 			JOIN sys.tables t	ON t.object_id = c.object_id
 			WHERE type_name(user_type_id) in (''real'')
 	        
-
-
 		/*
 		 * 
 		 *	Deprecated features
@@ -362,10 +367,18 @@ BEGIN
 			--JMR
 	        SELECT ''DATABASE'', name, ''page_verify_option in ['' + name + ''] is disable'', 4, ''https://docs.microsoft.com/pt-br/sql/relational-databases/policy-based-management/set-the-page-verify-database-option-to-checksum?view=sql-server-ver15'', ''ALTER DATABASE ['' + name + ''] SET PAGE_VERIFY CHECKSUM;''
 			FROM	sys.databases DB
-			WHERE page_verify_option_desc <> ''CHECKSUM''
+			WHERE  DB_NAME() = name AND page_verify_option_desc <> ''CHECKSUM'' 
+
 
 			
 			
+			
+			
+			
+			
+			
+			
+
 	    /*
 		 * 
 		 *	3-WARNING
@@ -421,14 +434,11 @@ BEGIN
 
 
 			
---	28/ Dont use Views with `ORDER BY`
+--	28/ Dont use Views with ORDER BY
 --	29/ Triggers using `EXEC`, Don’t use EXEC to run dynamic SQL. It is there only for backward compatibility and is a commonly used vector for SQL injection
 			
-
-
-
-
-		INSERT INTO dbo._database_smells ( EvidenceOf, TypeObjectOf, ObjectName, Problem, Explication, Command )
+			
+		INSERT INTO dbo._database_smells ( EvidenceOf, [TypeObjectOf], ObjectName, Problem, Explication, Command )
 			SELECT 
 				CASE
 				WHEN TypeEvidenceOf = 1 THEN ''info''
@@ -452,9 +462,7 @@ BEGIN
 			
 		SELECT 	@Errors 	= (SELECT COUNT(*) FROM ##TEMP WHERE TypeEvidenceOf = 4 AND [ObjectName] NOT IN (''_flyway_schema_history'', ''_column_details_extended_property'', ''_database_smells'' )),
 				@Warnings 	= (SELECT COUNT(*) FROM ##TEMP WHERE TypeEvidenceOf = 3 AND [ObjectName] NOT IN (''_flyway_schema_history'', ''_column_details_extended_property'', ''_database_smells'' ))
-
-			
-	END
+END
 '
 
 IF (OBJECT_ID('tempdb..#tbl_databases') IS NOT NULL) DROP TABLE #tbl_databases
@@ -463,7 +471,7 @@ IF (OBJECT_ID('tempdb..#tbl_databases') IS NOT NULL) DROP TABLE #tbl_databases
 SELECT	[name]
 INTO 	#tbl_databases
 FROM 	sys.databases
-WHERE	[name] LIKE 'bdSIAI%'
+WHERE	[name] LIKE 'Bd%'
 
 DECLARE @sql NVARCHAR(MAX)
 DECLARE @execute_sql NVARCHAR(MAX)

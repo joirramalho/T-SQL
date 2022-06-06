@@ -5,7 +5,7 @@
 
 --LOGIN --
 	--SENHA COM 10 caracteres								'1234567890'		
-		--CREATE LOGIN [userSTrindade] 		WITH PASSWORD= N'*****', DEFAULT_DATABASE=[dbSigaSantissimaTrindade], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
+		--CREATE LOGIN [userASLAN] 		WITH PASSWORD= N'***', DEFAULT_DATABASE=[dbSigaAslan], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
 
 		--ALTER LOGIN [userMUNDODACRIANCA] DISABLE;
 
@@ -16,7 +16,7 @@
 
 -- PASSWORD
 	--												'1234567890'
-	-- ALTER LOGIN [active.anderson] 	WITH PASSWORD = '****'; -- sigainternet userISO_PowerBI service.account
+	-- ALTER LOGIN [sigainternet] 	WITH PASSWORD = '***'; -- sigainternet userISO_PowerBI service.account
 
 
 	-- re-enable login without password	
@@ -26,10 +26,10 @@
 
 
 
---USE dbSigaSantissimaTrindade;
+--USE dbSigaASLAN;
 
 
-	--CREATE USER 	[userSTrindade] 	FOR LOGIN [userSTrindade] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
+	--CREATE USER 	[userASLAN] 	FOR LOGIN [userASLAN] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
 	
 		--DROP USER [userSaleDomBosco];
 	
@@ -42,7 +42,7 @@
 			--REVOKE CONNECT  FROM [siga_caruaru];
 
 
-	--ALTER ROLE [db_owner] ADD MEMBER [userSTrindade];
+	--ALTER ROLE [db_owner] ADD MEMBER [userASLAN];
 
 		--EXEC master..sp_addsrvrolemember @loginame = N'active.pinto', @rolename = N'sysadmin';
 

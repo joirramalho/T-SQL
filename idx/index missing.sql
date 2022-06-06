@@ -5,7 +5,7 @@
 	--Collecting, aggregating, and analyzing missing SQL Server Index Stats
 	--https://www.sqlshack.com/collecting-aggregating-analyzing-missing-sql-server-index-stats/
 
---EXEC  sp_help 'TbFaseNotaAluno'
+--EXEC  sp_help 'TbLancamentoConsumoItem'
 
 --USE [dbLogMonitor];  NOT MASTER
 

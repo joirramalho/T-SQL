@@ -1,4 +1,4 @@
-USE dbSigaSantissimaTrindade;
+USE dbSigaAslan;
 
 
 ALTER TABLE [dbo].[TbAlmoxMaterialMovimentacao] DROP CONSTRAINT [FK_TbAlmoxMaterialMovimentacao_TbUsuario]
@@ -233,6 +233,10 @@ ALTER TABLE [dbo].[TbNotaFiscal] DROP CONSTRAINT [FK_TbNotaFiscal_TbUsuario_Nota
 --
 --ALTER TABLE [dbo].[TbNotaFiscal] CHECK CONSTRAINT [FK_TbNotaFiscal_TbUsuario_NotaFiscalCancelada_IdUsuario]
 
+
+ALTER TABLE dbo.TbTituloCobranca_Persistido ADD CONSTRAINT FK_TbTituloCobranca_Persistido_TbUsuario FOREIGN KEY (IdUsuario_UltimaAlteracao) REFERENCES dbo.TbUsuario(IdUsuario) ON DELETE SET NULL;
+
+ALTER TABLE [dbo].[TbTituloCobranca_Persistido] CHECK CONSTRAINT [FK_TbTituloCobranca_Persistido_TbUsuario]
 
 
 ALTER TABLE [dbo].[TbTituloCobrancaEnvio] WITH CHECK ADD CONSTRAINT [FK_TbTituloCobrancaEnvio_TbUsuario] FOREIGN KEY([IdUsuario]) 	REFERENCES [dbo].[TbUsuario] ([IdUsuario]); 

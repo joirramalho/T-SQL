@@ -1,4 +1,4 @@
-USE dbSigaSantissimaTrindade;
+USE dbSigaAslan;
 
 -- TbServicoPrecoDesconto
 ALTER TABLE [dbo].[TbServicoPrecoDesconto] DROP CONSTRAINT [PK_TbServicoPrecoDesconto]
@@ -71,17 +71,42 @@ GO
 ALTER TABLE [dbo].[TbSolicitacao] DROP CONSTRAINT [FK_TbSolicitacao_TbTipoResponsavel_IdTipoResponsavel]
 GO
 
-
-
-ALTER TABLE [dbo].[TbTipoResponsavel] DROP CONSTRAINT [PK_TbTipoResponsavel]
+ALTER TABLE [dbo].[TbAluno] DROP CONSTRAINT [FK_TbAluno_TbTipoResponsavel_IdTipoResponsavelMae]
+GO
+ALTER TABLE [dbo].[TbAluno] DROP CONSTRAINT [FK_TbAluno_TbTipoResponsavel_IdTipoResponsavelPai]
+GO
+ALTER TABLE [dbo].[TbAlunoResponsavel] DROP CONSTRAINT [FK_TbAlunoResponsavel_TbTipoResponsavel]
 GO
 
 
 
-ALTER TABLE [dbo].[TbTipoResponsavel] ADD  CONSTRAINT [PK_TbTipoResponsavel] PRIMARY KEY CLUSTERED 
-(
-        [IdTipoResponsavel] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 90) ON [PRIMARY]
+	ALTER TABLE [dbo].[TbTipoResponsavel] DROP CONSTRAINT [PK_TbTipoResponsavel]
+	GO
+
+
+
+	ALTER TABLE [dbo].[TbTipoResponsavel] ADD  CONSTRAINT [PK_TbTipoResponsavel] PRIMARY KEY CLUSTERED 
+	(
+	        [IdTipoResponsavel] ASC
+	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 90) ON [PRIMARY]
+	GO
+
+
+
+
+ALTER TABLE [dbo].[TbAluno] WITH CHECK ADD CONSTRAINT [FK_TbAluno_TbTipoResponsavel_IdTipoResponsavelMae] FOREIGN KEY([IdTipoResponsavelMae])  REFERENCES [dbo].[TbTipoResponsavel] ([IdTipoResponsavel]); 
+GO
+ALTER TABLE [dbo].[TbAluno] CHECK CONSTRAINT [FK_TbAluno_TbTipoResponsavel_IdTipoResponsavelMae]
+GO
+
+ALTER TABLE [dbo].[TbAluno] WITH CHECK ADD CONSTRAINT [FK_TbAluno_TbTipoResponsavel_IdTipoResponsavelPai] FOREIGN KEY([IdTipoResponsavelPai])  REFERENCES [dbo].[TbTipoResponsavel] ([IdTipoResponsavel]); 
+GO
+ALTER TABLE [dbo].[TbAluno] CHECK CONSTRAINT [FK_TbAluno_TbTipoResponsavel_IdTipoResponsavelPai]
+GO
+
+ALTER TABLE [dbo].[TbAlunoResponsavel] WITH CHECK ADD CONSTRAINT [FK_TbAlunoResponsavel_TbTipoResponsavel] FOREIGN KEY([IdTipoResponsavel]) 	REFERENCES [dbo].[TbTipoResponsavel] ([IdTipoResponsavel]); 
+GO
+ALTER TABLE [dbo].[TbAlunoResponsavel] CHECK CONSTRAINT [FK_TbAlunoResponsavel_TbTipoResponsavel]
 GO
 
 

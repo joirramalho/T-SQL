@@ -1,4 +1,4 @@
-USE dbSigaSantissimaTrindade;
+USE dbSigaAslan;
 
 -- TbDisciplina
 IF OBJECT_ID('dbo.FK_TbAlunoAproveitamentoDisciplina_TbDisciplina') IS NOT NULL
@@ -125,7 +125,12 @@ END;
 
 ALTER TABLE [dbo].[TbTurmaDisciplina_GoogleForEducation] DROP CONSTRAINT [FK_TbTurmaDisciplina_GoogleForEducation_TbDisciplina];
 
-ALTER TABLE [dbo].[TbDisciplina] DROP CONSTRAINT [PK_TbDisciplina];
+ALTER TABLE [dbo].[TbFaseNotaAvaliacao] DROP CONSTRAINT [FK_TbFaseNotaAvaliacao_TbDisciplina];
+
+ALTER TABLE [dbo].[TbFaseNotaAlunoAvaliacao] DROP CONSTRAINT [FK_TbFaseNotaAlunoAvaliacao_TbDisciplina];
+
+
+		ALTER TABLE [dbo].[TbDisciplina] DROP CONSTRAINT [PK_TbDisciplina];
 	
 
 
@@ -137,9 +142,19 @@ ALTER TABLE [dbo].[TbDisciplina] DROP CONSTRAINT [PK_TbDisciplina];
 	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 90) ON [PRIMARY];
 	
 
+
+ALTER TABLE dbo.TbFaseNotaAlunoAvaliacao ADD CONSTRAINT FK_TbFaseNotaAlunoAvaliacao_TbDisciplina FOREIGN KEY (IdDisciplina) REFERENCES dbo.TbDisciplina(IdDisciplina);
+
+ALTER TABLE [dbo].[TbFaseNotaAlunoAvaliacao] CHECK CONSTRAINT [FK_TbFaseNotaAlunoAvaliacao_TbDisciplina];
+
+
+ALTER TABLE dbo.TbFaseNotaAvaliacao ADD CONSTRAINT FK_TbFaseNotaAvaliacao_TbDisciplina FOREIGN KEY (IdDisciplina) REFERENCES dbo.TbDisciplina(IdDisciplina);
+
+ALTER TABLE [dbo].[TbFaseNotaAvaliacao] CHECK CONSTRAINT [FK_TbFaseNotaAvaliacao_TbDisciplina];
+
+
 -- 15Fev21
-ALTER TABLE [dbo].[TbTurmaDisciplina_GoogleForEducation] WITH CHECK ADD CONSTRAINT [FK_TbTurmaDisciplina_GoogleForEducation_TbDisciplina] FOREIGN KEY([IdDisciplina]) 
-REFERENCES [dbo].[TbDisciplina] ([IdDisciplina]);
+ALTER TABLE [dbo].[TbTurmaDisciplina_GoogleForEducation] WITH CHECK ADD CONSTRAINT [FK_TbTurmaDisciplina_GoogleForEducation_TbDisciplina] FOREIGN KEY([IdDisciplina]) REFERENCES [dbo].[TbDisciplina] ([IdDisciplina]);
 
 ALTER TABLE [dbo].[TbTurmaDisciplina_GoogleForEducation] CHECK CONSTRAINT [FK_TbTurmaDisciplina_GoogleForEducation_TbDisciplina];
 

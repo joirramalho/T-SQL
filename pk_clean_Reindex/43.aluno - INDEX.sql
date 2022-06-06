@@ -1,4 +1,4 @@
-USE dbSigaSantissimaTrindade;
+USE dbSigaAslan;
 
 -- sp_helpindex 'TbAluno'
 
@@ -88,13 +88,15 @@ ALTER TABLE [dbo].[TbTituloCobranca] DROP CONSTRAINT [FK_TbTituloCobranca_TbAlun
 ALTER TABLE [dbo].[TbDiarioAulaChamadaOnline] DROP CONSTRAINT [FK_TbDiarioAulaChamadaOnline_TbAluno];
 
 
+ALTER TABLE [dbo].[TbDiarioAulaChamadaOnline] DROP CONSTRAINT [FK_TbDiarioAulaChamadaOnline_TbAluno];
+
 
 ALTER TABLE [dbo].[TbAlunoTurmaDocumento] DROP CONSTRAINT [FK__TbAlunoTu__IdAlu__3F8B2370];
 
 -- OU
 IF OBJECT_ID('dbo.FK_TbAlunoTurmaDocumento_TbAluno') IS NOT NULL
 BEGIN
-	ALTER TABLE [dbo].[TbAlunoTurmaDocumento] DROP CONSTRAINT [FK_TbAlunoTurmaDocumento_TbAluno]
+	ALTER TABLE [dbo].[TbAlunoResponsavel] DROP CONSTRAINT [FK_TbAlunoResponsavel_TbAluno]
 END;
 
 
@@ -132,8 +134,13 @@ CREATE UNIQUE nonCLUSTERED INDEX [IX_TbAlunoMatriculaUnidade] ON [dbo].[TbAluno]
 
 
 
-ALTER TABLE [dbo].[TbAlunoTurmaDocumento] WITH CHECK ADD CONSTRAINT [FK_TbAlunoTurmaDocumento_TbAluno] FOREIGN KEY([IdAluno]) 
-REFERENCES [dbo].[TbAluno] ([IdAluno]); 
+ALTER TABLE [dbo].[TbAlunoResponsavel] WITH CHECK ADD CONSTRAINT [FK_TbAlunoResponsavel_TbAluno] FOREIGN KEY([IdAluno]) 	REFERENCES [dbo].[TbAluno] ([IdAluno]); 
+GO
+ALTER TABLE [dbo].[TbAlunoResponsavel] CHECK CONSTRAINT [FK_TbAlunoResponsavel_TbAluno];
+GO
+
+
+ALTER TABLE [dbo].[TbAlunoTurmaDocumento] WITH CHECK ADD CONSTRAINT [FK_TbAlunoTurmaDocumento_TbAluno] FOREIGN KEY([IdAluno]) 	REFERENCES [dbo].[TbAluno] ([IdAluno]); 
 
 ALTER TABLE [dbo].[TbAlunoTurmaDocumento] CHECK CONSTRAINT [FK_TbAlunoTurmaDocumento_TbAluno];
 

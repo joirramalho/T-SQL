@@ -1,4 +1,4 @@
---13mai22
+--26mai22
 	--https://www.red-gate.com/simple-talk/blogs/sql-server-table-smells/
 
 	--Rolling up multiple rows into a single row and column for SQL Server data
@@ -52,12 +52,14 @@ BEGIN
 	29/ Triggers using `EXEC`, Don’t use EXEC to run dynamic SQL. It is there only for backward compatibility and is a commonly used vector for SQL injection
 	**/
 	
+	-- 	v26mai22b
+
 	SET NOCOUNT ON;
 
-	IF OBJECT_ID('dbo._database_smells') IS NOT NULL
+
+	IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='_database_smells' AND xtype='U')
 	BEGIN
-		DROP TABLE dbo._database_smells
-		--		TRUNCATE TABLE dbo._database_smells
+--		DROP TABLE dbo._database_smells
 				
 		--		IF NOT EXISTS (
 		--						  SELECT * 
@@ -74,6 +76,8 @@ BEGIN
 		--			ALTER TABLE dbo._database_smells ADD Command VARCHAR(2048) NULL;
 		CREATE TABLE dbo._database_smells ( IdDatabaseSmells INT NOT NULL IDENTITY(1,1), EvidenceOf VARCHAR(16), TypeObjectOf VARCHAR(32), [ObjectName] SYSNAME, Problem VARCHAR(1024), Explication VARCHAR(1024), Command VARCHAR(1024) ) -- , FalsoPositivo BIT NOT NULL  DEFAULT 0
 	END
+	ELSE
+		TRUNCATE TABLE dbo._database_smells
 
 		
 	IF OBJECT_ID('dbo._column_details_extended_property') IS NULL
@@ -395,9 +399,9 @@ BEGIN
 	   	UNION ALL
 
 			--JMR
-	        SELECT 'DATABASE', name, 'page_verify_option in [' + name + '] is disable', 4, 'https://docs.microsoft.com/pt-br/sql/relational-databases/policy-based-management/set-the-page-verify-database-option-to-checksum?view=sql-server-ver15', 'ALTER DATABASE [' + name + '] SET PAGE_VERIFY CHECKSUM;'
+	        SELECT * --'DATABASE', name, 'page_verify_option in [' + name + '] is disable', 4, 'https://docs.microsoft.com/pt-br/sql/relational-databases/policy-based-management/set-the-page-verify-database-option-to-checksum?view=sql-server-ver15', 'ALTER DATABASE [' + name + '] SET PAGE_VERIFY CHECKSUM;'
 			FROM	sys.databases DB
-			WHERE page_verify_option_desc <> 'CHECKSUM'
+			WHERE  DB_NAME() = name AND page_verify_option_desc <> 'CHECKSUM' 
 
 			
 			
@@ -467,7 +471,7 @@ BEGIN
 --	29/ Triggers using `EXEC`, Don’t use EXEC to run dynamic SQL. It is there only for backward compatibility and is a commonly used vector for SQL injection
 			
 			
-		INSERT INTO dbo._database_smells ( EvidenceOf, TypeObjectOf, ObjectName, Problem, Explication, Command )
+		INSERT INTO dbo._database_smells ( EvidenceOf, [TypeObjectOf], ObjectName, Problem, Explication, Command )
 			SELECT 
 				CASE
 				WHEN TypeEvidenceOf = 1 THEN 'info'

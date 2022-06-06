@@ -26,5 +26,5 @@ EXEC dbo.sp_foreachdb N'
 ,@user_only = 1
 ,@suppress_quotename=1
 -- ,@database_list = 'dbSigaGGE, dbSigaISO, dbSigaAraraAzul, dbSigaPH3CV, dbSigaENSVitoriasRN, dbSigaConectivoCE, dbSigaOpcaoPE, dbSigaCEEsCrianca';
-,@name_pattern='dbSiga';  --   dbActive -- dbBib
+,@name_pattern='dbSigaPadraoInst_0505';  --   dbActive -- dbBib
 --

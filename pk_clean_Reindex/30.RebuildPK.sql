@@ -1,4 +1,4 @@
-USE dbSigaSantissimaTrindade;
+USE dbSigaAslan;
 
 --sp_helpindex "TbAlunoFichaMedica"
 

@@ -14,6 +14,8 @@ EXEC dbo.sp_foreachdb N'
 				PRINT DB_NAME()
 
 				CREATE INDEX IX_TbTurma_IdSerie_IdPeriodo_TipoTurma ON [dbo].[TbTurma]	([IdSerie], [IdPeriodo], [TipoTurma])	WITH (FILLFACTOR=90)
+
+		    	PRINT ''	DROP INDEX [IX_TbTurma_IdSerie_IdPeriodo_TipoTurma] ''
 		    END
 
 --
@@ -29,5 +31,5 @@ EXEC dbo.sp_foreachdb N'
 ,@user_only = 1
 ,@suppress_quotename=1
 -- ,@database_list = 'dbSigaGGE, dbSigaISO, dbSigaAraraAzul, dbSigaPH3CV, dbSigaENSVitoriasRN, dbSigaConectivoCE, dbSigaOpcaoPE, dbSigaCEEsCrianca';
-,@name_pattern='dbSiga';  --   dbActive -- dbBib
+,@name_pattern='dbSigaPadraoInst_0505';  --   dbActive -- dbBib
 --

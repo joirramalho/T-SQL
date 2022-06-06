@@ -7,7 +7,7 @@
 
 DECLARE @TableName  sysname = NULL
 
-SET @TableName 	= 'TbAlunoCurso' -- TbLancamentoCobranca	TbTituloCobranca
+SET @TableName 	= 'TbCaixaMovimentacao' -- TbLancamentoCobranca	TbTituloCobranca
 
 --CREATE INDEX [IX_TbOcorrenciaMovimentacao_CdPrioridade] ON [dbCrmActivesoft].[dbo].[TbOcorrenciaMovimentacao] ([CdPrioridade]) INCLUDE ([IdOcorrenciaMovimentacao], [DataHoraLimite])
 

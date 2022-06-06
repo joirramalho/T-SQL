@@ -45,14 +45,14 @@ EXEC dbo.sp_foreachdb N'
 ,@user_only = 1
 ,@suppress_quotename=1
 -- ,@name_pattern='dbSigaSalePetrolina_Arquivo0';
-,@database_list = 'dbSigaOverdose' 
+,@database_list = 'dbSigaMigracaoAIX' 
 
 
 
 -- Fazer backup 
 --./backup.sh dbSigaOverdose	&& ./backup.sh dbSigaOverdose_Auditoria 			&& ./backup.sh dbSigaLegolar 	&& ./backup.sh dbSigaCeEdIntegracao 	&& ./backup.sh dbSigaCoesi 	&& ./backup.sh dbSigaCristoRedentor
 
---	DBCC CHECKDB([dbSigaASLAN]); -- WITH TABLERESULTS
+--	DBCC CHECKDB([dbSigaAslan]); -- WITH TABLERESULTS
 
 --USE SampleDataBase;
 --EXEC sp_spaceused;

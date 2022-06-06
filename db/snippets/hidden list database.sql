@@ -73,7 +73,7 @@ WHERE
  --USE [master]
 --GO
 --CREATE LOGIN [userAslan] WITH PASSWORD=N'RWW39uGkM6', DEFAULT_DATABASE=[dbSigaAslan], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF
---CREATE LOGIN [userAslan_ReportServer] WITH PASSWORD=N'******', DEFAULT_DATABASE=[dbSigaAslan], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF
+--CREATE LOGIN [userAslan_ReportServer] WITH PASSWORD=N'***', DEFAULT_DATABASE=[dbSigaAslan], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF
 --GO
     
 
@@ -92,7 +92,7 @@ SELECT name as [DB Name],
 FROM sys.databases
     
     
-USE [dbSigaAslan]
+USE [dbSigaAslan];
 
 	--CREATE USER [userAslan_ReportServer] FOR LOGIN [userAslan_ReportServer]
 	

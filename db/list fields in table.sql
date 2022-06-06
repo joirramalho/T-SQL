@@ -8,7 +8,7 @@ DECLARE @sql nvarchar(max) = N''
  
 SELECT @sql += ' ' + COLUMN_NAME + ', ' 
   FROM INFORMATION_SCHEMA.COLUMNS AS d 
-  WHERE TABLE_NAME = 'TbEMPRESA'
+  WHERE TABLE_NAME = 'TbFaseNotaAvaliacaoPadrao'
   	AND LEFT(COLUMN_NAME,1) <> '_'
   	AND DATA_TYPE NOT IN ('image', 'text') 
 
