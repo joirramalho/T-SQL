@@ -61,5 +61,5 @@ EXEC dbo.sp_foreachdb N'
 ,@state_desc = N'ONLINE'
 ,@user_only = 1
 ,@suppress_quotename=1
-,@name_pattern='CRM_340689v2'
+,@name_pattern='dbSigaMigracaoAixII'
 -- ,@database_list = 'dbSigaOverdose' --06 dbSigaCoesi

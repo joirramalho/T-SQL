@@ -26,10 +26,10 @@
 
 
 
---USE dbSigaASLAN;
+--USE dbBibCognitivo;
 
 
-	--CREATE USER 	[userASLAN] 	FOR LOGIN [userASLAN] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
+	--CREATE USER 	[userCognitivo] 	FOR LOGIN [userCognitivo] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
 	
 		--DROP USER [userSaleDomBosco];
 	
@@ -42,7 +42,7 @@
 			--REVOKE CONNECT  FROM [siga_caruaru];
 
 
-	--ALTER ROLE [db_owner] ADD MEMBER [userASLAN];
+	--ALTER ROLE [db_owner] ADD MEMBER [userCognitivo];
 
 		--EXEC master..sp_addsrvrolemember @loginame = N'active.pinto', @rolename = N'sysadmin';
 
