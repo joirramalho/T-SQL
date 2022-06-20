@@ -48,9 +48,16 @@ FROM dbo.Index_Utiliztion_Summary
 ORDER BY Index_Utiliztion_Summary.User_Lookup_Count + Index_Utiliztion_Summary.User_Scan_Count - Index_Utiliztion_Summary.User_Seek_Count DESC;
 */
 
---EXEC dbo.Populate_Index_Utilization_Data --	@Retention_Period_for_Detail_Data_Days TINYINT = 30,	@Truncate_All_Summary_Data BIT = 0;
+--EXEC dbLogMonitor.dbo.Populate_Index_Utilization_Data @Retention_Period_for_Detail_Data_Days TINYINT = 30,	@Truncate_All_Summary_Data BIT = 1;
 
-
+/*
+	TRUNCATE TABLE dbo.Index_Utiliztion_Details;
+	TRUNCATE TABLE dbo.Index_Utiliztion_Summary;
+	TRUNCATE TABLE dbo.Missing_Index_Details;
+	TRUNCATE TABLE dbo.Missing_Index_Summary;
+*/
+	
+--	DBCC SHRINKDATABASE(dbLogMonitor,0);
 
 /*
 CREATE TABLE dbo.Index_Utiliztion_Details

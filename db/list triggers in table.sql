@@ -2,6 +2,8 @@
 --https://stackoverflow.com/questions/4305691/need-to-list-all-triggers-in-sql-server-database-with-table-name-and-tables-sch
 --https://www.mssqltips.com/sqlservertip/5950/how-do-sql-server-triggers-work-for-insert-update-delete-and-truncate/
 
+--USE dbSigaModeloWEB;
+
 SELECT
 	OBJECT_NAME(parent_obj) AS table_name
 	,sysobjects.name AS trigger_name
@@ -50,7 +52,7 @@ INNER JOIN sys.schemas s
 WHERE
 	sysobjects.type = 'TR'
 	
-	AND OBJECT_NAME(parent_obj) IN ('TbCaixaMovimentacao')
+	AND OBJECT_NAME(parent_obj) IN ('TbFaseNotaAluno')
 	
 ORDER BY
 	OBJECT_NAME(parent_obj)

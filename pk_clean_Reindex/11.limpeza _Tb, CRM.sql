@@ -1,6 +1,6 @@
--- USE dbSigaSantissimaTrindade;
-
 /*
+USE dbSigaNevesNoturno;
+
 ALTER TABLE [dbo].[TbParametroCPR] DROP CONSTRAINT [FK_TbParametroCPR_TbClassificacaoFinanceiraTarifaCobrancaBoleto];
 
 ALTER TABLE [dbo].[TbParametroCPR] DROP CONSTRAINT [FK_TbParametroCPR_TbClassificacaoFinanceiraRecebimentoNaoIdentificado];

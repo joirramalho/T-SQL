@@ -44,7 +44,7 @@ EXEC dbo.sp_foreachdb N'
         
                 -- ALTER DATABASE [?] SET  READ_ONLY WITH NO_WAIT
  
---DBCC SHRINKFILE ( dbSigaGGE_Arquivo_log , 0, TRUNCATEONLY)
+--DBCC SHRINKFILE ( dbSigaPlenus_Arquivo_log , 0, TRUNCATEONLY) 
 
                 -- DBCC SHRINKFILE (dbSigaOverdose_Arquivo_log, 0, TRUNCATEONLY) 
                  
@@ -61,5 +61,5 @@ EXEC dbo.sp_foreachdb N'
 ,@state_desc = N'ONLINE'
 ,@user_only = 1
 ,@suppress_quotename=1
-,@name_pattern='dbSigaMigracaoAixII'
+,@name_pattern='dbSigaSaleParalela'
 -- ,@database_list = 'dbSigaOverdose' --06 dbSigaCoesi

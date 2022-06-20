@@ -19,8 +19,8 @@ EXEC dbo.sp_foreachdb N'
 ,@state_desc = N'ONLINE'
 ,@user_only = 1
 ,@suppress_quotename=1
-,@name_pattern='dbSigaNeves';
--- ,@database_list = 'dbSigaNeves';
+,@name_pattern='dbSigaASLAN';
+-- ,@database_list = 'dbSigaASLAN';
 
 
 
