@@ -17,7 +17,6 @@ EXEC dbo.sp_foreachdb N'
 
 			EXEC sp_updatestats;
 
-
 			--	IF CHARINDEX( ''dbSiga'', ''?'') > 0
 			--		DBCC SHRINKFILE (dbSiga_Log , 0, TRUNCATEONLY);
 			--
@@ -37,22 +36,21 @@ EXEC dbo.sp_foreachdb N'
 
 
 	ALTER DATABASE [?] SET RECOVERY FULL WITH NO_WAIT;
-
 '
 ,@print_command_only = 0 -- Obrigatório Gerar script
 ,@print_dbname=1
 ,@state_desc = N'ONLINE'
 ,@user_only = 1
 ,@suppress_quotename=1
--- ,@name_pattern='dbSigaSalePetrolina_Arquivo0';
-,@database_list = 'dbSigaPlenus' 
+-- ,@name_pattern='dbSigaParthenon';
+,@database_list = 'dbSigaSaleMazzarello' 
 
 
 
 -- Fazer backup 
---./backup.sh dbSigaSaleParalela && ./backup.sh dbSigaSalePetrolina && ./backup.sh dbSigaCentroEduSouza 	&& ./backup.sh dbSigaCeEdIntegracao 	&& ./backup.sh dbSigaCoesi 	&& ./backup.sh dbSigaCristoRedentor
+--./backup.sh dbSigaSaleMazzarello && ./backup.sh dbSigaSaleMazzarello_Arquivo && ./backup.sh dbSigaParthenon				 	&& ./backup.sh dbSigaCeEdIntegracao 	&& ./backup.sh dbSigaCoesi 	&& ./backup.sh dbSigaCristoRedentor
 
---	DBCC CHECKDB([dbSigaPlenus]); -- WITH TABLERESULTS
+--	DBCC CHECKDB([dbSigaParthenon]); -- WITH TABLERESULTS
 
 --USE SampleDataBase;
 --EXEC sp_spaceused;

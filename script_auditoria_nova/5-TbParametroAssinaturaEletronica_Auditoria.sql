@@ -72,10 +72,11 @@
 		
 		  
 		DECLARE @IdUsuario INTEGER
-		IF APP_NAME() = 'SIGAWEB'
-			SELECT	@IdUsuario = IdUsuario
-			FROM	dbo.FnCriarTabelaTemporaria(HOST_NAME())		
-		ELSE IF OBJECT_ID( 'tempdb..#TempTable') IS NULL 
+--		IF APP_NAME() = 'SIGAWEB'	REMOVER ESSE BLOCO - @PINTO 20JUN22
+--			SELECT	@IdUsuario = IdUsuario
+--			FROM	dbo.FnCriarTabelaTemporaria(HOST_NAME())		
+--		ELSE 
+		IF OBJECT_ID( 'tempdb..#TempTable') IS NULL 
 		  BEGIN 
 			--RAISERROR ('Dados não podem ser alterados (autenticação)', 16, 1) 
 			--ROLLBACK TRANSACTION 

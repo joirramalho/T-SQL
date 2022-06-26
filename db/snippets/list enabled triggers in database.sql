@@ -2,6 +2,8 @@
 --13set21
 --https://www.mssqltips.com/sqlservertip/5853/find-all-sql-server-triggers-to-quickly-enable-or-disable/
 
+--https://www.mssqltips.com/sqlservertip/5494/script-triggers-from-any-database-in-sql-server/
+
 SELECT 
 	t2.[name] TableTriggerReference
 	,

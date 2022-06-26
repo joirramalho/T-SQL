@@ -1,4 +1,4 @@
---17jun22
+--1jun22
 
 /*
 	UPDATE tat SET tat.IdSourceRefreshToken = NULL
@@ -69,7 +69,6 @@ DELETE tat
 		AND Expires < GETDATE()
 		AND IdSourceRefreshToken IS NULL
 		AND IdRefreshToken IS NULL
-
 
 
 /*

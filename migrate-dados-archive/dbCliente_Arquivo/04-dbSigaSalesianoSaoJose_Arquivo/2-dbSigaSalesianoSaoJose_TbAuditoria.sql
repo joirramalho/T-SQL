@@ -47,6 +47,7 @@ INSERT INTO dbSigaSalesianoSaoJose_Arquivo.dbo.TbAuditoria ( Tabela, IdUsuario, 
         
 SELECT  COUNT(*) FROM dbSigaSalesianoSaoJose_Arquivo.dbo.TbAuditoria; -- 7701393 -- 8875979
 
+SELECT	YEAR(DataHORA),   COUNT(*) FROM dbSigaSalesianoSaoJose.dbo.TbAuditoria GROUP BY YEAR(DataHORA);
 SELECT	YEAR(DataHORA),   COUNT(*) FROM dbSigaSalesianoSaoJose_Arquivo.dbo.TbAuditoria GROUP BY YEAR(DataHORA);
 
 

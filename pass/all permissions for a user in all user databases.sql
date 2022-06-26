@@ -34,7 +34,7 @@ BEGIN
 	JOIN 	sys.database_principals p ON roles.member_principal_id = p.principal_id
 	JOIN 	sys.database_principals pp ON roles.role_principal_id = pp.principal_id
 
-	WHERE 	p.name=''TCE\04484771730''' -- Change the user name
+	WHERE 	p.name=''active.filipe''' -- Change the user name
 	
 	INSERT INTO  TEMPDB..##TEMP ( SERVERNAME, DATABASENAME, NAME, TypeOfLogin, PermissionLevel, TypeOfRole ) 
 		EXEC sp_executesql @statement
