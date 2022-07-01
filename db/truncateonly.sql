@@ -1,6 +1,6 @@
 --05jan21
 
--- use dbCrmActivesoft
+-- use dbLogRestore
 
 -- DBCC SHRINKFILE (dbActiveCRM2_Log , 0, TRUNCATEONLY)
 
@@ -50,6 +50,8 @@ EXEC dbo.sp_foreachdb N'
                  
 
                 -- DBCC SHRINKFILE (dbCantinaActive_log, 0, TRUNCATEONLY) 
+
+					--DBCC SHRINKFILE (dbLogRestore_log, 0, TRUNCATEONLY)
                 
 
 -- 		ALTER DATABASE [?] SET RECOVERY FULL WITH NO_WAIT
@@ -61,5 +63,5 @@ EXEC dbo.sp_foreachdb N'
 ,@state_desc = N'ONLINE'
 ,@user_only = 1
 ,@suppress_quotename=1
-,@name_pattern='CRM'
+,@name_pattern='dbSigaModeloMig'
 -- ,@database_list = 'dbSigaOverdose' --06 dbSigaCoesi

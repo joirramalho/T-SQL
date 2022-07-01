@@ -9,14 +9,14 @@
 
 		--ALTER LOGIN [userMUNDODACRIANCA] DISABLE;
 
-			--DROP LOGIN [userASLAN];
+			--DROP LOGIN [userCurOverEEM];
 
 --			ALTER LOGIN [userICM_RS] ENABLE;
 
 
 -- PASSWORD
 	--												'1234567890'
-	-- ALTER LOGIN [sigainternet] 	WITH PASSWORD = '***'; -- sigainternet userISO_PowerBI service.account
+	-- ALTER LOGIN [active.anderson] 	WITH PASSWORD = '***'; -- sigainternet userISO_PowerBI service.account
 
 
 	-- re-enable login without password	
@@ -26,12 +26,12 @@
 
 
 
---USE dbCantinaCOCArapiraca;
+--Use dbSigaEspacoEducacao;
 
 
 	--CREATE USER 	[userCOCARA] 	FOR LOGIN [userCOCARA] WITH DEFAULT_SCHEMA=[dbo]; -- active.wantuilson
 	
-		--DROP USER [userSaleDomBosco];
+		--DROP USER [userCurOverEEM];
 	
 	
 	--	DEFAULT_DATABASE
@@ -70,7 +70,7 @@
 		    -- exec sp_droprolemember 'db_datareader', 'active.pollyana';
 		    -- exec sp_droprolemember 'db_datawriter', 'active.pollyana';
 		
-			-- exec sp_droprolemember 'db_owner', 			'siga_caruaru';
+			-- exec sp_droprolemember 'db_owner', 			'sigauser';
 		    -- exec sp_droprolemember 'db_accessadmin', 	'siga_caruaru';
 		    -- exec sp_droprolemember 'db_backupoperator', 	'siga_caruaru';
 		    -- exec sp_droprolemember 'db_datareader', 		'siga_caruaru';
@@ -146,6 +146,12 @@
 
 
 	--ALTER AUTHORIZATION ON SCHEMA::[sigainternet] TO [sigainternet];
+
+
+	--ALTER AUTHORIZATION ON SCHEMA::[sigaadmin] TO [dbo];
+	--ALTER AUTHORIZATION ON SCHEMA::[sigauser] TO [dbo];
+
+
 
 	--DROP SCHEMA [siga_caruaru];
 

@@ -42,3 +42,5 @@ EXEC dbo.sp_foreachdb N'
 --,@database_list = 'dbSigaWillyJanz'
 
 SELECT * FROM #users ORDER BY 2,1 --DropCmd;
+
+

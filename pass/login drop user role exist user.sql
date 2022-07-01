@@ -13,7 +13,7 @@ EXEC dbo.sp_foreachdb N'
                         -- AND NAME LIKE ''UserSISCONTROLLER%''
                         -- AND NAME LIKE ''%GPA%''
                         -- AND NAME = ''user''
-                        -- AND NAME LIKE ''%EEM%''
+                         AND NAME LIKE ''EEM%''
 
                         -- AND NAME = ''active.backup''
                         -- AND NAME = ''activeuser''
@@ -51,5 +51,5 @@ EXEC dbo.sp_foreachdb N'
 -- ,@STATE_DESC = N'OFFLINE',
 @USER_ONLY = 1,
 @SUPPRESS_QUOTENAME = 1,
-@NAME_PATTERN = 'DB';
+@NAME_PATTERN = 'dbSigaCognitivo';
 -- ,@DATABASE_LIST = 'DBSIGAALDEIAPE'

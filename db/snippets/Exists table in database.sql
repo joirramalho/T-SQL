@@ -1,15 +1,20 @@
---12nov21 - Exists table in database
+--26jun22 - Exists table in database
 
 
-EXEC dbLogMonitor.dbo.sp_foreachdb N'
+EXEC dbo.sp_foreachdb N'
     USE ?
 
---	IF (EXISTS (SELECT * 
+	IF (EXISTS (SELECT * 
 --	                 FROM [?].INFORMATION_SCHEMA.columns
---	                 WHERE TABLE_NAME = ''TbTituloCobranca_Persistido'' and column_name = ''ValorDescontoNaoCondicionadoPROUNI'' ))
---	BEGIN
---	    SELECT DB_NAME()
---	END
+--					 JOIN INFORMATION_SCHEMA.COLUMNS ic ON ic.TABLE_NAME = st.name
+
+FROM [?].sys.tables st
+JOIN INFORMATION_SCHEMA.COLUMNS ic ON ic.TABLE_NAME = st.name
+
+	                 WHERE TABLE_NAME LIKE ''Migracao_%'' )) -- and column_name = ''ValorDescontoNaoCondicionadoPROUNI''
+	BEGIN
+	    SELECT DB_NAME()
+	END
 
 
 
@@ -33,7 +38,7 @@ EXEC dbLogMonitor.dbo.sp_foreachdb N'
 ,@user_only = 1
 ,@suppress_quotename=1
 -- ,@database_list = 'dbSigaOmegaBelem' -- dbSigaExitoNatal -- dbSigaMickeylandia -- dbSigaCEAMOMossoro -- dbSigaSagradoCoracao -- dbSigaCordCNSD
-,@name_pattern='dbSiga';     
+,@name_pattern='dbSigaSalesianoRecife';     
 
 
 

@@ -43,7 +43,7 @@ EXEC dbo.sp_foreachdb N'
 ,@user_only = 1
 ,@suppress_quotename=1
 -- ,@name_pattern='dbSigaParthenon';
-,@database_list = 'dbSigaSaleMazzarello' 
+,@database_list = 'dbSigaNoildeRamalho' 
 
 
 
