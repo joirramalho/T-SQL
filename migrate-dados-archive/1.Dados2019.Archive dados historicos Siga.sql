@@ -12,14 +12,14 @@ EXEC dbo.sp_foreachdb N'
 
 	SELECT DB_NAME()
 
-    SELECT Tabela, year( DataHora ), count(*)	FROM ?.dbo.TbAuditoria  WHERE   Tabela IN (''Sistema_Login'',''Sistema_LogOut'',''TbDiarioFrequencia'',''TbDiarioAula'',''TbDiario'',''TbFaseNota'',''TbDiarioAluno'') AND year(DataHora) < ( year( getdate() ) - 1 ) group by Tabela, year( DataHora )        order by year( DataHora ) DESC
+    SELECT Tabela, year( DataHora ), count(*)	FROM ?.dbo.TbAuditoria  WHERE   Tabela IN (''Sistema_Login'',''Sistema_LogOut'',''TbDiarioFrequencia'',''TbDiarioAula'',''TbDiario'',''TbFaseNota'',''TbDiarioAluno'') AND year(DataHora) < ( year( getdate() ) - 2 ) group by Tabela, year( DataHora )        order by year( DataHora ) DESC
 '
 ,@print_command_only = 0
 ,@print_dbname=0
 ,@state_desc = N'ONLINE'
 ,@user_only = 1
 ,@suppress_quotename=1
-,@name_pattern='dbSigaASLAN';
+,@name_pattern='dbSiga';
 -- ,@database_list = 'dbSigaASLAN';
 
 

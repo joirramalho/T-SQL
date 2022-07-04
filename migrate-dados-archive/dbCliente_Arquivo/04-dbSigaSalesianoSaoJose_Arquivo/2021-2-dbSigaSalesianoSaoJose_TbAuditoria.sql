@@ -35,7 +35,7 @@ SET IDENTITY_INSERT dbSigaSalesianoSaoJose_Arquivo.dbo.TbAuditoria ON;
 
 INSERT INTO dbSigaSalesianoSaoJose_Arquivo.dbo.TbAuditoria ( Tabela, IdUsuario, Operacao, DataHora, ValorChave1, ValorChave2, ValorChave3, ValorChave4, ValorChave5, DescricaoOperacao, IdAuditoria )
         SELECT Tabela, IdUsuario, Operacao, DataHora, ValorChave1, ValorChave2, ValorChave3, ValorChave4, ValorChave5, DescricaoOperacao, IdAuditoria
-            FROM dbSigaSalesianoSaoJose.dbo.TbAuditoria WHERE YEAR(DAtaHora) <= 2020
+            FROM dbSigaSalesianoSaoJose.dbo.TbAuditoria WHERE YEAR(DAtaHora) <= 2021
 
             
 --2017	224074
@@ -58,7 +58,7 @@ WHILE 1 = 1
 BEGIN
 	DELETE TOP (@BatchSize)
 	FROM dbSigaSalesianoSaoJose.dbo.TbAuditoria
-	where YEAR(DAtaHora) <= 2020
+	where YEAR(DAtaHora) <= 2021
  
 	IF @@ROWCOUNT < @BatchSize BREAK
 END

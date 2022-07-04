@@ -80,13 +80,13 @@ SET IDENTITY_INSERT dbSigaSalesianoDomBosco_Arquivo.dbo.TbAuditoria ON;
 
 INSERT INTO dbSigaSalesianoDomBosco_Arquivo.dbo.TbAuditoria ( Tabela, IdUsuario, Operacao, DataHora, ValorChave1, ValorChave2, ValorChave3, ValorChave4, ValorChave5, DescricaoOperacao, IdAuditoria )
         SELECT Tabela, IdUsuario, Operacao, DataHora, ValorChave1, ValorChave2, ValorChave3, ValorChave4, ValorChave5, DescricaoOperacao, IdAuditoria
-            FROM dbSigaSalesianoDomBosco.dbo.TbAuditoria WHERE YEAR(DAtaHora) <= 2020
+            FROM dbSigaSalesianoDomBosco.dbo.TbAuditoria WHERE YEAR(DAtaHora) <= 2021
 
             
         
         
-SELECT  COUNT(*) FROM dbSigaSalesianoDomBosco_Arquivo.dbo.TbAuditoria;  -- 7165149 = 9.587.844
 SELECT  COUNT(*) FROM dbSigaSalesianoDomBosco.dbo.TbAuditoria WHERE YEAR(DAtaHora) <= 2020 -- 2422695
+SELECT  COUNT(*) FROM dbSigaSalesianoDomBosco_Arquivo.dbo.TbAuditoria;  -- 7165149 = 9.587.844
 
 SELECT	YEAR(DataHORA),   COUNT(*) FROM dbSigaSalesianoDomBosco.dbo.TbAuditoria GROUP BY YEAR(DataHORA);
 SELECT	YEAR(DataHORA),   COUNT(*) FROM dbSigaSalesianoDomBosco_Arquivo.dbo.TbAuditoria GROUP BY YEAR(DataHORA);
@@ -99,7 +99,7 @@ WHILE 1 = 1
 BEGIN
 	DELETE TOP (@BatchSize)
 	FROM dbSigaSalesianoDomBosco.dbo.TbAuditoria
-	where YEAR(DAtaHora) <= 2020
+	where YEAR(DAtaHora) <= 2021
  
 	IF @@ROWCOUNT < @BatchSize BREAK
 END

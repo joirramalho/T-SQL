@@ -33,9 +33,9 @@
 
 
 --READ_WRITE & READ_ONLY
-	--ALTER DATABASE dbSigaNoildeRamalho_Arquivo    SET  READ_WRITE WITH NO_WAIT
+	--ALTER DATABASE dbSigaSalesianoDomBosco_Arquivo    SET  READ_WRITE WITH NO_WAIT
 
-	--ALTER DATABASE dbSigaSaleMazzarello_Arquivo    SET  READ_ONLY WITH NO_WAIT
+	--ALTER DATABASE dbSigaSalesianoDomBosco_Arquivo    SET  READ_ONLY WITH NO_WAIT
 
 
 
